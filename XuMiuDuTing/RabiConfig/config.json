@@ -1,0 +1,17 @@
+{
+    "MANAGER_NAME": "ConfigManager.cs",
+    "MANAGER_TARGET_FOLDER": "../Assets/Scripts/Core/Manager/ConfigManager",
+    "XLSX_FOLDER": "./xlsx/",
+    "DATA_TARGET_FOLDER": "../Assets/AddressableAssets/Config",
+    "SCRIPTS_TARGET_FOLDER": "../Assets/Scripts/Config",
+    "MANAGER_PATH": "../Assets/Scripts/Core/Manager/ConfigManager/ConfigManager.cs",
+    "MANIFEST_PATH": "./xlsx/manifest.txt",
+    "SUFFIX": ".cs",
+    "ASSET_MANAGER_INIT_CODE": "AssetManager.Instance.OnInit();",
+    "DEF_TARGET_FOLDER": "../Assets/Scripts/ConfigDef",
+    "IS_ATTRIBUTE_EXIST": true,
+    "DEF_MARK": "DefName",
+    "ANNOTATE_MARK": "Annotate",
+    "GROUP_MARK": "*",
+    "NAME_SPACE_NAME": "Rabi"
+}
