@@ -56,26 +56,27 @@ namespace Yu
             //GameObject obj = CommandManager.Instance.CreatWaitingObj();
             //SaveManager.SetFloat("TestFloat",0.5f);
             //Debug.Log(SaveManager.GetFloat("TestFloat", 0.1f));
-            ReturnToTitle();
+            ReturnToTitle(0f);
         }
 
         /// <summary>
         /// 游戏开始
         /// </summary>
-        public void ReturnToTitle()
+        public void ReturnToTitle(float bgmFadeOutTime=0.5f)
         {
-            StartCoroutine(IReturnToTitle());
+            StartCoroutine(ReturnToTitleIEnumerator(bgmFadeOutTime));
         }
-
-
+        
         /// <summary>
-        /// 游戏开始
+        /// 返回Title
         /// </summary>
-        private IEnumerator IReturnToTitle()
+        /// <param name="bgmFadeOutTime"></param>
+        /// <returns></returns>
+        private IEnumerator ReturnToTitleIEnumerator(float bgmFadeOutTime)
         {
             UIManager.Instance.CloseAllWindows();
             UIManager.Instance.OpenWindow("LoadingView");
-            yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", 0.5f, 0f, 0.5f);
+            yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", bgmFadeOutTime, 0f, 0.5f);
             SetTimeScale(1f);
             CameraManager.Instance.ResetObjCamera();
             GC.Collect();

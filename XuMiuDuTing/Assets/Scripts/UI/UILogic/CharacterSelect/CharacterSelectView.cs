@@ -10,6 +10,8 @@ namespace Yu
     {
         public Button btnBack;
         public Transform characterItemContainer;
+        public GameObject objMask;
+        
         public Animator animator;
         
         
@@ -18,8 +20,8 @@ namespace Yu
         /// </summary>
         public void OpenWindow()
         {
-            btnBack.interactable = true;
             gameObject.SetActive(true);
+            objMask.SetActive(false);
             animator.Play("Show", 0, 0f);
         }
 
@@ -37,7 +39,7 @@ namespace Yu
         /// <returns></returns>
         private IEnumerator CloseWindowIEnumerator()
         {
-            btnBack.interactable = false;
+            objMask.SetActive(true);
             yield return Utils.PlayAnimation(animator, "Hide");
             gameObject.SetActive(false);
         }

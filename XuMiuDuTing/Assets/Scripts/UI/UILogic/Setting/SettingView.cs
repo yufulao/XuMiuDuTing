@@ -16,6 +16,7 @@ namespace Yu
         public Toggle toggleFullscreen;
         public Toggle toggleAuto;
         public Dropdown dropdownResolution;
+        public GameObject objMask;
 
         public Animator animator;
         
@@ -55,7 +56,7 @@ namespace Yu
         /// </summary>
         public void OpenWindow()
         {
-            btnBack.interactable = true;
+            objMask.SetActive(false);
             gameObject.SetActive(true);
             animator.Play("Show", 0, 0f);
         }
@@ -74,7 +75,7 @@ namespace Yu
         /// <returns></returns>
         private IEnumerator CloseWindowIEnumerator()
         {
-            btnBack.interactable = false;
+            objMask.SetActive(true);
             yield return Utils.PlayAnimation(animator, "Hide");
             gameObject.SetActive(false);
         }

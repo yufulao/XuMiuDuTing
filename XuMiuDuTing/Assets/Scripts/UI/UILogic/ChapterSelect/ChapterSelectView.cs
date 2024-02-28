@@ -13,6 +13,8 @@ namespace Yu
         public Button btnSubPlot;
         public Button btnMainPlot;
         public Image imageInfo;
+        public GameObject objMask;
+        
         public Animator animator;
 
         public void OnInit()
@@ -33,7 +35,7 @@ namespace Yu
         /// </summary>
         public void OpenWindow()
         {
-            btnBack.interactable = true;
+            objMask.SetActive(false);
             gameObject.SetActive(true);
             animator.Play("Show", 0, 0f);
         }
@@ -52,7 +54,7 @@ namespace Yu
         /// <returns></returns>
         private IEnumerator CloseWindowIEnumerator()
         {
-            btnBack.interactable = false;
+            objMask.SetActive(true);
             yield return Utils.PlayAnimation(animator, "Hide");
             gameObject.SetActive(false);
         }
