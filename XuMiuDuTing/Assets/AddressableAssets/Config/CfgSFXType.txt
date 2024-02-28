@@ -1,0 +1,5 @@
+key#Annotate#DefName
+key#注释#枚举名称
+string#string#string
+Se#基本音效#None
+Voice#说话音效#None

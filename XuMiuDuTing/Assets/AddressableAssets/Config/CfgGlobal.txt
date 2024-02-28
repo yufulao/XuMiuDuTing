@@ -1,0 +1,4 @@
+key#DefName#Annotate#Value
+key#枚举名称#注释#值
+string#string#string#string
+NullPortraitTeamEditPath#None#队伍编辑界面空位的头像路径#Assets/AddressableAssets/Sprite/TeamEdit/编队空位.png

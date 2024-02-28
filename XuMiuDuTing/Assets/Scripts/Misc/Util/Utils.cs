@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -30,7 +31,7 @@ public static class Utils
     /// <param name="trigger"></param>
     /// <param name="eventID"></param>
     /// <param name="callback"></param>
-    public static void AddTriggersListener(EventTrigger trigger, EventTriggerType eventID, UnityEngine.Events.UnityAction<BaseEventData> callback)
+    public static void AddTriggersListener(EventTrigger trigger, EventTriggerType eventID, UnityAction<BaseEventData> callback)
     {
         if (trigger.triggers.Count == 0)
         {
@@ -78,6 +79,25 @@ public static class Utils
         }
 
         return length;
+    }
+    
+    /// <summary>
+    /// 选择该UI，并将其显示为选中状态。
+    /// </summary>
+    /// <param name="selectable"></param>
+    /// <param name="allowStealFocus"></param>
+    public static void Select(UnityEngine.UI.Selectable selectable, bool allowStealFocus = true)
+    {
+        var currentEventSystem = UnityEngine.EventSystems.EventSystem.current;
+        if (currentEventSystem == null || selectable == null) return;
+        if (currentEventSystem.alreadySelecting) return;
+        if (currentEventSystem.currentSelectedGameObject != null && !allowStealFocus)
+        {
+            return;
+        }
+        currentEventSystem.SetSelectedGameObject(selectable.gameObject);
+        selectable.Select();
+        selectable.OnSelect(null);
     }
 
     /// <summary>

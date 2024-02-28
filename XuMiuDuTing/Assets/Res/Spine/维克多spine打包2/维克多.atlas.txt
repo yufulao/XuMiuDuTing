@@ -1,0 +1,433 @@
+
+维克多.png
+size: 12859,1091
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+上半身
+  rotate: true
+  xy: 10156, 4
+  size: 504, 456
+  orig: 507, 470
+  offset: 2, 13
+  index: -1
+下半身
+  rotate: true
+  xy: 6120, 2
+  size: 314, 292
+  orig: 316, 294
+  offset: 1, 0
+  index: -1
+下摆
+  rotate: false
+  xy: 11575, 546
+  size: 361, 177
+  orig: 361, 177
+  offset: 0, 0
+  index: -1
+从选区
+  rotate: false
+  xy: 12608, 631
+  size: 217, 135
+  orig: 217, 135
+  offset: 0, 0
+  index: -1
+刀
+  rotate: true
+  xy: 3846, 155
+  size: 934, 239
+  orig: 957, 255
+  offset: 2, 3
+  index: -1
+受击表情
+  rotate: true
+  xy: 8331, 46
+  size: 364, 343
+  orig: 367, 345
+  offset: 1, 1
+  index: -1
+右大腿
+  rotate: true
+  xy: 5166, 12
+  size: 235, 368
+  orig: 237, 371
+  offset: 1, 2
+  index: -1
+右小腿
+  rotate: false
+  xy: 12608, 768
+  size: 249, 321
+  orig: 253, 323
+  offset: 2, 1
+  index: -1
+右手张开
+  rotate: false
+  xy: 4670, 5
+  size: 166, 242
+  orig: 169, 245
+  offset: 2, 2
+  index: -1
+右手拳
+  rotate: true
+  xy: 12107, 14
+  size: 186, 229
+  orig: 208, 232
+  offset: 21, 2
+  index: -1
+右鞋
+  rotate: false
+  xy: 4131, 12
+  size: 242, 147
+  orig: 248, 152
+  offset: 5, 1
+  index: -1
+后背
+  rotate: false
+  xy: 9650, 5
+  size: 504, 470
+  orig: 507, 483
+  offset: 2, 13
+  index: -1
+大臂右
+  rotate: true
+  xy: 5536, 6
+  size: 249, 582
+  orig: 252, 584
+  offset: 2, 1
+  index: -1
+大臂左
+  rotate: false
+  xy: 7829, 5
+  size: 271, 381
+  orig: 273, 385
+  offset: 1, 2
+  index: -1
+小臂右
+  rotate: true
+  xy: 4375, 2
+  size: 228, 293
+  orig: 231, 295
+  offset: 2, 1
+  index: -1
+小臂左
+  rotate: false
+  xy: 6414, 15
+  size: 212, 301
+  orig: 215, 304
+  offset: 2, 2
+  index: -1
+尾巴
+  rotate: true
+  xy: 9134, 18
+  size: 412, 514
+  orig: 422, 514
+  offset: 10, 0
+  index: -1
+屁股
+  rotate: false
+  xy: 11284, 3
+  size: 359, 174
+  orig: 361, 177
+  offset: 1, 2
+  index: -1
+左大腿
+  rotate: false
+  xy: 8102, 39
+  size: 227, 371
+  orig: 230, 373
+  offset: 2, 1
+  index: -1
+左小腿
+  rotate: true
+  xy: 12338, 3
+  size: 215, 319
+  orig: 218, 321
+  offset: 2, 1
+  index: -1
+左手张开
+  rotate: false
+  xy: 4838, 5
+  size: 166, 242
+  orig: 169, 245
+  offset: 1, 2
+  index: -1
+左手拳
+  rotate: true
+  xy: 11645, 4
+  size: 173, 233
+  orig: 191, 236
+  offset: 2, 2
+  index: -1
+左鞋
+  rotate: false
+  xy: 3846, 6
+  size: 283, 147
+  orig: 289, 152
+  offset: 5, 1
+  index: -1
+平常表情
+  rotate: true
+  xy: 11151, 179
+  size: 364, 343
+  orig: 367, 345
+  offset: 1, 1
+  index: -1
+握手右
+  rotate: true
+  xy: 11938, 553
+  size: 189, 207
+  orig: 192, 211
+  offset: 2, 2
+  index: -1
+握手手指左
+  rotate: true
+  xy: 11151, 2
+  size: 175, 131
+  orig: 179, 148
+  offset: 2, 1
+  index: -1
+握手手掌左
+  rotate: true
+  xy: 12317, 572
+  size: 176, 213
+  orig: 180, 215
+  offset: 2, 1
+  index: -1
+火焰推进/火焰推进-1
+  rotate: true
+  xy: 2, 9
+  size: 1080, 1920
+  orig: 1080, 1920
+  offset: 0, 0
+  index: -1
+火焰推进/火焰推进-10
+  rotate: false
+  xy: 6751, 340
+  size: 545, 749
+  orig: 1080, 1920
+  offset: 229, 556
+  index: -1
+火焰推进/火焰推进-11
+  rotate: false
+  xy: 10501, 526
+  size: 539, 563
+  orig: 1080, 1920
+  offset: 242, 754
+  index: -1
+火焰推进/火焰推进-12
+  rotate: false
+  xy: 11042, 545
+  size: 531, 544
+  orig: 1080, 1920
+  offset: 249, 765
+  index: -1
+火焰推进/火焰推进-13
+  rotate: true
+  xy: 10614, 21
+  size: 503, 535
+  orig: 1080, 1920
+  offset: 265, 768
+  index: -1
+火焰推进/火焰推进-14
+  rotate: true
+  xy: 4087, 161
+  size: 41, 77
+  orig: 1080, 1920
+  offset: 488, 998
+  index: -1
+火焰推进/火焰推进-15
+  rotate: false
+  xy: 2, 6
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+火焰推进/火焰推进-2
+  rotate: false
+  xy: 5006, 5
+  size: 158, 242
+  orig: 1080, 1920
+  offset: 447, 278
+  index: -1
+火焰推进/火焰推进-3
+  rotate: true
+  xy: 6628, 26
+  size: 290, 480
+  orig: 1080, 1920
+  offset: 392, 285
+  index: -1
+火焰推进/火焰推进-4
+  rotate: false
+  xy: 9596, 477
+  size: 331, 612
+  orig: 1080, 1920
+  offset: 365, 283
+  index: -1
+火焰推进/火焰推进-5
+  rotate: false
+  xy: 8591, 430
+  size: 344, 659
+  orig: 1080, 1920
+  offset: 330, 281
+  index: -1
+火焰推进/火焰推进-6
+  rotate: true
+  xy: 1924, 9
+  size: 1080, 1920
+  orig: 1080, 1920
+  offset: 0, 0
+  index: -1
+火焰推进/火焰推进-7
+  rotate: false
+  xy: 4087, 204
+  size: 284, 885
+  orig: 1080, 1920
+  offset: 373, 264
+  index: -1
+火焰推进/火焰推进-8
+  rotate: false
+  xy: 4373, 232
+  size: 292, 857
+  orig: 1080, 1920
+  offset: 341, 307
+  index: -1
+火焰推进/火焰推进-9
+  rotate: false
+  xy: 5509, 257
+  size: 525, 832
+  orig: 1080, 1920
+  offset: 222, 465
+  index: -1
+眩晕表情
+  rotate: true
+  xy: 11496, 179
+  size: 364, 343
+  orig: 367, 345
+  offset: 1, 1
+  index: -1
+维克多蓄力/维克多蓄力 (1)
+  rotate: true
+  xy: 7298, 388
+  size: 701, 625
+  orig: 1920, 1080
+  offset: 558, 209
+  index: -1
+维克多蓄力/维克多蓄力 (10)
+  rotate: false
+  xy: 4667, 249
+  size: 840, 840
+  orig: 1920, 1080
+  offset: 507, 181
+  index: -1
+维克多蓄力/维克多蓄力 (11)
+  rotate: false
+  xy: 12532, 375
+  size: 254, 254
+  orig: 1920, 1080
+  offset: 800, 474
+  index: -1
+维克多蓄力/维克多蓄力 (12)
+  rotate: false
+  xy: 12267, 750
+  size: 339, 339
+  orig: 1920, 1080
+  offset: 757, 432
+  index: -1
+维克多蓄力/维克多蓄力 (13)
+  rotate: false
+  xy: 11920, 744
+  size: 345, 345
+  orig: 1920, 1080
+  offset: 754, 429
+  index: -1
+维克多蓄力/维克多蓄力 (14)
+  rotate: false
+  xy: 12185, 220
+  size: 331, 331
+  orig: 1920, 1080
+  offset: 761, 436
+  index: -1
+维克多蓄力/维克多蓄力 (15)
+  rotate: false
+  xy: 11841, 202
+  size: 342, 342
+  orig: 1920, 1080
+  offset: 756, 430
+  index: -1
+维克多蓄力/维克多蓄力 (16)
+  rotate: false
+  xy: 7110, 5
+  size: 333, 333
+  orig: 1920, 1080
+  offset: 760, 435
+  index: -1
+维克多蓄力/维克多蓄力 (2)
+  rotate: false
+  xy: 8937, 432
+  size: 657, 657
+  orig: 1920, 1080
+  offset: 592, 270
+  index: -1
+维克多蓄力/维克多蓄力 (3)
+  rotate: true
+  xy: 6036, 318
+  size: 771, 713
+  orig: 1920, 1080
+  offset: 506, 220
+  index: -1
+维克多蓄力/维克多蓄力 (4)
+  rotate: true
+  xy: 7925, 412
+  size: 677, 664
+  orig: 1920, 1080
+  offset: 559, 252
+  index: -1
+维克多蓄力/维克多蓄力 (5)
+  rotate: false
+  xy: 9929, 510
+  size: 570, 579
+  orig: 1920, 1080
+  offset: 621, 301
+  index: -1
+维克多蓄力/维克多蓄力 (6)
+  rotate: true
+  xy: 8676, 3
+  size: 425, 456
+  orig: 1920, 1080
+  offset: 719, 340
+  index: -1
+维克多蓄力/维克多蓄力 (7)
+  rotate: false
+  xy: 12147, 553
+  size: 168, 189
+  orig: 1920, 1080
+  offset: 846, 511
+  index: -1
+维克多蓄力/维克多蓄力 (8)
+  rotate: false
+  xy: 12518, 280
+  size: 93, 93
+  orig: 1920, 1080
+  offset: 880, 555
+  index: -1
+维克多蓄力/维克多蓄力 (9)
+  rotate: false
+  xy: 7445, 4
+  size: 382, 382
+  orig: 1920, 1080
+  offset: 736, 410
+  index: -1
+脖子
+  rotate: false
+  xy: 11880, 12
+  size: 225, 188
+  orig: 241, 191
+  offset: 2, 1
+  index: -1
+闭眼表情
+  rotate: true
+  xy: 11575, 725
+  size: 364, 343
+  orig: 367, 345
+  offset: 1, 1
+  index: -1

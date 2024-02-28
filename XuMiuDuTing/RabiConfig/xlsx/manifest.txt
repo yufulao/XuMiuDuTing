@@ -1,6 +1,11 @@
-Sfx.xlsx
-Bgm.xlsx
+SFX.xlsx
+BGM.xlsx
 UI.xlsx
 Prefab.xlsx
 Sprite.xlsx
 Camera.xlsx
+Scene.xlsx
+Chapter.xlsx
+Stage.xlsx
+Character.xlsx
+Global.xlsx

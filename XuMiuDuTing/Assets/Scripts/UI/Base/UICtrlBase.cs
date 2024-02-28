@@ -1,16 +1,31 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class UICtrlBase : MonoBehaviour
+namespace Yu
 {
-    public abstract void OnInit(params object[] param);
+    public abstract class UICtrlBase : MonoBehaviour
+    {
+        //先OnInit，再BindEvent，再OpenRoot
+        
+        /// <summary>
+        /// 第一次打开时的初始化
+        /// </summary>
+        /// <param name="param"></param>
+        public abstract void OnInit(params object[] param);
 
-    public abstract void OpenRoot();
+        /// <summary>
+        /// 每次打开都执行一次，包括第一次
+        /// </summary>
+        /// <param name="param"></param>
+        public abstract void OpenRoot(params object[] param);
 
-    public abstract void CloseRoot();
+        /// <summary>
+        /// 关闭时调用一次
+        /// </summary>
+        public abstract void CloseRoot();
 
-    protected abstract void BindEvent();
+        /// <summary>
+        /// 绑定事件，自动在OnInit调用了
+        /// </summary>
+        public abstract void BindEvent();
+    }
 }
