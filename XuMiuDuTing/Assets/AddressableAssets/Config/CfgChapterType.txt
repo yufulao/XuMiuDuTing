@@ -1,0 +1,5 @@
+key#Annotate#DefName
+key#注释#枚举名称
+string#string#string
+MainPlot#主线章节#None
+SubPlot#支线章节#None

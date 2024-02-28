@@ -1,0 +1,357 @@
+{
+"skeleton": { "hash": "qsnD+KsEaZS/ka749vA4lWQPuuo", "spine": "3.8", "images": "../../动画序列帧/", "audio": "../../音效堆放处/" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "bone", "parent": "root", "length": 176.96, "x": 111.52, "y": 325.91 },
+	{ "name": "bone2", "parent": "root", "length": 621.77, "rotation": 89.31, "x": 200.66, "y": 493.27 },
+	{ "name": "bone3", "parent": "root", "length": 525.71, "rotation": 88.85, "x": 102.74, "y": 526.49 },
+	{ "name": "bone4", "parent": "root", "length": 1074.52, "rotation": -90.52, "x": -237.85, "y": 251.67 },
+	{ "name": "bone5", "parent": "root", "length": 625.46, "rotation": 88.21, "x": -394.14, "y": 334.7 }
+],
+"slots": [
+	{ "name": "dogskill3", "bone": "bone" },
+	{ "name": "dog_skill_4", "bone": "bone2" },
+	{ "name": "attack_A", "bone": "bone3" },
+	{ "name": "火焰推进", "bone": "bone4" },
+	{ "name": "维克多蓄力", "bone": "bone5" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"dog_skill_4": {
+				"dog_heal/dog_skill4 (1)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (2)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (3)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (4)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (5)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (6)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (7)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (8)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (9)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (10)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (11)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (12)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (13)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (14)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (15)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (16)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 },
+				"dog_heal/dog_skill4 (17)": { "x": -84.76, "y": -5.48, "rotation": -89.31, "width": 1920, "height": 1080 }
+			},
+			"attack_A": {
+				"通用attack/attack_A (1)": { "width": 1920, "height": 1080 },
+				"通用attack/attack_A (2)": { "width": 1920, "height": 1080 },
+				"通用attack/attack_A (3)": { "width": 1920, "height": 1080 },
+				"通用attack/attack_A (4)": { "width": 1920, "height": 1080 },
+				"通用attack/attack_A (5)": { "width": 1920, "height": 1080 },
+				"通用attack/attack_A (6)": { "width": 1920, "height": 1080 },
+				"通用attack/attack_A (7)": { "width": 1920, "height": 1080 },
+				"通用attack/attack_A (8)": { "width": 1920, "height": 1080 }
+			},
+			"火焰推进": {
+				"火焰推进/火焰推进-1": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-2": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-3": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-4": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-5": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-6": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-7": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-8": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-9": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-10": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-11": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-12": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-13": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-14": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 },
+				"火焰推进/火焰推进-15": { "x": 249.49, "y": 240.13, "rotation": 90.52, "width": 1080, "height": 1920 }
+			},
+			"维克多蓄力": {
+				"维克多蓄力/维克多蓄力/维克多蓄力 (1)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (2)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (3)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (4)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (5)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (6)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (7)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (8)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (9)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (10)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (11)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (12)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (13)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (14)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (15)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 },
+				"维克多蓄力/维克多蓄力/维克多蓄力 (16)": { "x": -322.22, "y": -404.4, "rotation": -88.21, "width": 1920, "height": 1080 }
+			},
+			"dogskill3": {
+				"dog_attack/dog_skill_3 (1)": { "width": 1920, "height": 1080 },
+				"dog_attack/dog_skill_3 (2)": { "width": 1920, "height": 1080 },
+				"dog_attack/dog_skill_3 (3)": { "width": 1920, "height": 1080 },
+				"dog_attack/dog_skill_3 (4)": { "width": 1920, "height": 1080 },
+				"dog_attack/dog_skill_3 (5)": { "width": 1920, "height": 1080 },
+				"dog_attack/dog_skill_3 (6)": { "width": 1920, "height": 1080 },
+				"dog_attack/dog_skill_3 (7)": { "width": 1920, "height": 1080 },
+				"dog_attack/dog_skill_3 (8)": { "width": 1920, "height": 1080 },
+				"dog_attack/dog_skill_3 (9)": { "width": 1920, "height": 1080 },
+				"dog_attack/dog_skill_3 (10)": { "width": 1920, "height": 1080 },
+				"dog_attack/dog_skill_3 (11)": { "width": 1920, "height": 1080 },
+				"dog_attack/dog_skill_3 (12)": { "width": 1920, "height": 1080 },
+				"dog_attack/dog_skill_3 (13)": { "width": 1920, "height": 1080 }
+			}
+		}
+	}
+],
+"animations": {
+	"attack_A": {
+		"slots": {
+			"dogskill3": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"dog_skill_4": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"attack_A": {
+				"attachment": [
+					{ "name": "通用attack/attack_A (1)" },
+					{ "time": 0.0667, "name": "通用attack/attack_A (2)" },
+					{ "time": 0.1333, "name": "通用attack/attack_A (3)" },
+					{ "time": 0.2, "name": "通用attack/attack_A (4)" },
+					{ "time": 0.2667, "name": "通用attack/attack_A (5)" },
+					{ "time": 0.3333, "name": "通用attack/attack_A (6)" },
+					{ "time": 0.4, "name": "通用attack/attack_A (7)" },
+					{ "time": 0.4667, "name": "通用attack/attack_A (8)" }
+				]
+			}
+		}
+	},
+	"dog_skill3": {
+		"slots": {
+			"dogskill3": {
+				"attachment": [
+					{ "name": "dog_attack/dog_skill_3 (2)" },
+					{ "time": 0.0667, "name": "dog_attack/dog_skill_3 (3)" },
+					{ "time": 0.1333, "name": "dog_attack/dog_skill_3 (4)" },
+					{ "time": 0.2, "name": "dog_attack/dog_skill_3 (5)" },
+					{ "time": 0.2667, "name": "dog_attack/dog_skill_3 (6)" },
+					{ "time": 0.3333, "name": "dog_attack/dog_skill_3 (7)" },
+					{ "time": 0.4, "name": "dog_attack/dog_skill_3 (8)" },
+					{ "time": 0.4667, "name": "dog_attack/dog_skill_3 (9)" },
+					{ "time": 0.5333, "name": "dog_attack/dog_skill_3 (10)" },
+					{ "time": 0.6, "name": "dog_attack/dog_skill_3 (11)" },
+					{ "time": 0.6667, "name": "dog_attack/dog_skill_3 (12)" },
+					{ "time": 0.7333, "name": "dog_attack/dog_skill_3 (13)" },
+					{ "time": 0.8, "name": "dog_attack/dog_skill_3 (1)" }
+				]
+			},
+			"dog_skill_4": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.8, "name": null }
+				]
+			},
+			"attack_A": {
+				"attachment": [
+					{ "name": null }
+				]
+			}
+		}
+	},
+	"dog_skill4&6": {
+		"slots": {
+			"dogskill3": {
+				"color": [
+					{ "time": 0.8667, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"dog_skill_4": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.0333, "name": "dog_heal/dog_skill4 (1)" },
+					{ "time": 0.1, "name": "dog_heal/dog_skill4 (2)" },
+					{ "time": 0.1667, "name": "dog_heal/dog_skill4 (3)" },
+					{ "time": 0.2333, "name": "dog_heal/dog_skill4 (4)" },
+					{ "time": 0.3, "name": "dog_heal/dog_skill4 (5)" },
+					{ "time": 0.3667, "name": "dog_heal/dog_skill4 (6)" },
+					{ "time": 0.4333, "name": "dog_heal/dog_skill4 (7)" },
+					{ "time": 0.5, "name": "dog_heal/dog_skill4 (8)" },
+					{ "time": 0.5667, "name": "dog_heal/dog_skill4 (9)" },
+					{ "time": 0.6333, "name": "dog_heal/dog_skill4 (10)" },
+					{ "time": 0.7, "name": "dog_heal/dog_skill4 (11)" },
+					{ "time": 0.7667, "name": "dog_heal/dog_skill4 (12)" },
+					{ "time": 0.8333, "name": "dog_heal/dog_skill4 (13)" },
+					{ "time": 0.9, "name": "dog_heal/dog_skill4 (14)" },
+					{ "time": 0.9667, "name": "dog_heal/dog_skill4 (15)" },
+					{ "time": 1.0333, "name": "dog_heal/dog_skill4 (16)" },
+					{ "time": 1.1, "name": "dog_heal/dog_skill4 (17)" }
+				]
+			},
+			"attack_A": {
+				"attachment": [
+					{ "name": null }
+				]
+			}
+		},
+		"drawOrder": [
+			{}
+		]
+	},
+	"dog_skill5": {
+		"slots": {
+			"火焰推进": {
+				"attachment": [
+					{ "time": 0.5, "name": "火焰推进/火焰推进-1" },
+					{ "time": 0.5333, "name": "火焰推进/火焰推进-2" },
+					{ "time": 0.5667, "name": "火焰推进/火焰推进-3" },
+					{ "time": 0.6, "name": "火焰推进/火焰推进-4" },
+					{ "time": 0.6333, "name": "火焰推进/火焰推进-5" },
+					{ "time": 0.6667, "name": "火焰推进/火焰推进-6" },
+					{ "time": 0.7, "name": "火焰推进/火焰推进-7" },
+					{ "time": 0.7333, "name": "火焰推进/火焰推进-8" },
+					{ "time": 0.7667, "name": "火焰推进/火焰推进-9" },
+					{ "time": 0.8, "name": "火焰推进/火焰推进-10" },
+					{ "time": 0.8333, "name": "火焰推进/火焰推进-11" },
+					{ "time": 0.8667, "name": "火焰推进/火焰推进-12" },
+					{ "time": 0.9, "name": "火焰推进/火焰推进-13" },
+					{ "time": 0.9333, "name": "火焰推进/火焰推进-14" },
+					{ "time": 0.9667, "name": "火焰推进/火焰推进-15" },
+					{ "time": 1, "name": null }
+				]
+			},
+			"dogskill3": {
+				"attachment": [
+					{ "time": 0.5667, "name": "dog_attack/dog_skill_3 (1)" },
+					{ "time": 0.6333, "name": "dog_attack/dog_skill_3 (2)" },
+					{ "time": 0.7, "name": "dog_attack/dog_skill_3 (3)" },
+					{ "time": 0.7667, "name": "dog_attack/dog_skill_3 (4)" },
+					{ "time": 0.8333, "name": "dog_attack/dog_skill_3 (5)" },
+					{ "time": 0.9, "name": "dog_attack/dog_skill_3 (6)" },
+					{ "time": 0.9667, "name": "dog_attack/dog_skill_3 (7)" },
+					{ "time": 1.0333, "name": "dog_attack/dog_skill_3 (8)" },
+					{ "time": 1.1, "name": "dog_attack/dog_skill_3 (9)" },
+					{ "time": 1.1667, "name": "dog_attack/dog_skill_3 (10)" },
+					{ "time": 1.2333, "name": "dog_attack/dog_skill_3 (11)" },
+					{ "time": 1.3, "name": "dog_attack/dog_skill_3 (12)" },
+					{ "time": 1.3667, "name": "dog_attack/dog_skill_3 (13)" },
+					{ "time": 1.4333, "name": null }
+				]
+			},
+			"维克多蓄力": {
+				"attachment": [
+					{ "name": "维克多蓄力/维克多蓄力/维克多蓄力 (1)" },
+					{ "time": 0.0333, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (2)" },
+					{ "time": 0.0667, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (3)" },
+					{ "time": 0.1, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (4)" },
+					{ "time": 0.1333, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (5)" },
+					{ "time": 0.1667, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (6)" },
+					{ "time": 0.2, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (7)" },
+					{ "time": 0.2333, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (8)" },
+					{ "time": 0.2667, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (9)" },
+					{ "time": 0.3333, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (10)" },
+					{ "time": 0.3667, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (11)" },
+					{ "time": 0.4, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (12)" },
+					{ "time": 0.4333, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (13)" },
+					{ "time": 0.4667, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (14)" },
+					{ "time": 0.5, "name": "维克多蓄力/维克多蓄力/维克多蓄力 (15)" },
+					{ "time": 0.5333, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"bone4": {
+				"rotate": [
+					{ "time": 0.5, "angle": 176.96 }
+				],
+				"translate": [
+					{ "time": 0.5, "x": 609.53, "y": -177.73 }
+				],
+				"scale": [
+					{ "time": 0.5, "x": 2, "y": 2 }
+				]
+			},
+			"bone5": {
+				"translate": [
+					{ "x": -144.47, "y": 2001.91 }
+				],
+				"scale": [
+					{ "x": 1.5, "y": 1.5 }
+				]
+			},
+			"bone": {
+				"translate": [
+					{ "time": 0.5667, "x": 127.97, "y": 48 }
+				],
+				"scale": [
+					{ "time": 0.5667, "x": 2.544, "y": 1.139 }
+				]
+			}
+		}
+	},
+	"idel": {
+		"bones": {
+			"root": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{}
+				],
+				"scale": [
+					{}
+				],
+				"shear": [
+					{}
+				]
+			},
+			"bone3": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{}
+				],
+				"scale": [
+					{}
+				],
+				"shear": [
+					{}
+				]
+			},
+			"bone": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{}
+				],
+				"scale": [
+					{}
+				],
+				"shear": [
+					{}
+				]
+			},
+			"bone2": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{}
+				],
+				"scale": [
+					{}
+				],
+				"shear": [
+					{}
+				]
+			}
+		}
+	}
+}
+}

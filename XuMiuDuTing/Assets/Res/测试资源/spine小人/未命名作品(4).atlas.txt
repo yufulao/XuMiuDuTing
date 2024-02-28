@@ -1,0 +1,118 @@
+
+未命名作品(4).png
+size: 1907,613
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+down arm L
+  rotate: true
+  xy: 2, 4
+  size: 198, 299
+  orig: 202, 303
+  offset: 2, 2
+  index: -1
+down arm R
+  rotate: true
+  xy: 1235, 326
+  size: 285, 245
+  orig: 289, 249
+  offset: 2, 2
+  index: -1
+down body
+  rotate: true
+  xy: 1482, 352
+  size: 259, 241
+  orig: 263, 245
+  offset: 2, 2
+  index: -1
+down leg L
+  rotate: false
+  xy: 1510, 78
+  size: 212, 272
+  orig: 217, 278
+  offset: 2, 2
+  index: -1
+down leg R
+  rotate: true
+  xy: 410, 259
+  size: 143, 273
+  orig: 147, 279
+  offset: 2, 2
+  index: -1
+feet L
+  rotate: true
+  xy: 1725, 210
+  size: 202, 151
+  orig: 207, 155
+  offset: 2, 2
+  index: -1
+feet R
+  rotate: false
+  xy: 685, 264
+  size: 247, 138
+  orig: 252, 142
+  offset: 3, 2
+  index: -1
+hand L
+  rotate: true
+  xy: 1725, 414
+  size: 197, 180
+  orig: 201, 184
+  offset: 2, 2
+  index: -1
+hand R
+  rotate: true
+  xy: 1724, 38
+  size: 170, 176
+  orig: 174, 180
+  offset: 2, 2
+  index: -1
+head
+  rotate: false
+  xy: 2, 204
+  size: 406, 407
+  orig: 411, 412
+  offset: 3, 2
+  index: -1
+up arm L
+  rotate: true
+  xy: 620, 2
+  size: 255, 303
+  orig: 259, 307
+  offset: 2, 2
+  index: -1
+up arm R
+  rotate: true
+  xy: 303, 16
+  size: 186, 315
+  orig: 191, 319
+  offset: 2, 2
+  index: -1
+up body
+  rotate: false
+  xy: 1257, 59
+  size: 251, 265
+  orig: 255, 269
+  offset: 2, 2
+  index: -1
+up leg L
+  rotate: true
+  xy: 925, 29
+  size: 233, 330
+  orig: 238, 335
+  offset: 3, 2
+  index: -1
+up leg R
+  rotate: false
+  xy: 958, 298
+  size: 275, 313
+  orig: 279, 317
+  offset: 2, 2
+  index: -1
+weapon
+  rotate: true
+  xy: 410, 404
+  size: 207, 546
+  orig: 212, 551
+  offset: 2, 3
+  index: -1

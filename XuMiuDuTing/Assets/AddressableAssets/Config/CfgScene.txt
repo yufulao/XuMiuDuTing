@@ -1,0 +1,7 @@
+key#scenePath#None#None#None
+key#预设路径#None#None#None
+string#string#None#None#None
+Tittle#Assets/AddressableAssets/Scene/Tittle.unity#None#None#None
+None#None#None#None#None
+None#None#None#None#None
+None#None#None#None#None

@@ -1,0 +1,5 @@
+key#path
+key#路径
+string#string
+StageItem#Assets/AddressableAssets/UI/Common/StageItem.prefab
+CharacterItem#Assets/AddressableAssets/UI/Common/CharacterItem (0).prefab

@@ -1,6 +1,6 @@
 // ******************************************************************
-//       /\ /|       @file       CfgBgm.cs
-//       \ V/        @brief      excel数据解析(由python自动生成) ./xlsx//Bgm.xlsx
+//       /\ /|       @file       CfgBGM.cs
+//       \ V/        @brief      excel数据解析(由python自动生成) ./xlsx//BGM.xlsx
 //       | "")       @author     Shadowrabbit, yingtu0401@gmail.com
 //       /  |
 //      /  \\        @Modified   2022-04-25 13:25:11
@@ -14,23 +14,23 @@ using System.Collections.Generic;
 
 namespace Rabi
 {
-    public class RowCfgBgm
+    public class RowCfgBGM
     {
         public string key; //bgm名
         public string audioClipPath; //资源路径
     }
 
-    public class CfgBgm
+    public class CfgBGM
     {
-        private readonly Dictionary<string, RowCfgBgm> _configs = new Dictionary<string, RowCfgBgm>(); //cfgId映射row
-        public RowCfgBgm this[string key] => _configs.ContainsKey(key) ? _configs[key] : throw new Exception($"找不到配置 Cfg:{GetType()} key:{key}");
-        public RowCfgBgm this[int id] => _configs.ContainsKey(id.ToString()) ? _configs[id.ToString()] : throw new Exception($"找不到配置 Cfg:{GetType()} key:{id}");
-        public List<RowCfgBgm> AllConfigs => _configs.Values.ToList();
+        private readonly Dictionary<string, RowCfgBGM> _configs = new Dictionary<string, RowCfgBGM>(); //cfgId映射row
+        public RowCfgBGM this[string key] => _configs.ContainsKey(key) ? _configs[key] : throw new Exception($"找不到配置 Cfg:{GetType()} key:{key}");
+        public RowCfgBGM this[int id] => _configs.ContainsKey(id.ToString()) ? _configs[id.ToString()] : throw new Exception($"找不到配置 Cfg:{GetType()} key:{id}");
+        public List<RowCfgBGM> AllConfigs => _configs.Values.ToList();
 
         /// <summary>
         /// 获取行数据
         /// </summary>
-        public RowCfgBgm Find(int i)
+        public RowCfgBGM Find(int i)
         {
             return this[i];
         }
@@ -38,7 +38,7 @@ namespace Rabi
         /// <summary>
         /// 获取行数据
         /// </summary>
-        public RowCfgBgm Find(string i)
+        public RowCfgBGM Find(string i)
         {
             return this[i];
         }
@@ -49,7 +49,7 @@ namespace Rabi
         public void Load()
         {
             var reader = new CsvReader();
-            reader.LoadText("Assets/AddressableAssets/Config/CfgBgm.txt", 3);
+            reader.LoadText("Assets/AddressableAssets/Config/CfgBGM.txt", 3);
             var rows = reader.GetRowCount();
             for (var i = 0; i < rows; ++i)
             {
@@ -67,7 +67,7 @@ namespace Rabi
         /// </summary>
         /// <param name="col"></param>
         /// <returns></returns>
-        private RowCfgBgm ParseRow(string[] col)
+        private RowCfgBGM ParseRow(string[] col)
         {
             //列越界
             if (col.Length < 2)
@@ -76,7 +76,7 @@ namespace Rabi
                 return null;
             }
 
-            var data = new RowCfgBgm();
+            var data = new RowCfgBGM();
             var rowHelper = new RowHelper(col);
             data.key = CsvUtility.ToString(rowHelper.ReadNextCol()); //bgm名
             data.audioClipPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //资源路径

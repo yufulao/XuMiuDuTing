@@ -1,3 +1,3 @@
-key#audioClipPaths#volume#oneShot#loop
-sfx名#资源路径#初始音量#是否oneShot#是否循环
-string#List<string>#float#bool#bool
+key#SFXType#clipPaths#volume#oneShot#loop
+SFX名#音效类别#资源路径#初始音量#是否oneShot#是否循环
+string#string#List<string>#float#bool#bool

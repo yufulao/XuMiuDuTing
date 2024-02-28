@@ -4,116 +4,129 @@ using Rabi;
 using UnityEngine;
 using UnityEngine.Audio;
 
-
-public class SfxManager : BaseSingleTon<SfxManager>, IMonoManager
+namespace Yu
 {
-    private CfgSfx _cfgSfx;
-    private AudioMixerGroup _sfxMixerGroup;
-
-    private Dictionary<string, RowCfgSfx> _dataDictionary;
-    private Dictionary<RowCfgSfx, AudioSource> _sfxItems;
-
-    /// <summary>
-    /// 初始化Manager，设置SfxItem，为每个sfx生成SfxItem
-    /// </summary>
-    public void OnInit()
+    public class SFXManager : BaseSingleTon<SFXManager>, IMonoManager
     {
-        _cfgSfx = ConfigManager.Instance.cfgSfx;
-        _sfxMixerGroup = AssetManager.Instance.LoadAsset<AudioMixer>("Assets/AddressableAssets/AudioMixer/AudioMixer.mixer").FindMatchingGroups("sfx")[0];
+        private CfgSFX _cfgSfx;
+        private AudioMixer _audioMix;
+        private readonly Dictionary<string, AudioMixerGroup> _sfxMixerGroupDic=new Dictionary<string, AudioMixerGroup>();
 
-        var root = new GameObject("SfxManager");
-        root.transform.SetParent(GameManager.Instance.transform, false);
+        private readonly Dictionary<string, RowCfgSFX> _dataDictionary= new Dictionary<string, RowCfgSFX>();
+        private Dictionary<RowCfgSFX, AudioSource> _sfxItems;
 
-        _dataDictionary = new Dictionary<string, RowCfgSfx>();
-        _sfxItems = new Dictionary<RowCfgSfx, AudioSource>();
-        for (int i = 0; i < _cfgSfx.AllConfigs.Count; i++)
+        /// <summary>
+        /// 初始化Manager，设置SfxItem，为每个sfx生成SfxItem
+        /// </summary>
+        public void OnInit()
         {
-            if (!string.IsNullOrEmpty(_cfgSfx.AllConfigs[i].key))
-            {
-                GameObject sfxObjTemp = new GameObject(_cfgSfx.AllConfigs[i].key);
-                sfxObjTemp.transform.SetParent(root.transform);
-                AudioSource sfxObjAudioSource = sfxObjTemp.AddComponent<AudioSource>();
-                sfxObjAudioSource.outputAudioMixerGroup = _sfxMixerGroup;
-                sfxObjAudioSource.playOnAwake = false;
+            _cfgSfx = ConfigManager.Instance.cfgSFX;
+            _audioMix = AssetManager.Instance.LoadAsset<AudioMixer>("Assets/AddressableAssets/AudioMixer/AudioMixer.mixer");
+            _sfxMixerGroupDic.Add(DefSFXType.DSe, _audioMix.FindMatchingGroups(DefSFXType.DSe)[0]);
+            _sfxMixerGroupDic.Add(DefSFXType.DVoice, _audioMix.FindMatchingGroups(DefSFXType.DVoice)[0]);
 
-                _sfxItems.Add(_cfgSfx.AllConfigs[i], sfxObjAudioSource);
-                _dataDictionary.Add(_cfgSfx.AllConfigs[i].key, _cfgSfx.AllConfigs[i]);
+            var root = new GameObject("SfxManager");
+            root.transform.SetParent(GameManager.Instance.transform, false);
+            
+            _sfxItems = new Dictionary<RowCfgSFX, AudioSource>();
+            foreach (var rowCfgSfx in _cfgSfx.AllConfigs)
+            {
+                if (string.IsNullOrEmpty(rowCfgSfx.key))
+                {
+                    return;
+                }
+
+                var sfxObjTemp = new GameObject(rowCfgSfx.key);
+                sfxObjTemp.transform.SetParent(root.transform);
+                var sfxObjAudioSource = sfxObjTemp.AddComponent<AudioSource>();
+                sfxObjAudioSource.outputAudioMixerGroup = _sfxMixerGroupDic[rowCfgSfx.sFXType];
+                sfxObjAudioSource.playOnAwake = false;
+                _sfxItems.Add(rowCfgSfx, sfxObjAudioSource);
+                _dataDictionary.Add(rowCfgSfx.key, rowCfgSfx);
             }
         }
-    }
-
-    /// <summary>
-    /// 播放Sfx
-    /// </summary>
-    /// <param name="sfxName">sfx名称</param>
-    public void PlaySfx(string sfxName)
-    {
-        if (!_dataDictionary.ContainsKey(sfxName))
+        
+        /// <summary>
+        /// 重新设置音量，在OnInit设置，有bug，进到Start里莫名其妙变回0
+        /// </summary>
+        public void ReloadVolume()
         {
-            Debug.LogError("没有这个sfx：" + sfxName);
-            return;
+            _audioMix.SetFloat("SeVolume", SaveManager.GetFloat(DefSFXType.DSe+"Volume", 0f));
+            _audioMix.SetFloat("VoiceVolume", SaveManager.GetFloat(DefSFXType.DVoice+"Volume", 0f));
         }
 
-        RowCfgSfx rowCfgSfx = _dataDictionary[sfxName];
-        AudioClip clip = AssetManager.Instance.LoadAsset<AudioClip>(rowCfgSfx.audioClipPaths[Random.Range(0, rowCfgSfx.audioClipPaths.Count)]);
-        if (rowCfgSfx.oneShot)
+        /// <summary>
+        /// 播放Sfx
+        /// </summary>
+        /// <param name="sfxName">sfx名称</param>
+        public void PlaySfx(string sfxName)
         {
-            _sfxItems[rowCfgSfx].PlayOneShot(clip, rowCfgSfx.volume);
+            if (!_dataDictionary.ContainsKey(sfxName))
+            {
+                Debug.LogError("没有这个sfx：" + sfxName);
+                return;
+            }
+
+            var rowCfgSfx = _dataDictionary[sfxName];
+            var clip = AssetManager.Instance.LoadAsset<AudioClip>(rowCfgSfx.clipPaths[Random.Range(0, rowCfgSfx.clipPaths.Count)]);
+            if (rowCfgSfx.oneShot)
+            {
+                _sfxItems[rowCfgSfx].PlayOneShot(clip, rowCfgSfx.volume);
+            }
+            else
+            {
+                _sfxItems[rowCfgSfx].Stop();
+                _sfxItems[rowCfgSfx].clip = clip;
+                _sfxItems[rowCfgSfx].loop = rowCfgSfx.loop;
+                _sfxItems[rowCfgSfx].volume = rowCfgSfx.volume;
+                _sfxItems[rowCfgSfx].Play();
+                // Debug.Log(rowCfgSfx.key+"   "+_sfxItems[rowCfgSfx].loop);
+            }
         }
-        else
+
+        /// <summary>
+        /// 停止播放音效
+        /// </summary>
+        /// <param name="sfxName">音效名称</param>
+        public void Stop(string sfxName)
         {
-            _sfxItems[rowCfgSfx].Stop();
-            _sfxItems[rowCfgSfx].clip = clip;
-            _sfxItems[rowCfgSfx].loop = rowCfgSfx.loop;
-            _sfxItems[rowCfgSfx].volume = rowCfgSfx.volume;
-            _sfxItems[rowCfgSfx].Play();
-            // Debug.Log(rowCfgSfx.key+"   "+_sfxItems[rowCfgSfx].loop);
+            if (_dataDictionary.ContainsKey(sfxName))
+            {
+                var rowCfgSfx = _dataDictionary[sfxName];
+                _sfxItems[rowCfgSfx].Stop();
+            }
+            else
+            {
+                Debug.LogError("没有这个sfx名：" + sfxName);
+                return;
+            }
         }
-    }
 
-    /// <summary>
-    /// 停止播放音效
-    /// </summary>
-    /// <param name="sfxName">音效名称</param>
-    public void Stop(string sfxName)
-    {
-        if (_dataDictionary.ContainsKey(sfxName))
+        /// <summary>
+        /// 播放sfx过程中设置sfx音量
+        /// </summary>
+        /// <param name="sfxType">音效类型</param>
+        /// <param name="volumeBase">要改变的音量</param>
+        public void SetVolumeRuntime(string sfxType, float volumeBase)
         {
-            RowCfgSfx rowCfgSfx = _dataDictionary[sfxName];
-            _sfxItems[rowCfgSfx].Stop();
+            _audioMix.SetFloat(sfxType + "Volume", volumeBase);
+            SaveManager.SetFloat(sfxType + "Volume", volumeBase);
         }
-        else
+
+        public void Update()
         {
-            Debug.LogError("没有这个sfx名：" + sfxName);
-            return;
         }
-    }
 
-    /// <summary>
-    /// 播放sfx过程中设置sfx音量
-    /// </summary>
-    /// <param name="volumeBase">要改变的音量</param>
-    public void SetVolumeRuntime(float volumeBase)
-    {
-        foreach (var sfxItem in _sfxItems)
+        public void FixedUpdate()
         {
-            sfxItem.Value.volume = volumeBase;
         }
-    }
 
-    public void Update()
-    {
-    }
+        public void LateUpdate()
+        {
+        }
 
-    public void FixedUpdate()
-    {
-    }
-
-    public void LateUpdate()
-    {
-    }
-
-    public void OnClear()
-    {
+        public void OnClear()
+        {
+        }
     }
 }

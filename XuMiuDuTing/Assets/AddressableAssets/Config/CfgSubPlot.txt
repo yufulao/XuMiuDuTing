@@ -1,0 +1,3 @@
+key#plotTitle#plotBG#stageList
+key#故事标题图片路径#故事背景图片路径#关卡列表
+string#string#string#List<string>

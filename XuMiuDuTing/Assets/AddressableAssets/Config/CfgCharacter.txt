@@ -1,0 +1,10 @@
+key#portraitTeamEditPath#portraitCharacterSelectPath#None#None
+key#编队界面头像路径#角色选择界面头像路径#None#None
+string#string#string#None#None
+维克多#Assets/AddressableAssets/Sprite/TeamEdit/维克多角色头像.png#Assets/AddressableAssets/Sprite/CharacterSelect/维克多角色头像.png#None#None
+维多利亚#Assets/AddressableAssets/Sprite/TeamEdit/维多利亚角色头像.png#Assets/AddressableAssets/Sprite/CharacterSelect/维多利亚角色头像.png#None#None
+一#Assets/AddressableAssets/Sprite/TeamEdit/1头像.png#Assets/AddressableAssets/Sprite/CharacterSelect/角色1.png#None#None
+二#Assets/AddressableAssets/Sprite/TeamEdit/2头像.png#Assets/AddressableAssets/Sprite/CharacterSelect/角色2.png#None#None
+三#Assets/AddressableAssets/Sprite/TeamEdit/3头像.png#Assets/AddressableAssets/Sprite/CharacterSelect/角色3.png#None#None
+四#Assets/AddressableAssets/Sprite/TeamEdit/4头像 .png#Assets/AddressableAssets/Sprite/CharacterSelect/角色4.png#None#None
+五#Assets/AddressableAssets/Sprite/TeamEdit/5头像.png#Assets/AddressableAssets/Sprite/CharacterSelect/角色5.png#None#None

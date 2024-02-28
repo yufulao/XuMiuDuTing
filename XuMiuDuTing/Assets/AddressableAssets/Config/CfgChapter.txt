@@ -1,0 +1,5 @@
+key#infoSpritePath#plotList
+key#界面背景#故事列表
+string#string#List<string>
+MainPlot#Assets/AddressableAssets/Sprite/ChapterSelect/主线简介.png#plotZero,plotOne
+SubPlot#Assets/AddressableAssets/Sprite/ChapterSelect/自由简介.png#plotOne,plotTwo

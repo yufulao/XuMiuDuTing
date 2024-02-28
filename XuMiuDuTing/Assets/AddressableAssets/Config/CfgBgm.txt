@@ -1,4 +1,4 @@
 key#audioClipPath#None#None#None
 bgm名#资源路径#None#None#None
 string#string#None#None#None
-None#None#None#None#None
+主界面-章节选择界面#Assets/AddressableAssets/BGM/主界面-章节选择界面.mp3#None#None#None

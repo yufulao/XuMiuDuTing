@@ -1,0 +1,5 @@
+key#plotTitle#plotBG#stageList
+key#故事标题图片路径#故事背景图片路径#关卡列表
+string#string#string#List<string>
+plotZero#Assets/AddressableAssets/Sprite/Plot/第一章标题.png#Assets/AddressableAssets/Sprite/Plot/第零章背景.png#0-1,0-2,0-3,0-4,0-5
+plotOne#Assets/AddressableAssets/Sprite/Plot/第一章标题.png#Assets/AddressableAssets/Sprite/Plot/第一章背景.png#1-1,1-2,1-3,1-4,1-5
