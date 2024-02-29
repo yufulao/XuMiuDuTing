@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Yu;
 
 public class StageItem : MonoBehaviour
 {
@@ -29,14 +30,14 @@ public class StageItem : MonoBehaviour
     /// <summary>
     /// 初始化
     /// </summary>
-    /// <param name="stageData"></param>
+    /// <param name="stageDataEntry"></param>
     /// <param name="isSelect"></param>
-    public void Refresh(StageData stageData,bool isSelect=false)
+    public void Refresh(StageDataEntry stageDataEntry,bool isSelect=false)
     {
-        _stageName = stageData.stageName;
+        _stageName = stageDataEntry.stageName;
         textStageName.text = _stageName;
-        gameObject.SetActive(stageData.isUnlock);
-        objPassTip.SetActive(stageData.isPass);
+        gameObject.SetActive(stageDataEntry.isUnlock);
+        objPassTip.SetActive(stageDataEntry.isPass);
         toggleSelect.isOn = isSelect;
         objSelectMask.SetActive(isSelect);
     }

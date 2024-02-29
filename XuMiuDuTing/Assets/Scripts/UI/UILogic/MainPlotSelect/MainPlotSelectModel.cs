@@ -12,10 +12,12 @@ namespace Yu
         private string _currentStageName;
         private List<string> _plotNameList = new List<string>();
         private List<string> _stageNameList = new List<string>();
+        private StageData _stageData;
 
         public void OnInit()
         {
             _plotNameList = ConfigManager.Instance.cfgChapter[DefChapterType.DMainPlot].plotList;
+            _stageData=SaveManager.GetT<StageData>("StageData", new StageData());
         }
 
         /// <summary>
@@ -72,6 +74,37 @@ namespace Yu
         public string GetCurrentStageName()
         {
             return _currentStageName;
+        }
+
+        /// <summary>
+        /// 获取stageDataEntry
+        /// </summary>
+        /// <param name="stageNameT"></param>
+        /// <returns></returns>
+        public StageDataEntry GetStageDataEntry(string stageNameT)
+        {
+            var allStage = _stageData.allStage;
+            if (allStage.ContainsKey(stageNameT))
+            {
+                return allStage[stageNameT];
+            }
+
+            var newStageDataEntry = new StageDataEntry()
+            {
+                stageName = stageNameT,
+                isPass = false,
+                isUnlock = false
+            };
+            allStage.Add(stageNameT, newStageDataEntry);
+            return newStageDataEntry;
+        }
+
+        /// <summary>
+        /// 保存StageData
+        /// </summary>
+        public void SaveStageData()
+        {
+            SaveManager.SetT<StageData>("StageData", _stageData);
         }
 
         /// <summary>

@@ -1,17 +1,28 @@
 using System;
+using System.Collections.Generic;
 
 
-[Serializable]
-public class StageData
+namespace Yu
 {
-    public string stageName;
-    public bool isUnlock;
-    public bool isPass;
-    
-    public StageData(){}
-
-    public StageData(string stageName)
+    [Serializable]
+    public class StageData
     {
-        this.stageName = stageName;
+        public Dictionary<string, StageDataEntry> allStage = new Dictionary<string, StageDataEntry>();
+    
+        public StageData()
+        {
+        }
+    }
+
+    [Serializable]
+    public class StageDataEntry
+    {
+        public string stageName;
+        public bool isUnlock;
+        public bool isPass;
+
+        public StageDataEntry()
+        {
+        }
     }
 }

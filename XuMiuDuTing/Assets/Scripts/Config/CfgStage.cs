@@ -19,6 +19,8 @@ namespace Rabi
         public string key; //key
         public string stageName; //关卡标题
         public string stageDesc; //关卡描述
+        public List<string> enemyTeam; //敌人列表
+        public List<string> unlockStageList; //通关后解锁的关卡列表
     }
 
     public class CfgStage
@@ -71,7 +73,7 @@ namespace Rabi
         private RowCfgStage ParseRow(string[] col)
         {
             //列越界
-            if (col.Length < 3)
+            if (col.Length < 5)
             {
                 Debug.LogError($"配置表字段行数越界:{GetType()}");
                 return null;
@@ -82,6 +84,8 @@ namespace Rabi
             data.key = CsvUtility.ToString(rowHelper.ReadNextCol()); //key
             data.stageName = CsvUtility.ToString(rowHelper.ReadNextCol()); //关卡标题
             data.stageDesc = CsvUtility.ToString(rowHelper.ReadNextCol()); //关卡描述
+            data.enemyTeam = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //敌人列表
+            data.unlockStageList = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //通关后解锁的关卡列表
             return data;
         }
     }

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BaseFsm
 {
-    public string fsmName;
     private Dictionary<Type, IFsmState> _fsmStateDic = new Dictionary<Type, IFsmState>();
     private IFsmState _currentFsmState;
 

@@ -1,3 +1,0 @@
-key#spritePath#None#None#None#None#None
-key#预设路径#None#None#None#None#None
-string#string#None#None#None#None#None

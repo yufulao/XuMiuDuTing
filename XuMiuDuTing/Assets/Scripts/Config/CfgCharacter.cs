@@ -19,6 +19,10 @@ namespace Rabi
         public string key; //key
         public string portraitTeamEditPath; //编队界面头像路径
         public string portraitCharacterSelectPath; //角色选择界面头像路径
+        public string portraitBattleMenuPath; //战斗面板头像路径
+        public string nameBattleMenuPath; //战斗面板角色名路径
+        public List<string> skillNameList; //技能名列表
+        public string uniqueSkillName; //必杀技名
     }
 
     public class CfgCharacter
@@ -71,7 +75,7 @@ namespace Rabi
         private RowCfgCharacter ParseRow(string[] col)
         {
             //列越界
-            if (col.Length < 3)
+            if (col.Length < 7)
             {
                 Debug.LogError($"配置表字段行数越界:{GetType()}");
                 return null;
@@ -82,6 +86,10 @@ namespace Rabi
             data.key = CsvUtility.ToString(rowHelper.ReadNextCol()); //key
             data.portraitTeamEditPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //编队界面头像路径
             data.portraitCharacterSelectPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //角色选择界面头像路径
+            data.portraitBattleMenuPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //战斗面板头像路径
+            data.nameBattleMenuPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //战斗面板角色名路径
+            data.skillNameList = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //技能名列表
+            data.uniqueSkillName = CsvUtility.ToString(rowHelper.ReadNextCol()); //必杀技名
             return data;
         }
     }

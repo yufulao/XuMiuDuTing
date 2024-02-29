@@ -50,24 +50,15 @@ namespace Yu
         /// <summary>
         /// 设置关卡是否通关
         /// </summary>
-        /// <param name="stageName"></param>
+        /// <param name="stageNameT"></param>
         /// <param name="isUnlock"></param>
         /// <param name="isPass"></param>
-        public static void SetStageData(string stageName, bool isUnlock, bool isPass)
+        private void SetStageData(string stageNameT, bool isUnlock, bool isPass)
         {
-            var stageData = GetStageData(stageName);
-            stageData.isUnlock = isUnlock;
-            stageData.isPass = isPass;
-            SaveManager.SetT<StageData>(stageName, stageData);
-        }
-
-        /// <summary>
-        /// 获取StageData
-        /// </summary>
-        /// <param name="stageName"></param>
-        public static StageData GetStageData(string stageName)
-        {
-            return SaveManager.GetT<StageData>(stageName, new StageData(stageName));
+            var stageDataEntry = _model.GetStageDataEntry(stageNameT);
+            stageDataEntry.isUnlock = isUnlock;
+            stageDataEntry.isPass = isPass;
+            _model.SaveStageData();
         }
 
         /// <summary>
@@ -87,7 +78,7 @@ namespace Yu
             SaveManager.SetString("StageName", _model.GetCurrentStageName());
             //todo 关卡流程没做
             //test=====================================================================================================
-            UIManager.Instance.OpenWindow("TeamEditView",DefChapterType.DMainPlot,_model.GetCurrentPlotName());
+            UIManager.Instance.OpenWindow("TeamEditView", DefChapterType.DMainPlot, _model.GetCurrentPlotName());
         }
 
         /// <summary>
@@ -169,7 +160,7 @@ namespace Yu
             var stageNameList = _model.GetStageNameList();
             for (var i = 0; i < stageNameList.Count; i++)
             {
-                _view.stageItemList[i].Refresh(GetStageData(stageNameList[i]), !string.IsNullOrEmpty(currentStageName) && currentStageName.Equals(stageNameList[i]));
+                _view.stageItemList[i].Refresh(_model.GetStageDataEntry(stageNameList[i]), !string.IsNullOrEmpty(currentStageName) && currentStageName.Equals(stageNameList[i]));
             }
 
             for (var i = stageNameList.Count; i < _view.stageItemList.Count; i++)
