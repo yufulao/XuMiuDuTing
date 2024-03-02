@@ -14,7 +14,7 @@ namespace Yu
         private TeamEditModel _model;
         private TeamEditView _view;
 
-        //param[0]是是ChapterType，param[1]PlotName），param[2]是string[4] 固定编队
+        //param[0]是ChapterType，param[1]PlotName），param[2]是string[4] 固定编队
         public override void OnInit(params object[] param)
         {
             _model = new TeamEditModel();
@@ -69,7 +69,7 @@ namespace Yu
         {
             string[] teamArray = null;
             var isFixed = false;
-            if (param.Count > 2 && (param[1] is string[]))
+            if (param.Count > 2 && (param[2] is string[]))
             {
                 teamArray = (string[]) param[2];
                 isFixed = true;
@@ -117,11 +117,27 @@ namespace Yu
         }
 
         /// <summary>
-        /// 进入章节
+        /// enter点击时
         /// </summary>
         private void BtnOnClickEnter()
         {
             _model.SaveTeamData();
+            StartCoroutine(EnterBattleScene());
+        }
+
+        /// <summary>
+        /// 进入战斗关卡
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator EnterBattleScene()
+        {
+            UIManager.Instance.OpenWindow("LoadingView");
+            yield return new WaitForSeconds(0.3f);
+            UIManager.Instance.CloseAllLayerWindows("NormalLayer");
+            yield return SceneManager.Instance.ChangeSceneAsync(ConfigManager.Instance.cfgScene["Battle"].scenePath);
+            var battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+            battleManager.Init(_model.GetTeamArray());
+            UIManager.Instance.CloseWindow("LoadingView");
         }
     }
 }

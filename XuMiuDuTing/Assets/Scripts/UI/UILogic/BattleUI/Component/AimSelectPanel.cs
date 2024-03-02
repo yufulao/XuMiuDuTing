@@ -7,5 +7,5 @@ public class AimSelectPanel : MonoBehaviour
 {
     [SerializeField] private Button btnSelectEnd;
     [SerializeField] private Button btnBack;
-    [SerializeField] private Toggle toggleSwitchCamera;
+    public Toggle toggleSwitchCamera;
 }

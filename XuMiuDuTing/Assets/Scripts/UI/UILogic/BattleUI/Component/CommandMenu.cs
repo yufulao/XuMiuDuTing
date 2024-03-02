@@ -16,11 +16,11 @@ namespace Yu
     [SerializeField] private Image imageBpPreview;
     [SerializeField] private TextMeshProUGUI textMp;
     [SerializeField] private Slider sliderMp;
-    [SerializeField] private Button btnAttack;
-    [SerializeField] private Button btnBrave;
-    [SerializeField] private Button btnSkill;
-    [SerializeField] private Button btnUniqueSkill;
-    [SerializeField] private Button btnDefault;
+    public CommandMenuButton btnAttack;
+    public CommandMenuButton btnBrave;
+    public CommandMenuButton btnSkill;
+    public CommandMenuButton btnUniqueSkill;
+    public CommandMenuButton btnDefault;
     [SerializeField] private GameObject objMenuMask;
     
     private List<Sprite> _bpSpriteList;

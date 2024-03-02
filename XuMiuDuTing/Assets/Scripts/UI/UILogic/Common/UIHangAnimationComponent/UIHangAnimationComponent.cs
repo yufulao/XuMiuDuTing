@@ -1,24 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace Yu
 {
-    [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(EventTrigger))]
-    public class BtnHangAnimationComponent : MonoBehaviour
+    public class UIHangAnimationComponent : MonoBehaviour
     {
-        private Animator _animator;
+        [SerializeField]private Animator animator;
         private EventTrigger _eventTrigger;
+
+        public void RegisterAnimator(Animator animatorT)
+        {
+            animator = animatorT;
+        }
 
         private void Start()
         {
-            _animator = GetComponent<Animator>();
             _eventTrigger = GetComponent<EventTrigger>();
             Utils.AddTriggersListener(_eventTrigger, EventTriggerType.PointerEnter, OnPointEnter);
             Utils.AddTriggersListener(_eventTrigger, EventTriggerType.PointerExit, OnPointExit);
@@ -26,12 +23,20 @@ namespace Yu
 
         private void OnPointEnter(BaseEventData eventData)
         {
-            _animator.SetBool("selected", true);
+            if (animator==null)
+            {
+                return;
+            }
+            animator.SetBool("selected", true);
         }
         
         private void OnPointExit(BaseEventData eventData)
         {
-            _animator.SetBool("selected", false);
+            if (animator==null)
+            {
+                return;
+            }
+            animator.SetBool("selected", false);
         }
     }
 }

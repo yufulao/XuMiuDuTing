@@ -8,47 +8,45 @@ namespace Yu
 {
     public class EnemyInfoItem : MonoBehaviour
     {
-        [SerializeField] private GameObject objSelectedBg;
+        public Animator animatorSelectedBg;
         [SerializeField] private Slider sliderHp;
         [SerializeField] private TextMeshProUGUI textHp;
         [SerializeField] private Transform buffsContainer;
-
-        [SerializeField] private Animator selectedBgAnimator;
         // public List<BuffObject> buffs;
         // public List<BuffObject> debuffs;
 
+        /// <summary>
+        /// 死亡时更新
+        /// </summary>
+        public void RefreshOnDie()
+        {
+            RefreshHp(0);
+        }
+        
+        /// <summary>
+        /// 没死亡时更新
+        /// </summary>
+        public void RefreshOnNotDie(int hp)
+        {
+            RefreshHp(hp);
+        }
+        
         /// <summary>
         /// 刷新生命值显示
         /// </summary>
         public void RefreshHp(int hp,int maxHp)
         {
             sliderHp.maxValue = maxHp;
+            RefreshHp(hp);
+        }
+        
+        /// <summary>
+        /// 刷新生命值显示
+        /// </summary>
+        public void RefreshHp(int hp)
+        {
             sliderHp.value = hp;
             textHp.text = hp.ToString();
-        }
-    
-        /// <summary>
-        /// 被选择时
-        /// </summary>
-        public void EnterSelect()
-        {
-            selectedBgAnimator.SetTrigger("selectedBgOpen");
-        }
-
-        /// <summary>
-        /// 取消选择时
-        /// </summary>
-        public void QuitSelect()
-        {
-            selectedBgAnimator.SetTrigger("selectedBgClose");
-        }
-
-        /// <summary>
-        /// 没有被选择时
-        /// </summary>
-        public void NoSelected()
-        {
-            selectedBgAnimator.Play("idle");
         }
     }
 }

@@ -66,7 +66,7 @@ namespace Yu
         /// <param name="param"></param>
         public void OpenWindow(string windowName, params object[] param)
         {
-            UICtrlBase ctrl = GetCtrl<UICtrlBase>(windowName, param);
+            var ctrl = GetCtrl<UICtrlBase>(windowName, param);
 
             _layerStacks[ConfigManager.Instance.cfgUI[windowName].layer].Push(ctrl);
             ctrl.OpenRoot(param);
@@ -78,11 +78,11 @@ namespace Yu
         /// <param name="windowName"></param>
         public void CloseWindow(string windowName)
         {
-            UICtrlBase ctrl = GetCtrl<UICtrlBase>(windowName);
-            string layer = ConfigManager.Instance.cfgUI[windowName].layer;
+            var ctrl = GetCtrl<UICtrlBase>(windowName);
+            var layer = ConfigManager.Instance.cfgUI[windowName].layer;
             while (_layerStacks[layer].Count != 0)
             {
-                UICtrlBase ctrlBefore = _layerStacks[layer].Pop();
+                var ctrlBefore = _layerStacks[layer].Pop();
                 if (ctrlBefore == ctrl)
                 {
                     break;
@@ -92,6 +92,19 @@ namespace Yu
             }
 
             ctrl.CloseRoot();
+        }
+        
+        /// <summary>
+        /// 关闭指定层级的所有页面
+        /// </summary>
+        /// <param name="layerName"></param>
+        public void CloseAllLayerWindows(string layerName)
+        {
+            var windowsStack = _layerStacks[layerName];
+            while (windowsStack.Count != 0)
+            {
+                windowsStack.Pop().CloseRoot();;
+            }
         }
 
         /// <summary>
@@ -108,7 +121,7 @@ namespace Yu
 
                 while (layerStack.Value.Count > 0)
                 {
-                    UICtrlBase ctrl = layerStack.Value.Pop();
+                    var ctrl = layerStack.Value.Pop();
                     ctrl.CloseRoot();
                 }
             }
@@ -161,16 +174,16 @@ namespace Yu
         /// <returns></returns>
         private T CreatNewView<T>(string windowName, params object[] param) where T : UICtrlBase
         {
-            RowCfgUI rowCfgUi = _cfgUI[windowName];
-            GameObject rootObj = GameObject.Instantiate(AssetManager.Instance.LoadAsset<GameObject>(rowCfgUi.uiPath), _layers[rowCfgUi.layer]);
+            var rowCfgUi = _cfgUI[windowName];
+            var rootObj = GameObject.Instantiate(AssetManager.Instance.LoadAsset<GameObject>(rowCfgUi.uiPath), _layers[rowCfgUi.layer]);
 
             //rootObj上的ctrl开始start并实例化view和model
             rootObj.SetActive(false);
             rootObj.GetComponent<Canvas>().sortingOrder = rowCfgUi.sortOrder;
 
             T ctrlNew = null;
-            Component[] components = rootObj.GetComponents<Component>();
-            for (int i = 0; i < components.Length; i++)
+            var components = rootObj.GetComponents<Component>();
+            for (var i = 0; i < components.Length; i++)
             {
                 if (components[i] is UICtrlBase)
                 {

@@ -19,7 +19,7 @@ namespace Yu
     [SerializeField] private Image imageBp;
     [SerializeField] private Transform buffsContainer;
 
-    [SerializeField] private Animator selectedBgAnimator;
+    public Animator selectedBgAnimator;
     // public List<BuffObject> buffs;
     // public List<BuffObject> debuffs;
 
@@ -35,17 +35,32 @@ namespace Yu
     /// 第一次刷新
     /// </summary>
     /// <param name="characterName"></param>
-    /// <param name="bp"></param>
-    /// <param name="maxHp"></param>
-    /// <param name="mp"></param>
-    public void RefreshOnStart(string characterName,int bp,int maxHp,int mp)
+    public void RefreshCharacterName(string characterName)
     {
         _characterName = characterName;
         imagePortrait.sprite = AssetManager.Instance.LoadAsset<Sprite>(ConfigManager.Instance.cfgCharacter[_characterName].portraitBattleMenuPath);
-        RefreshBp(bp);
+    }
+
+    /// <summary>
+    /// 死亡时更新
+    /// </summary>
+    public void RefreshOnDie()
+    {
+        RefreshHp(0);
+        RefreshMp(0);
+        RefreshBp(0);
+        imagePortrait.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+    }
+    
+    /// <summary>
+    /// 没死亡时更新
+    /// </summary>
+    public void RefreshOnNotDie(int hp,int mp,int bp)
+    {
+        RefreshHp(hp);
         RefreshMp(mp);
-        RefreshHp(0, maxHp);
-        SetActiveObjReadyTip(false);
+        RefreshBp(bp);
+        imagePortrait.color = new Color(1f, 1f, 1f, 1f);
     }
 
     /// <summary>
@@ -85,6 +100,14 @@ namespace Yu
     public void RefreshHp(int hp,int maxHp)
     {
         sliderHp.maxValue = maxHp;
+        RefreshHp(hp);
+    }
+        
+    /// <summary>
+    /// 刷新生命值显示
+    /// </summary>
+    public void RefreshHp(int hp)
+    {
         sliderHp.value = hp;
         textHp.text = hp.ToString();
     }

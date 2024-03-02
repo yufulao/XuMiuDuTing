@@ -21,8 +21,15 @@ namespace Rabi
         public string portraitCharacterSelectPath; //角色选择界面头像路径
         public string portraitBattleMenuPath; //战斗面板头像路径
         public string nameBattleMenuPath; //战斗面板角色名路径
+        public string entityObjPath; //实体路径
         public List<string> skillNameList; //技能名列表
         public string uniqueSkillName; //必杀技名
+        public int maxHp; //最大生命值
+        public int damage; //攻击值
+        public float damageRate; //攻击乘率
+        public int defend; //防御值
+        public float hurtRate; //受击乘率
+        public int speed; //速度
     }
 
     public class CfgCharacter
@@ -75,7 +82,7 @@ namespace Rabi
         private RowCfgCharacter ParseRow(string[] col)
         {
             //列越界
-            if (col.Length < 7)
+            if (col.Length < 14)
             {
                 Debug.LogError($"配置表字段行数越界:{GetType()}");
                 return null;
@@ -88,8 +95,15 @@ namespace Rabi
             data.portraitCharacterSelectPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //角色选择界面头像路径
             data.portraitBattleMenuPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //战斗面板头像路径
             data.nameBattleMenuPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //战斗面板角色名路径
+            data.entityObjPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //实体路径
             data.skillNameList = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //技能名列表
             data.uniqueSkillName = CsvUtility.ToString(rowHelper.ReadNextCol()); //必杀技名
+            data.maxHp = CsvUtility.ToInt(rowHelper.ReadNextCol()); //最大生命值
+            data.damage = CsvUtility.ToInt(rowHelper.ReadNextCol()); //攻击值
+            data.damageRate = CsvUtility.ToFloat(rowHelper.ReadNextCol()); //攻击乘率
+            data.defend = CsvUtility.ToInt(rowHelper.ReadNextCol()); //防御值
+            data.hurtRate = CsvUtility.ToFloat(rowHelper.ReadNextCol()); //受击乘率
+            data.speed = CsvUtility.ToInt(rowHelper.ReadNextCol()); //速度
             return data;
         }
     }

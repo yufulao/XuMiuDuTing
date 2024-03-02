@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9020572938574146922}
   - component: {fileID: 1624182712519811611}
   - component: {fileID: 6883570475300006006}
-  - component: {fileID: 131836183499975712}
+  - component: {fileID: 1154560251341050813}
   m_Layer: 5
   m_Name: BtnUniqueSkill
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &131836183499975712
+--- !u!114 &1154560251341050813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4378027455397117}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 57ee0f74026b9264b8ada2f748e86e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -295,11 +295,11 @@ MonoBehaviour:
   imageBpPreview: {fileID: 8484741515234345054}
   textMp: {fileID: 2076033654958562674}
   sliderMp: {fileID: 2098557378034759367}
-  btnAttack: {fileID: 2763998677193582906}
-  btnBrave: {fileID: 2146442211274610725}
-  btnSkill: {fileID: 5302114566812144783}
-  btnUniqueSkill: {fileID: 131836183499975712}
-  btnDefault: {fileID: 1791768303223647039}
+  btnAttack: {fileID: 7609781080566905658}
+  btnBrave: {fileID: 2057711429876253209}
+  btnSkill: {fileID: 2260164679094090614}
+  btnUniqueSkill: {fileID: 1154560251341050813}
+  btnDefault: {fileID: 461945764596789385}
   objMenuMask: {fileID: 1349378514508254922}
 --- !u!1 &1084351575795913458
 GameObject:
@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 4132323208655438312}
   - component: {fileID: 4816035770623688901}
   - component: {fileID: 3147534251387836692}
-  - component: {fileID: 2146442211274610725}
+  - component: {fileID: 2057711429876253209}
   m_Layer: 5
   m_Name: BtnBrave
   m_TagString: Untagged
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2146442211274610725
+--- !u!114 &2057711429876253209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2190196967058706787}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 57ee0f74026b9264b8ada2f748e86e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 7510206915396505086}
   - component: {fileID: 5912111897033208265}
   - component: {fileID: 8345549763704613059}
-  - component: {fileID: 1791768303223647039}
+  - component: {fileID: 461945764596789385}
   m_Layer: 5
   m_Name: BtnDefault
   m_TagString: Untagged
@@ -647,7 +647,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1791768303223647039
+--- !u!114 &461945764596789385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -656,7 +656,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2521081545975778240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 57ee0f74026b9264b8ada2f748e86e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -702,7 +702,7 @@ GameObject:
   - component: {fileID: 7441810005550734131}
   - component: {fileID: 433204879190017410}
   - component: {fileID: 600110399164341233}
-  - component: {fileID: 2763998677193582906}
+  - component: {fileID: 7609781080566905658}
   m_Layer: 5
   m_Name: BtnAttack
   m_TagString: Untagged
@@ -767,7 +767,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2763998677193582906
+--- !u!114 &7609781080566905658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -776,7 +776,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2730642562218743052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 57ee0f74026b9264b8ada2f748e86e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -845,8 +845,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -215.59843, y: -349.28992}
-  m_SizeDelta: {x: 109.75751, y: 121.468994}
+  m_AnchoredPosition: {x: -215, y: -349}
+  m_SizeDelta: {x: 110, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4483151446670944202
 CanvasRenderer:
@@ -1223,7 +1223,7 @@ GameObject:
   - component: {fileID: 7475479587252502904}
   - component: {fileID: 7049237655372989284}
   - component: {fileID: 554293781824926335}
-  - component: {fileID: 5302114566812144783}
+  - component: {fileID: 2260164679094090614}
   m_Layer: 5
   m_Name: BtnSkill
   m_TagString: Untagged
@@ -1288,7 +1288,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5302114566812144783
+--- !u!114 &2260164679094090614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1297,7 +1297,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4699897556747224406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 57ee0f74026b9264b8ada2f748e86e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1366,8 +1366,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -81.918434, y: -342.90213}
-  m_SizeDelta: {x: 109.75751, y: 121.468994}
+  m_AnchoredPosition: {x: -82, y: -349}
+  m_SizeDelta: {x: 110, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6066373118230421337
 CanvasRenderer:

@@ -8,3 +8,4 @@ Chapter.xlsx
 Stage.xlsx
 Character.xlsx
 Global.xlsx
+Enemy.xlsx

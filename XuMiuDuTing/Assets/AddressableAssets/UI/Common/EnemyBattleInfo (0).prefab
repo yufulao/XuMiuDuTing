@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 4723792395883479297}
   - component: {fileID: 4209348484834758520}
   m_Layer: 5
-  m_Name: ObjSelectBg
+  m_Name: AnimatorSelectBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

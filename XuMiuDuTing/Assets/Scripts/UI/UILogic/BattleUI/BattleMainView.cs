@@ -27,7 +27,7 @@ namespace Yu
         {
             InitAllUI();
         }
-        
+
         /// <summary>
         /// 打开窗口
         /// </summary>
@@ -70,6 +70,61 @@ namespace Yu
             foreach (var commandMenu in commandMenuList)
             {
                 commandMenu.Init(bpSpriteList);
+            }
+
+            skillSelectPanel.Init();
+
+            for (var i = 1; i < commandMenuList.Count; i++) //关闭多余的界面
+            {
+                commandMenuList[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(500f, 0f);
+                commandMenuList[i].SetMenuInteractable(true);
+                commandMenuList[i].gameObject.SetActive(false);
+            }
+            
+            describeItemBuff.gameObject.SetActive(false);
+            describeItemSkill.gameObject.SetActive(false);
+        }
+
+        /// <summary>
+        /// 更新角色指令面板信息
+        /// </summary>
+        public void RefreshMenuInfo(string characterName, int bpCurrent, int bpPreview, int mp)
+        {
+            foreach (var commandMenu in commandMenuList)
+            {
+                commandMenu.RefreshCharacter(characterName);
+                commandMenu.RefreshBp(bpCurrent, bpPreview);
+                commandMenu.RefreshMp(mp);
+            }
+        }
+
+        /// <summary>
+        /// 更新下方角色信息列表
+        /// </summary>
+        public void UpdateAllEntityUIInfo(IEnumerable<CharacterEntityCtrl> allCharacterEntities, IEnumerable<EnemyEntityCtrl> allEnemyEntities)
+        {
+            foreach (var characterEntity in allCharacterEntities)
+            {
+                var infoItem = characterEntity.GetInfoItem();
+                if (characterEntity.IsDie())
+                {
+                    infoItem.RefreshOnDie();
+                    continue;
+                }
+
+                infoItem.RefreshOnNotDie(characterEntity.GetHp(), characterEntity.GetMp(), characterEntity.GetBp());
+            }
+
+            foreach (var enemyEntity in allEnemyEntities)
+            {
+                var infoItem = enemyEntity.GetInfoItem();
+                if (enemyEntity.IsDie())
+                {
+                    infoItem.RefreshOnDie();
+                    continue;
+                }
+
+                infoItem.RefreshOnNotDie(enemyEntity.GetHp());
             }
         }
     }

@@ -20,10 +20,18 @@ namespace Yu
     private SkillData _skillData;
     private UnityAction<string> _btnSkillItemOnClick;
 
-    private void Init(UnityAction<string> onSkillItemClick)
+    public void Init()
     {
         _skillData = SaveManager.GetT("SkillData", new SkillData());
         btnBackMask.onClick.AddListener(Close);
+    }
+
+    /// <summary>
+    /// 给SkillSelectItem绑定onClick事件
+    /// </summary>
+    /// <param name="onSkillItemClick"></param>
+    public void SetSkillItemOnClick(UnityAction<string> onSkillItemClick)
+    {
         foreach (var skillSelectItem in skillSelectItemList)
         {
             skillSelectItem.SetSelectItemOnClick(onSkillItemClick);
