@@ -72,7 +72,7 @@ namespace Yu
         textMp.text = mp.ToString();
         sliderMp.value = mp;
     }
-    
+
     /// <summary>
     /// 手动绑定事件
     /// </summary>
@@ -95,7 +95,7 @@ namespace Yu
     /// </summary>
     public void SetMenuInteractable(bool interactable)
     {
-        objMenuMask.SetActive(interactable);
+        objMenuMask.SetActive(!interactable);
     }
 }
 }

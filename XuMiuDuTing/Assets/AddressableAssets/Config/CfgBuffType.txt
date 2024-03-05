@@ -1,0 +1,16 @@
+key#Annotate#DefName
+key#注释#枚举名称
+string#string#string
+触发后消失类buff#触发后消失类buff#None
+触发后不消失类buff#触发后不消失类buff#None
+印记buff#印记buff#None
+每回合恢复xx#每回合恢复xx#None
+追加类#追加类#None
+标记类#标记类#None
+属性加#属性加#None
+属性减#属性减#None
+易伤#易伤#None
+hot#hot#None
+减伤#减伤#None
+行动束缚#行动束缚#None
+每回合失去xx#每回合失去xx#None

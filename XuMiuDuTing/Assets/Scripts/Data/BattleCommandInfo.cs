@@ -10,17 +10,17 @@ namespace Yu
         public BattleCommandType commandType;
         public bool isBattleStartCommand;
         public int bpNeed;
-        public List<BattleEntityCtrl> selectEntityList;
-        public int battleId;
+        public List<BattleEntityCtrl> targets;
+        public BattleEntityCtrl caster;
 
-        public BattleCommandInfo(bool isEnemyT, BattleCommandType commandTypeT, bool isBattleStartCommandT, int bpNeedT, List<BattleEntityCtrl> selectEntityListT, int entityIdT)
+        public BattleCommandInfo(bool isEnemyT, BattleCommandType commandTypeT, bool isBattleStartCommandT, int bpNeedT, List<BattleEntityCtrl> targetsT, BattleEntityCtrl casterT)
         {
             isEnemy = isEnemyT;
             commandType = commandTypeT;
             isBattleStartCommand = isBattleStartCommandT;
             bpNeed = bpNeedT;
-            selectEntityList = selectEntityListT;
-            battleId = entityIdT;
+            targets = targetsT;
+            caster = casterT;
         }
     }
 }

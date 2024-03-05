@@ -132,12 +132,11 @@ namespace Yu
         private IEnumerator EnterBattleScene()
         {
             UIManager.Instance.OpenWindow("LoadingView");
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.5f);
             UIManager.Instance.CloseAllLayerWindows("NormalLayer");
             yield return SceneManager.Instance.ChangeSceneAsync(ConfigManager.Instance.cfgScene["Battle"].scenePath);
             var battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
             battleManager.Init(_model.GetTeamArray());
-            UIManager.Instance.CloseWindow("LoadingView");
         }
     }
 }

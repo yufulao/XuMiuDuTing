@@ -14,7 +14,6 @@ public class DescribeItem : MonoBehaviour
     /// <param name="info"></param>
     public void Open(string info)
     {
-        //todo 设置出现位置
         textInfo.text = info;
         canvasGroup.alpha = 0;
         mainPanel.SetActive(true);

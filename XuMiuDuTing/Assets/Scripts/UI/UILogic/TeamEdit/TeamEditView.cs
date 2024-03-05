@@ -33,7 +33,7 @@ namespace Yu
         /// </summary>
         public void CloseWindow()
         {
-            StartCoroutine(CloseWindowIEnumerator());
+            GameManager.Instance.StartCoroutine(CloseWindowIEnumerator());
         }
 
         /// <summary>

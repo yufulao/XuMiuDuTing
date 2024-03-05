@@ -1,0 +1,3 @@
+key#description
+key#skill描述
+string#string

@@ -13,12 +13,14 @@ namespace Yu
         public List<CommandMenu> commandMenuList = new List<CommandMenu>();
         public Button btnUndoCommand;
         public Button btnGoBattle;
+        public Animator animatorBtnGoBattle;
         public Transform entityHudContainer;
         public SkillSelectPanel skillSelectPanel;
         public AimSelectPanel aimSelectPanel;
         public DescribeItem describeItemBuff;
         public DescribeItem describeItemSkill;
         public GameObject objMask;
+        public ToggleGroup selectToggleGroup;
 
         public List<Sprite> bpSpriteList = new List<Sprite>();
         public Animator animator;
@@ -101,7 +103,7 @@ namespace Yu
         /// <summary>
         /// 更新下方角色信息列表
         /// </summary>
-        public void UpdateAllEntityUIInfo(IEnumerable<CharacterEntityCtrl> allCharacterEntities, IEnumerable<EnemyEntityCtrl> allEnemyEntities)
+        public void UpdateAllEntityInfoItem(IEnumerable<CharacterEntityCtrl> allCharacterEntities, IEnumerable<EnemyEntityCtrl> allEnemyEntities)
         {
             foreach (var characterEntity in allCharacterEntities)
             {
@@ -117,14 +119,14 @@ namespace Yu
 
             foreach (var enemyEntity in allEnemyEntities)
             {
-                var infoItem = enemyEntity.GetInfoItem();
+                var infoItem = enemyEntity.GetEnemyInfoItem();
                 if (enemyEntity.IsDie())
                 {
                     infoItem.RefreshOnDie();
                     continue;
                 }
 
-                infoItem.RefreshOnNotDie(enemyEntity.GetHp());
+                infoItem.RefreshOnNotDie(enemyEntity.GetHp(),0,0);
             }
         }
     }

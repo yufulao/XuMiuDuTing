@@ -1,0 +1,17 @@
+key#description#BuffType#isDebuff#canExistWithSame#canAddLayer#maxLayer#canDispel#isUpdateDuringRepeatCast
+key#buff描述#buff类型#是不是debuff#相同buff是否可并行存在#是否可叠层#最高层数#是否可驱散#重复释放是否刷新持续时间
+string#string#string#bool#bool#bool#int#bool#bool
+星#标记敌方，处于此状态的敌方防御力下降{0}#印记buff#True#False#False#0#False#True
+激情#处于该状态的角色，BP每消耗1点，便能获得1层“攻击力提升{0}”#触发后不消失类buff#False#False#False#0#True#False
+攻击力提升#攻击力额外提升{0}#属性加#False#False#True#4#True#True
+攻击力下降#攻击力额外降低{0}#属性减#True#False#False#0#True#True
+受伤加重#受伤系数增加{0}#易伤#True#False#False#0#True#True
+虚缪#处于此状态的单位在每回合结束时，会受到相当于施法者{0}攻击力的伤害#每回合失去xx#False#False#True#4#True#True
+苦旅#处于该状态的角色，在每次回合结束时会进行一次结算，若该角色处于default 中，则会得到{0}点BP#触发后不消失类buff#False#False#False#0#True#True
+忍耐#受伤系数减少{0}#减伤#False#False#False#0#True#True
+反击架势#处于此状态的单位受到伤害时，会对伤害来源造成相当于{0}攻击力的伤害#触发后不消失类buff#False#False#False#0#False#True
+被掩护#处于此状态的单位受到伤害时，会将受到的伤害转移给{0}#触发后不消失类buff#False#False#False#0#True#True
+增生#处于此状态的单位在回合结束时会恢复最大生命值的{0}#每回合恢复xx#False#False#False#0#True#True
+返生#处于此状态的单位在被击倒时会保留{0}点HP#触发后消失类buff#False#False#False#0#True#True
+眩晕#无法行动#触发后消失类buff#False#False#False#0#True#True
+燃烬#无法恢复HP#触发后消失类buff#False#False#False#0#True#True

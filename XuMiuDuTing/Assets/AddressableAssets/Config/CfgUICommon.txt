@@ -4,3 +4,5 @@ string#string
 StageItem#Assets/AddressableAssets/UI/Common/StageItem.prefab
 CharacterItem#Assets/AddressableAssets/UI/Common/CharacterItem (0).prefab
 EntityHUD#Assets/AddressableAssets/UI/Common/EntityHUD.prefab
+BuffItem#Assets/AddressableAssets/UI/Common/BuffItem (0).prefab
+SkillSelectItem#Assets/AddressableAssets/UI/Common/SkillObj (0).prefab

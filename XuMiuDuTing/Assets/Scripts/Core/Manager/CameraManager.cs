@@ -63,12 +63,16 @@ namespace Yu
                 yield break;
             }
 
-            List<float> positionParams = ConfigManager.Instance.cfgCamera[cameraName].position;
-            List<float> rotationParams = ConfigManager.Instance.cfgCamera[cameraName].rotation;
-            Vector3 cameraPosition = new Vector3(positionParams[0], positionParams[1], positionParams[2]);
-            Vector3 cameraRotation = new Vector3(rotationParams[0], rotationParams[1], rotationParams[2]);
-            float cameraFieldOfView = ConfigManager.Instance.cfgCamera[cameraName].fieldOfView;
-
+            var objCameraTransform = _objCamera.gameObject.transform;
+            var positionParams = ConfigManager.Instance.cfgCamera[cameraName].position;
+            var rotationParams = ConfigManager.Instance.cfgCamera[cameraName].rotation;
+            var cameraPosition = positionParams != null && positionParams.Count >= 3
+                ? (new Vector3(positionParams[0], positionParams[1], positionParams[2]))
+                : objCameraTransform.position;
+            var cameraRotation = rotationParams != null && rotationParams.Count >= 3
+                ? (new Vector3(rotationParams[0], rotationParams[1], rotationParams[2]))
+                : objCameraTransform.rotation.eulerAngles;
+            var cameraFieldOfView = ConfigManager.Instance.cfgCamera[cameraName].fieldOfView;
             _objSequence?.Kill();
             _objSequence = DOTween.Sequence();
             _objSequence.Join(_objCamera.transform.DOLocalMove(cameraPosition, during));

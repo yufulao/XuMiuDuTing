@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AimSelectPanel : MonoBehaviour
+namespace Yu
 {
-    [SerializeField] private Button btnSelectEnd;
-    [SerializeField] private Button btnBack;
-    public Toggle toggleSwitchCamera;
+    public class AimSelectPanel : MonoBehaviour
+    {
+        public Button btnSelectEnd;
+        public Button btnBack;
+        public Toggle toggleSwitchCamera;
+
+
+    }
 }

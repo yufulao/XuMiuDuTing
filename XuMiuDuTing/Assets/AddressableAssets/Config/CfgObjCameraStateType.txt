@@ -1,0 +1,7 @@
+key#Annotate#DefName
+key#注释#枚举名称
+string#string#string
+IdleCommand#输入指令阶段的idle#None
+IdleAnimation#执行指令阶段的idle#None
+Enemy#聚焦敌人#None
+Character#聚焦角色#None

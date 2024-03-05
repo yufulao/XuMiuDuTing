@@ -7,21 +7,15 @@ using UnityEngine.UI;
 
 namespace Yu
 {
-    public class CharacterInfoItem : MonoBehaviour
+    public class CharacterInfoItem : BaseInfoItem
 {
     [SerializeField] private GameObject objSelectedBg;
     [SerializeField] private Image imagePortrait;
     [SerializeField] private GameObject objReadyTip;
-    [SerializeField] private Slider sliderHp;
-    [SerializeField] private TextMeshProUGUI textHp;
     [SerializeField] private Slider sliderMp;
     [SerializeField] private TextMeshProUGUI textMp;
     [SerializeField] private Image imageBp;
-    [SerializeField] private Transform buffsContainer;
-
     public Animator selectedBgAnimator;
-    // public List<BuffObject> buffs;
-    // public List<BuffObject> debuffs;
 
     private string _characterName;
     private List<Sprite> _bpSpriteList;
@@ -44,7 +38,7 @@ namespace Yu
     /// <summary>
     /// 死亡时更新
     /// </summary>
-    public void RefreshOnDie()
+    public override void RefreshOnDie()
     {
         RefreshHp(0);
         RefreshMp(0);
@@ -55,7 +49,7 @@ namespace Yu
     /// <summary>
     /// 没死亡时更新
     /// </summary>
-    public void RefreshOnNotDie(int hp,int mp,int bp)
+    public override void RefreshOnNotDie(int hp,int mp,int bp)
     {
         RefreshHp(hp);
         RefreshMp(mp);
@@ -97,7 +91,7 @@ namespace Yu
     /// <summary>
     /// 刷新生命值显示
     /// </summary>
-    public void RefreshHp(int hp,int maxHp)
+    public override void RefreshHp(int hp,int maxHp)
     {
         sliderHp.maxValue = maxHp;
         RefreshHp(hp);
@@ -106,7 +100,7 @@ namespace Yu
     /// <summary>
     /// 刷新生命值显示
     /// </summary>
-    public void RefreshHp(int hp)
+    public override void RefreshHp(int hp)
     {
         sliderHp.value = hp;
         textHp.text = hp.ToString();

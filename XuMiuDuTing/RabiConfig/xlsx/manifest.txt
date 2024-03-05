@@ -9,3 +9,6 @@ Stage.xlsx
 Character.xlsx
 Global.xlsx
 Enemy.xlsx
+Buff.xlsx
+Skill.xlsx
+Skill.xlsx

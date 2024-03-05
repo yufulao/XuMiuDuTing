@@ -1,106 +1,245 @@
-using System.Collections;
 using System.Collections.Generic;
 using Rabi;
 using UnityEngine;
 using UnityEngine.UI;
-using Yu;
 
-public class BattleModel
+namespace Yu
 {
-    private string[] _characterTeamArray;
-    private StageDataEntry _stageDataEntry;
-    private RowCfgStage _rowCfgStage;
-    private StageData _stageData;
-    public int currentRound;
-    public List<BattleEntityCtrl> allEntities = new List<BattleEntityCtrl>();
-    private List<BattleEntityCtrl> sortEntities = new List<BattleEntityCtrl>();//根据速度排序后的entityIdList
-    public List<CharacterEntityCtrl> allCharacterEntities = new List<CharacterEntityCtrl>();
-    public List<EnemyEntityCtrl> allEnemyEntities = new List<EnemyEntityCtrl>();
-    public int characterNumber;
-    public int characterCount;
-    public int enemyNumber;
-    public int canSelectCount;
-    public List<Toggle> activedToggleList = new List<Toggle>();//可以进行选择的目标toggle
-    public List<BattleEntityCtrl> selectedEntityList = new List<BattleEntityCtrl>();
-    public int currentMenuLastIndex;
-    
-
-    /// <summary>
-    /// 初始化
-    /// </summary>
-    /// <param name="teamArray"></param>
-    public void Init(string[] teamArray)
+    public class BattleModel
     {
-        _characterTeamArray = teamArray;
-        _stageData = SaveManager.GetT("StageData", new StageData());
-        var stageName = SaveManager.GetString("StageName", "1-1");
-        _stageDataEntry = _stageData.allStage[stageName];
-        _rowCfgStage = ConfigManager.Instance.cfgStage[_stageDataEntry.stageName];
-        currentRound = 1;
-        SortEntityList();
-    }
+        private string[] _characterTeamArray;
+        private StageDataEntry _stageDataEntry;
+        private RowCfgStage _rowCfgStage;
+        private StageData _stageData;
+        public int currentRound;
+        public readonly List<BattleEntityCtrl> allEntities = new List<BattleEntityCtrl>();
+        public readonly List<BattleEntityCtrl> sortEntities = new List<BattleEntityCtrl>(); //根据速度排序后的entityIdList
+        public readonly List<CharacterEntityCtrl> allCharacterEntities = new List<CharacterEntityCtrl>();
+        public readonly List<EnemyEntityCtrl> allEnemyEntities = new List<EnemyEntityCtrl>();
+        public int characterNumber;
+        public int characterCount;
+        public int enemyNumber;
+        public int currentMenuLastIndex;
+        public int currentCharacterEntityIndex; //当前输入指令的角色在AllEntity中的下标
+        public int currentEnemyEntityIndex; //当前输入指令的敌人在AllEntity中的下标
 
-    /// <summary>
-    /// 获取角色队伍
-    /// </summary>
-    /// <returns></returns>
-    public string[] GetCharacterTeamArray()
-    {
-        return _characterTeamArray;
-    }
+        //AimSelect
+        public BattleCommandType selectMenuType;
+        public int canSelectCount;
+        public readonly List<Toggle> activeToggleList = new List<Toggle>(); //激活了的ToggleSelect
+        public readonly List<BattleEntityCtrl> selectedEntityList = new List<BattleEntityCtrl>();
+        public SkillSelectInfo cacheCurrentSkillSelectInfo;
 
-    /// <summary>
-    /// 获取敌人队伍
-    /// </summary>
-    /// <returns></returns>
-    public List<string> GetEnemyTeam()
-    {
-        return _rowCfgStage.enemyTeam;
-    }
 
-    /// <summary>
-    /// 通关
-    /// </summary>
-    public void PassStage()
-    {
-        if (_stageDataEntry.isPass)
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="teamArray"></param>
+        public void Init(string[] teamArray)
         {
-            return;
+            _characterTeamArray = teamArray;
+            _stageData = SaveManager.GetT("StageData", new StageData());
+            var stageName = SaveManager.GetString("StageName", "1-1");
+            _stageDataEntry = _stageData.allStage[stageName];
+            _rowCfgStage = ConfigManager.Instance.cfgStage[_stageDataEntry.stageName];
+            currentRound = 1;
         }
 
-        _stageDataEntry.isPass = true;
-        var unlockStageList = _rowCfgStage.unlockStageList;
-        foreach (var unlockStageName in unlockStageList)
+        /// <summary>
+        /// 获取当前的角色
+        /// </summary>
+        /// <returns></returns>
+        public CharacterEntityCtrl GetCurrentCharacterEntity()
         {
-            _stageData.allStage[unlockStageName].isUnlock = true;
+            return allCharacterEntities[currentCharacterEntityIndex];
         }
 
-        SaveManager.SetT("StageData", _stageData);
-
-        //其他通关特定关执行卡特定事件，下面写================================================================================================================
-    }
-    
-    /// <summary>
-    /// 依据entity的Speed对allEntities排序
-    /// </summary>
-    private void SortEntityList()
-    {
-        sortEntities.Clear();
-        for (int i = 0; i < allEntities.Count; i++)
+        /// <summary>
+        /// 获取当前的敌人
+        /// </summary>
+        /// <returns></returns>
+        public EnemyEntityCtrl GetCurrentEnemyEntity()
         {
-            sortEntities.Add(allEntities[i]);
+            return allEnemyEntities[currentEnemyEntityIndex];
         }
 
-        sortEntities.Sort((x, y) => { return y.GetSpeed().CompareTo(x.GetSpeed()); });
-        //测试排序
-        var log = "排序后的character顺序：";
-        for (var i = 0; i < sortEntities.Count; i++)
+        /// <summary>
+        /// 设置当前角色
+        /// </summary>
+        /// <returns></returns>
+        public void SetCurrentCharacterEntity(CharacterEntityCtrl currentCharacterEntity)
         {
-            if (!sortEntities[i].isEnemy)
+            currentCharacterEntityIndex = allCharacterEntities.IndexOf(currentCharacterEntity);
+        }
+
+        /// <summary>
+        /// 转换characterEntity
+        /// </summary>
+        /// <returns></returns>
+        public CharacterEntityCtrl GetCharacterEntityByBaseEntity(BattleEntityCtrl baseEntity)
+        {
+            var characterEntity = baseEntity as CharacterEntityCtrl;
+            if (!characterEntity)
             {
-                log += (sortEntities[i] as CharacterEntityCtrl)?.GetCharacterName() + 1 + "--";
+                Debug.LogError("转换失败" + baseEntity.GetName());
+            }
+
+            return characterEntity;
+        }
+
+        /// <summary>
+        /// 转换enemyEntity
+        /// </summary>
+        /// <returns></returns>
+        public EnemyEntityCtrl GetEnemyEntityByBaseEntity(BattleEntityCtrl baseEntity)
+        {
+            var enemyEntity = baseEntity as EnemyEntityCtrl;
+            if (!enemyEntity)
+            {
+                Debug.LogError("转换失败" + baseEntity.GetName());
+            }
+
+            return enemyEntity;
+        }
+
+        /// <summary>
+        /// 设置第一个可以输入指令的角色
+        /// </summary>
+        public void SetFirstCanInputCommandCharacter()
+        {
+            for (var i = 0; i < allCharacterEntities.Count; i++)
+            {
+                if (allCharacterEntities[i].IsDie())
+                {
+                    continue;
+                }
+
+                if (allCharacterEntities[i].GetBp() < 0)
+                {
+                    continue;
+                }
+
+                if (BattleManager.CheckBuff(allCharacterEntities[i], "眩晕").Count > 0)
+                {
+                    continue;
+                }
+
+                currentCharacterEntityIndex = i; //将第一个活着的entity的索引设为currentBattleId
+                return;
+            }
+
+            currentCharacterEntityIndex = allCharacterEntities.Count;//溢出，已处理
+        }
+
+        /// <summary>
+        /// 选出下一个可以输入指令的角色
+        /// </summary>
+        public void SetNextCanInputCommandCharacter()
+        {
+            for (var i = currentCharacterEntityIndex; i < allCharacterEntities.Count; i++)
+            {
+                if (allCharacterEntities[i].IsDie())
+                {
+                    continue;
+                }
+
+                if (allCharacterEntities[i].GetBp() < 0)
+                {
+                    continue;
+                }
+
+                if (BattleManager.CheckBuff(allCharacterEntities[i], "眩晕").Count > 0)
+                {
+                    continue;
+                }
+
+                currentCharacterEntityIndex = i; //将第一个活着的entity的索引设为currentBattleId
+                return;
+            }
+
+            currentCharacterEntityIndex = allCharacterEntities.Count;//溢出，已处理
+        }
+
+        /// <summary>
+        /// 设置第一个可以输入指令的敌人
+        /// </summary>
+        public void SetFirstCanInputCommandEnemy()
+        {
+            for (var i = 0; i < allEnemyEntities.Count; i++)
+            {
+                if (allEnemyEntities[i].IsDie())
+                {
+                    continue;
+                }
+
+                currentEnemyEntityIndex = i; //将第一个活着的entity的索引设为currentBattleId
+                return;
             }
         }
-        Debug.Log(log);
+
+        /// <summary>
+        /// 获取角色队伍
+        /// </summary>
+        /// <returns></returns>
+        public string[] GetCharacterTeamArray()
+        {
+            return _characterTeamArray;
+        }
+
+        /// <summary>
+        /// 获取敌人队伍
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetEnemyTeam()
+        {
+            return _rowCfgStage.enemyTeam;
+        }
+
+        /// <summary>
+        /// 通关
+        /// </summary>
+        public void PassStage()
+        {
+            if (_stageDataEntry.isPass)
+            {
+                return;
+            }
+
+            _stageDataEntry.isPass = true;
+            var unlockStageList = _rowCfgStage.unlockStageList;
+            foreach (var unlockStageName in unlockStageList)
+            {
+                _stageData.allStage[unlockStageName].isUnlock = true;
+            }
+
+            SaveManager.SetT("StageData", _stageData);
+
+            //其他通关特定关执行卡特定事件，下面写================================================================================================================
+        }
+
+        /// <summary>
+        /// 依据entity的Speed对allEntities排序
+        /// </summary>
+        public void SortEntityList()
+        {
+            sortEntities.Clear();
+            foreach (var entity in allEntities)
+            {
+                sortEntities.Add(entity);
+            }
+
+            sortEntities.Sort((x, y) => y.GetSpeed().CompareTo(x.GetSpeed()));
+            //测试排序
+            var log = "排序后的character顺序：";
+            for (var i = 0; i < sortEntities.Count; i++)
+            {
+                if (!sortEntities[i].isEnemy)
+                {
+                    log += (sortEntities[i].GetName() + "--");
+                }
+            }
+
+            Debug.Log(log);
+        }
     }
 }

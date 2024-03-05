@@ -18,11 +18,49 @@ public static class Utils
     /// <returns></returns>
     public static IEnumerator PlayAnimation(Animator animator, string animationName)
     {
-        if (animator != null && animationName != null && animationName != "")
+        if (!animator || string.IsNullOrEmpty(animationName) || !animator.HasState(0, Animator.StringToHash(animationName)))
         {
-            animator.Play(animationName, 0, 0f);
-            yield return new WaitForSeconds(GetAnimatorLength(animator, animationName));
+            yield break;
         }
+
+        animator.Play(animationName, 0, 0f);
+        yield return new WaitForSeconds(GetAnimatorLength(animator, animationName));
+    }
+
+    /// <summary>
+    /// 获取动画时长
+    /// </summary>
+    /// <param name="animator"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public static float GetAnimatorLength(Animator animator, string name)
+    {
+        float length = 0;
+
+        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+        foreach (AnimationClip clip in clips)
+        {
+            if (clip.name.Equals(name))
+            {
+                length = clip.length;
+                break;
+            }
+        }
+
+        return length;
+    }
+
+    /// <summary>
+    /// 判断当前animator是否正在播放指定的animation
+    /// </summary>
+    /// <param name="animator"></param>
+    /// <param name="animationName"></param>
+    /// <param name="layerIndex"></param>
+    /// <returns></returns>
+    public static bool IsAnimatorPlayingThisAnimation(Animator animator, string animationName, int layerIndex = 0)
+    {
+        var animatorStateInfo = animator.GetCurrentAnimatorStateInfo(layerIndex);
+        return animatorStateInfo.IsName(animationName);
     }
 
     /// <summary>
@@ -59,29 +97,6 @@ public static class Utils
     }
 
     /// <summary>
-    /// 获取动画时长
-    /// </summary>
-    /// <param name="animator"></param>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public static float GetAnimatorLength(Animator animator, string name)
-    {
-        float length = 0;
-
-        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
-        foreach (AnimationClip clip in clips)
-        {
-            if (clip.name.Equals(name))
-            {
-                length = clip.length;
-                break;
-            }
-        }
-
-        return length;
-    }
-    
-    /// <summary>
     /// 选择该UI，并将其显示为选中状态。
     /// </summary>
     /// <param name="selectable"></param>
@@ -95,6 +110,7 @@ public static class Utils
         {
             return;
         }
+
         currentEventSystem.SetSelectedGameObject(selectable.gameObject);
         selectable.Select();
         selectable.OnSelect(null);
@@ -183,8 +199,8 @@ public static class Utils
     /// <returns></returns>
     public static string Reverse(string str)
     {
-      char[] arr = str.ToCharArray();
-      Array.Reverse(arr);
-      return new string(arr);
+        char[] arr = str.ToCharArray();
+        Array.Reverse(arr);
+        return new string(arr);
     }
 }

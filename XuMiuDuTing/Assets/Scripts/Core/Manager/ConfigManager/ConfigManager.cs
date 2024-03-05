@@ -12,6 +12,8 @@ namespace Rabi
     public sealed class ConfigManager : BaseSingleTon<ConfigManager>
     {
         public readonly CfgBGM cfgBGM = new CfgBGM();
+        public readonly CfgBuff cfgBuff = new CfgBuff();
+        public readonly CfgBuffType cfgBuffType = new CfgBuffType();
         public readonly CfgCamera cfgCamera = new CfgCamera();
         public readonly CfgChapter cfgChapter = new CfgChapter();
         public readonly CfgChapterType cfgChapterType = new CfgChapterType();
@@ -19,10 +21,12 @@ namespace Rabi
         public readonly CfgEnemy cfgEnemy = new CfgEnemy();
         public readonly CfgGlobal cfgGlobal = new CfgGlobal();
         public readonly CfgMainPlot cfgMainPlot = new CfgMainPlot();
+        public readonly CfgObjCameraStateType cfgObjCameraStateType = new CfgObjCameraStateType();
         public readonly CfgPrefab cfgPrefab = new CfgPrefab();
         public readonly CfgScene cfgScene = new CfgScene();
         public readonly CfgSFX cfgSFX = new CfgSFX();
         public readonly CfgSFXType cfgSFXType = new CfgSFXType();
+        public readonly CfgSkill cfgSkill = new CfgSkill();
         public readonly CfgStage cfgStage = new CfgStage();
         public readonly CfgSubPlot cfgSubPlot = new CfgSubPlot();
         public readonly CfgUI cfgUI = new CfgUI();
@@ -41,6 +45,8 @@ namespace Rabi
         private void Init()
         {
             cfgBGM.Load();
+            cfgBuff.Load();
+            cfgBuffType.Load();
             cfgCamera.Load();
             cfgChapter.Load();
             cfgChapterType.Load();
@@ -48,10 +54,12 @@ namespace Rabi
             cfgEnemy.Load();
             cfgGlobal.Load();
             cfgMainPlot.Load();
+            cfgObjCameraStateType.Load();
             cfgPrefab.Load();
             cfgScene.Load();
             cfgSFX.Load();
             cfgSFXType.Load();
+            cfgSkill.Load();
             cfgStage.Load();
             cfgSubPlot.Load();
             cfgUI.Load();

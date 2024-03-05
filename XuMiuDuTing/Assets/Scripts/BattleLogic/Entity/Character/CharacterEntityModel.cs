@@ -4,57 +4,61 @@ using Rabi;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CharacterEntityModel
+namespace Yu
 {
-    public string characterName;
-    public int bp;
-    public int bpPreview;
-    public int braveCount;
-    public int hp;
-    public int maxHp;
-    public int mp;
-    public bool isDie;
-    //private int hatred;
-    public int damage;
-    public float damageRate;
-    public int defend;
-    public float hurtRate;
-    public int speed;
-    public BattleEntityCtrl hurtToEntity; //被掩护，转移伤害给的目标
-
-    private RowCfgCharacter _rowCfgCharacter;
-
-    /// <summary>
-    /// 初始化
-    /// </summary>
-    /// <param name="characterNameT"></param>
-    public void Init(string characterNameT)
+    public class CharacterEntityModel
     {
-        characterName = characterNameT;
-        _rowCfgCharacter = ConfigManager.Instance.cfgCharacter[characterName];
-        ResetAllValue();
-    }
-
-    /// <summary>
-    /// 重置所有数值
-    /// </summary>
-    public void ResetAllValue()
-    {
-        if (_rowCfgCharacter==null)
+        public string characterName;
+        public int bp;
+        public int bpPreview;
+        public int braveCount;
+        public int hp;
+        public int maxHp;
+        public int mp;
+        public bool isDie;
+        //private int hatred;
+        public int damage;
+        public float damageRate;
+        public int defend;
+        public readonly Dictionary<string,int> defendAddonDic=new Dictionary<string, int>();
+        public float hurtRate;
+        public int speed;
+        public bool hadUniqueSkill;
+        public BattleEntityCtrl hurtToEntity; //被掩护，转移伤害给的目标
+        public RowCfgCharacter rowCfgCharacter;
+    
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="characterNameT"></param>
+        public void Init(string characterNameT)
         {
-            return;
+            characterName = characterNameT;
+            rowCfgCharacter = ConfigManager.Instance.cfgCharacter[characterName];
+            ResetAllValue();
         }
-        bp = 0;
-        bpPreview = 0;
-        braveCount = 0;
-        maxHp = _rowCfgCharacter.maxHp;
-        hp = maxHp;
-        mp = 0;
-        isDie = false;
-        damage = _rowCfgCharacter.damage;
-        damageRate = _rowCfgCharacter.damageRate;
-        defend = _rowCfgCharacter.defend;
-        hurtRate = _rowCfgCharacter.hurtRate;
-        speed = _rowCfgCharacter.speed;
+    
+        /// <summary>
+        /// 重置所有数值
+        /// </summary>
+        private void ResetAllValue()
+        {
+            if (rowCfgCharacter==null)
+            {
+                return;
+            }
+            bp = 0;
+            bpPreview = 0;
+            braveCount = 0;
+            maxHp = rowCfgCharacter.maxHp;
+            hp = maxHp;
+            mp = 0;
+            isDie = false;
+            damage = rowCfgCharacter.damage;
+            damageRate = rowCfgCharacter.damageRate;
+            defend = rowCfgCharacter.defend;
+            hurtRate = rowCfgCharacter.hurtRate;
+            speed = rowCfgCharacter.speed;
+        }
     }
 }
