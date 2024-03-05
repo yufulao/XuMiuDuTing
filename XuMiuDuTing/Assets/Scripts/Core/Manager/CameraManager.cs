@@ -45,6 +45,9 @@ namespace Yu
             _objSequence?.Kill();
         }
 
+        /// <summary>
+        /// 重置原来的objCamera
+        /// </summary>
         public void ResetObjCamera()
         {
             if (_objCamera)
@@ -56,6 +59,12 @@ namespace Yu
             _objCamera.gameObject.SetActive(true);
         }
 
+        /// <summary>
+        /// 移动摄像机
+        /// </summary>
+        /// <param name="cameraName"></param>
+        /// <param name="during"></param>
+        /// <returns></returns>
         public IEnumerator MoveObjCamera(string cameraName, float during = 0f)
         {
             if (!_objCamera)
@@ -85,6 +94,14 @@ namespace Yu
         public Camera GetObjCamera()
         {
             return _objCamera;
+        }
+
+        /// <summary>
+        /// 通过entity是不是敌人来设置摄像机
+        /// </summary>
+        public IEnumerator MoveObjCameraByEntityIsEnemy(BattleEntityCtrl entity,float during =0f)
+        {
+            yield return MoveObjCamera(entity.isEnemy ? DefObjCameraStateType.DEnemy : DefObjCameraStateType.DCharacter, during);
         }
 
         private void OnChangeScene()

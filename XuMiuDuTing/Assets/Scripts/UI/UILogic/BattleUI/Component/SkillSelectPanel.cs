@@ -60,7 +60,7 @@ namespace Yu
                 var skillName = skillNameList[i];
                 if (_skillData.allSkill[skillName].isUnlock)
                 {
-                    skillSelectItemList[i].RefreshSkillName(skillName);
+                    skillSelectItemList[i].RefreshSkillName(skillName, i);
                     skillSelectItemList[i].SetSkillSelectItemOnPointEnter(BattleManager.Instance.OpenSkillDescribe);
                     skillSelectItemList[i].SetSkillSelectItemOnPointExit(BattleManager.Instance.CloseSkillDescribe);
                     skillSelectItemList[i].gameObject.SetActive(true);

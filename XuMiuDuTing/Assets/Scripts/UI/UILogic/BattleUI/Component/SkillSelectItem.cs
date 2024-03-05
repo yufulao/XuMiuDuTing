@@ -37,10 +37,11 @@ namespace Yu
         /// 刷新技能名字
         /// </summary>
         /// <param name="skillName"></param>
-        public void RefreshSkillName(string skillName)
+        /// <param name="index"></param>
+        public void RefreshSkillName(string skillName,int index)
         {
             _skillName = skillName;
-            textSkillName.text = _skillName;
+            textSkillName.text ="no"+index.ToString()+" "+ _skillName;
         }
 
         /// <summary>

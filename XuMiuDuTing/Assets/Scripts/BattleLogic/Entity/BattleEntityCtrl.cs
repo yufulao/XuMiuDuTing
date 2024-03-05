@@ -35,6 +35,11 @@ namespace Yu
         {
             return 0;
         }
+        
+        public virtual int GetMaxHp()
+        {
+            return 0;
+        }
 
         public virtual void UpdateHp(int hpAddon)
         {

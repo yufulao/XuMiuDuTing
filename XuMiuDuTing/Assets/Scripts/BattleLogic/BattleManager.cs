@@ -180,6 +180,7 @@ namespace Yu
             }
 
             var currentCharacter = _model.GetCurrentCharacterEntity();
+            var skillSelectInfo = _model.cacheCurrentSkillSelectInfo;
             switch (_model.selectMenuType)
             {
                 case BattleCommandType.Attack:
@@ -187,20 +188,17 @@ namespace Yu
                     _commandInfoList.Add(new BattleCommandInfo(false, BattleCommandType.Attack, false, 1, selectedEntity, currentCharacter));
                     break;
                 case BattleCommandType.Skill:
-                    var skillSelectInfo = _model.cacheCurrentSkillSelectInfo;
                     skillSelectInfo.selectedEntityList = selectedEntity;
-                    //todo First
-                    //AddSkill(skillSelectInfo);
-                    //CloseSkillMenu(null);
+                    AddSkill(skillSelectInfo);
+                    _uiCtrl.CloseSkillDescribe();
                     _commandInfoList.Add(new BattleCommandInfo(false, BattleCommandType.Skill, skillSelectInfo.isBattleStartCommand, skillSelectInfo.bpNeed, selectedEntity, currentCharacter));
                     break;
                 case BattleCommandType.UniqueSkill:
                     currentCharacter.SetHadUniqueSkill(true);
                     RefreshUniqueSkillButton();
-                    //todo 技能
-                    //skillSelectInfo.selectedEntityList = selectedEntity;
-                    //AddSkill(skillSelectInfo);
-                    //_commandInfoList.Add(new BattleCommandInfo(false, BattleCommandType.UniqueSkill, skillSelectInfo.isBattleStartCommand, skillSelectInfo.BpNeed, selectedEntity, currentBattleId));
+                    skillSelectInfo.selectedEntityList = selectedEntity;
+                    AddSkill(skillSelectInfo);
+                    _commandInfoList.Add(new BattleCommandInfo(false, BattleCommandType.UniqueSkill, skillSelectInfo.isBattleStartCommand, skillSelectInfo.bpNeed, selectedEntity, currentCharacter));
                     break;
                 default:
                     Debug.LogError("目标输入待添加新的CommandType");
@@ -607,7 +605,7 @@ namespace Yu
 
                 yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0);
                 StartCoroutine(Utils.PlayAnimation(selectEntity.animatorEntity, "attack"));
-                yield return CameraManager.Instance.MoveObjCamera(selectEntity.isEnemy ? DefObjCameraStateType.DEnemy : DefObjCameraStateType.DCharacter, 0);
+                yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(selectEntity, 0);
                 EntityGetDamage(selectEntity, caster, damagePoint);
                 CheckDecreaseBp(caster, bpNeed);
                 RefreshAllEntityInfoItem();
@@ -655,17 +653,16 @@ namespace Yu
             //四回合输入一次技能1
             if (_model.currentRound % 4 == 0)
             {
-                //todo 敌人技能
-                //currentEnemyEntity.commandList.Add(skillsManager.EnemyASkill1(allEntities[currentBattleId], target));
-                //_commandInfoList.Add(new BattleCommandInfo(true, BattleCommandType.Skill, false, 0, new List<BattleEntity> {target}, currentBattleId));
+                currentEnemyEntity.commandList.Add(EnemyASkill1(currentEnemyEntity, target));
+                _commandInfoList.Add(new BattleCommandInfo(true, BattleCommandType.Skill, false, 0, new List<BattleEntityCtrl> {target}, currentEnemyEntity));
             }
             else
             {
-                //allEntities[currentBattleId].entityCommandList.Add(EnemyAttack(currentBattleId, new List<BattleEntity> {target}));
-                //_commandInfoList.Add(new BattleCommandInfo(true, BattleCommandType.Attack, false, 0, new List<BattleEntity> {target}, currentBattleId));
+                currentEnemyEntity.commandList.Add(EnemyAttack(currentEnemyEntity, new List<BattleEntityCtrl> {target}));
+                _commandInfoList.Add(new BattleCommandInfo(true, BattleCommandType.Attack, false, 0, new List<BattleEntityCtrl> {target}, currentEnemyEntity));
             }
 
-            // Debug.Log("实体" + currentBattleId + "输入了指令" + allEntities[currentBattleId].entityCommandList[allEntities[currentBattleId].entityCommandList.Count - 1] + "，commandInfo的数量为" +
+            // Debug.Log("实体" + currentBattleId + "输入了指令" + currentCharacter.entityCommandList[currentCharacter.entityCommandList.Count - 1] + "，commandInfo的数量为" +
             //           _commandInfoList.Count);
 
             _model.currentEnemyEntityIndex++;
@@ -1055,10 +1052,10 @@ namespace Yu
             target.animatorEntity.Play("damaged");
             var hurtPoint = (int) (Mathf.Clamp((damagePoint - target.GetDefend() - target.GetDefendAddon()), 0f, 1000000f)
                                    * target.GetHurtRate() * (caster.GetDamageRate() + damageRateAddition));
-            //Debug.Log("damage=" + damagePoint + ",defand=" + entityGet.defend + ",hurtRate=" + entityGet.hurtRate + ",damageRate=" + entitySet.damageRate + "\n" +
+            //Debug.Log("damage=" + damagePoint + ",defand=" + entityGet.defend + ",hurtRate=" + entityGet.hurtRate + ",damageRate=" + caster.GetDamage()Rate + "\n" +
             //    "伤害-防御=" + (int)(Mathf.Clamp((damagePoint - entityGet.defend), 0f, 1000000f)) + "\n" +
-            //    "伤害rate*受伤rate=" + entityGet.hurtRate * entitySet.damageRate + "\n" +
-            //    "总伤害=" + (int)(Mathf.Clamp((damagePoint - entityGet.defend), 0f, 1000000f) * entityGet.hurtRate * entitySet.damageRate));
+            //    "伤害rate*受伤rate=" + entityGet.hurtRate * caster.GetDamage()Rate + "\n" +
+            //    "总伤害=" + (int)(Mathf.Clamp((damagePoint - entityGet.defend), 0f, 1000000f) * entityGet.hurtRate * caster.GetDamage()Rate));
             var textHurtPoint = target.GetEntityHud().textHurtPoint;
             textHurtPoint.text = hurtPoint.ToString();
             Utils.TextFly(textHurtPoint, Vector3.zero);
@@ -1161,7 +1158,7 @@ namespace Yu
             float damagePoint = caster.GetDamage();
             foreach (var targetEntity in targetList)
             {
-                yield return CameraManager.Instance.MoveObjCamera(targetEntity.isEnemy ? DefObjCameraStateType.DEnemy : DefObjCameraStateType.DCharacter, 0f);
+                yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(targetEntity, 0f);
                 EntityGetDamage(targetEntity, caster, damagePoint);
             }
 

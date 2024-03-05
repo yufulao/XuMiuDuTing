@@ -147,6 +147,15 @@ namespace Yu
         }
         
         /// <summary>
+        /// 获取最大生命值
+        /// </summary>
+        /// <returns></returns>
+        public override int GetMaxHp()
+        {
+            return _model.maxHp;
+        }
+        
+        /// <summary>
         /// 修改hp值
         /// </summary>
         /// <param name="hpAddon"></param>

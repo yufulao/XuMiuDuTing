@@ -11,4 +11,3 @@ Global.xlsx
 Enemy.xlsx
 Buff.xlsx
 Skill.xlsx
-Skill.xlsx
