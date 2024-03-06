@@ -72,7 +72,6 @@ namespace Yu
         private void OnPointEnter(BaseEventData baseEventData)
         {
             _onPointEnter?.Invoke(this,baseEventData);
-            //BattleManager.Instance.OpenBuffDescribe(this);
         }
 
         /// <summary>
@@ -82,7 +81,6 @@ namespace Yu
         private void OnPointExit(BaseEventData baseEventData)
         {
             _onPointExit?.Invoke(this,baseEventData);
-            //BattleManager.Instance.CloseBuffDescribe(this);
         }
     }
 }

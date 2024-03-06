@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6663786486630986341}
   - component: {fileID: 8754422829291958669}
   m_Layer: 5
-  m_Name: SkillSelectItem (0)
+  m_Name: SkilltItem (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,6 +188,7 @@ MonoBehaviour:
   textSkillName: {fileID: 9111606498219819087}
   btnPress: {fileID: 9111606497765903872}
   eventTrigger: {fileID: 1428309182213274154}
+  animatorHang: {fileID: 9111606497765903879}
 --- !u!1 &9111606498052628318
 GameObject:
   m_ObjectHideFlags: 0

@@ -76,8 +76,10 @@ public static class Utils
             trigger.triggers = new List<EventTrigger.Entry>();
         }
 
-        EventTrigger.Entry entry = new EventTrigger.Entry();
-        entry.eventID = eventID;
+        var entry = new EventTrigger.Entry()
+        {
+            eventID= eventID,
+        };
         entry.callback.AddListener(callback);
         trigger.triggers.Add(entry);
     }

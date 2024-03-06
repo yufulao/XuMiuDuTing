@@ -27,10 +27,12 @@ namespace Yu
             CheckFixedTeamArray(param);
             UpdateTeamArray();
             _view.OpenWindow(param);
+            StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("战前编队界面", 0.3f, 0f, 0f));
         }
 
         public override void CloseRoot()
         {
+            StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", 0.3f, 0f, 0f));
             _view.CloseWindow();
         }
 

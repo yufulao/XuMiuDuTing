@@ -23,94 +23,81 @@ namespace Yu
             }
         }
 
-        private SkillSelectInfo AddSkill(SkillSelectInfo skillSelectInfo)
+        /// <summary>
+        /// 向skillInfo中添加bpNeed和targetList，并通过skillName向currentCharacter添加command和battleStartCommand
+        /// </summary>
+        /// <param name="skillInfo"></param>
+        private void AddCharacterSkillCommand(SkillInfo skillInfo)
         {
-            if (skillSelectInfo.needSelect && skillSelectInfo.selectedEntityList == null)
+            var rowCfgSkill = skillInfo.RowCfgSkill;
+            if (rowCfgSkill.needSelect && skillInfo.targetList == null)
             {
                 Debug.LogError("选择了目标但目标列表为空");
+                return;
             }
 
-            var selectedEntityList= _model.selectedEntityList;
-            var selectedEntity = new List<BattleEntityCtrl>(); //list是引用类型，必须要深拷贝
-            foreach (var entity in selectedEntityList)
+            //todo 协程池处理
+            var caster = _model.GetCharacterEntityByBaseEntity(skillInfo.caster);
+            IEnumerator command = null;
+            IEnumerator battleStartCommand = null;
+            switch (skillInfo.skillName)
             {
-                selectedEntity.Add(entity);
+                case "星光": //反击架势，先制指令
+                    command =VectoriaSkill1(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    break;
+                case "失却的激情":
+                    command =VectoriaSkill2(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    break;
+                case "荒芜星原":
+                    command =VectoriaSkill3(caster, rowCfgSkill.bpNeed, _model.allEntities);
+                    break;
+                case "颓废的智慧":
+                    command =VectoriaSkill4(caster, rowCfgSkill.bpNeed, _model.allEntities);
+                    break;
+                case "虚谬":
+                    command =VectoriaSkill5(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    break;
+                case "循此苦旅":
+                    command =VectoriaSkill6(caster, rowCfgSkill.bpNeed);
+                    break;
+                case "Ad Astra":
+                    command =VectoriaUniqueSkill(caster, rowCfgSkill.bpNeed, _model.allEntities);
+                    break;
+                case "反击架势": //反击架势，先制指令
+                    command =BattleStartCommandInCommandList(caster);
+                    battleStartCommand= VectorSkill1(caster, rowCfgSkill.bpNeed);
+                    break;
+                case "掩护":
+                    command =VectorSkill2(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    break;
+                case "灼烧印记":
+                    command =VectorSkill3(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    break;
+                case "不死花":
+                    command =VectorSkill4(caster, rowCfgSkill.bpNeed);
+                    break;
+                case "绝境的火焰":
+                    command =VectorSkill5(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    break;
+                case "绽放":
+                    command =VectorSkill6(caster, rowCfgSkill.bpNeed, _model.allEntities);
+                    break;
+                case "迷惘燃烬":
+                    command =VectorUniqueSkill(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    break;
             }
 
-            var currentCharacter = _model.GetCurrentCharacterEntity();
-            var casterName = skillSelectInfo.battleEntity.GetName();
-            if (casterName.Equals("维多利亚"))
+            if (command!=null)
             {
-                switch (skillSelectInfo.skillIndex)
-                    {
-                        case 0: //反击架势，先制指令
-                            skillSelectInfo.bpNeed = 1;
-                            skillSelectInfo.battleEntity.commandList.Add(VectoriaSkill1(currentCharacter, skillSelectInfo.bpNeed, selectedEntity));
-                            break;
-                        case 1:
-                            skillSelectInfo.bpNeed = 1;
-                            skillSelectInfo.battleEntity.commandList.Add(VectoriaSkill2(currentCharacter, skillSelectInfo.bpNeed, selectedEntity));
-                            break;
-                        case 2:
-                            skillSelectInfo.bpNeed = 1;
-                            skillSelectInfo.battleEntity.commandList.Add(VectoriaSkill3(currentCharacter, skillSelectInfo.bpNeed, _model.allEntities));
-                            break;
-                        case 3:
-                            skillSelectInfo.bpNeed = 2;
-                            skillSelectInfo.battleEntity.commandList.Add(VectoriaSkill4(currentCharacter, skillSelectInfo.bpNeed, _model.allEntities));
-                            break;
-                        case 4:
-                            skillSelectInfo.bpNeed = 1;
-                            skillSelectInfo.battleEntity.commandList.Add(VectoriaSkill5(currentCharacter, skillSelectInfo.bpNeed, selectedEntity));
-                            break;
-                        case 5:
-                            skillSelectInfo.bpNeed = 1;
-                            skillSelectInfo.battleEntity.commandList.Add(VectoriaSkill6(currentCharacter, skillSelectInfo.bpNeed));
-                            break;
-                        case 100:
-                            skillSelectInfo.bpNeed = 1;
-                            skillSelectInfo.battleEntity.commandList.Add(VectoriaUniqueSkill(currentCharacter, skillSelectInfo.bpNeed, _model.allEntities));
-                            break;
-                    }
+                caster.commandList.Add(command);
+                _commandInfoList.Add(new BattleCommandInfo(false, BattleCommandType.Skill, rowCfgSkill.isBattleStartCommand, rowCfgSkill.bpNeed, skillInfo.targetList, caster));
+                Debug.Log("实体" + caster + "输入了指令" + caster.commandList[^1] + "，commandInfo的数量为" + _commandInfoList.Count);
             }
 
-            if (casterName.Equals("维克多"))
+            if (battleStartCommand!=null)
             {
-                switch (skillSelectInfo.skillIndex)
-                    {
-                        case 0: //反击架势，先制指令
-                            skillSelectInfo.bpNeed = 1;
-                            skillSelectInfo.battleEntity.commandList.Add(BattleStartCommandInCommandList(currentCharacter));
-                            skillSelectInfo.battleEntity.battleStartCommandList.Add(VectorSkill1(currentCharacter, skillSelectInfo.bpNeed));
-                            break;
-                        case 1:
-                            skillSelectInfo.bpNeed = 1;
-                            skillSelectInfo.battleEntity.commandList.Add(VectorSkill2(currentCharacter, skillSelectInfo.bpNeed, selectedEntity));
-                            break;
-                        case 2:
-                            skillSelectInfo.bpNeed = 1;
-                            skillSelectInfo.battleEntity.commandList.Add(VectorSkill3(currentCharacter, skillSelectInfo.bpNeed, selectedEntity));
-                            break;
-                        case 3:
-                            skillSelectInfo.bpNeed = 2;
-                            skillSelectInfo.battleEntity.commandList.Add(VectorSkill4(currentCharacter, skillSelectInfo.bpNeed));
-                            break;
-                        case 4:
-                            skillSelectInfo.bpNeed = 1;
-                            skillSelectInfo.battleEntity.commandList.Add(VectorSkill5(currentCharacter, skillSelectInfo.bpNeed, selectedEntity));
-                            break;
-                        case 5:
-                            skillSelectInfo.bpNeed = 3;
-                            skillSelectInfo.battleEntity.commandList.Add(VectorSkill6(currentCharacter, skillSelectInfo.bpNeed, _model.allEntities));
-                            break;
-                        case 100:
-                            skillSelectInfo.bpNeed = 1;
-                            skillSelectInfo.battleEntity.commandList.Add(VectorUniqueSkill(currentCharacter, skillSelectInfo.bpNeed, selectedEntity));
-                            break;
-                    }
+                caster.battleStartCommandList.Add(battleStartCommand);
             }
-
-            return skillSelectInfo; //引用变量，绝对会在上面的Switch中被修改然后传出
         }
 
         //Vectoria

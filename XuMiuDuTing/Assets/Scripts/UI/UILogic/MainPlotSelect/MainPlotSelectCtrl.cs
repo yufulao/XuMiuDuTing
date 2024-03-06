@@ -91,6 +91,7 @@ namespace Yu
 
         private IEnumerator IBtnOnClickNextPlot()
         {
+            SFXManager.Instance.PlaySfx("上一章下一章");
             _view.canvasGroupFadeMask.gameObject.SetActive(true);
             _view.canvasGroupFadeMask.DOFade(1f, 0.5f);
             yield return new WaitForSeconds(0.5f);
@@ -112,6 +113,7 @@ namespace Yu
 
         private IEnumerator IBtnOnClickPrePlot()
         {
+            SFXManager.Instance.PlaySfx("上一章下一章");
             _view.canvasGroupFadeMask.gameObject.SetActive(true);
             _view.canvasGroupFadeMask.DOFade(1f, 0.5f);
             yield return new WaitForSeconds(0.5f);

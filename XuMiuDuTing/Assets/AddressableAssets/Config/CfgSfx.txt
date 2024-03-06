@@ -1,3 +1,11 @@
 key#SFXType#clipPaths#volume#oneShot#loop
 SFX名#音效类别#资源路径#初始音量#是否oneShot#是否循环
 string#string#List<string>#float#bool#bool
+攻击123#Voice#Assets/AddressableAssets/SFX/dog语音/攻击1.mp3,Assets/AddressableAssets/SFX/dog语音/攻击2.mp3,Assets/AddressableAssets/SFX/dog语音/攻击3.mp3#1#True#False
+技能12#Voice#Assets/AddressableAssets/SFX/dog语音/技能1.mp3,Assets/AddressableAssets/SFX/dog语音/技能2.mp3#1#True#False
+error不可用#Se#Assets/AddressableAssets/SFX/系统音效/error不可用.wav#1#True#False
+上一章下一章#Se#Assets/AddressableAssets/SFX/系统音效/上一章下一章.mp3#1#False#False
+战斗系统点击音#Se#Assets/AddressableAssets/SFX/系统音效/战斗系统点击音.mp3#1#True#False
+设置暂停#Se#Assets/AddressableAssets/SFX/系统音效/设置暂停.mp3#1#False#False
+选中#Se#Assets/AddressableAssets/SFX/系统音效/选中.MP3#1#True#False
+通用点击音1#Se#Assets/AddressableAssets/SFX/系统音效/通用点击音1.mp3#1#True#False

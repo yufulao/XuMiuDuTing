@@ -68,7 +68,7 @@ namespace Yu
 
             //没有同名buffObj
             AddBuffObj(target, buffInfo);
-            yield return StartCoroutine(DoAddBuffEffect(buffInfo));
+            StartCoroutine(DoAddBuffEffect(buffInfo));
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Yu
         {
             var rowCfgBuff = buffInfo.RowCfgBuff;
             var infoItem = target.GetInfoItem();
-            var buffItem = Instantiate(AssetManager.Instance.LoadAsset<GameObject>(ConfigManager.Instance.cfgUI["BuffItem"].uiPath)).GetComponent<BuffItem>();
+            var buffItem = Instantiate(AssetManager.Instance.LoadAsset<GameObject>(ConfigManager.Instance.cfgUICommon["BuffItem"].path)).GetComponent<BuffItem>();
             buffItem.Init(buffInfo);
             buffItem.SetBuffItemOnPointEnter(OpenBuffDescribe);
             buffItem.SetBuffItemOnPointExit(CloseBuffDescribe);
@@ -155,6 +155,7 @@ namespace Yu
                     break;
                 case "被掩护":
                     target.SetHurtToEntity(buffInfo.buffValues[0] as BattleEntityCtrl); //设置伤害转移的目标
+                    buffInfo.buffStringParams = new object[1] {buffInfo.buffValues[0]};
                     break;
                 case "增生":
                     buffInfo.buffStringParams = new object[1] {"30%"};

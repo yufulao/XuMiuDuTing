@@ -29,7 +29,6 @@ namespace Yu
         public override void OpenRoot(params object[] param)
         {
             view.OpenWindow();
-            //CameraManager.Instance.SwitchObjCamera(CameraManager.ObjCameraState.IdleCommand, 0f);
         }
 
         public override void CloseRoot()
@@ -53,7 +52,7 @@ namespace Yu
             SetMenuBtnEnable(view.commandMenuList[0], BattleCommandType.Default, true);
 
             //SkillSelectPanel绑定
-            view.skillSelectPanel.SetSkillItemOnClick(OnSkillSelectItemClick);
+            view.skillSelectPanel.SetSkillItemOnClick(BattleManager.Instance.OnSkillItemClick);
             view.aimSelectPanel.toggleSwitchCamera.onValueChanged.AddListener(OnValueChangeToggleSwitchCamera);
             view.aimSelectPanel.btnBack.onClick.AddListener(BattleManager.Instance.BtnOnClickSelectUndo);
             view.aimSelectPanel.btnSelectEnd.onClick.AddListener(BattleManager.Instance.BtnOnClickSelectOk);
@@ -139,14 +138,6 @@ namespace Yu
         }
 
         /// <summary>
-        /// 点击技能item事件
-        /// </summary>
-        /// <param name="skillName"></param>
-        private static void OnSkillSelectItemClick(string skillName)
-        {
-        }
-
-        /// <summary>
         /// 点击切换摄像机toggle
         /// </summary>
         /// <param name="isOn"></param>
@@ -225,18 +216,14 @@ namespace Yu
         {
             var describeItemBuff = view.describeItemBuff;
             var buffInfo = buffItem.GetBuffInfo();
-            describeItemBuff.gameObject.transform.position = buffItem.gameObject.transform.position + new Vector3(18f, 17f, 0f);
-            describeItemBuff.gameObject.SetActive(true); //强制更新contentSizeFilter需要开启gameObj
-
             //inspector窗口的string输入时会自动把\n转成\\n ，所以要转回来，不然不换行，艹
             var buffValueString = "";
-
             if (buffInfo.buffStringParams.Length != 0)
             {
                 buffValueString = buffInfo.buffStringParams[0].ToString();
-                if (buffInfo.buffValues[0] is BattleEntityCtrl)
+                if (buffInfo.buffStringParams[0] is BattleEntityCtrl)
                 {
-                    var entity = buffInfo.buffValues[0] as BattleEntityCtrl;
+                    var entity = buffInfo.buffStringParams[0] as BattleEntityCtrl;
                     if (!entity)
                     {
                         Debug.LogError("转换失败" + buffInfo.buffValues[0]);
@@ -247,7 +234,7 @@ namespace Yu
                 }
             }
 
-            describeItemBuff.Open(string.Format(buffInfo.RowCfgBuff.description, buffValueString));
+            describeItemBuff.Open(string.Format(buffInfo.RowCfgBuff.description, buffValueString), buffItem.gameObject.transform.position + new Vector3(18f, 17f, 0f));
             //强制更新contentSizeFilter，不然更新大小有延迟
             Utils.ForceUpdateContentSizeFilter(describeItemBuff.gameObject.transform);
         }
@@ -263,14 +250,12 @@ namespace Yu
         /// <summary>
         /// 打开技能描述窗口
         /// </summary>
-        /// <param name="skillSelectItem"></param>
-        public void OpenSkillDescribe(SkillSelectItem skillSelectItem)
+        /// <param name="skillItem"></param>
+        public void OpenSkillDescribe(SkillItem skillItem)
         {
             var describeItemSkill = view.describeItemSkill;
             //通过将skillDescribe的缩放xy改为-1，然后字体的缩放xy改为-1，实现向左下角拓展
-            describeItemSkill.gameObject.transform.position = skillSelectItem.gameObject.transform.position + new Vector3(-17f, 32.4f, 0f);
-            describeItemSkill.gameObject.SetActive(true); //强制更新contentSizeFilter需要开启gameObj
-            describeItemSkill.Open(skillSelectItem.RowCfgSkill.description);
+            describeItemSkill.Open(skillItem.RowCfgSkill.description, skillItem.gameObject.transform.position + new Vector3(-17f, 32.4f, 0f));
             //强制更新contentSizeFilter，不然更新大小有延迟
             Utils.ForceUpdateContentSizeFilter(describeItemSkill.gameObject.transform);
         }

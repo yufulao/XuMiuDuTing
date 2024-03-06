@@ -1,0 +1,9 @@
+key#Annotate#DefName
+key#注释#枚举名称
+string#string#string
+All#全部可选#None
+Enemy#全部敌人可选#None
+Character#全部友方可选#None
+AllExceptSelf#除了自己全部可选#None
+EnemyExceptSelf#除了自己全部敌人可选#None
+CharacterExceptSelf#除了自己全部友方可选#None

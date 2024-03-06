@@ -21,5 +21,7 @@ namespace Yu
             outlineComponent = objEntity.GetComponent<SkeletonRendererCustomMaterials>();
             meshRenderer = objEntity.GetComponent<MeshRenderer>();
         }
+        
+        
     }
 }

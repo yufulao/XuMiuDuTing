@@ -28,7 +28,7 @@ namespace Yu
         public int canSelectCount;
         public readonly List<Toggle> activeToggleList = new List<Toggle>(); //激活了的ToggleSelect
         public readonly List<BattleEntityCtrl> selectedEntityList = new List<BattleEntityCtrl>();
-        public SkillSelectInfo cacheCurrentSkillSelectInfo;
+        public SkillInfo cacheCurrentSkillInfo;
 
 
         /// <summary>

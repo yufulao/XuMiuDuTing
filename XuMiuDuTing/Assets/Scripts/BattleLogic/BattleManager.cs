@@ -32,8 +32,8 @@ namespace Yu
             InitFsm();
             InitUI();
             EventManager.Instance.AddListener(EventName.OnRoundEnd, OnRoundEnd);
-            // StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("战斗a", 0f, 0.5f, 0f, 1f,
-            //     () => { StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("战斗b", 0f, 0.5f, 0f)); }));
+            StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("普通战斗a", 0f, 0.3f, 0f, 1f,
+                () => { StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("普通战斗b", 0f, 0.3f, 0f,1f)); }));
             SpawnEntity();
             _model.SortEntityList();
             InitCommand();
@@ -49,6 +49,7 @@ namespace Yu
         public void BtnOnClickGoBattle()
         {
             _uiCtrl.view.btnGoBattle.GetComponent<Animator>().SetTrigger("close");
+            _uiCtrl.view.btnGoBattle.interactable = false;
             _uiCtrl.view.btnUndoCommand.gameObject.SetActive(false);
             _model.SetFirstCanInputCommandEnemy();
             EnemySetCommandAI();
@@ -67,7 +68,7 @@ namespace Yu
         /// </summary>
         public void BtnOnClickAttack()
         {
-            OpenSelectMenu(BattleCommandType.Attack, SelectType.All, false, 1);
+            OpenAimSelectPanel(BattleCommandType.Attack, DefSelectType.DAll, DefObjCameraStateType.DCharacter, 1);
         }
 
         /// <summary>
@@ -127,6 +128,34 @@ namespace Yu
         /// </summary>
         public void BtnOnClickSkill()
         {
+            _uiCtrl.view.skillSelectPanel.Open(_model.GetCurrentCharacterEntity().GetName());
+        }
+
+        /// <summary>
+        /// 当点击了skillItem时
+        /// </summary>
+        public void OnSkillItemClick(string skillName)
+        {
+            var skillInfo = new SkillInfo()
+            {
+                skillName = skillName,
+                caster = _model.GetCurrentCharacterEntity()
+            };
+            _model.cacheCurrentSkillInfo = skillInfo;
+            var rowCfgSkill = skillInfo.RowCfgSkill;
+            if (rowCfgSkill.needSelect)
+            {
+                OpenAimSelectPanel(BattleCommandType.Skill, rowCfgSkill.selectType, rowCfgSkill.objCameraStateType, rowCfgSkill.selectCount);
+            }
+            else
+            {
+                AddCharacterSkillCommand(skillInfo); //添加指令
+                SetCommand();
+                StartCoroutine(CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DIdleCommand, 0.3f));
+            }
+            
+            _uiCtrl.view.skillSelectPanel.Close();
+            _uiCtrl.CloseSkillDescribe();
         }
 
         /// <summary>
@@ -180,7 +209,8 @@ namespace Yu
             }
 
             var currentCharacter = _model.GetCurrentCharacterEntity();
-            var skillSelectInfo = _model.cacheCurrentSkillSelectInfo;
+            var skillInfo = _model.cacheCurrentSkillInfo;
+            var rowCfgSkill = skillInfo.RowCfgSkill;
             switch (_model.selectMenuType)
             {
                 case BattleCommandType.Attack:
@@ -188,17 +218,19 @@ namespace Yu
                     _commandInfoList.Add(new BattleCommandInfo(false, BattleCommandType.Attack, false, 1, selectedEntity, currentCharacter));
                     break;
                 case BattleCommandType.Skill:
-                    skillSelectInfo.selectedEntityList = selectedEntity;
-                    AddSkill(skillSelectInfo);
+                    skillInfo.targetList = selectedEntity;
+                    AddCharacterSkillCommand(skillInfo);
                     _uiCtrl.CloseSkillDescribe();
-                    _commandInfoList.Add(new BattleCommandInfo(false, BattleCommandType.Skill, skillSelectInfo.isBattleStartCommand, skillSelectInfo.bpNeed, selectedEntity, currentCharacter));
+                    _commandInfoList.Add(new BattleCommandInfo(
+                        false, BattleCommandType.Skill, rowCfgSkill.isBattleStartCommand, rowCfgSkill.bpNeed, selectedEntity, currentCharacter));
                     break;
                 case BattleCommandType.UniqueSkill:
                     currentCharacter.SetHadUniqueSkill(true);
                     RefreshUniqueSkillButton();
-                    skillSelectInfo.selectedEntityList = selectedEntity;
-                    AddSkill(skillSelectInfo);
-                    _commandInfoList.Add(new BattleCommandInfo(false, BattleCommandType.UniqueSkill, skillSelectInfo.isBattleStartCommand, skillSelectInfo.bpNeed, selectedEntity, currentCharacter));
+                    skillInfo.targetList = selectedEntity;
+                    AddCharacterSkillCommand(skillInfo);
+                    _commandInfoList.Add(new BattleCommandInfo(
+                        false, BattleCommandType.UniqueSkill, rowCfgSkill.isBattleStartCommand, rowCfgSkill.bpNeed, selectedEntity, currentCharacter));
                     break;
                 default:
                     Debug.LogError("目标输入待添加新的CommandType");
@@ -254,7 +286,7 @@ namespace Yu
         /// <summary>
         /// 打开skillItem描述弹窗
         /// </summary>
-        public void OpenSkillDescribe(SkillSelectItem skillSelectItem, BaseEventData baseEventData)
+        public void OpenSkillDescribe(SkillItem skillSelectItem, BaseEventData baseEventData)
         {
             _uiCtrl.OpenSkillDescribe(skillSelectItem);
         }
@@ -262,7 +294,7 @@ namespace Yu
         /// <summary>
         /// 关闭skillItem描述弹窗
         /// </summary>
-        public void CloseSkillDescribe(SkillSelectItem skillSelectItem, BaseEventData baseEventData)
+        public void CloseSkillDescribe(SkillItem skillSelectItem, BaseEventData baseEventData)
         {
             _uiCtrl.CloseSkillDescribe();
         }
@@ -289,10 +321,9 @@ namespace Yu
             {
                 currentCharacterEntity.battleStartCommandList.Remove(currentCharacterEntity.battleStartCommandList[^1]);
             }
-
-            Debug.Log("实体" + currentCharacterEntity.GetName() + "撤销了先制指令" + currentCharacterEntity.commandList[^1] + "，commandInfo的数量+1为" + _commandInfoList.Count);
+            
             //统一撤销，包括先制指令有个占位的在commandList里
-            Debug.Log("实体" + currentCharacterEntity.GetName() + "撤销了指令" + currentCharacterEntity.commandList[^1] + "，commandInfo的数量+1为" + _commandInfoList.Count);
+            Debug.Log("实体" + currentCharacterEntity.GetName() + "撤销了指令" + currentCharacterEntity.commandList[^1]);
             currentCharacterEntity.commandList.Remove(currentCharacterEntity.commandList[^1]);
             _commandInfoList.Remove(_commandInfoList[^1]);
             if (_commandInfoList.Count == 0)
@@ -721,7 +752,6 @@ namespace Yu
                 }
 
                 _uiCtrl.view.characterInfoItemList[i].gameObject.SetActive(true);
-                // buffManager.ClearBuff(characterInfoUiList[i]);
                 var rowCfgCharacter = ConfigManager.Instance.cfgCharacter[characterName];
                 //生成角色
                 var characterObj = Instantiate(AssetManager.Instance.LoadAsset<GameObject>(rowCfgCharacter.entityObjPath), entityObjContainer.transform);
@@ -733,8 +763,6 @@ namespace Yu
                 var entityHud = Instantiate(AssetManager.Instance.LoadAsset<GameObject>(
                     ConfigManager.Instance.cfgUICommon["EntityHUD"].path), _uiCtrl.view.entityHudContainer).GetComponent<EntityHUD>();
                 characterEntity.Init(characterName, infoItem, entityHud);
-                // characterEntity.skillVfxAnim = characterObj.transform.Find("SkillVfx").GetComponent<Animator>();
-                // characterEntity.buffVfxAnim = characterObj.transform.Find("BuffVfx").GetComponent<Animator>();
                 //设置HUD跟随组件
                 var uiFollowObj = characterEntity.gameObject.AddComponent<UIFollowObj>();
                 uiFollowObj.objFollowed = characterObj.transform.Find("HudFollowPoint");
@@ -766,7 +794,6 @@ namespace Yu
                 }
 
                 _uiCtrl.view.enemyInfoItemList[i].gameObject.SetActive(true);
-                //buffManager.ClearBuff(enemyInfoUiList[i]);
                 var rowCfgEnemy = ConfigManager.Instance.cfgEnemy[enemyTeam[i]];
                 //生成敌人
                 var enemyObj = Instantiate(AssetManager.Instance.LoadAsset<GameObject>(rowCfgEnemy.entityObjPath), entityObjContainer.transform);
@@ -778,8 +805,6 @@ namespace Yu
                 var entityHud = Instantiate(AssetManager.Instance.LoadAsset<GameObject>(
                     ConfigManager.Instance.cfgUICommon["EntityHUD"].path), _uiCtrl.view.entityHudContainer).GetComponent<EntityHUD>();
                 enemyEntity.Init(enemyName, infoItem, entityHud);
-                // enemyEntity.skillVfxAnim = enemyObj.transform.Find("SkillVfx").GetComponent<Animator>();
-                // enemyEntity.buffVfxAnim = enemyObj.transform.Find("BuffVfx").GetComponent<Animator>();
                 //设置HUD跟随组件
                 var uiFollowObj = enemyEntity.gameObject.AddComponent<UIFollowObj>();
                 uiFollowObj.objFollowed = enemyObj.transform.Find("HudFollowPoint");
@@ -824,43 +849,49 @@ namespace Yu
         /// </summary>
         /// <param name="battleCommandType"></param>
         /// <param name="selectType"></param>
-        /// <param name="cameraLookAt"></param>
+        /// <param name="objCameraStateType"></param>
         /// <param name="canSelectCountT"></param>
-        private void OpenSelectMenu(BattleCommandType battleCommandType, SelectType selectType, bool cameraLookAt, int canSelectCountT)
+        private void OpenAimSelectPanel(BattleCommandType battleCommandType, string selectType, string objCameraStateType, int canSelectCountT)
         {
             var aimSelectPanel = _uiCtrl.view.aimSelectPanel;
             var activeToggleList = _model.activeToggleList;
             var currentCharacterEntity = _model.GetCurrentCharacterEntity();
-
+            var cameraLookAt = objCameraStateType.Equals(DefObjCameraStateType.DEnemy);
             activeToggleList.Clear();
             _model.canSelectCount = canSelectCountT;
             _model.selectMenuType = battleCommandType;
-
             _uiCtrl.SetAllMenuActive(false); //关闭所有面板
             aimSelectPanel.gameObject.SetActive(true);
             aimSelectPanel.toggleSwitchCamera.isOn = cameraLookAt;
             _uiCtrl.OnValueChangeToggleSwitchCamera(cameraLookAt);
-
-            switch (selectType)
+            if (selectType.Equals(DefSelectType.DAll))
             {
-                case SelectType.All:
-                    SetToggleSelectActive(true, true, null);
-                    break;
-                case SelectType.Enemy:
-                    SetToggleSelectActive(true, false, null);
-                    break;
-                case SelectType.Character:
-                    SetToggleSelectActive(false, true, null);
-                    break;
-                case SelectType.AllExceptSelf:
-                    SetToggleSelectActive(true, true, currentCharacterEntity);
-                    break;
-                case SelectType.EnemyExceptSelf:
-                    SetToggleSelectActive(true, false, currentCharacterEntity);
-                    break;
-                case SelectType.CharacterExceptSelf:
-                    SetToggleSelectActive(false, true, currentCharacterEntity);
-                    break;
+                SetToggleSelectActive(true, true, null);
+            }
+
+            if (selectType.Equals(DefSelectType.DEnemy))
+            {
+                SetToggleSelectActive(true, false, null);
+            }
+
+            if (selectType.Equals(DefSelectType.DCharacter))
+            {
+                SetToggleSelectActive(false, true, null);
+            }
+
+            if (selectType.Equals(DefSelectType.DAllExceptSelf))
+            {
+                SetToggleSelectActive(true, true, currentCharacterEntity);
+            }
+
+            if (selectType.Equals(DefSelectType.DEnemyExceptSelf))
+            {
+                SetToggleSelectActive(true, false, currentCharacterEntity);
+            }
+
+            if (selectType.Equals(DefSelectType.DCharacterExceptSelf))
+            {
+                SetToggleSelectActive(false, true, currentCharacterEntity);
             }
 
             //将所有死亡的entity关闭toggleSelect
@@ -1058,7 +1089,7 @@ namespace Yu
             //    "总伤害=" + (int)(Mathf.Clamp((damagePoint - entityGet.defend), 0f, 1000000f) * entityGet.hurtRate * caster.GetDamage()Rate));
             var textHurtPoint = target.GetEntityHud().textHurtPoint;
             textHurtPoint.text = hurtPoint.ToString();
-            Utils.TextFly(textHurtPoint, Vector3.zero);
+            Utils.TextFly(textHurtPoint, textHurtPoint.gameObject.transform.position);
 
             //暂时设定成挨打会加10点MP==================================================================================
             target.UpdateMp(10);

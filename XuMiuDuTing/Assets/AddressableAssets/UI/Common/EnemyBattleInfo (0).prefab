@@ -255,11 +255,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9ed06c4a174f440802a422965890a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objSelectedBg: {fileID: 3937988283461008238}
   sliderHp: {fileID: 7347842371443426572}
   textHp: {fileID: 5874531552989592593}
   buffsContainer: {fileID: 3109185900936358355}
-  selectedBgAnimator: {fileID: 4209348484834758520}
+  animatorSelectedBg: {fileID: 4209348484834758520}
 --- !u!1 &2663891807381092403
 GameObject:
   m_ObjectHideFlags: 0

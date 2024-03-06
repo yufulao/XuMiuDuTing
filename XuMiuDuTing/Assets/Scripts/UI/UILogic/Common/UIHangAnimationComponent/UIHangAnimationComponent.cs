@@ -23,7 +23,7 @@ namespace Yu
 
         private void OnPointEnter(BaseEventData eventData)
         {
-            if (animator==null)
+            if (!animator)
             {
                 return;
             }
@@ -32,7 +32,7 @@ namespace Yu
         
         private void OnPointExit(BaseEventData eventData)
         {
-            if (animator==null)
+            if (!animator)
             {
                 return;
             }

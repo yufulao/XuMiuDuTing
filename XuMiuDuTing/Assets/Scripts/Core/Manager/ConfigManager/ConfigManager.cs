@@ -24,6 +24,7 @@ namespace Rabi
         public readonly CfgObjCameraStateType cfgObjCameraStateType = new CfgObjCameraStateType();
         public readonly CfgPrefab cfgPrefab = new CfgPrefab();
         public readonly CfgScene cfgScene = new CfgScene();
+        public readonly CfgSelectType cfgSelectType = new CfgSelectType();
         public readonly CfgSFX cfgSFX = new CfgSFX();
         public readonly CfgSFXType cfgSFXType = new CfgSFXType();
         public readonly CfgSkill cfgSkill = new CfgSkill();
@@ -57,6 +58,7 @@ namespace Rabi
             cfgObjCameraStateType.Load();
             cfgPrefab.Load();
             cfgScene.Load();
+            cfgSelectType.Load();
             cfgSFX.Load();
             cfgSFXType.Load();
             cfgSkill.Load();

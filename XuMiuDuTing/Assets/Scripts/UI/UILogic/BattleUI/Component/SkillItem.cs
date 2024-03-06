@@ -10,18 +10,19 @@ using UnityEngine.UI;
 
 namespace Yu
 {
-    public class SkillSelectItem : MonoBehaviour
+    public class SkillItem : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI textSkillName;
         [SerializeField] private Button btnPress;
         [SerializeField] private EventTrigger eventTrigger;
+        [SerializeField] private Animator animatorHang;
         
         public RowCfgSkill RowCfgSkill => ConfigManager.Instance.cfgSkill[_skillName];
         private UnityAction<string> _btnOnClickPress;
         private string _skillName;
         
-        private UnityAction<SkillSelectItem, BaseEventData> _onPointEnter;
-        private UnityAction<SkillSelectItem, BaseEventData> _onPointExit;
+        private UnityAction<SkillItem, BaseEventData> _onPointEnter;
+        private UnityAction<SkillItem, BaseEventData> _onPointExit;
 
         /// <summary>
         /// 注册监听
@@ -40,6 +41,7 @@ namespace Yu
         /// <param name="index"></param>
         public void RefreshSkillName(string skillName,int index)
         {
+            animatorHang.SetBool("selected",false);
             _skillName = skillName;
             textSkillName.text ="no"+index.ToString()+" "+ _skillName;
         }
@@ -64,7 +66,7 @@ namespace Yu
         /// <summary>
         /// 设置buffItem悬停时的回调
         /// </summary>
-        public void SetSkillSelectItemOnPointEnter(UnityAction<SkillSelectItem, BaseEventData> onPointEnter)
+        public void SetSkillSelectItemOnPointEnter(UnityAction<SkillItem, BaseEventData> onPointEnter)
         {
             _onPointEnter = onPointEnter;
         }
@@ -72,7 +74,7 @@ namespace Yu
         /// <summary>
         /// 设置buffItem离开悬停时的回调
         /// </summary>
-        public void SetSkillSelectItemOnPointExit(UnityAction<SkillSelectItem, BaseEventData> onPointExit)
+        public void SetSkillSelectItemOnPointExit(UnityAction<SkillItem, BaseEventData> onPointExit)
         {
             _onPointExit = onPointExit;
         }
@@ -83,8 +85,8 @@ namespace Yu
         /// <param name="baseEventData"></param>
         private void OnPointEnter(BaseEventData baseEventData)
         {
+            animatorHang.SetBool("selected",true);
             _onPointEnter?.Invoke(this,baseEventData);
-            //BattleManager.Instance.OpenBuffDescribe(this);
         }
 
         /// <summary>
@@ -93,8 +95,8 @@ namespace Yu
         /// <param name="baseEventData"></param>
         private void OnPointExit(BaseEventData baseEventData)
         {
+            animatorHang.SetBool("selected",false);
             _onPointExit?.Invoke(this,baseEventData);
-            //BattleManager.Instance.CloseBuffDescribe(this);
         }
     }
 }

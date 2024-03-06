@@ -18,6 +18,13 @@ namespace Rabi
     {
         public string key; //key
         public string description; //skill描述
+        public bool unlockDefault; //默认是否解锁
+        public bool needSelect; //是否需要选择目标
+        public bool isBattleStartCommand; //是否是先制指令
+        public int bpNeed; //bp消耗量
+        public string selectType; //目标选择类型
+        public string objCameraStateType; //默认摄像机视角(需要选择目标)
+        public int selectCount; //选择的目标数量
     }
 
     public class CfgSkill
@@ -70,7 +77,7 @@ namespace Rabi
         private RowCfgSkill ParseRow(string[] col)
         {
             //列越界
-            if (col.Length < 2)
+            if (col.Length < 9)
             {
                 Debug.LogError($"配置表字段行数越界:{GetType()}");
                 return null;
@@ -80,6 +87,13 @@ namespace Rabi
             var rowHelper = new RowHelper(col);
             data.key = CsvUtility.ToString(rowHelper.ReadNextCol()); //key
             data.description = CsvUtility.ToString(rowHelper.ReadNextCol()); //skill描述
+            data.unlockDefault = CsvUtility.ToBool(rowHelper.ReadNextCol()); //默认是否解锁
+            data.needSelect = CsvUtility.ToBool(rowHelper.ReadNextCol()); //是否需要选择目标
+            data.isBattleStartCommand = CsvUtility.ToBool(rowHelper.ReadNextCol()); //是否是先制指令
+            data.bpNeed = CsvUtility.ToInt(rowHelper.ReadNextCol()); //bp消耗量
+            data.selectType = CsvUtility.ToString(rowHelper.ReadNextCol()); //目标选择类型
+            data.objCameraStateType = CsvUtility.ToString(rowHelper.ReadNextCol()); //默认摄像机视角(需要选择目标)
+            data.selectCount = CsvUtility.ToInt(rowHelper.ReadNextCol()); //选择的目标数量
             return data;
         }
     }

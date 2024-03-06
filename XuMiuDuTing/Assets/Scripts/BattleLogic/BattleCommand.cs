@@ -26,6 +26,7 @@ namespace Yu
             _inBattleStartExecuting = false;
             ResetAllCommand();
             _uiCtrl.view.btnGoBattle.GetComponent<Animator>().Play("Idle");
+            _uiCtrl.view.btnGoBattle.interactable = true;
             _uiCtrl.view.btnUndoCommand.gameObject.SetActive(false);
             Add1ToAllCharacterBp();
             _model.currentMenuLastIndex = -1;

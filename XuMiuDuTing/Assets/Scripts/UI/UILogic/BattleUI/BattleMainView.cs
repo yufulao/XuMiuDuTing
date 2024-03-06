@@ -83,8 +83,8 @@ namespace Yu
                 commandMenuList[i].gameObject.SetActive(false);
             }
             
-            describeItemBuff.gameObject.SetActive(false);
-            describeItemSkill.gameObject.SetActive(false);
+            describeItemBuff.ForceClose();
+            describeItemSkill.ForceClose();
         }
 
         /// <summary>

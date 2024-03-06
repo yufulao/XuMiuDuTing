@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using Rabi;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ namespace Yu
         [SerializeField] private GameObject objMainPanel;
         [SerializeField] private Button btnBackMask;
         [SerializeField] private CanvasGroup canvasGroup;
-        [SerializeField] private List<SkillSelectItem> skillSelectItemList = new List<SkillSelectItem>();
+        [SerializeField] private List<SkillItem> skillItemList = new List<SkillItem>();
 
         private string _characterName;
         private SkillData _skillData;
@@ -24,6 +25,7 @@ namespace Yu
         {
             _skillData = SaveManager.GetT("SkillData", new SkillData());
             btnBackMask.onClick.AddListener(Close);
+            objMainPanel.SetActive(false);
         }
 
         /// <summary>
@@ -32,9 +34,9 @@ namespace Yu
         /// <param name="onSkillItemClick"></param>
         public void SetSkillItemOnClick(UnityAction<string> onSkillItemClick)
         {
-            foreach (var skillSelectItem in skillSelectItemList)
+            foreach (var skillItem in skillItemList)
             {
-                skillSelectItem.SetSelectItemOnClick(onSkillItemClick);
+                skillItem.SetSelectItemOnClick(onSkillItemClick);
             }
         }
 
@@ -49,7 +51,7 @@ namespace Yu
             canvasGroup.DOFade(1, 0.2f);
             _characterName = characterName;
             var skillNameList = ConfigManager.Instance.cfgCharacter[_characterName].skillNameList;
-            if (skillNameList.Count > skillSelectItemList.Count)
+            if (skillNameList.Count > skillItemList.Count)
             {
                 Debug.LogError("技能obj列表不够用");
                 return;
@@ -58,28 +60,35 @@ namespace Yu
             for (var i = 0; i < skillNameList.Count; i++)
             {
                 var skillName = skillNameList[i];
+                var rowCfgSkill = ConfigManager.Instance.cfgSkill[skillName];
+                if (!_skillData.allSkill.ContainsKey(skillName))
+                {
+                    //todo 检测所有获得条件，后期添加的技能满足条件都直接解锁
+                    _skillData.allSkill.Add(skillName,new SkillDataEntry{isUnlock = rowCfgSkill.unlockDefault});
+                }
                 if (_skillData.allSkill[skillName].isUnlock)
                 {
-                    skillSelectItemList[i].RefreshSkillName(skillName, i);
-                    skillSelectItemList[i].SetSkillSelectItemOnPointEnter(BattleManager.Instance.OpenSkillDescribe);
-                    skillSelectItemList[i].SetSkillSelectItemOnPointExit(BattleManager.Instance.CloseSkillDescribe);
-                    skillSelectItemList[i].gameObject.SetActive(true);
+                    skillItemList[i].RefreshSkillName(skillName, i);
+                    skillItemList[i].SetSkillSelectItemOnPointEnter(BattleManager.Instance.OpenSkillDescribe);
+                    skillItemList[i].SetSkillSelectItemOnPointExit(BattleManager.Instance.CloseSkillDescribe);
+                    skillItemList[i].gameObject.SetActive(true);
                     continue;
                 }
 
-                skillSelectItemList[i].gameObject.SetActive(false);
+                skillItemList[i].gameObject.SetActive(false);
             }
+            SaveManager.SetT("SkillData",_skillData);
 
-            for (var i = skillNameList.Count; i < skillSelectItemList.Count; i++)
+            for (var i = skillNameList.Count; i < skillItemList.Count; i++)
             {
-                skillSelectItemList[i].gameObject.SetActive(false);
+                skillItemList[i].gameObject.SetActive(false);
             }
         }
 
         /// <summary>
         /// 关闭技能选择面板
         /// </summary>
-        private void Close()
+        public void Close()
         {
             canvasGroup.DOFade(0, 0.2f);
             objMainPanel.SetActive(false);

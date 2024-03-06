@@ -1,4 +1,7 @@
 key#audioClipPath#None#None#None
 bgm名#资源路径#None#None#None
 string#string#None#None#None
-主界面-章节选择界面#Assets/AddressableAssets/BGM/主界面-章节选择界面.mp3#None#None#None
+主界面-章节选择界面#Assets/AddressableAssets/BGM/系统背景音乐/主界面-章节选择界面.mp3#None#None#None
+战前编队界面#Assets/AddressableAssets/BGM/系统背景音乐/战前编队界面.mp3#None#None#None
+普通战斗a#Assets/AddressableAssets/BGM/战斗测试bgm·ABB/普通战斗a.MP3#None#None#None
+普通战斗b#Assets/AddressableAssets/BGM/战斗测试bgm·ABB/普通战斗b.MP3#None#None#None

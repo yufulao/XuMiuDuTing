@@ -12,12 +12,14 @@ public class DescribeItem : MonoBehaviour
     /// 打开描述面板
     /// </summary>
     /// <param name="info"></param>
-    public void Open(string info)
+    /// <param name="position"></param>
+    public void Open(string info,Vector3 position)
     {
         textInfo.text = info;
         canvasGroup.alpha = 0;
-        mainPanel.SetActive(true);
+        mainPanel.transform.position = position;
         canvasGroup.DOFade(1f,0.2f);
+        mainPanel.SetActive(true);
     }
 
     /// <summary>
@@ -26,6 +28,14 @@ public class DescribeItem : MonoBehaviour
     public void Close()
     {
         canvasGroup.DOFade(0f,0.2f);
+        mainPanel.SetActive(false);
+    }
+
+    /// <summary>
+    /// 强制关闭面板
+    /// </summary>
+    public void ForceClose()
+    {
         mainPanel.SetActive(false);
     }
 }
