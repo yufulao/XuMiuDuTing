@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Rabi;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Yu
 {
@@ -105,6 +106,32 @@ namespace Yu
             {
                 windowsStack.Pop().CloseRoot();;
             }
+        }
+
+        /// <summary>
+        /// 销毁窗口
+        /// </summary>
+        /// <param name="windowName"></param>
+        public void DestroyWindow(string windowName)
+        {
+            if (!_allViews.ContainsKey(windowName))
+            {
+                return;
+            }
+            var ctrl = _allViews[windowName];
+            _allViews.Remove(windowName);
+            var layer = ConfigManager.Instance.cfgUI[windowName].layer;
+            while (_layerStacks[layer].Count != 0)
+            {
+                var ctrlBefore = _layerStacks[layer].Pop();
+                if (ctrlBefore == ctrl)
+                {
+                    break;
+                }
+
+                ctrlBefore.CloseRoot();
+            }
+            Object.Destroy(ctrl.gameObject);
         }
 
         /// <summary>

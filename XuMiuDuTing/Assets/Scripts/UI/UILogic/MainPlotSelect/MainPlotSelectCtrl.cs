@@ -19,12 +19,11 @@ namespace Yu
         {
             _model = new MainPlotSelectModel();
             _view = GetComponent<MainPlotSelectView>();
+            //默认开放第一关
+            GameManager.Instance.UnlockStage(ConfigManager.Instance.cfgMainPlot[ConfigManager.Instance.cfgChapter[DefChapterType.DMainPlot].plotList[1]].stageList[0]);
+            GameManager.Instance.UnlockStage(ConfigManager.Instance.cfgMainPlot[ConfigManager.Instance.cfgChapter[DefChapterType.DMainPlot].plotList[0]].stageList[0]);
             _model.OnInit();
             InitAllStageItem();
-            //默认开放第一关
-            SetStageData(ConfigManager.Instance.cfgMainPlot[ConfigManager.Instance.cfgChapter[DefChapterType.DMainPlot].plotList[0]].stageList[0], true, true);
-            SetStageData(ConfigManager.Instance.cfgMainPlot[ConfigManager.Instance.cfgChapter[DefChapterType.DMainPlot].plotList[0]].stageList[1], true, false);
-            SetStageData(ConfigManager.Instance.cfgMainPlot[ConfigManager.Instance.cfgChapter[DefChapterType.DMainPlot].plotList[1]].stageList[0], true, false);
         }
 
         public override void OpenRoot(params object[] param)
@@ -76,9 +75,8 @@ namespace Yu
         {
             SaveManager.SetString("PlotNameInMainPlot", _model.GetCurrentPlotName());
             SaveManager.SetString("StageName", _model.GetCurrentStageName());
-            //todo 关卡流程没做
-            //test=====================================================================================================
-            UIManager.Instance.OpenWindow("TeamEditView", DefChapterType.DMainPlot, _model.GetCurrentPlotName());
+            _model.CheckPassStageOfNoBattle();
+            ProcedureManager.Instance.SetStageProcedure(_model.GetCurrentStageName());
         }
 
         /// <summary>

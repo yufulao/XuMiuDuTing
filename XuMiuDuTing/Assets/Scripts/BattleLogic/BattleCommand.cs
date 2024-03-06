@@ -84,7 +84,6 @@ namespace Yu
         {
             var isSwitchCharacter = false;
             var commandMenuList = _uiCtrl.view.commandMenuList;
-            var characterCount = _model.characterCount;
             var characterNumber = _model.characterNumber;
 
             if (_commandInfoList.Count != 0) //控制back摁钮

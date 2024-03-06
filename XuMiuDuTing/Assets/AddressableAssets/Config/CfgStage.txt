@@ -1,13 +1,13 @@
-key#stageName#stageDesc#enemyTeam#unlockStageList
-key#关卡标题#关卡描述#敌人列表#通关后解锁的关卡列表
-string#string#string#List<string>#List<string>
-0-1#0-1#0-1#EnemyA,EnemyA,,#0-2
-0-2#0-2#0-2#EnemyA,EnemyA,,#0-3
-0-3#0-3#0-3#EnemyA,EnemyA,,#0-4
-0-4#0-4#0-4#EnemyA,EnemyA,,#0-5
-0-5#0-5#0-5#EnemyA,EnemyA,,#1-1
-1-1#1-1 龋齿#听，一颗坏牙悄然落地的声音，那是老人步入垂暮的路标，亦是一场死亡的开端。 本关卡包含有战斗#EnemyA,EnemyA,,#1-2
-1-2#0-2#0-2#EnemyA,EnemyA,,#1-3
-1-3#0-3#0-3#EnemyA,EnemyA,,#1-4
-1-4#0-4#0-4#EnemyA,EnemyA,,#1-5
-1-5#0-5#0-5#EnemyA,EnemyA,,#None
+key#stageName#stageDesc#conversationAName#isBattle#conversationBName#fixCharacterTeam#enemyTeam#unlockStageList
+key#关卡标题#关卡描述#对话A名#是否有战斗#对话B名#固定角色队伍#敌人列表#通关后解锁的关卡列表
+string#string#string#string#bool#string#List<string>#List<string>#List<string>
+0-1#0-1#0-1#PlotAName#False#None#None#EnemyA,EnemyA,,#0-2
+0-2#0-2#0-2#PlotAName#True#None#None#EnemyA,EnemyA,,#0-3
+0-3#0-3#0-3#None#True#None#None#EnemyA,EnemyA,,#0-4
+0-4#0-4#0-4#PlotAName#True#PlotBName#None#EnemyA,EnemyA,,#0-5
+0-5#0-5#0-5#None#True#PlotBName#None#EnemyA,EnemyA,,#1-1
+1-1#1-1 龋齿#听，一颗坏牙悄然落地的声音，那是老人步入垂暮的路标，亦是一场死亡的开端。 本关卡包含有战斗#None#True#None#None#EnemyA,EnemyA,,#1-2
+1-2#0-2#0-2#None#True#None#None#EnemyA,EnemyA,,#1-3
+1-3#0-3#0-3#None#True#None#None#EnemyA,EnemyA,,#1-4
+1-4#0-4#0-4#None#True#None#None#EnemyA,EnemyA,,#1-5
+1-5#0-5#0-5#None#True#None#None#EnemyA,EnemyA,,#0-1

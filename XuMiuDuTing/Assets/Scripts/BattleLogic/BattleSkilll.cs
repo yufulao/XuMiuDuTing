@@ -110,8 +110,9 @@ namespace Yu
                 var damagePoint = caster.GetDamage() * 0.5f;
                 foreach (var target in targetList)
                 {
-                    yield return StartCoroutine(CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f));
-                    yield return StartCoroutine(AddBuff("星", caster, target, 2, 1));
+                    yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f);
+                    AddBuff("星", caster, target, 2, 1);
+                    yield return new WaitForSeconds(0.2f);
                     EntityGetDamage(target, caster, damagePoint);
                 }
 
@@ -132,8 +133,8 @@ namespace Yu
             {
                 foreach (var target in targetList)
                 {
-                    yield return StartCoroutine(CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f));
-                    yield return StartCoroutine(AddBuff("激情", caster, target, 3, 1));
+                    yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f);
+                    AddBuff("激情", caster, target, 3, 1);
                 }
 
                 CheckDecreaseBp(caster, bpNeed);
@@ -159,7 +160,8 @@ namespace Yu
                     {
                         var damagePointFix = CheckBuff(target, "星").Count > 0 ? damagePointWithBuff : damagePointNormal;
 
-                        yield return StartCoroutine(CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f));
+                        yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f);
+                        yield return new WaitForSeconds(0.2f);
                         //todo 敌人类型
                         // if (target.enemyDataEntry.enemyType == EnemyType.大型敌人)
                         // {
@@ -191,10 +193,9 @@ namespace Yu
                 {
                     if (target.isEnemy)
                     {
-                        yield return StartCoroutine(CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f));
-                        yield return StartCoroutine(AddBuff("攻击力下降", caster, target, 3, 1,
-                            ConfigManager.Instance.cfgEnemy[target.GetName()].damage * 0.2f));
-                        yield return StartCoroutine(AddBuff("受伤加重", caster, target, 3, 1, 0.2f));
+                        yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f);
+                        AddBuff("攻击力下降", caster, target, 3, 1, ConfigManager.Instance.cfgEnemy[target.GetName()].damage * 0.2f);
+                        AddBuff("受伤加重", caster, target, 3, 1, 0.2f);
                     }
                 }
 
@@ -215,12 +216,12 @@ namespace Yu
             {
                 foreach (var target in targetList)
                 {
-                    yield return StartCoroutine(CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f));
+                    yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f);
 
-                    List<BuffInfo> disperseDebuffs = DisperseDebuff(target);
-                    for (int j = 0; j < disperseDebuffs.Count; j++)
+                    var disperseDebuffs = DisperseDebuff(target);
+                    for (var j = 0; j < disperseDebuffs.Count; j++)
                     {
-                        yield return StartCoroutine(AddBuff("虚缪", caster, target, 5, 1, 0f));
+                        AddBuff("虚缪", caster, target, 5, 1, 0f);
                     }
                 }
 
@@ -236,12 +237,11 @@ namespace Yu
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
 
-            yield return StartCoroutine(AddBuff("苦旅", caster, caster, 5, 1));
-            yield return StartCoroutine(AddBuff("忍耐", caster, caster, 5, 1, 0.1f));
+            AddBuff("苦旅", caster, caster, 5, 1);
+            AddBuff("忍耐", caster, caster, 5, 1, 0.1f);
 
             CheckDecreaseBp(caster, bpNeed);
             ExecuteCommandList();
-            yield return null;
         }
 
         private IEnumerator VectoriaUniqueSkill(CharacterEntityCtrl caster, int bpNeed, List<BattleEntityCtrl> targetList)
@@ -251,18 +251,19 @@ namespace Yu
 
             if (targetList.Count != 0)
             {
+                caster.animatorSkill.Play("dog_skill_3", 0, 0f);
+                SFXManager.Instance.PlaySfx("攻击123");
+                yield return Utils.PlayAnimation(caster.animatorEntity, "skill1");
+                yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(targetList[0], 0f);
+                yield return new WaitForSeconds(0.2f);
+                
                 var damagePoint = caster.GetDamage() * 1.9f;
                 var damageOtherPoint = caster.GetDamage() * 0.7f;
                 foreach (var target in targetList)
                 {
-                    //allEntities[battleId].animator.Play("skill1", 0, 0f);
-                    //allEntities[battleId].skillObjAnim.Play("dog_skill_3", 0, 0f);
-                    //SystemFacade.instance.PlaySFX("攻击123");
-                    //yield return new WaitForSeconds(Utility.GetAnimatorLength(allEntities[battleId].animator, "skill1"));
                     var damageHalf = 1f; //有星buff的伤害减半
                     var entityGetBuffCount = CheckHadBuffOrDebuff(target, false).Count;
                     damageHalf = entityGetBuffCount != 0 ? 0.5f : 1f;
-                    yield return StartCoroutine(CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f));
                     EntityGetDamage(target, caster, damagePoint * damageHalf);
                     var entityGetDebuffCount = CheckHadBuffOrDebuff(target, true).Count;
                     for (var j = 0; j < entityGetDebuffCount; j++)
@@ -270,7 +271,7 @@ namespace Yu
                         EntityGetDamage(target, caster, damageOtherPoint * damageHalf);
                     }
 
-                    yield return StartCoroutine(AddBuff("星", caster, target, 2, 1));
+                    AddBuff("星", caster, target, 2, 1);
                     CheckDecreaseBp(caster, bpNeed);
                     caster.UpdateMp(-100);
                     RefreshAllEntityInfoItem();
@@ -285,13 +286,12 @@ namespace Yu
         private IEnumerator VectorSkill1(CharacterEntityCtrl caster, int bpNeed) //先制指令
         {
             SFXManager.Instance.PlaySfx("攻击123");
-            yield return StartCoroutine(Utils.PlayAnimation(caster.animatorEntity, "skill2"));
-            yield return StartCoroutine(Utils.PlayAnimation(caster.animatorBuff, "def_buff"));
+            yield return Utils.PlayAnimation(caster.animatorEntity, "skill2");
+            StartCoroutine(Utils.PlayAnimation(caster.animatorBuff, "def_buff"));
 
             CheckDecreaseBp(caster, bpNeed);
             caster.UpdateBp(1);
-            yield return StartCoroutine(AddBuff("反击架势", caster, caster, 1, 1));
-            yield return new WaitForSeconds(0.2f);
+            AddBuff("反击架势", caster, caster, 1, 1);
             ExecuteBattleStartCommandList();
         }
 
@@ -302,14 +302,13 @@ namespace Yu
 
             if (targetList.Count != 0)
             {
+                yield return Utils.PlayAnimation(caster.animatorEntity, "skill2");
                 foreach (var target in targetList)
                 {
                     SFXManager.Instance.PlaySfx("技能12");
-                    yield return StartCoroutine(Utils.PlayAnimation(caster.animatorEntity, "skill2"));
                     yield return StartCoroutine(CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f));
-                    yield return StartCoroutine(Utils.PlayAnimation(target.animatorBuff, "def_buff"));
-                    yield return StartCoroutine(AddBuff("被掩护", caster, target, 1, 1, caster));
-                    yield return new WaitForSeconds(0.2f);
+                    yield return Utils.PlayAnimation(target.animatorBuff, "def_buff");
+                    AddBuff("被掩护", caster, target, 1, 1, caster);
                 }
 
                 CheckDecreaseBp(caster, bpNeed);
@@ -326,17 +325,14 @@ namespace Yu
             if (targetList.Count != 0)
             {
                 var damagePoint = caster.GetDamage() * 1.5f;
-
+                SFXManager.Instance.PlaySfx("攻击123");
+                yield return Utils.PlayAnimation(caster.animatorEntity, "skill1");
                 foreach (var target in targetList)
                 {
-                    SFXManager.Instance.PlaySfx("攻击123");
-                    yield return StartCoroutine(Utils.PlayAnimation(caster.animatorEntity, "skill1"));
-
-                    yield return StartCoroutine(CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f));
-                    yield return StartCoroutine(Utils.PlayAnimation(target.animatorSkill, "dog_skill3"));
-
+                    yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f);
+                    StartCoroutine(Utils.PlayAnimation(target.animatorSkill, "dog_skill3"));
+                    yield return new WaitForSeconds(0.2f);
                     EntityGetDamage(target, caster, damagePoint);
-                    ;
                 }
 
                 //todo 仇恨
@@ -354,13 +350,11 @@ namespace Yu
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
 
             SFXManager.Instance.PlaySfx("技能12");
-            yield return StartCoroutine(Utils.PlayAnimation(caster.animatorEntity, "skill2"));
-
-            yield return StartCoroutine(Utils.PlayAnimation(caster.animatorSkill, "dog_skill4&6"));
-            yield return StartCoroutine(AddBuff("增生", caster, caster, 3, 1));
-            yield return new WaitForSeconds(0.2f);
-            yield return StartCoroutine(Utils.PlayAnimation(caster.animatorBuff, "heal"));
-            yield return StartCoroutine(AddBuff("返生", caster, caster, 5, 1));
+            yield return Utils.PlayAnimation(caster.animatorEntity, "skill2");
+            StartCoroutine(Utils.PlayAnimation(caster.animatorSkill, "dog_skill4&6"));
+            AddBuff("增生", caster, caster, 3, 1);
+            yield return Utils.PlayAnimation(caster.animatorBuff, "heal");
+            AddBuff("返生", caster, caster, 5, 1);
             yield return new WaitForSeconds(0.2f);
 
             CheckDecreaseBp(caster, bpNeed);
@@ -378,16 +372,13 @@ namespace Yu
                 var damagePoint = caster.GetDamage() * (-2.5f * hpRate + 3f);
                 //Debug.Log(hpRate);
                 //Debug.Log(damagePoint);
-
+                SFXManager.Instance.PlaySfx("攻击123");
+                yield return Utils.PlayAnimation(caster.animatorEntity, "skill1");
                 foreach (var target in targetList)
                 {
-                    SFXManager.Instance.PlaySfx("攻击123");
-                    yield return StartCoroutine(Utils.PlayAnimation(caster.animatorEntity, "skill1"));
-
-                    yield return StartCoroutine(CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f));
-                    yield return StartCoroutine(Utils.PlayAnimation(target.animatorSkill, "dog_skill5"));
+                    yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f);
                     yield return new WaitForSeconds(0.2f);
-
+                    StartCoroutine(Utils.PlayAnimation(target.animatorSkill, "dog_skill5"));
                     EntityGetDamage(target, caster, damagePoint);
                 }
 
@@ -404,7 +395,7 @@ namespace Yu
             FilterDieSelectEntity(ref targetList);
 
             SFXManager.Instance.PlaySfx("技能12");
-            yield return StartCoroutine(Utils.PlayAnimation(caster.animatorEntity, "skill2"));
+            yield return Utils.PlayAnimation(caster.animatorEntity, "skill2");
 
             foreach (var target in targetList)
             {
@@ -418,11 +409,10 @@ namespace Yu
             foreach (var target in targetList)
             {
                 StartCoroutine(Utils.PlayAnimation(target.animatorSkill, "dog_skill4&6"));
-                StartCoroutine(AddBuff("增生", caster, target, 3, 1));
+                AddBuff("增生", caster, target, 3, 1);
             }
 
             yield return new WaitForSeconds(Utils.GetAnimatorLength(caster.animatorSkill, "dog_skill4&6"));
-            yield return new WaitForSeconds(0.2f);
 
             CheckDecreaseBp(caster, bpNeed);
             ExecuteCommandList();
@@ -440,10 +430,10 @@ namespace Yu
 
                 foreach (var target in targetList)
                 {
-                    yield return StartCoroutine(CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f));
+                    yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f);
                     yield return new WaitForSeconds(0.2f);
                     EntityGetDamage(target, caster, damagePoint);
-                    yield return StartCoroutine(AddBuff("燃烬", caster, target, 5, 1));
+                    AddBuff("燃烬", caster, target, 5, 1);
                 }
 
                 CheckDecreaseBp(caster, bpNeed);
@@ -458,12 +448,12 @@ namespace Yu
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DEnemy, 0f);
 
-            yield return StartCoroutine(Utils.PlayAnimation(caster.animatorEntity, "skill1"));
-            yield return StartCoroutine(CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f));
-            EntityGetDamage(target, caster, caster.GetDamage());
-            yield return StartCoroutine(Utils.PlayAnimation(target.animatorSkill, "attack_A"));
-            yield return StartCoroutine(AddBuff("眩晕", caster, target, 1, 1));
+            yield return Utils.PlayAnimation(caster.animatorEntity, "skill1");
+            yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f);
             yield return new WaitForSeconds(0.2f);
+            EntityGetDamage(target, caster, caster.GetDamage());
+            yield return Utils.PlayAnimation(target.animatorSkill, "attack_A");
+            AddBuff("眩晕", caster, target, 1, 1);
 
             RefreshAllEntityInfoItem();
             ExecuteCommandList();

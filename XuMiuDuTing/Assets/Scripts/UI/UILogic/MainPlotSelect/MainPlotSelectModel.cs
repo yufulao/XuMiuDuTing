@@ -17,7 +17,6 @@ namespace Yu
         public void OnInit()
         {
             _plotNameList = ConfigManager.Instance.cfgChapter[DefChapterType.DMainPlot].plotList;
-            _stageData=SaveManager.GetT<StageData>("StageData", new StageData());
         }
 
         /// <summary>
@@ -53,6 +52,7 @@ namespace Yu
         /// </summary>
         public void SetMainPlotData()
         {
+            _stageData=SaveManager.GetT("StageData", new StageData());
             SetPlotIndexInSave();
             ReloadStageList();
             SetStageNameInSave();
@@ -97,6 +97,18 @@ namespace Yu
             };
             allStage.Add(stageNameT, newStageDataEntry);
             return newStageDataEntry;
+        }
+
+        /// <summary>
+        /// 判断是不是直接就可以通关
+        /// </summary>
+        public void CheckPassStageOfNoBattle()
+        {
+            var rowCfgStage = ConfigManager.Instance.cfgStage[_currentStageName];
+            if (!rowCfgStage.isBattle)
+            {
+                GameManager.Instance.PassStage(_currentStageName);
+            }
         }
 
         /// <summary>

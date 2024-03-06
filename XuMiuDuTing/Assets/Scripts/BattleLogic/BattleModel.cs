@@ -196,28 +196,6 @@ namespace Yu
         }
 
         /// <summary>
-        /// 通关
-        /// </summary>
-        public void PassStage()
-        {
-            if (_stageDataEntry.isPass)
-            {
-                return;
-            }
-
-            _stageDataEntry.isPass = true;
-            var unlockStageList = _rowCfgStage.unlockStageList;
-            foreach (var unlockStageName in unlockStageList)
-            {
-                _stageData.allStage[unlockStageName].isUnlock = true;
-            }
-
-            SaveManager.SetT("StageData", _stageData);
-
-            //其他通关特定关执行卡特定事件，下面写================================================================================================================
-        }
-
-        /// <summary>
         /// 依据entity的Speed对allEntities排序
         /// </summary>
         public void SortEntityList()

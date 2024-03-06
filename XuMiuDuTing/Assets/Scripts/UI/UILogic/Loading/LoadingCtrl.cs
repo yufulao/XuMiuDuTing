@@ -7,7 +7,7 @@ public class LoadingCtrl : UICtrlBase
 {
     [SerializeField] private Animator animator;
     [SerializeField] private CanvasGroup mainCanvasGroup;
-    private float _progress;
+    private bool _isOn;
     
     public override void OnInit(params object[] param)
     {
@@ -15,6 +15,12 @@ public class LoadingCtrl : UICtrlBase
 
     public override void OpenRoot(params object[] param)
     {
+        if (_isOn)
+        {
+            return;
+        }
+
+        _isOn = true;
         mainCanvasGroup.alpha = 0;
         gameObject.SetActive(true);
         StartCoroutine(IOpenRoot());
@@ -22,17 +28,17 @@ public class LoadingCtrl : UICtrlBase
 
     public override void CloseRoot()
     {
+        if (!_isOn)
+        {
+            return;
+        }
+        _isOn = false;
         StartCoroutine(ICloseRoot());
     }
 
     public override void BindEvent()
     {
         
-    }
-
-    public void UpdateProgress(float progress)
-    {
-        _progress = progress;
     }
 
     /// <summary>

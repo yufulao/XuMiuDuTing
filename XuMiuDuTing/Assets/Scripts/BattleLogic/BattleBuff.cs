@@ -18,7 +18,7 @@ namespace Yu
         /// <param name="layer"></param>
         /// <param name="buffValues"></param>
         /// <returns></returns>
-        private IEnumerator AddBuff(string buffName, BattleEntityCtrl caster, BattleEntityCtrl target, int roundDuring, int layer, params object[] buffValues)
+        private void AddBuff(string buffName, BattleEntityCtrl caster, BattleEntityCtrl target, int roundDuring, int layer, params object[] buffValues)
         {
             var buffInfo = new BuffInfo()
             {
@@ -38,8 +38,8 @@ namespace Yu
                 if (rowCfgBuff.canExistWithSame) //相同buff可以并行存在
                 {
                     AddBuffObj(target, buffInfo);
-                    yield return StartCoroutine(DoAddBuffEffect(buffInfo));
-                    yield break;
+                    StartCoroutine(DoAddBuffEffect(buffInfo));
+                    return;
                 }
 
                 if (rowCfgBuff.canAddLayer) //相同buff不可并行存在，可以叠层
@@ -48,19 +48,19 @@ namespace Yu
                     if (rowCfgBuff.isUpdateDuringRepeatCast) //相同buff不可并行存在，可以叠层，重复添加刷新during
                     {
                         sameBuffInfo.roundDuring = buffInfo.roundDuring;
-                        yield return StartCoroutine(DoAddBuffEffect(sameBuffInfo));
-                        yield break;
+                        StartCoroutine(DoAddBuffEffect(sameBuffInfo));
+                        return;
                     }
 
                     //相同buff不可并行存在，可以叠层，重复添加不刷新during
-                    yield return StartCoroutine(DoAddBuffEffect(sameBuffInfo));
+                    StartCoroutine(DoAddBuffEffect(sameBuffInfo));
                 }
 
                 //相同buff不可并行存在，不可以叠层，重复添加刷新during
                 // if (rowCfgBuff.isUpdateDuringRepeatCast) 
                 // {
                 sameBuffInfo.roundDuring = buffInfo.roundDuring;
-                yield break;
+                return;
                 //}
 
                 //相同buff不可并行存在，不可以叠层，重复添加不刷新during
@@ -245,7 +245,7 @@ namespace Yu
             for (var j = 0; j < bpDecrease; j++)
             {
                 var damageAddon = (int) (characterEntity.GetRowCfgCharacter().damage * 0.2f);
-                StartCoroutine(AddBuff("攻击力提升", characterEntity, characterEntity, 1, damageAddon));
+                AddBuff("攻击力提升", characterEntity, characterEntity, 1,1, damageAddon);
             }
         }
 
@@ -275,9 +275,11 @@ namespace Yu
         /// </summary>
         /// <param name="target"></param>
         /// <returns></returns>
-        private List<BuffInfo> DoBuffEffectAtRoundEnd(BattleEntityCtrl target)
+        private void DoBuffEffectAtRoundEnd(BattleEntityCtrl target)
         {
             var cleanBuffInfoList = new List<BuffInfo>();
+            var itemsToRemove = new List<BuffItem>();
+
             foreach (var buffItem in target.buffItemList.Concat(target.buffItemList))
             {
                 var buffInfo = buffItem.GetBuffInfo();
@@ -286,9 +288,13 @@ namespace Yu
                 {
                     continue;
                 }
-
                 cleanBuffInfoList.Add(buffInfo);
-                switch (buffInfo.RowCfgBuff.isDebuff)
+                itemsToRemove.Add(buffItem);
+            }
+
+            foreach (var buffItem in itemsToRemove)
+            {
+                switch (buffItem.GetBuffInfo().RowCfgBuff.isDebuff)
                 {
                     case true:
                         target.debuffItemList.Remove(buffItem);
@@ -305,8 +311,6 @@ namespace Yu
             {
                 DoRemoveBuffEffect(buffInfo);
             }
-
-            return cleanBuffInfoList;
         }
 
         /// <summary>

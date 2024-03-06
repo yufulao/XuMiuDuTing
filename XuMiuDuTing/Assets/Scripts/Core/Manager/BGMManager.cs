@@ -39,13 +39,11 @@ namespace Yu
         /// </summary>
         /// <param name="bgmName">bgm名称</param>
         /// <param name="baseVolume">bgm初始音量</param>
-        public IEnumerator PlayBGM(string bgmName, float baseVolume = 1f)
+        public void PlayBgm(string bgmName, float baseVolume = 1f)
         {
             _audioSource.Stop();
-            yield return AssetManager.Instance.LoadAssetAsync<AudioClip>(
-                _cfgBGM[bgmName].audioClipPath,
-                (clip) => { PlayBgmAsync(clip, baseVolume); });
-            yield break;
+            var audioClip= AssetManager.Instance.LoadAsset<AudioClip>(_cfgBGM[bgmName].audioClipPath);
+            PlayBgm(audioClip, baseVolume);
         }
 
         /// <summary>
@@ -53,7 +51,7 @@ namespace Yu
         /// </summary>
         /// <param name="clip"></param>
         /// <param name="baseVolume"></param>
-        private void PlayBgmAsync(AudioClip clip, float baseVolume)
+        private void PlayBgm(AudioClip clip, float baseVolume)
         {
             _audioSource.clip = clip;
             _audioSource.Play();
@@ -78,16 +76,34 @@ namespace Yu
         /// <param name="baseVolume">初始音量</param>
         /// <param name="callback">开始播放下一个bgm时的回调，不等待淡入</param>
         /// <returns></returns>
-        public IEnumerator PlayBgmFadeDelay(string bgmName, float fadeOutTime, float delayTime, float fadeInTime, float baseVolume = 1f, UnityAction callback = null)
+        public IEnumerator PlayBgmFadeDelay(string bgmName, float fadeOutTime, float delayTime, float fadeInTime, float baseVolume = 1f)
         {
             _audioSource.loop = true;
             _audioSource.DOFade(0, fadeOutTime); //音量降为0
             yield return new WaitForSeconds(fadeOutTime);
             StopBgm();
             yield return new WaitForSeconds(delayTime);
-            yield return PlayBGM(bgmName, 0f);
+            PlayBgm(bgmName, 0f);
             _audioSource.DOFade(baseVolume, fadeInTime);
-            callback?.Invoke();
+        }
+        
+        /// <summary>
+        /// a播放一次然后b循环
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator PlayLoopBgmWithIntro(string bgmNameA,string bgmNameB, float fadeOutTime, float delayTime, float fadeInTime, float baseVolume = 1f)
+        {
+            var audioClipA= AssetManager.Instance.LoadAsset<AudioClip>(_cfgBGM[bgmNameA].audioClipPath);
+            var audioClipB= AssetManager.Instance.LoadAsset<AudioClip>(_cfgBGM[bgmNameB].audioClipPath);
+            _audioSource.loop = true;
+            _audioSource.DOFade(0, fadeOutTime); //音量降为0
+            yield return new WaitForSeconds(fadeOutTime);
+            StopBgm();
+            yield return new WaitForSeconds(delayTime);
+            PlayBgm(audioClipA, 0f);
+            _audioSource.DOFade(baseVolume, fadeInTime);
+            yield return new WaitForSeconds(audioClipA.length);
+            PlayBgm(audioClipB, baseVolume);
         }
 
         /// <summary>

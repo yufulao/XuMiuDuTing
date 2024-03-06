@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Rabi;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Yu
 {
@@ -27,6 +28,7 @@ namespace Yu
             _managerList.Add(SceneManager.Instance);
             _managerList.Add(UIManager.Instance);
             _managerList.Add(CameraManager.Instance);
+            _managerList.Add(ProcedureManager.Instance);
 
             foreach (var manager in _managerList)
             {
@@ -62,27 +64,104 @@ namespace Yu
         /// <summary>
         /// 游戏开始
         /// </summary>
-        public void ReturnToTitle(float bgmFadeOutTime=0.5f)
+        public void ReturnToTitle(float bgmFadeOutTime = 0.5f, UnityAction callback = null)
         {
-            StartCoroutine(ReturnToTitleIEnumerator(bgmFadeOutTime));
+            StartCoroutine(ReturnToTitleIEnumerator(bgmFadeOutTime, callback));
         }
-        
+
+        /// <summary>
+        /// 进入下一个关卡步骤
+        /// </summary>
+        public void EnterNextStageProcedure()
+        {
+            ProcedureManager.Instance.EnterNextStageProcedure();
+        }
+
+        /// <summary>
+        /// 通关当前关卡
+        /// </summary>
+        public void PassStage()
+        {
+            var stageName = SaveManager.GetString("StageName", "1-1");
+            PassStage(stageName);
+        }
+
+        /// <summary>
+        /// 解锁关卡
+        /// </summary>
+        public void UnlockStage(string stageName)
+        {
+            var stageData = SaveManager.GetT("StageData", new StageData());
+            if (stageData.allStage.ContainsKey(stageName))
+            {
+                if (stageData.allStage[stageName].isUnlock)
+                {
+                    return;
+                }
+
+                stageData.allStage[stageName].isUnlock = true;
+                SaveManager.SetT("StageData", stageData);
+                return;
+            }
+
+            stageData.allStage.Add(stageName, new StageDataEntry()
+            {
+                stageName = stageName,
+                isPass = false,
+                isUnlock = true
+            });
+            SaveManager.SetT("StageData", stageData);
+        }
+
+        /// <summary>
+        /// 通关指定关卡
+        /// </summary>
+        public void PassStage(string stageName)
+        {
+            var stageData = SaveManager.GetT("StageData", new StageData());
+            var stageDataEntry = stageData.allStage[stageName];
+            var rowCfgStage = ConfigManager.Instance.cfgStage[stageName];
+            if (stageDataEntry.isPass)
+            {
+                return;
+            }
+
+            stageDataEntry.isPass = true;
+            SaveManager.SetT("StageData", stageData);
+            
+            var unlockStageList = rowCfgStage.unlockStageList;
+            if (unlockStageList == null)
+            {
+                return;
+            }
+
+            foreach (var unlockStageName in unlockStageList)
+            {
+                UnlockStage(unlockStageName);
+            }
+
+            //其他通关特定关执行卡特定事件，下面写================================================================================================================
+        }
+
         /// <summary>
         /// 返回Title
         /// </summary>
         /// <param name="bgmFadeOutTime"></param>
+        /// <param name="callback"></param>
         /// <returns></returns>
-        private IEnumerator ReturnToTitleIEnumerator(float bgmFadeOutTime)
+        private IEnumerator ReturnToTitleIEnumerator(float bgmFadeOutTime, UnityAction callback)
         {
-            UIManager.Instance.CloseAllWindows();
+            UIManager.Instance.CloseAllLayerWindows("NormalLayer");
             UIManager.Instance.OpenWindow("LoadingView");
             yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", bgmFadeOutTime, 0f, 0.5f);
             SetTimeScale(1f);
             CameraManager.Instance.ResetObjCamera();
             GC.Collect();
             yield return SceneManager.Instance.ChangeSceneAsync(ConfigManager.Instance.cfgScene["Tittle"].scenePath);
+            UIManager.Instance.DestroyWindow("BattleMainView");
             UIManager.Instance.OpenWindow("HomeView");
             UIManager.Instance.CloseWindow("LoadingView");
+            callback?.Invoke();
         }
 
         /// <summary>

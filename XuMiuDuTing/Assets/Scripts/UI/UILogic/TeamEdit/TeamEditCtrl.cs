@@ -65,6 +65,20 @@ namespace Yu
         }
 
         /// <summary>
+        /// 进入战斗关卡
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator EnterBattleScene()
+        {
+            UIManager.Instance.OpenWindow("LoadingView");
+            yield return new WaitForSeconds(0.5f);
+            UIManager.Instance.CloseAllLayerWindows("NormalLayer");
+            yield return SceneManager.Instance.ChangeSceneAsync(ConfigManager.Instance.cfgScene["Battle"].scenePath);
+            var battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+            battleManager.Init(_model.GetTeamArray());
+        }
+
+        /// <summary>
         /// 检测并设置固定队伍
         /// </summary>
         private void CheckFixedTeamArray(IReadOnlyList<object> param)
@@ -107,7 +121,7 @@ namespace Yu
         /// <param name="teammateIndex"></param>
         private void TeamItemOnClick(string characterName, int teammateIndex)
         {
-            UIManager.Instance.OpenWindow("CharacterSelectView",_model.GetTeamArray(), teammateIndex, characterName);
+            UIManager.Instance.OpenWindow("CharacterSelectView", _model.GetTeamArray(), teammateIndex, characterName);
         }
 
         /// <summary>
@@ -115,6 +129,7 @@ namespace Yu
         /// </summary>
         private void BtnOnClickBack()
         {
+            StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", 0.3f, 0f, 0f));
             CloseRoot();
         }
 
@@ -124,21 +139,7 @@ namespace Yu
         private void BtnOnClickEnter()
         {
             _model.SaveTeamData();
-            StartCoroutine(EnterBattleScene());
-        }
-
-        /// <summary>
-        /// 进入战斗关卡
-        /// </summary>
-        /// <returns></returns>
-        private IEnumerator EnterBattleScene()
-        {
-            UIManager.Instance.OpenWindow("LoadingView");
-            yield return new WaitForSeconds(0.5f);
-            UIManager.Instance.CloseAllLayerWindows("NormalLayer");
-            yield return SceneManager.Instance.ChangeSceneAsync(ConfigManager.Instance.cfgScene["Battle"].scenePath);
-            var battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-            battleManager.Init(_model.GetTeamArray());
+            ProcedureManager.Instance.EnterNextStageProcedure();
         }
     }
 }

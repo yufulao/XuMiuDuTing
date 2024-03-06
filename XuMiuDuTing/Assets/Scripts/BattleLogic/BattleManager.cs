@@ -32,8 +32,7 @@ namespace Yu
             InitFsm();
             InitUI();
             EventManager.Instance.AddListener(EventName.OnRoundEnd, OnRoundEnd);
-            StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("普通战斗a", 0f, 0.3f, 0f, 1f,
-                () => { StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("普通战斗b", 0f, 0.3f, 0f,1f)); }));
+            StartCoroutine(BGMManager.Instance.PlayLoopBgmWithIntro("普通战斗a", "普通战斗b", 0f, 0.3f, 0f, 1f));
             SpawnEntity();
             _model.SortEntityList();
             InitCommand();
@@ -68,7 +67,7 @@ namespace Yu
         /// </summary>
         public void BtnOnClickAttack()
         {
-            OpenAimSelectPanel(BattleCommandType.Attack, DefSelectType.DAll, DefObjCameraStateType.DCharacter, 1);
+            OpenAimSelectPanel(BattleCommandType.Attack, DefSelectType.DAll, DefObjCameraStateType.DEnemy, 1);
         }
 
         /// <summary>
@@ -153,7 +152,7 @@ namespace Yu
                 SetCommand();
                 StartCoroutine(CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DIdleCommand, 0.3f));
             }
-            
+
             _uiCtrl.view.skillSelectPanel.Close();
             _uiCtrl.CloseSkillDescribe();
         }
@@ -210,7 +209,7 @@ namespace Yu
 
             var currentCharacter = _model.GetCurrentCharacterEntity();
             var skillInfo = _model.cacheCurrentSkillInfo;
-            var rowCfgSkill = skillInfo.RowCfgSkill;
+            var rowCfgSkill = skillInfo?.RowCfgSkill;
             switch (_model.selectMenuType)
             {
                 case BattleCommandType.Attack:
@@ -218,6 +217,10 @@ namespace Yu
                     _commandInfoList.Add(new BattleCommandInfo(false, BattleCommandType.Attack, false, 1, selectedEntity, currentCharacter));
                     break;
                 case BattleCommandType.Skill:
+                    if (skillInfo==null)
+                    {
+                        return;
+                    }
                     skillInfo.targetList = selectedEntity;
                     AddCharacterSkillCommand(skillInfo);
                     _uiCtrl.CloseSkillDescribe();
@@ -225,8 +228,12 @@ namespace Yu
                         false, BattleCommandType.Skill, rowCfgSkill.isBattleStartCommand, rowCfgSkill.bpNeed, selectedEntity, currentCharacter));
                     break;
                 case BattleCommandType.UniqueSkill:
-                    currentCharacter.SetHadUniqueSkill(true);
-                    RefreshUniqueSkillButton();
+                    if (skillInfo==null)
+                    {
+                        return;
+                    }
+                    currentCharacter.SetHadUniqueSkill(false);
+                    _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, currentCharacter.GetHadUniqueSkill());
                     skillInfo.targetList = selectedEntity;
                     AddCharacterSkillCommand(skillInfo);
                     _commandInfoList.Add(new BattleCommandInfo(
@@ -321,7 +328,7 @@ namespace Yu
             {
                 currentCharacterEntity.battleStartCommandList.Remove(currentCharacterEntity.battleStartCommandList[^1]);
             }
-            
+
             //统一撤销，包括先制指令有个占位的在commandList里
             Debug.Log("实体" + currentCharacterEntity.GetName() + "撤销了指令" + currentCharacterEntity.commandList[^1]);
             currentCharacterEntity.commandList.Remove(currentCharacterEntity.commandList[^1]);
@@ -413,7 +420,7 @@ namespace Yu
 
                         _uiCtrl.SetMenuBtnEnable(commandMenuList[0], BattleCommandType.Brave, true);
                         _uiCtrl.SetMenuBtnEnable(commandMenuList[0], BattleCommandType.Default, true);
-                        RefreshUniqueSkillButton();
+                        _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, currentCharacterEntity.GetHadUniqueSkill());
                     }
 
                     currentCharacterEntity.GetCharacterInfoItem().EnterSelect();
@@ -437,7 +444,7 @@ namespace Yu
                         yield return tween.WaitForCompletion();
                         _uiCtrl.SetMenuBtnEnable(commandMenuList[0], BattleCommandType.Brave, true);
                         _uiCtrl.SetMenuBtnEnable(commandMenuList[0], BattleCommandType.Default, true);
-                        RefreshUniqueSkillButton();
+                        _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, currentCharacterEntity.GetHadUniqueSkill());
                     }
 
                     break;
@@ -501,8 +508,8 @@ namespace Yu
                         _model.currentMenuLastIndex++;
                     }
 
-                    currentCharacterEntity.SetHadUniqueSkill(false);
-                    RefreshUniqueSkillButton();
+                    currentCharacterEntity.SetHadUniqueSkill(true);
+                    _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, currentCharacterEntity.GetHadUniqueSkill());
                     break;
 
                 case BattleCommandType.Brave:
@@ -592,7 +599,8 @@ namespace Yu
         private void RefreshAllCommandMenu()
         {
             var characterEntity = _model.GetCurrentCharacterEntity();
-            _uiCtrl.view.RefreshMenuInfo(characterEntity.GetName(), characterEntity.GetBp(), characterEntity.GetBpPreview(), characterEntity.GetMp());
+            _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill,characterEntity.GetHadUniqueSkill());
+            _uiCtrl.view.RefreshMenuInfo(characterEntity.GetName(), characterEntity.GetBp(), characterEntity.GetBpPreview(),characterEntity.GetMp() );
         }
 
         /// <summary>
@@ -635,8 +643,9 @@ namespace Yu
                 }
 
                 yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0);
-                StartCoroutine(Utils.PlayAnimation(selectEntity.animatorEntity, "attack"));
+                yield return Utils.PlayAnimation(caster.animatorEntity, "attack");
                 yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(selectEntity, 0);
+                yield return new WaitForSeconds(0.2f);
                 EntityGetDamage(selectEntity, caster, damagePoint);
                 CheckDecreaseBp(caster, bpNeed);
                 RefreshAllEntityInfoItem();
@@ -856,7 +865,7 @@ namespace Yu
             var aimSelectPanel = _uiCtrl.view.aimSelectPanel;
             var activeToggleList = _model.activeToggleList;
             var currentCharacterEntity = _model.GetCurrentCharacterEntity();
-            var cameraLookAt = objCameraStateType.Equals(DefObjCameraStateType.DEnemy);
+            var cameraLookAt = !objCameraStateType.Equals(DefObjCameraStateType.DEnemy);
             activeToggleList.Clear();
             _model.canSelectCount = canSelectCountT;
             _model.selectMenuType = battleCommandType;
@@ -1024,21 +1033,6 @@ namespace Yu
         }
 
         /// <summary>
-        /// 刷新必杀技btn
-        /// </summary>
-        private void RefreshUniqueSkillButton()
-        {
-            var currentCharacterEntity = _model.GetCurrentCharacterEntity();
-            if (currentCharacterEntity.GetHadUniqueSkill())
-            {
-                _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, false);
-                return;
-            }
-
-            _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, true);
-        }
-
-        /// <summary>
         /// 使entity受到攻击
         /// </summary>
         /// <param name="target"></param>
@@ -1184,7 +1178,7 @@ namespace Yu
             }
 
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DEnemy, 0f);
-            yield return StartCoroutine(Utils.PlayAnimation(caster.animatorEntity, "attack"));
+            yield return Utils.PlayAnimation(caster.animatorEntity, "attack");
 
             float damagePoint = caster.GetDamage();
             foreach (var targetEntity in targetList)
@@ -1213,8 +1207,36 @@ namespace Yu
         /// </summary>
         private void OnRoundEnd()
         {
-            //Buff生效
-            //重置防御
+            //buff的during--
+            foreach (var enemyEntity in _model.allEnemyEntities)
+            {
+                if (enemyEntity.IsDie())
+                {
+                    continue;
+                }
+                DoBuffEffectAtRoundEnd(enemyEntity);
+            }
+            foreach (var characterEntity in _model.allCharacterEntities)
+            {
+                if (characterEntity.IsDie())
+                {
+                    continue;
+                }
+                characterEntity.SetHadUniqueSkill(characterEntity.GetMp()>=100);
+                DoBuffEffectAtRoundEnd(characterEntity);
+            }
+            //解除防御
+            foreach (var commandInfo in _commandInfoList)
+            {
+                if (commandInfo.commandType != BattleCommandType.Default)
+                {
+                    continue;
+                }
+                if (!commandInfo.caster.IsDie())
+                {
+                    commandInfo.caster.SetDefendAddon("Default", 0);
+                }
+            }
         }
 
         /// <summary>
@@ -1241,11 +1263,20 @@ namespace Yu
         private IEnumerator GameFinishIEnumerator(bool isWin)
         {
             Debug.Log("战斗" + (isWin ? "胜利" : "失败"));
-
             yield return new WaitForSeconds(2f);
-            //todo 游戏结束
-            //SystemFacade.instance.BattleFinish(isWin);
+            if (isWin)
+            {
+                GameManager.Instance.PassStage();
+                ProcedureManager.Instance.EnterNextStageProcedure();
+                yield break;
+            }
+
+            UIManager.Instance.OpenWindow("LoadingView");
             yield return new WaitForSeconds(0.5f);
+            GameManager.Instance.ReturnToTitle(0.5f, () =>
+            {
+                UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView");
+            });
         }
 
         /// <summary>
