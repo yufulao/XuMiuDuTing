@@ -224,8 +224,6 @@ namespace Yu
                     skillInfo.targetList = selectedEntity;
                     AddCharacterSkillCommand(skillInfo);
                     _uiCtrl.CloseSkillDescribe();
-                    _commandInfoList.Add(new BattleCommandInfo(
-                        false, BattleCommandType.Skill, rowCfgSkill.isBattleStartCommand, rowCfgSkill.bpNeed, selectedEntity, currentCharacter));
                     break;
                 case BattleCommandType.UniqueSkill:
                     if (skillInfo==null)
@@ -331,8 +329,8 @@ namespace Yu
 
             //统一撤销，包括先制指令有个占位的在commandList里
             Debug.Log("实体" + currentCharacterEntity.GetName() + "撤销了指令" + currentCharacterEntity.commandList[^1]);
-            currentCharacterEntity.commandList.Remove(currentCharacterEntity.commandList[^1]);
             _commandInfoList.Remove(_commandInfoList[^1]);
+            currentCharacterEntity.commandList.Remove(currentCharacterEntity.commandList[^1]);
             if (_commandInfoList.Count == 0)
             {
                 _uiCtrl.view.btnUndoCommand.gameObject.SetActive(false);
@@ -385,7 +383,6 @@ namespace Yu
             yield return tween.WaitForCompletion();
             commandMenuList[0].gameObject.SetActive(false);
             _uiCtrl.CloseAllCharacterInfoItemSelectBg();
-            newCurrentCharacterEntity.GetCharacterInfoItem().EnterSelect();
         }
 
         /// <summary>
@@ -422,7 +419,7 @@ namespace Yu
                         _uiCtrl.SetMenuBtnEnable(commandMenuList[0], BattleCommandType.Default, true);
                         _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, currentCharacterEntity.GetHadUniqueSkill());
                     }
-
+                    
                     currentCharacterEntity.GetCharacterInfoItem().EnterSelect();
                     break;
                 case 0:

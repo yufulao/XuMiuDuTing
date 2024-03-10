@@ -11,3 +11,4 @@ Global.xlsx
 Enemy.xlsx
 Buff.xlsx
 Skill.xlsx
+Sprite.xlsx

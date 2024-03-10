@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using PixelCrushers.DialogueSystem;
 using Rabi;
 using UnityEngine;
 using UnityEngine.Events;
@@ -153,7 +154,8 @@ namespace Yu
         {
             UIManager.Instance.CloseAllLayerWindows("NormalLayer");
             UIManager.Instance.OpenWindow("LoadingView");
-            yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", bgmFadeOutTime, 0f, 0.5f);
+            yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", bgmFadeOutTime, 0f, 0.5f,1f);
+            DialogueManager.instance.StopAllConversations();
             SetTimeScale(1f);
             CameraManager.Instance.ResetObjCamera();
             GC.Collect();

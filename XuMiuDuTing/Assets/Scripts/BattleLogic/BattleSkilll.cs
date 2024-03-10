@@ -12,7 +12,7 @@ namespace Yu
         /// 过滤掉死亡的角色
         /// </summary>
         /// <param name="targetList"></param>
-        private static void FilterDieSelectEntity(ref List<BattleEntityCtrl> targetList)
+        private static void FilterDieSelectEntity(List<BattleEntityCtrl> targetList)
         {
             foreach (var target in targetList)
             {
@@ -43,58 +43,57 @@ namespace Yu
             switch (skillInfo.skillName)
             {
                 case "星光": //反击架势，先制指令
-                    command =VectoriaSkill1(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    command = VectoriaSkill1(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
                     break;
                 case "失却的激情":
-                    command =VectoriaSkill2(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    command = VectoriaSkill2(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
                     break;
                 case "荒芜星原":
-                    command =VectoriaSkill3(caster, rowCfgSkill.bpNeed, _model.allEntities);
+                    command = VectoriaSkill3(caster, rowCfgSkill.bpNeed, _model.allEntities);
                     break;
                 case "颓废的智慧":
-                    command =VectoriaSkill4(caster, rowCfgSkill.bpNeed, _model.allEntities);
+                    command = VectoriaSkill4(caster, rowCfgSkill.bpNeed, _model.allEntities);
                     break;
                 case "虚谬":
-                    command =VectoriaSkill5(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    command = VectoriaSkill5(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
                     break;
                 case "循此苦旅":
-                    command =VectoriaSkill6(caster, rowCfgSkill.bpNeed);
+                    command = VectoriaSkill6(caster, rowCfgSkill.bpNeed);
                     break;
                 case "Ad Astra":
-                    command =VectoriaUniqueSkill(caster, rowCfgSkill.bpNeed, _model.allEntities);
+                    command = VectoriaUniqueSkill(caster, rowCfgSkill.bpNeed, _model.allEntities);
                     break;
                 case "反击架势": //反击架势，先制指令
-                    command =BattleStartCommandInCommandList(caster);
-                    battleStartCommand= VectorSkill1(caster, rowCfgSkill.bpNeed);
+                    command = BattleStartCommandInCommandList(caster);
+                    battleStartCommand = VectorSkill1(caster, rowCfgSkill.bpNeed);
                     break;
                 case "掩护":
-                    command =VectorSkill2(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    command = VectorSkill2(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
                     break;
                 case "灼烧印记":
-                    command =VectorSkill3(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    command = VectorSkill3(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
                     break;
                 case "不死花":
-                    command =VectorSkill4(caster, rowCfgSkill.bpNeed);
+                    command = VectorSkill4(caster, rowCfgSkill.bpNeed);
                     break;
                 case "绝境的火焰":
-                    command =VectorSkill5(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    command = VectorSkill5(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
                     break;
                 case "绽放":
-                    command =VectorSkill6(caster, rowCfgSkill.bpNeed, _model.allEntities);
+                    command = VectorSkill6(caster, rowCfgSkill.bpNeed, _model.allEntities);
                     break;
                 case "迷惘燃烬":
-                    command =VectorUniqueSkill(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
+                    command = VectorUniqueSkill(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
                     break;
             }
 
-            if (command!=null)
+            if (command != null)
             {
                 caster.commandList.Add(command);
                 _commandInfoList.Add(new BattleCommandInfo(false, BattleCommandType.Skill, rowCfgSkill.isBattleStartCommand, rowCfgSkill.bpNeed, skillInfo.targetList, caster));
-                Debug.Log("实体" + caster + "输入了指令" + caster.commandList[^1] + "，commandInfo的数量为" + _commandInfoList.Count);
             }
 
-            if (battleStartCommand!=null)
+            if (battleStartCommand != null)
             {
                 caster.battleStartCommandList.Add(battleStartCommand);
             }
@@ -104,7 +103,8 @@ namespace Yu
         private IEnumerator VectoriaSkill1(CharacterEntityCtrl caster, int bpNeed, List<BattleEntityCtrl> targetList)
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
-            FilterDieSelectEntity(ref targetList);
+            yield return new WaitForSeconds(0.2f);
+            FilterDieSelectEntity(targetList);
             if (targetList.Count != 0)
             {
                 var damagePoint = caster.GetDamage() * 0.5f;
@@ -112,10 +112,10 @@ namespace Yu
                 {
                     yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f);
                     AddBuff("星", caster, target, 2, 1);
-                    yield return new WaitForSeconds(0.2f);
                     EntityGetDamage(target, caster, damagePoint);
+                    yield return new WaitForSeconds(0.2f);
                 }
-
+                
                 CheckDecreaseBp(caster, bpNeed);
                 RefreshAllEntityInfoItem();
             }
@@ -127,7 +127,7 @@ namespace Yu
         private IEnumerator VectoriaSkill2(CharacterEntityCtrl caster, int bpNeed, List<BattleEntityCtrl> targetList)
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
-            FilterDieSelectEntity(ref targetList);
+            FilterDieSelectEntity(targetList);
 
             if (targetList.Count != 0)
             {
@@ -148,7 +148,7 @@ namespace Yu
         private IEnumerator VectoriaSkill3(CharacterEntityCtrl caster, int bpNeed, List<BattleEntityCtrl> targetList)
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
-            FilterDieSelectEntity(ref targetList);
+            FilterDieSelectEntity(targetList);
 
             if (targetList.Count != 0)
             {
@@ -185,7 +185,7 @@ namespace Yu
         private IEnumerator VectoriaSkill4(CharacterEntityCtrl caster, int bpNeed, List<BattleEntityCtrl> targetList)
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
-            FilterDieSelectEntity(ref targetList);
+            FilterDieSelectEntity(targetList);
 
             if (targetList.Count != 0)
             {
@@ -210,7 +210,7 @@ namespace Yu
         private IEnumerator VectoriaSkill5(CharacterEntityCtrl caster, int bpNeed, List<BattleEntityCtrl> targetList)
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
-            FilterDieSelectEntity(ref targetList);
+            FilterDieSelectEntity(targetList);
 
             if (targetList.Count != 0)
             {
@@ -247,7 +247,7 @@ namespace Yu
         private IEnumerator VectoriaUniqueSkill(CharacterEntityCtrl caster, int bpNeed, List<BattleEntityCtrl> targetList)
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
-            FilterDieSelectEntity(ref targetList);
+            FilterDieSelectEntity(targetList);
 
             if (targetList.Count != 0)
             {
@@ -256,7 +256,7 @@ namespace Yu
                 yield return Utils.PlayAnimation(caster.animatorEntity, "skill1");
                 yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(targetList[0], 0f);
                 yield return new WaitForSeconds(0.2f);
-                
+
                 var damagePoint = caster.GetDamage() * 1.9f;
                 var damageOtherPoint = caster.GetDamage() * 0.7f;
                 foreach (var target in targetList)
@@ -298,7 +298,7 @@ namespace Yu
         private IEnumerator VectorSkill2(CharacterEntityCtrl caster, int bpNeed, List<BattleEntityCtrl> targetList)
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
-            FilterDieSelectEntity(ref targetList);
+            FilterDieSelectEntity(targetList);
 
             if (targetList.Count != 0)
             {
@@ -320,7 +320,7 @@ namespace Yu
         private IEnumerator VectorSkill3(CharacterEntityCtrl caster, int bpNeed, List<BattleEntityCtrl> targetList)
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
-            FilterDieSelectEntity(ref targetList);
+            FilterDieSelectEntity(targetList);
 
             if (targetList.Count != 0)
             {
@@ -364,7 +364,7 @@ namespace Yu
         private IEnumerator VectorSkill5(CharacterEntityCtrl caster, int bpNeed, List<BattleEntityCtrl> targetList)
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
-            FilterDieSelectEntity(ref targetList);
+            FilterDieSelectEntity(targetList);
 
             if (targetList.Count != 0)
             {
@@ -392,7 +392,7 @@ namespace Yu
         private IEnumerator VectorSkill6(CharacterEntityCtrl caster, int bpNeed, List<BattleEntityCtrl> targetList)
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
-            FilterDieSelectEntity(ref targetList);
+            FilterDieSelectEntity(targetList);
 
             SFXManager.Instance.PlaySfx("技能12");
             yield return Utils.PlayAnimation(caster.animatorEntity, "skill2");
@@ -421,7 +421,7 @@ namespace Yu
         private IEnumerator VectorUniqueSkill(CharacterEntityCtrl caster, int bpNeed, List<BattleEntityCtrl> targetList)
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
-            FilterDieSelectEntity(ref targetList);
+            FilterDieSelectEntity(targetList);
 
             if (targetList.Count != 0)
             {

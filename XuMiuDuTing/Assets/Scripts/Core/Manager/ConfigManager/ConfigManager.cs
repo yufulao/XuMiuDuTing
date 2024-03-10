@@ -28,6 +28,7 @@ namespace Rabi
         public readonly CfgSFX cfgSFX = new CfgSFX();
         public readonly CfgSFXType cfgSFXType = new CfgSFXType();
         public readonly CfgSkill cfgSkill = new CfgSkill();
+        public readonly CfgSprite cfgSprite = new CfgSprite();
         public readonly CfgStage cfgStage = new CfgStage();
         public readonly CfgSubPlot cfgSubPlot = new CfgSubPlot();
         public readonly CfgUI cfgUI = new CfgUI();
@@ -62,6 +63,7 @@ namespace Rabi
             cfgSFX.Load();
             cfgSFXType.Load();
             cfgSkill.Load();
+            cfgSprite.Load();
             cfgStage.Load();
             cfgSubPlot.Load();
             cfgUI.Load();

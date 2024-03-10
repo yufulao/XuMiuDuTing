@@ -84,7 +84,9 @@ namespace Yu
             StopBgm();
             yield return new WaitForSeconds(delayTime);
             PlayBgm(bgmName, 0f);
-            _audioSource.DOFade(baseVolume, fadeInTime);
+            var tweener= _audioSource.DOFade(baseVolume, fadeInTime);
+            yield return tweener.WaitForCompletion();
+            // Debug.Log(_audioSource.volume);
         }
         
         /// <summary>

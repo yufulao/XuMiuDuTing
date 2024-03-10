@@ -9,3 +9,8 @@ error不可用#Se#Assets/AddressableAssets/SFX/系统音效/error不可用.wav#1
 设置暂停#Se#Assets/AddressableAssets/SFX/系统音效/设置暂停.mp3#1#False#False
 选中#Se#Assets/AddressableAssets/SFX/系统音效/选中.MP3#1#True#False
 通用点击音1#Se#Assets/AddressableAssets/SFX/系统音效/通用点击音1.mp3#1#True#False
+脚步声三#Se#Assets/AddressableAssets/SFX/脚步声三.WAV#1#False#False
+纽约环境音_循环#Se#Assets/AddressableAssets/SFX/循环音效/纽约环境音_循环.wav#1#False#True
+跑步#Se#Assets/AddressableAssets/SFX/跑步.wav#1#False#False
+摔倒#Se#Assets/AddressableAssets/SFX/摔倒.wav#1#False#False
+跑步_循环#Se#Assets/AddressableAssets/SFX/循环音效/跑步_循环.wav#1#False#True

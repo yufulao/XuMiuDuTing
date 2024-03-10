@@ -2536,6 +2536,7 @@ namespace PixelCrushers.DialogueSystem
                         Debug.LogWarning(string.Format("{0}: Sequencer: SetPortrait() command: pic variable '{1}' not found.", new System.Object[] { DialogueDebug.Prefix, picValue }));
                     }
                 }
+                
                 sprite = (actor != null) ? actor.GetPortraitSprite(picNumber) : null;
             }
             else

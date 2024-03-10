@@ -81,7 +81,8 @@ namespace Yu
             }
             if (chapterType.Equals(DefChapterType.DSubPlot))
             {
-                UIManager.Instance.OpenWindow("SubPlotSelectView");
+                //todo 支线剧情没做
+                //UIManager.Instance.OpenWindow("SubPlotSelectView");
             }
         }
 
