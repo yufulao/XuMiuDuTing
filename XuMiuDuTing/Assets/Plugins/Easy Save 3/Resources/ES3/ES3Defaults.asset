@@ -33,6 +33,7 @@ MonoBehaviour:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
     - IngameDebugConsole.Runtime
+    - sc.posteffects.runtime
     - spine-unity
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0

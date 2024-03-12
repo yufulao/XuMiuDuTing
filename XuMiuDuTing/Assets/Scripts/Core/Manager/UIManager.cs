@@ -206,7 +206,9 @@ namespace Yu
 
             //rootObj上的ctrl开始start并实例化view和model
             rootObj.SetActive(false);
-            rootObj.GetComponent<Canvas>().sortingOrder = rowCfgUi.sortOrder;
+            var canvas=rootObj.GetComponent<Canvas>();
+            canvas.worldCamera = CameraManager.Instance.GetUICamera();
+            canvas.sortingOrder = rowCfgUi.sortOrder;
 
             T ctrlNew = null;
             var components = rootObj.GetComponents<Component>();

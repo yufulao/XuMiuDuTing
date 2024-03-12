@@ -16,6 +16,7 @@ namespace Yu
         [SerializeField] private CanvasGroup canvasGroupBlackMask;
         [SerializeField] private CanvasGroup canvasGroupBlackMaskWithoutCommonElement;
         [SerializeField] private List<StandardUISubtitlePanel> allSubtitlePanelList=new List<StandardUISubtitlePanel>();
+        [SerializeField] private Animator animatorFlash;
         
         /// <summary>
         /// 进入下一个关卡步骤
@@ -154,6 +155,14 @@ namespace Yu
         public void FadeOutBlackWithoutCommonElement(float fadeOutTime)
         {
             StartCoroutine(FadeOutBlackWithoutCommonElementIEnumerator(fadeOutTime));
+        }
+
+        /// <summary>
+        /// 闪白特效
+        /// </summary>
+        public void VFXFlash()
+        {
+            animatorFlash.SetTrigger("flash");
         }
 
         /// <summary>

@@ -122,26 +122,27 @@ MonoBehaviour:
     - title: Display Name
       value: "\uFF1F\uFF1F\uFF1F"
       type: 0
-      typeString: 
+      typeString: CustomFieldType_Text
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 21300000, guid: 48ba673cc96861148ab8eb9b041c26de, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 53b0b431afe8f1d469a38531898f00d6, type: 3}
     alternatePortraits: []
     spritePortraits:
     - {fileID: 21300000, guid: 1dd499e53eaf5b145b807aef691fb937, type: 3}
-    - {fileID: 21300000, guid: f906d5feae6dc2845aacdae5e3a1a151, type: 3}
-    - {fileID: 21300000, guid: 78ed41371c6e6b84591caeb3f3912436, type: 3}
-    - {fileID: 21300000, guid: 47eecc8479ff8eb42829600106f536d6, type: 3}
-    - {fileID: 21300000, guid: 55a402b4cb9c99647b20014433afdeec, type: 3}
-    - {fileID: 21300000, guid: c079031a6e89c214b84915592198fa76, type: 3}
-    - {fileID: 21300000, guid: 0db507cd3f5353e4ea5dd0e65ff2bc59, type: 3}
-    - {fileID: 21300000, guid: e37c9b2971e93854bb6268d74ac4fae1, type: 3}
-    - {fileID: 21300000, guid: 9bbc6914dba658d4395fabfbfe3fb456, type: 3}
-    - {fileID: 21300000, guid: 09c5c61beec33104cb580bfcdc635732, type: 3}
-    - {fileID: 21300000, guid: 32c18b6f32e5eff49941b1df4582dc27, type: 3}
-    - {fileID: 21300000, guid: bd639ab9a7e27fc499a3a2a3a2416559, type: 3}
-    - {fileID: 21300000, guid: a1c0aadd4e95bbe47803a439c322cec9, type: 3}
-    - {fileID: 21300000, guid: 5d436ed9b8b98cc41be6fad522c0732f, type: 3}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: 68fb320de332baa47b90bfbb807a4542, type: 3}
+    - {fileID: 21300000, guid: a223635e511c5f24cbebc0d41e054b07, type: 3}
+    - {fileID: 21300000, guid: 5c30b48b966cef24d8dab4a367b6b501, type: 3}
+    - {fileID: 21300000, guid: 5068e56ede03a2a46be86159fe3893d8, type: 3}
+    - {fileID: 21300000, guid: a38fc23e5ba7a79469cb2b5586efd3c5, type: 3}
+    - {fileID: 21300000, guid: 5818819ab68c49b4b891d948b9ac56b2, type: 3}
+    - {fileID: 21300000, guid: ba1319ece1e67c64dbd7a3ccb009eb49, type: 3}
+    - {fileID: 21300000, guid: 7820c4fb6ed836b45ae4b1cafe10ab2a, type: 3}
+    - {fileID: 21300000, guid: 5aaa0f44f44776c408f80891ee7d6020, type: 3}
+    - {fileID: 21300000, guid: 4a5d56308ad5f904285f89299f13e158, type: 3}
+    - {fileID: 21300000, guid: 30fc1bc8021fcbb41b9c839707cd2020, type: 3}
+    - {fileID: 21300000, guid: 087fad7b964c57e47a1ee32b20e583a4, type: 3}
+    - {fileID: 21300000, guid: efc44987366f7234ba50c4d96ab4cc7d, type: 3}
+    - {fileID: 21300000, guid: e48381ba6355c2847a4d6a156602becd, type: 3}
+    - {fileID: 21300000, guid: bdb3edffa2fc748498c87b836e1ee35c, type: 3}
   - id: 10
     fields:
     - title: Name
@@ -161,30 +162,30 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 21300000, guid: c58f2534e37aac844bd7b7de097a12cc, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 39869023901147f44b78b22963dc5d73, type: 3}
     alternatePortraits: []
     spritePortraits:
     - {fileID: 21300000, guid: d07adbdf80b70e3418923ff1cf55860e, type: 3}
-    - {fileID: 21300000, guid: f5d9dfba9b36166489448529fa7b7289, type: 3}
-    - {fileID: 21300000, guid: aff9c47a107dee14e9059a32ccb7976a, type: 3}
-    - {fileID: 21300000, guid: fe20248f04196b04f92d6f9f4c287929, type: 3}
-    - {fileID: 21300000, guid: 35ab978e6b4cba14cb6fdd1ba533af31, type: 3}
-    - {fileID: 21300000, guid: b6b796dda160c3346948b9ca07b6a83c, type: 3}
-    - {fileID: 21300000, guid: dfdd5ec1f1112b64492e4613c6d4d23b, type: 3}
-    - {fileID: 21300000, guid: b91fe9e78b62696439412da32a09b709, type: 3}
-    - {fileID: 21300000, guid: 930346a66f1236b42b75b21ea882a107, type: 3}
-    - {fileID: 21300000, guid: e125a70b3d0cfb94eb69888c3903fa61, type: 3}
-    - {fileID: 21300000, guid: 051380da6cd922244831ef2e5332ff3f, type: 3}
-    - {fileID: 21300000, guid: 9b8464ef8fab99e4b82fda8ec5143c4d, type: 3}
-    - {fileID: 21300000, guid: ad64503e8c427b44ca6cf0f8c57a2efd, type: 3}
-    - {fileID: 21300000, guid: 1f514412be9467e4bb02b6a440b61ee2, type: 3}
-    - {fileID: 21300000, guid: a147f5d171972ce4fb206506f846edf2, type: 3}
-    - {fileID: 21300000, guid: 6f6fb71bb6c5b5f4d8e02e3906f2f82f, type: 3}
-    - {fileID: 21300000, guid: 24b590629b420ce44a8abe26fd0b6521, type: 3}
-    - {fileID: 21300000, guid: 42eafaef1b69f284eaa84ba076d6bb35, type: 3}
-    - {fileID: 21300000, guid: 1cdc4afc7aec7b34d86f94e9d476a937, type: 3}
-    - {fileID: 21300000, guid: 058b37e5c4e9cda46a4c6ad7ad278d4a, type: 3}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: 7ee246643e7e1b84b80f08f4a6772880, type: 3}
+    - {fileID: 21300000, guid: d30009e0aba17274aa9606912e9889f2, type: 3}
+    - {fileID: 21300000, guid: e44c2b56cf3e63d498d9f844e0fc0e72, type: 3}
+    - {fileID: 21300000, guid: b9dc3f5a99aeb5045b500a597540754b, type: 3}
+    - {fileID: 21300000, guid: 4f4c2ae39a2a31c4daeec01ae25d39a4, type: 3}
+    - {fileID: 21300000, guid: 193ce75731a425746b582d76a8a87f0b, type: 3}
+    - {fileID: 21300000, guid: 29f197972abf45a46b3711268656921b, type: 3}
+    - {fileID: 21300000, guid: 01f5c154d814cc84d8fb7856e299ef3f, type: 3}
+    - {fileID: 21300000, guid: 1003d4dad658b9c41b393bfc993b0b1d, type: 3}
+    - {fileID: 21300000, guid: ee0ed21c5c8c73047a7f880637baf646, type: 3}
+    - {fileID: 21300000, guid: d5b6dcc7e3b33924b992e6dc45f1e7bb, type: 3}
+    - {fileID: 21300000, guid: 488d6570f8994f9479a44f0a7fd84ff2, type: 3}
+    - {fileID: 21300000, guid: 8ab8f7c077b14fe47ab69bd37b3339fb, type: 3}
+    - {fileID: 21300000, guid: 808a780d2029b1c4fb80d6571d425df1, type: 3}
+    - {fileID: 21300000, guid: 184cc035baeb9ad488f6a40398eae10d, type: 3}
+    - {fileID: 21300000, guid: 8052747303228814fb19a70798207d6a, type: 3}
+    - {fileID: 21300000, guid: aed0ef0f3117176468009676a860171c, type: 3}
+    - {fileID: 21300000, guid: 994c9420a0d334d43a83f357438116c4, type: 3}
+    - {fileID: 21300000, guid: 07510813668321f45883d966ff0ad0b5, type: 3}
+    - {fileID: 21300000, guid: 462b45127e8ad5f468a2b48e524ff1cd, type: 3}
   - id: 5
     fields:
     - title: Name
@@ -230,7 +231,7 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     portrait: {fileID: 2800000, guid: fa7463921dfe5ee42931b23270ef00b2, type: 3}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: ab7a3274c6228e046a8895280c65ce73, type: 3}
     alternatePortraits: []
     spritePortraits:
     - {fileID: 0}
@@ -279,14 +280,14 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 21300000, guid: 4f28cd91f38084440bac05a53eb3e6e6, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 4888e04cdbce10c428e24e85f74002f9, type: 3}
     alternatePortraits: []
     spritePortraits:
     - {fileID: 21300000, guid: 00a5a3a3b211d034093943d5061d5930, type: 3}
-    - {fileID: 21300000, guid: cfe388cd7c0a1084898beda9332eb30f, type: 3}
-    - {fileID: 21300000, guid: 0f2fec15e2b671545aa3858ae695cb60, type: 3}
-    - {fileID: 21300000, guid: 112830afb124e8148b436dedc687febf, type: 3}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: c16f1966e89a1cb43b8c4047ca87d9e9, type: 3}
+    - {fileID: 21300000, guid: 11bd354f8aa3c3148b34b969fba8d858, type: 3}
+    - {fileID: 21300000, guid: 585a42d4c651f994282e53e3f3b0debe, type: 3}
+    - {fileID: 21300000, guid: 218fc36d84998dd498b8a0738e952933, type: 3}
   - id: 9
     fields:
     - title: Name
@@ -306,7 +307,7 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     portrait: {fileID: 2800000, guid: b525e907cc32ab64a8924ddea4bfb9f9, type: 3}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: c4a45720be3b0424a8703511b3688238, type: 3}
     alternatePortraits: []
     spritePortraits:
     - {fileID: 0}
@@ -6470,7 +6471,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 1526.1006, y: 113.847404}
+    canvasScrollPosition: {x: 124.28577, y: 0}
     canvasZoom: 0.6999998
   syncInfo:
     syncActors: 0

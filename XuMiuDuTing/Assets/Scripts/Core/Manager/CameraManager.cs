@@ -95,6 +95,11 @@ namespace Yu
         {
             return _objCamera;
         }
+        
+        public Camera GetUICamera()
+        {
+            return _uiCamera;
+        }
 
         /// <summary>
         /// 通过entity是不是敌人来设置摄像机
