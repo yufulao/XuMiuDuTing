@@ -14,7 +14,7 @@ namespace Yu
         public Button btnUndoCommand;
         public Button btnGoBattle;
         public Animator animatorBtnGoBattle;
-        public Transform entityHudContainer;
+        [HideInInspector]public Transform entityHudContainer;
         public SkillSelectPanel skillSelectPanel;
         public AimSelectPanel aimSelectPanel;
         public DescribeItem describeItemBuff;
@@ -85,6 +85,7 @@ namespace Yu
             
             describeItemBuff.ForceClose();
             describeItemSkill.ForceClose();
+            entityHudContainer = UIManager.Instance.GetUIRoot().Find("TopLayer").Find("EntityHudContainer");
         }
 
         /// <summary>

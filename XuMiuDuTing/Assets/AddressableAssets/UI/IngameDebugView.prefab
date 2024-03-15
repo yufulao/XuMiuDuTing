@@ -710,7 +710,7 @@ Canvas:
   m_GameObject: {fileID: 132536}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -785,23 +785,7 @@ MonoBehaviour:
   startInPopupMode: 1
   startMinimized: 0
   toggleWithKey: 1
-  toggleBinding:
-    m_Name: Toggle Binding
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 534427f0-d8cd-46b7-b169-01b3ceef5505
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 9dbed3ba-e8dd-4f1d-a4ec-88008a44a057
-      m_Path: <Keyboard>/backquote
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Toggle Binding
-      m_Flags: 0
-    m_Flags: 0
+  toggleKey: 96
   enableSearchbar: 1
   topSearchbarMinWidth: 360
   receiveLogsWhileInactive: 0

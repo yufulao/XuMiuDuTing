@@ -217,19 +217,21 @@ namespace Yu
                     _commandInfoList.Add(new BattleCommandInfo(false, BattleCommandType.Attack, false, 1, selectedEntity, currentCharacter));
                     break;
                 case BattleCommandType.Skill:
-                    if (skillInfo==null)
+                    if (skillInfo == null)
                     {
                         return;
                     }
+
                     skillInfo.targetList = selectedEntity;
                     AddCharacterSkillCommand(skillInfo);
                     _uiCtrl.CloseSkillDescribe();
                     break;
                 case BattleCommandType.UniqueSkill:
-                    if (skillInfo==null)
+                    if (skillInfo == null)
                     {
                         return;
                     }
+
                     currentCharacter.SetHadUniqueSkill(false);
                     _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, currentCharacter.GetHadUniqueSkill());
                     skillInfo.targetList = selectedEntity;
@@ -419,7 +421,7 @@ namespace Yu
                         _uiCtrl.SetMenuBtnEnable(commandMenuList[0], BattleCommandType.Default, true);
                         _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, currentCharacterEntity.GetHadUniqueSkill());
                     }
-                    
+
                     currentCharacterEntity.GetCharacterInfoItem().EnterSelect();
                     break;
                 case 0:
@@ -596,8 +598,8 @@ namespace Yu
         private void RefreshAllCommandMenu()
         {
             var characterEntity = _model.GetCurrentCharacterEntity();
-            _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill,characterEntity.GetHadUniqueSkill());
-            _uiCtrl.view.RefreshMenuInfo(characterEntity.GetName(), characterEntity.GetBp(), characterEntity.GetBpPreview(),characterEntity.GetMp() );
+            _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, characterEntity.GetHadUniqueSkill());
+            _uiCtrl.view.RefreshMenuInfo(characterEntity.GetName(), characterEntity.GetBp(), characterEntity.GetBpPreview(), characterEntity.GetMp());
         }
 
         /// <summary>
@@ -775,7 +777,7 @@ namespace Yu
                 uiFollowObj.rectFollower = entityHud.GetComponent<RectTransform>();
                 uiFollowObj.offset = new Vector2(0f, 15f);
                 //一些初始设置
-                characterEntity.SetEntitySpineOutlineActive(false);
+                characterEntity.SetOutlineActive(false);
                 //加进entityList
                 _model.characterNumber++;
                 _model.characterCount++;
@@ -817,7 +819,7 @@ namespace Yu
                 uiFollowObj.rectFollower = entityHud.GetComponent<RectTransform>();
                 uiFollowObj.offset = new Vector2(0f, 15f);
                 //一些初始设置
-                enemyEntity.SetEntitySpineOutlineActive(false);
+                enemyEntity.SetOutlineActive(false);
                 //加进entityList
                 _model.enemyNumber++;
                 _model.allEntities.Add(enemyEntity);
@@ -1204,24 +1206,30 @@ namespace Yu
         /// </summary>
         private void OnRoundEnd()
         {
-            //buff的during--
-            foreach (var enemyEntity in _model.allEnemyEntities)
+            foreach (var entity in _model.allEntities)
             {
-                if (enemyEntity.IsDie())
+                if (entity.IsDie())
                 {
                     continue;
                 }
-                DoBuffEffectAtRoundEnd(enemyEntity);
+
+                //恢复动画
+                entity.animatorEntity.Play("idle");
+                //buff的during--
+                DoBuffEffectAtRoundEnd(entity);
             }
+
             foreach (var characterEntity in _model.allCharacterEntities)
             {
                 if (characterEntity.IsDie())
                 {
                     continue;
                 }
-                characterEntity.SetHadUniqueSkill(characterEntity.GetMp()>=100);
+
+                characterEntity.SetHadUniqueSkill(characterEntity.GetMp() >= 100);
                 DoBuffEffectAtRoundEnd(characterEntity);
             }
+
             //解除防御
             foreach (var commandInfo in _commandInfoList)
             {
@@ -1229,6 +1237,7 @@ namespace Yu
                 {
                     continue;
                 }
+
                 if (!commandInfo.caster.IsDie())
                 {
                     commandInfo.caster.SetDefendAddon("Default", 0);
@@ -1270,10 +1279,8 @@ namespace Yu
 
             UIManager.Instance.OpenWindow("LoadingView");
             yield return new WaitForSeconds(0.5f);
-            GameManager.Instance.ReturnToTitle(0.5f, () =>
-            {
-                UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView");
-            });
+            GameManager.Instance.ReturnToTitle(0.5f,
+                () => { UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView"); });
         }
 
         /// <summary>

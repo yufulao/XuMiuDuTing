@@ -35,6 +35,7 @@ MonoBehaviour:
     - IngameDebugConsole.Runtime
     - sc.posteffects.runtime
     - spine-unity
+    - spine-unity-examples
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

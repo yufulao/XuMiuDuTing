@@ -8,7 +8,6 @@ using Yu;
 
 public class EntityHUD : MonoBehaviour
 {
-    //todo HUD移出BattleMainView，独立作为一个canvas
     public UIHangAnimationComponent uiHangAnimationComponent;
     public Slider sliderHp;
     public Toggle toggleSelect;

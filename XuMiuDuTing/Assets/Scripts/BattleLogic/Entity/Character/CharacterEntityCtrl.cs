@@ -34,14 +34,6 @@ namespace Yu
         }
 
         /// <summary>
-        /// 启用隐藏spine描边
-        /// </summary>
-        public void SetEntitySpineOutlineActive(bool active)
-        {
-            _view.outlineComponent.enabled = active;
-        }
-
-        /// <summary>
         /// 获取entityHud
         /// </summary>
         /// <returns></returns>
@@ -103,7 +95,7 @@ namespace Yu
         /// <returns></returns>
         public override void SetOutlineActive(bool active)
         {
-            _view.outlineComponent.enabled = active;
+            _view.objOutline.SetActive(active);
         }
 
         /// <summary>

@@ -9,7 +9,7 @@ namespace Yu
         [HideInInspector] public EnemyInfoItem infoItem;
         [HideInInspector] public EntityHUD entityHud;
         [HideInInspector] public GameObject objEntity;
-        [HideInInspector] public SkeletonRendererCustomMaterials outlineComponent;
+        [HideInInspector] public GameObject objOutline;
         [HideInInspector] public MeshRenderer meshRenderer;
 
         public void Init(string enemyName, EnemyInfoItem infoItemT, EntityHUD entityHudT)
@@ -18,7 +18,7 @@ namespace Yu
             entityHud = entityHudT;
             objEntity = gameObject;
             entityHud.uiHangAnimationComponent.RegisterAnimator(infoItem.animatorSelectedBg);
-            outlineComponent = objEntity.GetComponent<SkeletonRendererCustomMaterials>();
+            objOutline = objEntity.transform.Find("ObjOutline").gameObject;
             meshRenderer = objEntity.GetComponent<MeshRenderer>();
         }
         

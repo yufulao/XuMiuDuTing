@@ -192,11 +192,12 @@ namespace Yu
         private IEnumerator ChangeBgIEnumerator(string spriteName,float fadeInTime, float during, float fadeOutTime)
         {
             canvasGroupBlackMask.alpha = 0;
-            var tweener = canvasGroupBlackMask.DOFade(1, fadeInTime);
             canvasGroupBlackMask.gameObject.SetActive(true);
+            var tweener = canvasGroupBlackMask.DOFade(1, fadeInTime);
             yield return tweener.WaitForCompletion();
             imageBg.sprite = AssetManager.Instance.LoadAsset<Sprite>(ConfigManager.Instance.cfgSprite[spriteName].path);
             yield return new WaitForSeconds(during);
+            DialogueManager.instance.PlaySequence("Continue()");
             tweener = canvasGroupBlackMask.DOFade(0, fadeOutTime);
             yield return tweener.WaitForCompletion();
             canvasGroupBlackMask.gameObject.SetActive(false);

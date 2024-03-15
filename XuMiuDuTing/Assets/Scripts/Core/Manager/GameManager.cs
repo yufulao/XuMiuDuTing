@@ -197,7 +197,7 @@ namespace Yu
         private void IsTest()
         {
             Instantiate(AssetManager.Instance.LoadAsset<GameObject>(ConfigManager.Instance.cfgUI["IngameDebugView"].uiPath)
-                , UIManager.Instance.GetUIRoot().Find("NormalLayer"));
+                , UIManager.Instance.GetUIRoot().Find("NormalLayer")).GetComponent<Canvas>().worldCamera=CameraManager.Instance.GetUICamera();
         }
 
         /// <summary>
