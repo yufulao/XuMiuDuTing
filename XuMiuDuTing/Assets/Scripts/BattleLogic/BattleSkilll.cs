@@ -14,11 +14,13 @@ namespace Yu
         /// <param name="targetList"></param>
         private static void FilterDieSelectEntity(List<BattleEntityCtrl> targetList)
         {
-            foreach (var target in targetList)
+            //1.不能用foreach循环，如果targetList中死了某个，会报错列表被修改，操作被禁止
+            //2.用倒序for循环，解决边遍历边修改元素个数
+            for (var i = targetList.Count - 1; i >= 0; i--)
             {
-                if (target.IsDie())
+                if (targetList[i].IsDie())
                 {
-                    targetList.Remove(target);
+                    targetList.RemoveAt(i);
                 }
             }
         }

@@ -6,12 +6,12 @@ namespace Yu
 {
     public class TeamEditState : IFsmState
     {
-        public void OnEnter()
+        public void OnEnter(params object[] objs)
         {
             ProcedureManager.Instance.OnEnterTeamEditState();
         }
 
-        public void OnUpdate()
+        public void OnUpdate(params object[] objs)
         {
 
         }

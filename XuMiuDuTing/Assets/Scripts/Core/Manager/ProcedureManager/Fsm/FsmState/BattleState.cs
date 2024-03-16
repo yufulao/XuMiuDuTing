@@ -5,14 +5,14 @@ using Yu;
 
 public class BattleState : IFsmState
 {
-    public void OnEnter()
+    public void OnEnter(params object[] objs)
     {
         ProcedureManager.Instance.OnEnterBattleState();
     }
 
-    public void OnUpdate()
+    public void OnUpdate(params object[] objs)
     {
-        
+        GameManager.Instance.OnUpdateCheckPause();
     }
 
     public void OnExit()

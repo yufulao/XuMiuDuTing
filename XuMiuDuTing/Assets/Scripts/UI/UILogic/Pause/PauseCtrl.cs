@@ -1,61 +1,92 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Yu;
 
-public class PauseCtrl : UICtrlBase
+namespace Yu
 {
-    private PauseModel _model;
-
-    [SerializeField] private Button backMask;
-    [SerializeField] private Button continueBtn;
-    [SerializeField] private Button returnTitleBtn;
-    [SerializeField] private Button quitBtn;
-
-    public override void OnInit(params object[] param)
+    public class PauseCtrl : UICtrlBase
     {
-        _model = new PauseModel();
-        _model.InitModel();
-        BindEvent();
-    }
+        private PauseModel _model;
+        private PauseView _view;
 
-    public override void OpenRoot(params object[] param)
-    {
-        gameObject.SetActive(true);
-        _model.SetTimeScale(Time.timeScale);
-        GameManager.Instance.SetTimeScale(0f);
-    }
+        public override void OnInit(params object[] param)
+        {
+            _model = new PauseModel();
+            _view = GetComponent<PauseView>();
+            _model.OnInit();
+        }
 
-    public override void CloseRoot()
-    {
-        gameObject.SetActive(false);
-        GameManager.Instance.SetTimeScale(_model.GetTimeScale());
-    }
+        public override void OpenRoot(params object[] param)
+        {
+            GameManager.Instance.StartCoroutine(OpenRootIEnumerator());
+        }
 
-    public override void BindEvent()
-    {
-        backMask.onClick.AddListener(CloseRoot);
-        continueBtn.onClick.AddListener(CloseRoot);
-        returnTitleBtn.onClick.AddListener(OnReturnTitleBtnClick);
-        quitBtn.onClick.AddListener(OnQuitBtnClick);
-    }
+        public override void CloseRoot()
+        {
+            GameManager.Instance.StartCoroutine(CloseRootIEnumerator());
+        }
 
-    /// <summary>
-    /// 返回主界面btn
-    /// </summary>
-    private void OnReturnTitleBtnClick()
-    {
-        GameManager.Instance.ReturnToTitle();
-        CloseRoot();
-    }
+        public override void BindEvent()
+        {
+            _view.btnResume.onClick.AddListener(BtnOnClickResume);
+            _view.btnSetting.onClick.AddListener(BtnOnClickSetting);
+            _view.btnReturnTitle.onClick.AddListener(BtnOnClickReturnTitle);
+        }
 
-    /// <summary>
-    /// 退出游戏btn
-    /// </summary>
-    private void OnQuitBtnClick()
-    {
-        CloseRoot();
-        GameManager.Instance.QuitApplication();
+        /// <summary>
+        /// 获取当前是否是暂停状态
+        /// </summary>
+        /// <returns></returns>
+        public bool GetIsOnPause()
+        {
+            return _model.GetOnPause();
+        }
+
+        /// <summary>
+        /// 继续游戏
+        /// </summary>
+        private void BtnOnClickResume()
+        {
+            CloseRoot();
+        }
+        
+        /// <summary>
+        /// 打开设置界面
+        /// </summary>
+        private static void BtnOnClickSetting()
+        {
+            UIManager.Instance.OpenWindow("SettingView");
+        }
+        
+        /// <summary>
+        /// 返回标题
+        /// </summary>
+        private void BtnOnClickReturnTitle()
+        {
+            GameManager.Instance.ReturnToTitle();
+        }
+        
+        /// <summary>
+        /// 打开暂停窗口的协程
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator OpenRootIEnumerator()
+        {
+            yield return _view.OpenWindowIEnumerator();
+            //_model.SetTimeScale(Time.timeScale);
+            //GameManager.Instance.SetTimeScale(0f);
+            _model.SetOnPause(true);
+        }
+        
+        /// <summary>
+        /// 关闭暂停窗口的协程
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator CloseRootIEnumerator()
+        {
+            yield return _view.CloseWindowIEnumerator();
+            //GameManager.Instance.SetTimeScale(_model.GetTimeScale());
+            _model.SetOnPause(false);
+        }
+        
     }
 }

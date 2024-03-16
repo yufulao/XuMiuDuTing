@@ -19,7 +19,7 @@ namespace Yu
 
         private void Update()
         {
-            if (!objFollowed)
+            if (!objFollowed||!rectFollower)
             {
                 return;
             }

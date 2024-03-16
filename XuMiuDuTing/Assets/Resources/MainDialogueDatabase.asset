@@ -7986,7 +7986,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 3
+        originDialogueID: 124
+        destinationConversationID: 3
+        destinationDialogueID: 130
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: "Actor[\"\u7EF4\u514B\u591A\uFF1F\uFF1F\uFF1F\"].Display_Name =
         \"\u772F\u772F\u773C\u7684\u5C11\u5E74\""
@@ -8282,9 +8288,62 @@ MonoBehaviour:
         y: 377
         width: 160
         height: 30
+    - id: 130
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 7
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: -1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      - title: EventGuid
+        value: 2b2a922c-04eb-4686-808a-dbe5cdf9c645
+        type: 0
+        typeString: 
+      conversationID: 3
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 2795.3035
+        y: 223.45828
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 3.125}
-    canvasZoom: 0.64000005
+    canvasScrollPosition: {x: 1771.2117, y: 0}
+    canvasZoom: 0.72999996
   syncInfo:
     syncActors: 0
     syncItems: 0

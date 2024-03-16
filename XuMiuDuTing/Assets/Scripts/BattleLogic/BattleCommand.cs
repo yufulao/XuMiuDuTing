@@ -20,24 +20,22 @@ namespace Yu
         /// <summary>
         /// 初始化和每轮动画结算完毕后调用
         /// </summary>
-        private void InitCommand()
+        private void ResetCommand()
         {
             _inCommandExecuting = false;
             _inBattleStartExecuting = false;
-            ResetAllCommand();
+            ResetAllCommandList();
             _uiCtrl.view.btnGoBattle.GetComponent<Animator>().Play("Idle");
             _uiCtrl.view.btnGoBattle.interactable = true;
             _uiCtrl.view.btnUndoCommand.gameObject.SetActive(false);
             Add1ToAllCharacterBp();
             _model.currentMenuLastIndex = -1;
-            SetCommand();
-            StartCoroutine(CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DIdleCommand, 0));
         }
 
         /// <summary>
         /// 清空所有指令
         /// </summary>
-        private void ResetAllCommand()
+        private void ResetAllCommandList()
         {
             foreach (var entityCtrl in _model.allEntities) //清空所有entity的指令List
             {
@@ -208,7 +206,7 @@ namespace Yu
         private void SetCommandReachEnd()
         {
             Debug.Log("场上所有entity都输入完指令了");
-            StartCoroutine(PrepareAllCommandList());
+            _fsm.ChangeFsmState(typeof(ExecutingState));
         }
 
         /// <summary>
@@ -421,25 +419,13 @@ namespace Yu
             _model.currentRound++;
             EventManager.Instance.Dispatch(EventName.OnRoundEnd);
             Debug.Log("指令全部执行完毕");
-            InitCommand();
+            ResetCommand();
+            _fsm.ChangeFsmState(typeof(CharacterCommandInputState));
             _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.Brave, true);
             var commandMenuList = _uiCtrl.view.commandMenuList;
             _uiCtrl.SetMenuBtnEnable(commandMenuList[^1], BattleCommandType.Brave, false); //最后一个menu绝对不能有Brave
             _uiCtrl.SetMenuBtnEnable(commandMenuList[0], BattleCommandType.Default, true); //最后一个menu绝对不能有Brave
             StartCoroutine(CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DIdleCommand,0.3f));
-
-            foreach (var entityCtrl in _model.allEntities)
-            {
-                if (entityCtrl.IsDie())
-                {
-                    continue;
-                }
-
-                // entityCtrl.animator.Play("idle");
-                // entityCtrl.animator.SetBool("default", false);
-                // entityCtrl.animator.SetBool("ready", false);
-            }
-
             RefreshAllCommandMenu();
             RefreshAllEntityInfoItem();
         }

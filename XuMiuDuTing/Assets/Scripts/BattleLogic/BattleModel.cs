@@ -17,7 +17,6 @@ namespace Yu
         public readonly List<CharacterEntityCtrl> allCharacterEntities = new List<CharacterEntityCtrl>();
         public readonly List<EnemyEntityCtrl> allEnemyEntities = new List<EnemyEntityCtrl>();
         public int characterNumber;
-        public int characterCount;
         public int enemyNumber;
         public int currentMenuLastIndex;
         public int currentCharacterEntityIndex; //当前输入指令的角色在AllEntity中的下标
@@ -30,14 +29,19 @@ namespace Yu
         public readonly List<BattleEntityCtrl> selectedEntityList = new List<BattleEntityCtrl>();
         public SkillInfo cacheCurrentSkillInfo;
 
-
+        /// <summary>
+        /// 设置友方编队
+        /// </summary>
+        public void SetTeamArray(string[] teamArray)
+        {
+            _characterTeamArray = teamArray;
+        }
+        
         /// <summary>
         /// 初始化
         /// </summary>
-        /// <param name="teamArray"></param>
-        public void Init(string[] teamArray)
+        public void Init()
         {
-            _characterTeamArray = teamArray;
             _stageData = SaveManager.GetT("StageData", new StageData());
             var stageName = SaveManager.GetString("StageName", "1-1");
             _stageDataEntry = _stageData.allStage[stageName];

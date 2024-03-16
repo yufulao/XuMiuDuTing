@@ -170,6 +170,23 @@ namespace Yu
 
             return (T) CreatNewView<T>(windowName, param);
         }
+        
+        /// <summary>
+        /// 获取ui的controller，没有则返回null
+        /// </summary>
+        /// <param name="windowName"></param>
+        /// <param name="param"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetCtrlWithCreate<T>(string windowName, params object[] param) where T : UICtrlBase
+        {
+            if (_allViews.ContainsKey(windowName))
+            {
+                return (T) _allViews[windowName];
+            }
+
+            return null;
+        }
 
         /// <summary>
         /// 判断是不是对应的ctrl

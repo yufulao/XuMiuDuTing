@@ -75,7 +75,7 @@ namespace Yu
             UIManager.Instance.CloseAllLayerWindows("NormalLayer");
             yield return SceneManager.Instance.ChangeSceneAsync(ConfigManager.Instance.cfgScene["Battle"].scenePath);
             var battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-            battleManager.Init(_model.GetTeamArray());
+            battleManager.EnterBattle(_model.GetTeamArray());
         }
 
         /// <summary>

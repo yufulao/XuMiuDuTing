@@ -139,6 +139,14 @@ namespace Yu
         {
             GameManager.Instance.StartCoroutine(OnEnterConversationBStateIEnumerator());
         }
+
+        /// <summary>
+        /// 设置空状态
+        /// </summary>
+        public void SetNullState()
+        {
+            _fsm.ChangeToNullState();
+        }
         
         private IEnumerator OnEnterConversationBStateIEnumerator()
         {
@@ -154,6 +162,7 @@ namespace Yu
         /// </summary>
         private void EndStageProcedure()
         {
+            SetNullState();
             GameManager.Instance.ReturnToTitle(0.5f,
                 () => { UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView"); });
         }

@@ -16,12 +16,22 @@ public class BaseFsm
     {
         _fsmStateDic = states;
     }
+
+    /// <summary>
+    /// 设置为空状态
+    /// </summary>
+    public void ChangeToNullState()
+    {
+        _currentFsmState?.OnExit();
+        _currentFsmState = null;
+    }
     
     /// <summary>
     /// 切换状态
     /// </summary>
     /// <param name="stateName">状态机名Enum</param>
-    public void ChangeFsmState(Type stateName)
+    /// <param name="enterParams">进入状态的参数</param>
+    public void ChangeFsmState(Type stateName,params object[] enterParams)
     {
         if (!_fsmStateDic.ContainsKey(stateName))
         {
@@ -31,7 +41,7 @@ public class BaseFsm
         
         _currentFsmState?.OnExit();
         _currentFsmState = _fsmStateDic[stateName];
-        _currentFsmState.OnEnter();
+        _currentFsmState.OnEnter(enterParams);
     }
     
     /// <summary>

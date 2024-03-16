@@ -5,6 +5,7 @@ using PixelCrushers.DialogueSystem;
 using Rabi;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace Yu
 {
@@ -129,7 +130,7 @@ namespace Yu
 
             stageDataEntry.isPass = true;
             SaveManager.SetT("StageData", stageData);
-            
+
             var unlockStageList = rowCfgStage.unlockStageList;
             if (unlockStageList == null)
             {
@@ -152,9 +153,10 @@ namespace Yu
         /// <returns></returns>
         private IEnumerator ReturnToTitleIEnumerator(float bgmFadeOutTime, UnityAction callback)
         {
+            UIManager.Instance.GetCtrlWithCreate<BattleMainCtrl>("BattleMainView")?.ClearAllEntityHud();//关闭所有hud，因为HUD独立
             UIManager.Instance.CloseAllLayerWindows("NormalLayer");
             UIManager.Instance.OpenWindow("LoadingView");
-            yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", bgmFadeOutTime, 0f, 0.5f,1f);
+            yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", bgmFadeOutTime, 0f, 0.5f, 1f);
             DialogueManager.instance.StopAllConversations();
             SetTimeScale(1f);
             CameraManager.Instance.ResetObjCamera();
@@ -163,6 +165,7 @@ namespace Yu
             UIManager.Instance.DestroyWindow("BattleMainView");
             UIManager.Instance.OpenWindow("HomeView");
             UIManager.Instance.CloseWindow("LoadingView");
+            ProcedureManager.Instance.SetNullState();
             callback?.Invoke();
         }
 
@@ -197,7 +200,25 @@ namespace Yu
         private void IsTest()
         {
             Instantiate(AssetManager.Instance.LoadAsset<GameObject>(ConfigManager.Instance.cfgUI["IngameDebugView"].uiPath)
-                , UIManager.Instance.GetUIRoot().Find("NormalLayer")).GetComponent<Canvas>().worldCamera=CameraManager.Instance.GetUICamera();
+                , UIManager.Instance.GetUIRoot().Find("NormalLayer")).GetComponent<Canvas>().worldCamera = CameraManager.Instance.GetUICamera();
+        }
+
+        /// <summary>
+        /// 暂停游戏
+        /// </summary>
+        public void OnUpdateCheckPause()
+        {
+            if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                var pauseCtrl = UIManager.Instance.GetCtrl<PauseCtrl>("PauseView");
+                if (pauseCtrl.GetIsOnPause()) //当前是暂停状态
+                {
+                    UIManager.Instance.CloseWindow("PauseView");
+                    return;
+                }
+
+                UIManager.Instance.OpenWindow("PauseView");
+            }
         }
 
         /// <summary>

@@ -7,12 +7,12 @@ public interface IFsmState
     /// <summary>
     /// 状态开始
     /// </summary>
-    void OnEnter();
+    void OnEnter(params object[] objs);
 
     /// <summary>
     /// 状态update
     /// </summary>
-    void OnUpdate();
+    void OnUpdate(params object[] objs);
 
     /// <summary>
     /// 状态退出

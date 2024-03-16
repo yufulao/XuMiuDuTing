@@ -17,6 +17,15 @@ namespace Yu
         [SerializeField] private CanvasGroup canvasGroupBlackMaskWithoutCommonElement;
         [SerializeField] private List<StandardUISubtitlePanel> allSubtitlePanelList=new List<StandardUISubtitlePanel>();
         [SerializeField] private Animator animatorFlash;
+
+        
+        /// <summary>
+        /// 打开暂停界面
+        /// </summary>
+        public void OpenPauseView()
+        {
+            UIManager.Instance.OpenWindow("PauseView");
+        }
         
         /// <summary>
         /// 进入下一个关卡步骤

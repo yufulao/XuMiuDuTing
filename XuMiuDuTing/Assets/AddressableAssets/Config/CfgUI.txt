@@ -1,7 +1,6 @@
 key#layer#sortOrder#uiPath#None#None#None
 key#所属层级#canvas的层级#预设路径#None#None#None
 string#string#int#string#None#None#None
-PauseView#TopLayer#100#Assets/AddressableAssets/UI/PauseView.prefab#None#None#None
 IngameDebugView#TopLayer#100#Assets/AddressableAssets/UI/IngameDebugView.prefab#None#None#None
 LoadingView#TopLayer#105#Assets/AddressableAssets/UI/LoadingView.prefab#None#None#None
 HomeView#NormalLayer#0#Assets/AddressableAssets/UI/HomeView.prefab#None#None#None
@@ -11,3 +10,4 @@ MainPlotSelectView#NormalLayer#2#Assets/AddressableAssets/UI/MainPlotSelectView.
 TeamEditView#NormalLayer#3#Assets/AddressableAssets/UI/TeamEditView.prefab#None#None#None
 CharacterSelectView#NormalLayer#4#Assets/AddressableAssets/UI/CharacterSelectView.prefab#None#None#None
 BattleMainView#NormalLayer#0#Assets/AddressableAssets/UI/BattleMainView.prefab#None#None#None
+PauseView#NormalLayer#99#Assets/AddressableAssets/UI/PauseView.prefab#None#None#None

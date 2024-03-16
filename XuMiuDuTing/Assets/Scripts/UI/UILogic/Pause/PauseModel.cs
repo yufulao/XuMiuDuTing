@@ -1,31 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class PauseModel
+namespace Yu
 {
-    private float _cacheTimeScale;
+    public class PauseModel
+    {
+        private float _cacheTimeScale;
+        private bool _isOnPause;
 
-    public void InitModel()
-    {
-        _cacheTimeScale = 1f;
-    }
-    
-    /// <summary>
-    /// 获取暂停之前的时间速率
-    /// </summary>
-    /// <returns></returns>
-    public float GetTimeScale()
-    {
-        return _cacheTimeScale;
-    }
-    
-    /// <summary>
-    /// 设置暂停之前的时间速率
-    /// </summary>
-    /// <param name="timeScale"></param>
-    public void SetTimeScale(float timeScale)
-    {
-        _cacheTimeScale=timeScale;
+        public void OnInit()
+        {
+            _cacheTimeScale = 1f;
+        }
+
+        /// <summary>
+        /// 设置是否是暂停状态
+        /// </summary>
+        /// <param name="isOnPause"></param>
+        public void SetOnPause(bool isOnPause)
+        {
+            _isOnPause = isOnPause;
+        }
+        
+        /// <summary>
+        /// 获取是否是暂停状态
+        /// </summary>
+        public bool GetOnPause()
+        {
+            return _isOnPause;
+        }
+
+        /// <summary>
+        /// 获取暂停之前的时间速率
+        /// </summary>
+        /// <returns></returns>
+        public float GetTimeScale()
+        {
+            return _cacheTimeScale;
+        }
+
+        /// <summary>
+        /// 设置暂停之前的时间速率
+        /// </summary>
+        /// <param name="timeScale"></param>
+        public void SetTimeScale(float timeScale)
+        {
+            _cacheTimeScale = timeScale;
+        }
     }
 }

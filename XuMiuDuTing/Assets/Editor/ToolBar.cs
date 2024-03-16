@@ -62,7 +62,10 @@ namespace Rabi
             {
                 EditorSceneManager.OpenScene("Assets/Scenes/StartUp.unity");
             }
-
+            if (GUILayout.Button(new GUIContent("战斗场景", EditorGUIUtility.FindTexture("PlayButton"))))
+            {
+                EditorSceneManager.OpenScene("Assets/AddressableAssets/Scene/Battle.unity");
+            }
             if (GUILayout.Button(new GUIContent("存档目录", EditorGUIUtility.FindTexture("PlayButton"))))
             {
                 OpenDirectory(Application.persistentDataPath);
