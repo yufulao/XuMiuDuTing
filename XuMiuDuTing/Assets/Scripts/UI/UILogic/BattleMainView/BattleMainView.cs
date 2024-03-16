@@ -85,7 +85,7 @@ namespace Yu
             
             describeItemBuff.ForceClose();
             describeItemSkill.ForceClose();
-            entityHudContainer = UIManager.Instance.GetUIRoot().Find("TopLayer").Find("EntityHudContainer");
+            entityHudContainer = UIManager.Instance.GetUIRoot().Find("NormalLayer").Find("EntityHudContainer");
         }
 
         /// <summary>

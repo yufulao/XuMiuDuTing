@@ -222,7 +222,7 @@ namespace Yu
                 }
             }
 
-            describeItemBuff.Open(string.Format(buffInfo.RowCfgBuff.description, buffValueString), buffItem.gameObject.transform.position + new Vector3(18f, 17f, 0f));
+            describeItemBuff.Open(string.Format(buffInfo.RowCfgBuff.description, buffValueString), buffItem.gameObject.transform.position);
             //强制更新contentSizeFilter，不然更新大小有延迟
             Utils.ForceUpdateContentSizeFilter(describeItemBuff.gameObject.transform);
         }
@@ -243,7 +243,7 @@ namespace Yu
         {
             var describeItemSkill = view.describeItemSkill;
             //通过将skillDescribe的缩放xy改为-1，然后字体的缩放xy改为-1，实现向左下角拓展
-            describeItemSkill.Open(skillItem.RowCfgSkill.description, skillItem.gameObject.transform.position + new Vector3(-17f, 32.4f, 0f));
+            describeItemSkill.Open(skillItem.RowCfgSkill.description, skillItem.gameObject.transform.position );
             //强制更新contentSizeFilter，不然更新大小有延迟
             Utils.ForceUpdateContentSizeFilter(describeItemSkill.gameObject.transform);
         }

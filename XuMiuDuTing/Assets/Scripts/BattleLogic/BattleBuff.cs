@@ -80,7 +80,8 @@ namespace Yu
         {
             var rowCfgBuff = buffInfo.RowCfgBuff;
             var infoItem = target.GetInfoItem();
-            var buffItem = Instantiate(AssetManager.Instance.LoadAsset<GameObject>(ConfigManager.Instance.cfgUICommon["BuffItem"].path)).GetComponent<BuffItem>();
+            var buffItem = Instantiate(AssetManager.Instance.LoadAsset<GameObject>(ConfigManager.Instance.cfgUICommon["BuffItem"].path)
+                , rowCfgBuff.isDebuff ? infoItem.buffsContainer.Find("Debuffs") : infoItem.buffsContainer.Find("Buffs")).GetComponent<BuffItem>();
             buffItem.Init(buffInfo);
             buffItem.SetBuffItemOnPointEnter(OpenBuffDescribe);
             buffItem.SetBuffItemOnPointExit(CloseBuffDescribe);
@@ -88,12 +89,10 @@ namespace Yu
 
             if (rowCfgBuff.isDebuff)
             {
-                buffItem.gameObject.transform.SetParent(infoItem.buffsContainer.Find("Debuffs"));
                 target.debuffItemList.Add(buffItem);
                 return;
             }
 
-            buffItem.gameObject.transform.SetParent(infoItem.buffsContainer.Find("Buffs"));
             target.buffItemList.Add(buffItem);
         }
 
@@ -245,7 +244,7 @@ namespace Yu
             for (var j = 0; j < bpDecrease; j++)
             {
                 var damageAddon = (int) (characterEntity.GetRowCfgCharacter().damage * 0.2f);
-                AddBuff("攻击力提升", characterEntity, characterEntity, 1,1, damageAddon);
+                AddBuff("攻击力提升", characterEntity, characterEntity, 1, 1, damageAddon);
             }
         }
 
@@ -268,6 +267,7 @@ namespace Yu
 
             entity.debuffItemList.Clear();
             entity.buffItemList.Clear();
+            _uiCtrl.CloseBuffDescribe();
         }
 
         /// <summary>
@@ -288,6 +288,7 @@ namespace Yu
                 {
                     continue;
                 }
+
                 cleanBuffInfoList.Add(buffInfo);
                 itemsToRemove.Add(buffItem);
             }
@@ -311,6 +312,8 @@ namespace Yu
             {
                 DoRemoveBuffEffect(buffInfo);
             }
+            
+            _uiCtrl.CloseBuffDescribe();
         }
 
         /// <summary>
@@ -386,7 +389,7 @@ namespace Yu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="buffInfo"></param>
-        private static BuffInfo ForceRemoveBuffNoCallback(BattleEntityCtrl entity, BuffInfo buffInfo)
+        private BuffInfo ForceRemoveBuffNoCallback(BattleEntityCtrl entity, BuffInfo buffInfo)
         {
             var buffItem = GetBuffObjByBuffInfo(entity, buffInfo);
             return ForceRemoveBuffNoCallback(entity, buffItem);
@@ -397,7 +400,7 @@ namespace Yu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="buffItem"></param>
-        private static BuffInfo ForceRemoveBuffNoCallback(BattleEntityCtrl entity, BuffItem buffItem)
+        private BuffInfo ForceRemoveBuffNoCallback(BattleEntityCtrl entity, BuffItem buffItem)
         {
             if (!buffItem)
             {
@@ -414,6 +417,7 @@ namespace Yu
 
             entity.buffItemList.Remove(buffItem);
             Destroy(buffItem.gameObject);
+            _uiCtrl.CloseBuffDescribe();
             return buffInfo;
         }
 

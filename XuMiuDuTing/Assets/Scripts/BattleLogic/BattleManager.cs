@@ -523,6 +523,7 @@ namespace Yu
                     commandInfo.caster.SetDefendAddon("Default", 0);
                 }
             }
+            
         }
 
         /// <summary>

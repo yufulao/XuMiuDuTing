@@ -9,5 +9,5 @@ ChapterSelectView#NormalLayer#1#Assets/AddressableAssets/UI/ChapterSelectView.pr
 MainPlotSelectView#NormalLayer#2#Assets/AddressableAssets/UI/MainPlotSelectView.prefab#None#None#None
 TeamEditView#NormalLayer#3#Assets/AddressableAssets/UI/TeamEditView.prefab#None#None#None
 CharacterSelectView#NormalLayer#4#Assets/AddressableAssets/UI/CharacterSelectView.prefab#None#None#None
-BattleMainView#NormalLayer#0#Assets/AddressableAssets/UI/BattleMainView.prefab#None#None#None
+BattleMainView#NormalLayer#10#Assets/AddressableAssets/UI/BattleMainView.prefab#None#None#None
 PauseView#NormalLayer#99#Assets/AddressableAssets/UI/PauseView.prefab#None#None#None
