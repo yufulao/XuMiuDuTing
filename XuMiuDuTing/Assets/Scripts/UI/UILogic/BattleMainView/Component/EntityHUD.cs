@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,12 @@ public class EntityHUD : MonoBehaviour
     public Slider sliderHp;
     public Toggle toggleSelect;
     public TextMeshProUGUI textHurtPoint;
+    public Transform textHurtPointOriginalTransform;
+
+    private void Start()
+    {
+        textHurtPointOriginalTransform.position = textHurtPoint.gameObject.transform.position;
+    }
 
     /// <summary>
     /// 设置selectToggle的回调

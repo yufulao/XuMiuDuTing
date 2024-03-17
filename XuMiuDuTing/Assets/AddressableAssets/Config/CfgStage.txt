@@ -3,7 +3,7 @@ key#关卡标题#关卡描述#对话A名#是否有战斗#对话B名#固定角色
 string#string#string#string#bool#string#List<string>#List<string>#List<string>
 0-1#0-1#0-1#PlotAName#False#None#None#EnemyA,EnemyA,,#0-2
 0-2#0-2#0-2#PlotAName#True#None#None#EnemyA,EnemyA,,#0-3
-0-3#0-3#0-3#None#True#None#None#EnemyA,EnemyA,,#0-4
+0-3#0-3#0-3#None#True#None#None#EnemyA,EnemyA,EnemyA,EnemyA#0-4
 0-4#0-4#0-4#PlotAName#True#PlotBName#None#EnemyA,EnemyA,,#0-5
 0-5#0-5#0-5#None#True#PlotBName#None#EnemyA,EnemyA,,#1-1
 1-1#1-1 龋齿#听，一颗坏牙悄然落地的声音，那是老人步入垂暮的路标，亦是一场死亡的开端。 本关卡包含有战斗#1-1#False#None#None#None#1-2

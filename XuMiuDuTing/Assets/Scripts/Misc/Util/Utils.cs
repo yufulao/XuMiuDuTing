@@ -123,7 +123,8 @@ public static class Utils
     /// </summary>
     /// <param name="graphic"></param>
     /// <param name="originalPosition"></param>
-    public static Sequence TextFly(Graphic graphic, Vector3 originalPosition)
+    /// <param name="yOffset"></param>
+    public static Sequence TextFly(Graphic graphic, Vector3 originalPosition,float yOffset)
     {
         Transform transform = graphic.transform;
         Color originalColor = graphic.color;
@@ -134,10 +135,10 @@ public static class Utils
         graphic.color = originalColor;
 
         Sequence textSequence = DOTween.Sequence().SetAutoKill(true);
-        textSequence.Append(transform.DOMoveY(transform.position.y + 50, 0.5f));
+        textSequence.Append(transform.DOMoveY(transform.position.y + yOffset, 0.5f));
         textSequence.Join(graphic.DOColor(new Color(originalColor.r, originalColor.g, originalColor.b, 1), 0.5f));
         textSequence.AppendInterval(0.5f);
-        textSequence.Append(transform.DOMoveY(transform.position.y + 50, 0.5f));
+        textSequence.Append(transform.DOMoveY(transform.position.y + yOffset, 0.5f));
         textSequence.Join(graphic.DOColor(new Color(originalColor.r, originalColor.g, originalColor.b, 0), 0.5f));
         return textSequence;
     }

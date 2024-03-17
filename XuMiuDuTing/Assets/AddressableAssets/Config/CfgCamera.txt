@@ -1,7 +1,7 @@
 key#position#rotation#fieldOfView
 key#坐标#rotation#视野
 string#List<float>#List<float>#float
-IdleCommand#1.42,1.53,-9.6#None#82.5
-IdleAnimation#-0.08,1.53,-9.6#None#82.5
-Enemy#-3.57,1.53,-9.6#None#60
-Character#3.72,1.53,-9.6#None#60
+IdleCommand#1.38,1.5,0#0,-3,0#40
+IdleAnimation#0,1.5,0#0,0,0#40
+Enemy#-4.2,1.5,1#0,4.3,0#30
+Character#4.2,1.5,1#0,-4.3,0#30

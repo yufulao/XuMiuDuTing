@@ -369,9 +369,10 @@ namespace Yu
             //    "伤害-防御=" + (int)(Mathf.Clamp((damagePoint - entityGet.defend), 0f, 1000000f)) + "\n" +
             //    "伤害rate*受伤rate=" + entityGet.hurtRate * caster.GetDamage()Rate + "\n" +
             //    "总伤害=" + (int)(Mathf.Clamp((damagePoint - entityGet.defend), 0f, 1000000f) * entityGet.hurtRate * caster.GetDamage()Rate));
-            var textHurtPoint = target.GetEntityHud().textHurtPoint;
+            var entityHud = target.GetEntityHud();
+            var textHurtPoint = entityHud.textHurtPoint;
             textHurtPoint.text = hurtPoint.ToString();
-            Utils.TextFly(textHurtPoint, textHurtPoint.gameObject.transform.position);
+            Utils.TextFly(textHurtPoint, entityHud.textHurtPointOriginalTransform.position,10);
 
             //暂时设定成挨打会加10点MP==================================================================================
             target.UpdateMp(10);
@@ -422,18 +423,17 @@ namespace Yu
         /// <summary>
         /// entity死亡
         /// </summary>
-        /// <param name="entityEntity"></param>
+        /// <param name="entity"></param>
         /// <returns></returns>
-        private IEnumerator EntityDieIEnumerator(BattleEntityCtrl entityEntity)
+        private IEnumerator EntityDieIEnumerator(BattleEntityCtrl entity)
         {
-            entityEntity.SetDie(true);
-            entityEntity.SetHp(0);
-            entityEntity.GetEntityHud().gameObject.SetActive(false);
-            entityEntity.animatorEntity.Play("die");
-
-            yield return new WaitForSeconds(1f);
-            entityEntity.gameObject.SetActive(false);
-            if (entityEntity.isEnemy)
+            entity.SetDie(true);
+            entity.SetHp(0);
+            yield return Utils.PlayAnimation(entity.animatorEntity, "die");
+            yield return new WaitForSeconds(0.5f);
+            entity.GetEntityHud().gameObject.SetActive(false);
+            entity.gameObject.SetActive(false);
+            if (entity.isEnemy)
             {
                 _model.enemyNumber--;
                 if (_model.enemyNumber == 0)

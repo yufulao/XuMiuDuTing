@@ -147,7 +147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -40}
   m_SizeDelta: {x: 149.1, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &210105858144208005
@@ -480,6 +480,7 @@ RectTransform:
   - {fileID: 7577233279106122234}
   - {fileID: 5888982844357853513}
   - {fileID: 5075783737888558677}
+  - {fileID: 5851780305866593203}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -511,6 +512,7 @@ MonoBehaviour:
   sliderHp: {fileID: 3089667109499063387}
   toggleSelect: {fileID: 3476255226708482128}
   textHurtPoint: {fileID: 8010105538304121050}
+  textHurtPointOriginalTransform: {fileID: 5851780305866593203}
 --- !u!1 &5494779152833962719
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +588,41 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6053740587189064062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5851780305866593203}
+  m_Layer: 5
+  m_Name: TextHurtPointOriginalTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5851780305866593203
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6053740587189064062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5171711115964138430}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -40}
+  m_SizeDelta: {x: 149.1, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7402222021977638164
 GameObject:
   m_ObjectHideFlags: 0
