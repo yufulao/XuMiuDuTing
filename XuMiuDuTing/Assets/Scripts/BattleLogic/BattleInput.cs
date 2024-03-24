@@ -768,5 +768,6 @@ namespace Yu
                 entity.SetOutlineActive(false);
             }
         }
+        
     }
 }

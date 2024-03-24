@@ -45,21 +45,10 @@ namespace Yu
                 IsTest();
             }
 
+            VersionControl();//版本检查
+
             BGMManager.Instance.ReloadVolume();
             SFXManager.Instance.ReloadVolume();
-            //测试
-            //StartCoroutine(BgmManager.Instance.PlayBgmFadeDelay("TestBgm",0f, 0f, 0f));
-            //StartCoroutine(SfxManager.Instance.PlaySfx("TestSfx",1f));
-            //EventManager.Instance.AddListener(EventName.Click,()=>{Debug.Log("Click");});
-            //Debug.Log(ConfigManager.Instance.cfgBgm["TestBgm"].key);
-            // StartCoroutine(SceneManager.Instance.ChangeSceneAsync("StageTest",(sceneInstance)=>
-            // {
-            //     BattleManager.Instance.OnInit();
-            //     BattleManager.Instance.EnterStageScene("StageTest");
-            // }));
-            //GameObject obj = CommandManager.Instance.CreatWaitingObj();
-            //SaveManager.SetFloat("TestFloat",0.5f);
-            //Debug.Log(SaveManager.GetFloat("TestFloat", 0.1f));
             ReturnToTitle(0f);
         }
 
@@ -153,11 +142,11 @@ namespace Yu
         /// <returns></returns>
         private IEnumerator ReturnToTitleIEnumerator(float bgmFadeOutTime, UnityAction callback)
         {
-            UIManager.Instance.GetCtrlWithCreate<BattleMainCtrl>("BattleMainView")?.ClearAllEntityHud();//关闭所有hud，因为HUD独立
+            DialogueManager.instance.StopAllConversations();
+            UIManager.Instance.GetCtrlWithCreate<BattleMainCtrl>("BattleMainView")?.ClearAllEntityHud(); //关闭所有hud，因为HUD独立
             UIManager.Instance.CloseAllLayerWindows("NormalLayer");
             UIManager.Instance.OpenWindow("LoadingView");
             yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", bgmFadeOutTime, 0f, 0.5f, 1f);
-            DialogueManager.instance.StopAllConversations();
             SetTimeScale(1f);
             CameraManager.Instance.ResetObjCamera();
             GC.Collect();
@@ -233,6 +222,26 @@ namespace Yu
             //yield return SceneManager.Instance.ChangeSceneAsync(rowCfgStage.scenePath); //切换场景
             GC.Collect(); //清gc
             UIManager.Instance.CloseWindow("LoadingView"); //关闭加载界面
+        }
+
+        /// <summary>
+        /// 游戏版本控制
+        /// </summary>
+        private void VersionControl()
+        {
+            var lastVersion = SaveManager.GetString("Version", "0.0.1");
+            var nowVersion = Application.version;
+            SaveManager.SetString("Version", nowVersion);
+            if (lastVersion.Equals(nowVersion))
+            {
+                return;
+            }
+
+            SaveManager.DeleteKey("StageName");
+            SaveManager.DeleteKey("PlotNameInMainPlot");
+            SaveManager.DeleteKey("StageData");
+            SaveManager.DeleteKey("TeamData");
+            SaveManager.DeleteKey("SkillData");
         }
 
         private void Update()

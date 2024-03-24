@@ -1,8 +1,11 @@
 key#path#None#None#None
 key#图片路径#None#None#None
 string#string#None#None#None
-背景图片 (23)#Assets/AddressableAssets/Sprite/Story/背景美术资源/背景图片 (23).png#None#None#None
-背景图片 (20)#Assets/AddressableAssets/Sprite/Story/背景美术资源/背景图片 (20).png#None#None#None
-IMG_4640#Assets/AddressableAssets/Sprite/Story/背景美术资源/IMG_4640.PNG#None#None#None
-IMG_1044#Assets/AddressableAssets/Sprite/Story/背景美术资源/IMG_1044.PNG#None#None#None
-街头商店#Assets/AddressableAssets/Sprite/Story/背景美术资源/街头商店.png#None#None#None
+背景图片 (23)#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/背景图片 (23).png#None#None#None
+背景图片 (20)#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/背景图片 (20).png#None#None#None
+IMG_4640#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/IMG_4640.PNG#None#None#None
+IMG_1044#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/IMG_1044.PNG#None#None#None
+街头商店#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/街头商店.png#None#None#None
+背景图片 (21)#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/背景图片 (21).png#None#None#None
+CW56Q%[UM5`LB(FTC{6%T0Q#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/CW56Q%[UM5`LB(FTC{6%T0Q.png#None#None#None
+IMG_4642#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/IMG_4642.PNG#None#None#None

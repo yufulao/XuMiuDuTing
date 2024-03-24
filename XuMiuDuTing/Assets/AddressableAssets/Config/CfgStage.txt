@@ -1,13 +1,11 @@
-key#stageName#stageDesc#conversationAName#isBattle#conversationBName#fixCharacterTeam#enemyTeam#unlockStageList
-key#关卡标题#关卡描述#对话A名#是否有战斗#对话B名#固定角色队伍#敌人列表#通关后解锁的关卡列表
-string#string#string#string#bool#string#List<string>#List<string>#List<string>
-0-1#0-1#0-1#PlotAName#False#None#None#EnemyA,EnemyA,,#0-2
-0-2#0-2#0-2#PlotAName#True#None#None#EnemyA,EnemyA,,#0-3
-0-3#0-3#0-3#None#True#None#None#EnemyA,EnemyA,EnemyA,EnemyA#0-4
-0-4#0-4#0-4#PlotAName#True#PlotBName#None#EnemyA,EnemyA,,#0-5
-0-5#0-5#0-5#None#True#PlotBName#None#EnemyA,EnemyA,,#1-1
-1-1#1-1 龋齿#听，一颗坏牙悄然落地的声音，那是老人步入垂暮的路标，亦是一场死亡的开端。 本关卡包含有战斗#1-1#False#None#None#None#1-2
-1-2#0-2#0-2#None#True#None#None#EnemyA,EnemyA,,#1-3
-1-3#0-3#0-3#None#True#None#None#EnemyA,EnemyA,,#1-4
-1-4#0-4#0-4#None#True#None#None#EnemyA,EnemyA,,#1-5
-1-5#0-5#0-5#None#True#None#None#EnemyA,EnemyA,,#0-1
+key#stageName#stageDesc#isBattle#conversationAName#conversationBName#fixCharacterTeam#enemyTeam#unlockStageList
+key#关卡标题#关卡描述#是否有战斗#对话A名#对话B名#固定角色队伍#敌人列表#通关后解锁的关卡列表
+string#string#string#bool#string#string#List<string>#List<string>#List<string>
+0-0#都市法则#*新手教程\n“嘿亲爱的,在旅途开始之前，你应该先学习一下都市的生存法则。#True#None#None#None#,EnemyA,,#1-0
+1-0#龋齿#听，那是龋齿落地的声音\n走向衰败、无可挽回，一场死亡的新生。#False#1-0#None#None#None#1-1
+1-1#道德困境#雷欧纳鲁德有一点想不通，为什么被抢外卖的总是自己？#False#1-1#None#None#None#1-2
+1-2#所谓姓名#我们的维多利亚，确实在严刑逼供上还是个可爱的新手。#False#1-2#None#None#None#1-3
+1-3#情感熵#没有什么能真正熄灭仇恨的火焰，他只是忘却了仇恨的理由。#False#1-3#None#None#None#1-4
+1-4#人去楼空#人并不能在幸福一去不返的瞬间立刻意识到这个事实/n正如他推开店面的大门的那一刻才注意到这点。#False#1-4#None#None#None#1-5
+1-5#黑路撒冷#假如你想在这座奇妙的交界都市活得更久一点，请远离夜路、小巷、和怪人云集的地铁。#False#1-5#None#None#None#1-6
+1-6#童年的终结#——也是他旅途的开始……未来是属于你的，维克多。#True#1-6A#1-6B#None#龋齿,龋齿,龋齿,#None

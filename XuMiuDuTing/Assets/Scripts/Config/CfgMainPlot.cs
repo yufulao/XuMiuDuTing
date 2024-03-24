@@ -17,9 +17,11 @@ namespace Rabi
     public class RowCfgMainPlot
     {
         public string key; //key
-        public string plotTitle; //故事标题图片路径
+        public string plotBGM; //故事bgm
         public string plotBG; //故事背景图片路径
         public List<string> stageList; //关卡列表
+        public string stageFramePath; //stageItemList预设路径
+        public bool vfxFogActive; //右下角是否开启迷雾
     }
 
     public class CfgMainPlot
@@ -72,7 +74,7 @@ namespace Rabi
         private RowCfgMainPlot ParseRow(string[] col)
         {
             //列越界
-            if (col.Length < 4)
+            if (col.Length < 6)
             {
                 Debug.LogError($"配置表字段行数越界:{GetType()}");
                 return null;
@@ -81,9 +83,11 @@ namespace Rabi
             var data = new RowCfgMainPlot();
             var rowHelper = new RowHelper(col);
             data.key = CsvUtility.ToString(rowHelper.ReadNextCol()); //key
-            data.plotTitle = CsvUtility.ToString(rowHelper.ReadNextCol()); //故事标题图片路径
+            data.plotBGM = CsvUtility.ToString(rowHelper.ReadNextCol()); //故事bgm
             data.plotBG = CsvUtility.ToString(rowHelper.ReadNextCol()); //故事背景图片路径
             data.stageList = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //关卡列表
+            data.stageFramePath = CsvUtility.ToString(rowHelper.ReadNextCol()); //stageItemList预设路径
+            data.vfxFogActive = CsvUtility.ToBool(rowHelper.ReadNextCol()); //右下角是否开启迷雾
             return data;
         }
     }

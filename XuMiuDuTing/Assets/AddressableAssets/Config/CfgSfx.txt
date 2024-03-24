@@ -14,3 +14,7 @@ error不可用#Se#Assets/AddressableAssets/SFX/系统音效/error不可用.wav#1
 跑步#Se#Assets/AddressableAssets/SFX/跑步.wav#1#False#False
 摔倒#Se#Assets/AddressableAssets/SFX/摔倒.wav#1#False#False
 跑步_循环#Se#Assets/AddressableAssets/SFX/循环音效/跑步_循环.wav#1#False#True
+401277__inspectorj__rain-moderate-a#Se#Assets/AddressableAssets/SFX/循环音效/401277__inspectorj__rain-moderate-a.wav#1#False#True
+响指#Se#Assets/AddressableAssets/SFX/响指.mp3#1#False#False
+进门铃铛#Se#Assets/AddressableAssets/SFX/进门铃铛.wav#1#False#False
+吞噬#Se#Assets/AddressableAssets/SFX/吞噬.wav#1#False#False

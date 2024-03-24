@@ -6,6 +6,22 @@ namespace Yu
 {
     public class SaveManager
     {
+        /// <summary>
+        /// 清除所有数据
+        /// </summary>
+        public static void DeleteFile()
+        {
+            ES3.DeleteFile();
+        }
+        
+        /// <summary>
+        /// 清除数据项
+        /// </summary>
+        public static void DeleteKey(string key)
+        {
+            ES3.DeleteKey(key);
+        }
+        
         public static void SetInt(string key, int i)
         {
             ES3.Save(key, i);
@@ -50,7 +66,7 @@ namespace Yu
 
             return ES3.LoadString(key, defaultValue, ES3Settings.defaultSettings);
         }
-        
+
         public static void SetT<T>(string key, T t)
         {
             ES3.Save<T>(key, t);
