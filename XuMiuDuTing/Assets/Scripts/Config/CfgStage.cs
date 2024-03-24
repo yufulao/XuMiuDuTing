@@ -19,8 +19,8 @@ namespace Rabi
         public string key; //key
         public string stageName; //关卡标题
         public string stageDesc; //关卡描述
-        public string conversationAName; //对话A名
         public bool isBattle; //是否有战斗
+        public string conversationAName; //对话A名
         public string conversationBName; //对话B名
         public List<string> fixCharacterTeam; //固定角色队伍
         public List<string> enemyTeam; //敌人列表
@@ -88,8 +88,8 @@ namespace Rabi
             data.key = CsvUtility.ToString(rowHelper.ReadNextCol()); //key
             data.stageName = CsvUtility.ToString(rowHelper.ReadNextCol()); //关卡标题
             data.stageDesc = CsvUtility.ToString(rowHelper.ReadNextCol()); //关卡描述
-            data.conversationAName = CsvUtility.ToString(rowHelper.ReadNextCol()); //对话A名
             data.isBattle = CsvUtility.ToBool(rowHelper.ReadNextCol()); //是否有战斗
+            data.conversationAName = CsvUtility.ToString(rowHelper.ReadNextCol()); //对话A名
             data.conversationBName = CsvUtility.ToString(rowHelper.ReadNextCol()); //对话B名
             data.fixCharacterTeam = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //固定角色队伍
             data.enemyTeam = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //敌人列表

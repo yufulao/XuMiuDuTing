@@ -1,2 +1,0 @@
-默认的主线故事button和自由探索button遮挡关系：主线在上自由在下（也可以理解成主线button的layer此时为0，自由button的layer为-1）
-被选中的button的layer会上升，遮挡住其他的button

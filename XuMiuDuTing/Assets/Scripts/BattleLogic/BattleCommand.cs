@@ -353,13 +353,11 @@ namespace Yu
         /// </summary>
         private void ExecuteCommandList()
         {
-            StartCoroutine(ExecuteCommandLisIEnumerator());
+            StartCoroutine(ExecuteCommandListIEnumerator());
         }
 
-        private IEnumerator ExecuteCommandLisIEnumerator()
+        private IEnumerator ExecuteCommandListIEnumerator()
         {
-            yield return new WaitForSeconds(0.7f);
-
             if (!_inCommandExecuting)
             {
                 _inCommandExecuting = true;
@@ -373,17 +371,17 @@ namespace Yu
             }
 
             //不能执行指令的情况
-            var entity = _sortCommandInfoList[0].caster;
-            if (CheckBuff(entity, "眩晕").Count > 0)
+            var caster = _sortCommandInfoList[0].caster;
+            if (caster.IsDie()||CheckBuff(caster, "眩晕").Count > 0)
             {
-                Debug.Log(entity.GetName() + "因为眩晕，放弃执行指令" + _allCommandList[0]);
+                Debug.Log(caster.GetName() + "因为死亡或眩晕，放弃执行指令" + _allCommandList[0]);
                 SkipCommand();
                 yield break;
             }
 
-            if (!entity.isEnemy)
+            if (!caster.isEnemy)
             {
-                var characterEntity = _model.GetCharacterEntityByBaseEntity(entity);
+                var characterEntity = _model.GetCharacterEntityByBaseEntity(caster);
 
                 //如果bp不够就跳过
                 if (characterEntity.GetBp() - _sortCommandInfoList[0].bpNeed < -4)
@@ -395,15 +393,15 @@ namespace Yu
             }
 
             //执行指令
-            Debug.Log(entity.GetName() + "执行指令" + _allCommandList[0]);
+            Debug.Log(caster.GetName() + "执行指令" + _allCommandList[0]);
             StartCoroutine(_allCommandList[0]);
             _allCommandList.RemoveAt(0);
-            entity = _sortCommandInfoList[0].caster;
-            if ((_sortCommandInfoList.Count == 1) || (entity.GetName() != _sortCommandInfoList[1].caster.GetName()))
+            caster = _sortCommandInfoList[0].caster;
+            if ((_sortCommandInfoList.Count == 1) || (caster.GetName() != _sortCommandInfoList[1].caster.GetName()))
             {
-                if (!entity.IsDie())
+                if (!caster.IsDie())
                 {
-                    entity.animatorEntity.SetBool("ready", false);
+                    caster.animatorEntity.SetBool("ready", false);
                 }
             }
 

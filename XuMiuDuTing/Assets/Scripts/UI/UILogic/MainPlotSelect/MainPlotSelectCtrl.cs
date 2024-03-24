@@ -19,11 +19,10 @@ namespace Yu
         {
             _model = new MainPlotSelectModel();
             _view = GetComponent<MainPlotSelectView>();
+            _view.Init();
             //默认开放第一关
-            GameManager.Instance.UnlockStage(ConfigManager.Instance.cfgMainPlot[ConfigManager.Instance.cfgChapter[DefChapterType.DMainPlot].plotList[1]].stageList[0]);
             GameManager.Instance.UnlockStage(ConfigManager.Instance.cfgMainPlot[ConfigManager.Instance.cfgChapter[DefChapterType.DMainPlot].plotList[0]].stageList[0]);
             _model.OnInit();
-            InitAllStageItem();
         }
 
         public override void OpenRoot(params object[] param)
@@ -35,6 +34,8 @@ namespace Yu
 
         public override void CloseRoot()
         {
+            StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", 0.2f, 0f, 0f, 1f));
+            _view.SetVFXFogActive(false);
             _view.CloseWindow();
         }
 
@@ -44,20 +45,6 @@ namespace Yu
             _view.btnEnter.onClick.AddListener(BtnOnClickEnter);
             _view.btnNextPlot.onClick.AddListener(BtnOnClickNextPlot);
             _view.btnPrePlot.onClick.AddListener(BtnOnClickPrePlot);
-        }
-
-        /// <summary>
-        /// 设置关卡是否通关
-        /// </summary>
-        /// <param name="stageNameT"></param>
-        /// <param name="isUnlock"></param>
-        /// <param name="isPass"></param>
-        private void SetStageData(string stageNameT, bool isUnlock, bool isPass)
-        {
-            var stageDataEntry = _model.GetStageDataEntry(stageNameT);
-            stageDataEntry.isUnlock = isUnlock;
-            stageDataEntry.isPass = isPass;
-            _model.SaveStageData();
         }
 
         /// <summary>
@@ -136,19 +123,56 @@ namespace Yu
                 rowCfgStage = ConfigManager.Instance.cfgStage[stageName];
             }
 
-            _view.RefreshAll(rowCfgMainPlot, rowCfgStage);
+            GameManager.Instance.StartCoroutine(
+                BGMManager.Instance.PlayBgmFadeDelay(rowCfgMainPlot.plotBGM, 0.2f, 0f, 0f, 1f));
+            LoadStageFrame(rowCfgMainPlot);
             UpdateAllStageItem();
+            _view.RefreshAll(rowCfgMainPlot, rowCfgStage);
         }
 
         /// <summary>
-        /// 初始化所有StageItem
+        /// 加载stageItem预设
         /// </summary>
-        private void InitAllStageItem()
+        /// <param name="rowCfgMainPlot"></param>
+        private void LoadStageFrame(RowCfgMainPlot rowCfgMainPlot)
         {
-            foreach (var stageItem in _view.stageItemList)
+            var stageFrameDic = _model.GetStageFrameDic();
+            var stageItemDic = _model.GetStageItemDic();
+            var stageFrameContainer = _view.stageFrameContainer;
+            var plotName = rowCfgMainPlot.key;
+            
+            for (var i = 0; i < stageFrameContainer.childCount; i++)
             {
-                stageItem.SetToggleSelectOnClick(OnSelectStageItemClick);
+                stageFrameContainer.GetChild(i).gameObject.SetActive(false);
             }
+
+            if (stageFrameDic.ContainsKey(plotName))
+            {
+                stageFrameDic[plotName].SetActive(true);
+                _model.SetCurrentStageItemList(stageItemDic[plotName]);
+                return;
+            }
+
+            var stageFrame = GameObject.Instantiate(
+                AssetManager.Instance.LoadAsset<GameObject>(rowCfgMainPlot.stageFramePath), stageFrameContainer);
+            stageFrameDic.Add(plotName, stageFrame);
+            var stageItemListNew = new List<StageItem>();
+            var stageFrameTransform = stageFrame.transform;
+            for (var i = 0; i < stageFrameTransform.childCount; i++)
+            {
+                var stageItem = stageFrameTransform.GetChild(i).GetComponent<StageItem>();
+                stageItem.SetToggleSelectOnClick(OnSelectStageItemClick); //注册点击事件
+                stageItemListNew.Add(stageItem);
+            }
+
+            _model.SetCurrentStageItemList(stageItemListNew);
+            if (stageItemDic.ContainsKey(plotName))
+            {
+                stageItemDic[plotName] = stageItemListNew;
+                return;
+            }
+
+            stageItemDic.Add(plotName, stageItemListNew);
         }
 
         /// <summary>
@@ -158,14 +182,15 @@ namespace Yu
         {
             var currentStageName = _model.GetCurrentStageName();
             var stageNameList = _model.GetStageNameList();
+            var stageItemList = _model.GetCurrentStageItemList();
             for (var i = 0; i < stageNameList.Count; i++)
             {
-                _view.stageItemList[i].Refresh(_model.GetStageDataEntry(stageNameList[i]), !string.IsNullOrEmpty(currentStageName) && currentStageName.Equals(stageNameList[i]));
+                stageItemList[i].Refresh(_model.GetStageDataEntry(stageNameList[i]), !string.IsNullOrEmpty(currentStageName) && currentStageName.Equals(stageNameList[i]));
             }
 
-            for (var i = stageNameList.Count; i < _view.stageItemList.Count; i++)
+            for (var i = stageNameList.Count; i < stageItemList.Count; i++)
             {
-                _view.stageItemList[i].gameObject.SetActive(false);
+                stageItemList[i].gameObject.SetActive(false);
             }
         }
 

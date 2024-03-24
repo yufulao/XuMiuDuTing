@@ -36,11 +36,11 @@ namespace Yu
         /// </summary>
         /// <param name="teammateIndex"></param>
         /// <param name="replaceCharacterName"></param>
-        public void ChangeTeammate(int teammateIndex,string replaceCharacterName)
+        public void ChangeTeammate(int teammateIndex, string replaceCharacterName)
         {
             _teamData.teamArray[teammateIndex] = replaceCharacterName;
         }
-        
+
         /// <summary>
         /// 移除队员
         /// </summary>
@@ -66,6 +66,30 @@ namespace Yu
         public string[] GetTeamArray()
         {
             return _teamData.teamArray;
+        }
+
+        /// <summary>
+        /// 检测是否一个都没上场
+        /// </summary>
+        /// <returns></returns>
+        public bool IsTeamArrayEmpty()
+        {
+            if (_teamData?.teamArray == null)
+            {
+                return true;
+            }
+
+            foreach (var characterName in _teamData.teamArray)
+            {
+                if (string.IsNullOrEmpty(characterName))
+                {
+                    continue;
+                }
+
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

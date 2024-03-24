@@ -144,6 +144,7 @@ namespace Yu
         /// </summary>
         private void EnemySetCommandAI()
         {
+            Debug.Log("a");
             var liveCharacters = new List<CharacterEntityCtrl>();
             var currentEnemyEntity = _model.GetCurrentEnemyEntity();
             foreach (var characterEntityCtrl in _model.allCharacterEntities)

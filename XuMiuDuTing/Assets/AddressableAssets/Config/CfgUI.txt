@@ -5,9 +5,9 @@ IngameDebugView#TopLayer#100#Assets/AddressableAssets/UI/IngameDebugView.prefab#
 LoadingView#TopLayer#105#Assets/AddressableAssets/UI/LoadingView.prefab#None#None#None
 HomeView#NormalLayer#0#Assets/AddressableAssets/UI/HomeView.prefab#None#None#None
 SettingView#TopLayer#101#Assets/AddressableAssets/UI/SettingView.prefab#None#None#None
-ChapterSelectView#NormalLayer#1#Assets/AddressableAssets/UI/ChapterSelectView.prefab#None#None#None
-MainPlotSelectView#NormalLayer#2#Assets/AddressableAssets/UI/MainPlotSelectView.prefab#None#None#None
-TeamEditView#NormalLayer#3#Assets/AddressableAssets/UI/TeamEditView.prefab#None#None#None
-CharacterSelectView#NormalLayer#4#Assets/AddressableAssets/UI/CharacterSelectView.prefab#None#None#None
-BattleMainView#NormalLayer#10#Assets/AddressableAssets/UI/BattleMainView.prefab#None#None#None
+ChapterSelectView#NormalLayer#5#Assets/AddressableAssets/UI/ChapterSelectView.prefab#None#None#None
+MainPlotSelectView#NormalLayer#10#Assets/AddressableAssets/UI/MainPlotSelectView.prefab#None#None#None
+TeamEditView#NormalLayer#15#Assets/AddressableAssets/UI/TeamEditView.prefab#None#None#None
+CharacterSelectView#NormalLayer#20#Assets/AddressableAssets/UI/CharacterSelectView.prefab#None#None#None
+BattleMainView#NormalLayer#25#Assets/AddressableAssets/UI/BattleMainView.prefab#None#None#None
 PauseView#NormalLayer#99#Assets/AddressableAssets/UI/PauseView.prefab#None#None#None

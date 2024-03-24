@@ -13,6 +13,9 @@ namespace Yu
         private List<string> _plotNameList = new List<string>();
         private List<string> _stageNameList = new List<string>();
         private StageData _stageData;
+        private List<StageItem> _currentStageItemList = new List<StageItem>();
+        private readonly Dictionary<string, GameObject> _stageFrameDic = new Dictionary<string, GameObject>();
+        private readonly Dictionary<string, List<StageItem>> _stageItemDic = new Dictionary<string, List<StageItem>>();
 
         public void OnInit()
         {
@@ -68,15 +71,6 @@ namespace Yu
         }
 
         /// <summary>
-        /// 获取当前选择的关卡名字
-        /// </summary>
-        /// <returns></returns>
-        public string GetCurrentStageName()
-        {
-            return _currentStageName;
-        }
-
-        /// <summary>
         /// 获取stageDataEntry
         /// </summary>
         /// <param name="stageNameT"></param>
@@ -100,6 +94,42 @@ namespace Yu
         }
 
         /// <summary>
+        /// 获取StageFrameDic
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, GameObject> GetStageFrameDic()
+        {
+            return _stageFrameDic;
+        }
+        
+        /// <summary>
+        /// 获取StageItemDic
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, List<StageItem>> GetStageItemDic()
+        {
+            return _stageItemDic;
+        }
+
+        /// <summary>
+        /// 获取当前的stageItem列表
+        /// </summary>
+        /// <returns></returns>
+        public List<StageItem> GetCurrentStageItemList()
+        {
+            return _currentStageItemList;
+        }
+        
+        /// <summary>
+        /// 设置当前的stageItem列表
+        /// </summary>
+        /// <returns></returns>
+        public void SetCurrentStageItemList(List<StageItem> stageItemList)
+        {
+            _currentStageItemList = stageItemList;
+        }
+
+        /// <summary>
         /// 判断是不是直接就可以通关
         /// </summary>
         public void CheckPassStageOfNoBattle()
@@ -112,20 +142,21 @@ namespace Yu
         }
 
         /// <summary>
-        /// 保存StageData
-        /// </summary>
-        public void SaveStageData()
-        {
-            SaveManager.SetT<StageData>("StageData", _stageData);
-        }
-
-        /// <summary>
         /// 获取StageNameList
         /// </summary>
         /// <returns></returns>
         public List<string> GetStageNameList()
         {
             return _stageNameList;
+        }
+        
+        /// <summary>
+        /// 获取当前选择的关卡名字
+        /// </summary>
+        /// <returns></returns>
+        public string GetCurrentStageName()
+        {
+            return _currentStageName;
         }
 
         /// <summary>

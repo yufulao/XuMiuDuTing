@@ -138,6 +138,10 @@ namespace Yu
         /// </summary>
         private void BtnOnClickEnter()
         {
+            if (_model.IsTeamArrayEmpty())
+            {
+                return;
+            }
             _model.SaveTeamData();
             ProcedureManager.Instance.EnterNextStageProcedure();
         }
