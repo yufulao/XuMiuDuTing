@@ -9,3 +9,9 @@ string#string#None#None#None
 第零章背景音乐#Assets/AddressableAssets/BGM/系统背景音乐/第零章背景音乐.MP3#None#None#None
 第一章背景音乐#Assets/AddressableAssets/BGM/系统背景音乐/第一章背景音乐.mp3#None#None#None
 WHITE BEYOND (白い闇の隣)#Assets/AddressableAssets/BGM/系统背景音乐/WHITE BEYOND (白い闇の隣).mp3#None#None#None
+Franz Liszt - 爱之梦#Assets/AddressableAssets/BGM/系统背景音乐/Franz Liszt - 爱之梦.mp3#None#None#None
+Keep On The Sunny Side#Assets/AddressableAssets/BGM/系统背景音乐/Keep On The Sunny Side.mp3#None#None#None
+Toy Blues#Assets/AddressableAssets/BGM/系统背景音乐/Toy Blues.mp3#None#None#None
+A SPROUT#Assets/AddressableAssets/BGM/系统背景音乐/A SPROUT.mp3#None#None#None
+Epigraph#Assets/AddressableAssets/BGM/系统背景音乐/Epigraph.mp3#None#None#None
+EVER SO TENDERLY#Assets/AddressableAssets/BGM/系统背景音乐/EVER SO TENDERLY.mp3#None#None#None

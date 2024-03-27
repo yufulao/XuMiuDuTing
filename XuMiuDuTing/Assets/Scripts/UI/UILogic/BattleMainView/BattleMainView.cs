@@ -112,10 +112,12 @@ namespace Yu
                 if (characterEntity.IsDie())
                 {
                     infoItem.RefreshOnDie();
+                    characterEntity.RefreshEntityHud();
                     continue;
                 }
 
                 infoItem.RefreshOnNotDie(characterEntity.GetHp(), characterEntity.GetMp(), characterEntity.GetBp());
+                characterEntity.RefreshEntityHud();
             }
 
             foreach (var enemyEntity in allEnemyEntities)
@@ -124,10 +126,12 @@ namespace Yu
                 if (enemyEntity.IsDie())
                 {
                     infoItem.RefreshOnDie();
+                    enemyEntity.RefreshEntityHud();
                     continue;
                 }
 
                 infoItem.RefreshOnNotDie(enemyEntity.GetHp(),0,0);
+                enemyEntity.RefreshEntityHud();
             }
         }
     }

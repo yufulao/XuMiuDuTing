@@ -6377,6 +6377,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1653904454}
+  - {fileID: 1187563598}
+  - {fileID: 2052015468}
   - {fileID: 639824352}
   - {fileID: 1348652322}
   - {fileID: 165844181}
@@ -6599,6 +6601,212 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329960281}
   m_CullTransparentMesh: 0
+--- !u!1 &352812728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 352812735}
+  - component: {fileID: 352812734}
+  - component: {fileID: 352812733}
+  - component: {fileID: 352812732}
+  - component: {fileID: 352812731}
+  - component: {fileID: 352812730}
+  - component: {fileID: 352812729}
+  m_Layer: 5
+  m_Name: "PortraitName\u5510\u767D"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &352812729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352812728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "\u7EF4\u514B\u591A"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 2aba384df68913d4884cfb8720b17a42, type: 2}
+  m_sharedMaterial: {fileID: 450687507026754247, guid: 2aba384df68913d4884cfb8720b17a42, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 40
+  m_fontSizeBase: 40
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 0
+  m_fontSizeMax: 0
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!95 &352812730
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352812728}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 67aeba396f5949542bb36e16d083e803, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!225 &352812731
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352812728}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &352812732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352812728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: 120
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
+--- !u!114 &352812733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352812728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!222 &352812734
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352812728}
+  m_CullTransparentMesh: 0
+--- !u!224 &352812735
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352812728}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 784637397}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -707.2999, y: -96.9}
+  m_SizeDelta: {x: 240.9302, y: 84.284}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &354462691
 GameObject:
   m_ObjectHideFlags: 0
@@ -6699,6 +6907,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354462691}
   m_CullTransparentMesh: 0
+--- !u!1 &361260283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 361260284}
+  - component: {fileID: 361260285}
+  m_Layer: 0
+  m_Name: "\u7EF4\u57FA_\u5C45\u4E2D"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &361260284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361260283}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1578904129}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &361260285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361260283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64578247383140469c45370654a984a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actor: "\u7EF4\u57FA"
+  persistentDataName: 
+  portrait: {fileID: 0}
+  spritePortrait: {fileID: 0}
+  barkUISettings:
+    barkUI: {fileID: 0}
+    barkUIOffset: {x: 0, y: 2, z: 0}
+  standardDialogueUISettings:
+    subtitlePanelNumber: 4
+    customSubtitlePanel: {fileID: 0}
+    customSubtitlePanelOffset: {x: 0, y: 0, z: 0}
+    menuPanelNumber: 0
+    customMenuPanel: {fileID: 0}
+    customMenuPanelOffset: {x: 0, y: 0, z: 0}
+    useMenuPanelFor: 0
+    portraitAnimatorController: {fileID: 0}
+    setSubtitleColor: 0
+    applyColorToPrependedName: 0
+    prependActorNameSeparator: ': '
+    prependActorNameFormat: '{0}{1}'
+    subtitleColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &369178345
 GameObject:
   m_ObjectHideFlags: 0
@@ -7958,14 +8231,14 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1941520505}
           m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
-          m_MethodName: FadeInBlackWithoutCommonElement
-          m_Mode: 4
+          m_MethodName: ChangeBg
+          m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0.5
-            m_StringArgument: 
+            m_StringArgument: IMG_1042&0&0.5&1.5
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 1941520505}
@@ -7995,6 +8268,18 @@ MonoBehaviour:
         - m_Target: {fileID: 1941520505}
           m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
           m_MethodName: VFXRain
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXScreenWater
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8063,6 +8348,18 @@ MonoBehaviour:
         - m_Target: {fileID: 1941520505}
           m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
           m_MethodName: VFXRain
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXScreenWater
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8259,24 +8556,24 @@ MonoBehaviour:
         - m_Target: {fileID: 1941520505}
           m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
           m_MethodName: VFXRipple
-          m_Mode: 6
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 0
+            m_FloatArgument: 1
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
         - m_Target: {fileID: 1941520505}
           m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
           m_MethodName: VFXChromaticAberration
-          m_Mode: 6
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 0
+            m_FloatArgument: 1
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
@@ -8574,8 +8871,8 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1941520505}
           m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
-          m_MethodName: VFXRipple
-          m_Mode: 6
+          m_MethodName: VFXChromaticAberration
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8586,8 +8883,8 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 1941520505}
           m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
-          m_MethodName: VFXChromaticAberration
-          m_Mode: 6
+          m_MethodName: VFXRipple
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8646,6 +8943,2054 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 46fd8cfc-0617-4053-9653-472cfe5c1e9e
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlayBgm
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "Franz Liszt - \u7231\u4E4B\u68A6"
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeInBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u80CC\u666F\u56FE\u7247 (14)&0&0&0.2"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: f1ab329f-c628-4143-8646-04c48a1312fd
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeOutBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 5ddd5b31-94b3-443d-a90e-ce79be14550a
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u78B0\u649E"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: b32d5723-cd3c-44c6-8cb0-7797970a9336
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 9a7509a2-85a3-41c7-bb21-702a3bc6c681
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: d24cd1d8-5ebf-43df-9ec3-0811f18d5fb6
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: fa492a25-761a-4ca2-8220-768f32d687d7
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeInBlackBg
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: b36512fa-e8dd-4d91-8af8-29c4b433bd6f
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: StopBgm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u54CD\u6307"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 005294f5-1ca9-4b9a-9647-4e6af5574cc8
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u6454\u5012"
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: b637a86d-b063-4d62-a099-94daece4972b
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u8857\u5934\u5546\u5E97&0&0&0.2"
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeOutBlackBg
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: fa26d9fa-67c8-4ab1-abb5-5c30aab67471
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 9ff381c8-39b8-42e5-bc2f-1e0a143dd3df
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlayBgm
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Keep On The Sunny Side
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: df1439c9-d5f3-48fc-a76b-f5682e210248
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 69f9422e-5d01-4d22-994d-f8c7e3edeead
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u8FDB\u95E8\u94C3\u94DB"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 581694f7-dc9e-4373-9edb-6e194fa0b8a9
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u80CC\u666F\u56FE\u7247 (29)&0&0&0.2"
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeOutBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: f2e9ff45-89f5-41f4-994c-5507fb0e2570
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeInBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 5e882829-0dd7-4e27-abe4-9a71826f3c7d
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeInBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: db88dbab-65f8-42e3-b7fc-e84b64339fcd
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\uFF081080p\uFF09CG01&0&0&0.2"
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeOutBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 8efcb4d4-2584-4f06-a21f-a897ffd9a778
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 902c750e-156c-46b4-b17c-12b58493a7a5
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeInThinkingBg
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 48b1d030-f21f-4d89-a7de-0b0b29ca5217
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeOutThinkingBg
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: dc26b4e4-4db3-474b-b1b7-1be5ea2fe33f
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: StopBgm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 00b130c9-6c75-4dc6-9e16-8cd7439795c1
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u8857\u5934\u5546\u5E97&0.2&0&0.2"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 6ae9fae2-236d-4139-8b92-02dfdbc6941d
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXRipple
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXChromaticAberration
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 4b61504e-32d4-44e2-bfd9-acfcb30032d1
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXChromaticAberration
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXRipple
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: f03bf247-4eee-4e77-beb8-85036c2911fb
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u865A\u8C2C\u7A7A\u6D1E&0.2&0&0.2"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 49c0c0b9-abe1-4efb-860b-2a96d2d087f4
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ContinueByAutoCantClick
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: c8bf69bd-e0c0-468b-a076-c692403a541e
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u8857\u5934\u5546\u5E97&0.2&0&0.2"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 69358404-61d3-4289-8e39-89f553ae2261
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: e08d302f-9730-4245-bae0-bd1a76cd76eb
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXChromaticAberration
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXRipple
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 2f180216-c1f2-4073-a6ab-90c194975a37
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: e7bd1d9e-2b4d-4952-9bcb-8cf554ad71f9
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeInThinkingBg
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: f7260d33-b4d8-4233-bf79-6a499308e48b
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeOutThinkingBg
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 6082bfe8-09d1-4bcd-baf4-8365209d620a
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlayBgm
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Toy Blues
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 45f181bd-78b3-4574-8417-c7acc5591224
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: IMG_1042&0&0&0.2
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXRain
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXScreenWater
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 401277__inspectorj__rain-moderate-a
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXColorAdjustmentsSaturation
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: -0.6
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - guid: 165e8a7f-2ff2-49ac-82cf-88ebded74604
+    onExecute:
+      m_PersistentCalls:
+        m_Calls: []
+  - guid: b5966a25-1690-465b-a396-93c67087bd49
+    onExecute:
+      m_PersistentCalls:
+        m_Calls: []
+  - guid: a773fc1a-c201-47d5-af96-b00740128c33
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: IMG_4641&0.2&0&0.2
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXRain
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXScreenWater
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: a0ed9d17-5716-4a76-aa81-49b3cc9f3309
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: IMG_1042&0.2&0&0.2
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: a428335e-e9ca-4484-809b-e480840b9b54
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXRain
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXScreenWater
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - guid: 5d8bedd4-3cc0-49c1-b2a8-de73d0907f24
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 329960286}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_MethodName: set_sprite
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 21300000, guid: 521f2ac670edee041be110776b8a26ba, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 329960283}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: a3242a19-5516-48e9-9e38-dabe44d247c9
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u65A9\u4EBA"
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXFlash
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ContinueByAutoCantClick
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 82d41fd8-fb51-4bd2-8cf7-3f595e8f5616
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ContinueByAutoCantClick
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: SetSubPortraitAnimatorFloatParam
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 1&HideRate&0.165
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 329960283}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: dadfcf89-a3bc-4fda-a6f2-47ce13df6bb8
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: StopSfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 401277__inspectorj__rain-moderate-a
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXRain
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXScreenWater
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 482809f4-1542-403d-9d55-f8d0585f5de1
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: IMG_4641&0.2&0&0.2
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: ef93e54f-1ead-4786-aace-2549f4b4b90d
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlayBgm
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: A SPROUT
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: e0140d2e-7a3a-479f-93f9-959c7daaf1dd
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeInBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: bf3ffe0b-5ddc-4002-8af6-207630dcc736
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u72FC\u543C"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 5fe1b7bd-cda3-4e8a-9eea-82b7a00cfb9d
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: IMG_1042&0&0&0.2
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeOutBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: d78f9688-89b6-4fab-995e-32d1a93305c4
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 41a39aa1-8a51-4ca9-8945-48c4031dd4ff
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeInBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 9ee02454-025f-4845-8d4a-2d3f1917bd84
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeOutBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 923e1e01-801a-4946-a31d-1b7f7beb465e
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: a68ecefb-3c3a-44d6-9b6f-860fe283a2c0
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: StopBgm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: ec85c7f4-c314-44cf-b9c4-cf351861c142
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u80CC\u666F\u56FE\u7247 (30)&0&0&0.2"
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeOutBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 4bad408b-f21f-4c54-b569-67eea439d777
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u7A7A\u95F4\u9707\u8361"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 4c3e25bb-6b98-4cd5-a6be-a20e3abec7bf
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 19e362c9-8002-4aa4-b161-446cafbd179a
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: b4f600a5-ab34-4251-8edf-5240b2e6d109
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeInBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: StopSfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u7A7A\u95F4\u9707\u8361"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 2f400503-4247-46f3-b49b-9505e1c5802b
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: IMG_4641&0&0&0.2
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeOutBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: ddfc6795-8833-4abf-84bb-3a0a0da6f95f
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 05594ebc-5731-4238-8a6f-454be396ca5e
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: d50ad6ea-8ca6-401f-9616-8eeff07480e0
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlayBgm
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Epigraph
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: b7e99ec7-74ab-45c5-93ce-ddac1db60e40
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeInBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 67fc6a17-44f1-4dbe-8285-d71e5bdafd51
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 93da1677-2f5f-4ba9-a9ea-c7685b19ed46
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u865A\u8C2C\u7A7A\u6D1E&0&0&0.2"
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeOutBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: fa09b00c-853c-4e3c-80da-2f7b873aac3c
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ContinueByAutoCantClick
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u811A\u6B65\u58F0\u4E09"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 3e74c546-4c73-4700-bf11-1832513ce4f1
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: f35c9937-af25-42c4-a0fd-29d8c080fcea
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: SetSubtitlePanelAnimatorFloatParam
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 1&HideRate&0.165
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 69ab2602-d7e3-4ae4-baa6-30244e908fbb
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXColorAdjustmentsSaturation
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 460a7d45-1231-4595-bf91-45dc327201d3
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: a2f67fce-f101-4c1e-9ed3-52ab180d1645
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: EnterNextStageProcedure
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: c37910fd-9783-41d3-8f02-97c7b64e9b96
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: EnterNextStageProcedure
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 7fea5bff-b623-4cdf-a2b5-2978a3652193
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: IMG_4642&0&0&0.2
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlayBgm
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: EVER SO TENDERLY
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXColorAdjustmentsSaturation
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: -0.6
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: a1cd6477-0857-4bb0-a9cc-c34fc46a1014
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: c2bfe077-82bb-428c-9aea-3274f1b5dd7e
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: ff47ea80-e367-4822-8d8c-195b43750c20
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: e033ec3e-a397-4c1d-b1f1-2d257fa06327
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 252601070}
+          m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_MethodName: set_sprite
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 21300000, guid: bdb3edffa2fc748498c87b836e1ee35c, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 3c66c818-04a1-498a-85fc-6f46b6618542
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: IMG_4642&0.2&0&0.2
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 6c2c0836-2b83-4dde-b0be-0e08f5c563b1
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeInBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: VFXColorAdjustmentsSaturation
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 6f18a211-ac50-4c7d-af38-f1e7765e027c
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ContinueByAutoCantClick
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u8FDB\u95E8\u94C3\u94DB"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: aaa17fb3-78a6-472b-b507-0209bcdb89d7
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u811A\u6B65\u58F0\u4E09"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 5abf435f-88b8-4536-8e7b-54de2ac59694
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: IMG_4641&0&0&0.2
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: FadeOutBlackWithoutCommonElement
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: b0444651-b303-4e0c-912a-5b6d3935e4b9
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: e3badd4d-b026-44e0-bbd4-25206a62b1e8
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 171cf28e-45ea-438d-ae62-011b4b3fef9d
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 3276024b-ce69-4884-ae0d-d734b57c25ec
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: ChangeBg
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u865A\u8C2C\u7A7A\u6D1E&0.2&0&0.2"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 317d6d7f-fe55-49c6-8f40-688351e700f5
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: CloseAllSubtitlePanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: e60253bd-6bc4-4b0f-bae7-1bb4f79a128f
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: EnterNextStageProcedure
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 5f6e49ad-2712-4fa7-9977-2fb9b2ba77dc
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: StopBgm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: a0acaebb-b2b3-4b73-ab4f-871f5cd8223b
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1366309684}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Show
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1941520505}
+          m_TargetAssemblyTypeName: Yu.ToolForDialogueSystem, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "\u865A\u8C2C\u7A7A\u6D1E"
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 45ae40d0-5ece-4183-9b5a-e19794150b82
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 971156042}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!4 &490834634
@@ -9510,6 +11855,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1565888731}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onClose:
     m_PersistentCalls:
       m_Calls: []
@@ -9523,7 +11880,7 @@ MonoBehaviour:
   portraitImage: {fileID: 0}
   portraitName:
     m_uiText: {fileID: 0}
-    m_textMeshProUGUI: {fileID: 0}
+    m_textMeshProUGUI: {fileID: 352812729}
   subtitleText:
     m_uiText: {fileID: 0}
     m_textMeshProUGUI: {fileID: 202322029}
@@ -10010,7 +12367,7 @@ GameObject:
   - component: {fileID: 745197333}
   - component: {fileID: 745197332}
   - component: {fileID: 745197331}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FlashDialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10211,6 +12568,7 @@ RectTransform:
   - {fileID: 827146655}
   - {fileID: 668207401}
   - {fileID: 202322034}
+  - {fileID: 352812735}
   - {fileID: 1565888732}
   - {fileID: 1910244812}
   m_Father: {fileID: 268520588}
@@ -11430,6 +13788,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 352812728}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onClose:
     m_PersistentCalls:
       m_Calls: []
@@ -11788,7 +14158,7 @@ GameObject:
   - component: {fileID: 942663218}
   - component: {fileID: 942663217}
   - component: {fileID: 942663216}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: AnimatorFlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12525,6 +14895,94 @@ MonoBehaviour:
     prependActorNameSeparator: ': '
     prependActorNameFormat: '{0}{1}'
     subtitleColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &1187563597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1187563598}
+  - component: {fileID: 1187563601}
+  - component: {fileID: 1187563600}
+  - component: {fileID: 1187563599}
+  m_Layer: 5
+  m_Name: BlackMaskBg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1187563598
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187563597}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 268520588}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1187563599
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187563597}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1187563600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187563597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 0a50ec239ed8fb942adb58b517845374, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1187563601
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187563597}
+  m_CullTransparentMesh: 1
 --- !u!1 &1271602888
 GameObject:
   m_ObjectHideFlags: 0
@@ -12641,6 +15099,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271602888}
   m_CullTransparentMesh: 0
+--- !u!1 &1273658415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1273658416}
+  - component: {fileID: 1273658417}
+  m_Layer: 0
+  m_Name: "\u7EF4\u514B\u591A_\u5C45\u4E2D"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1273658416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273658415}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1578904129}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1273658417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273658415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64578247383140469c45370654a984a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actor: "\u7EF4\u514B\u591A"
+  persistentDataName: 
+  portrait: {fileID: 0}
+  spritePortrait: {fileID: 0}
+  barkUISettings:
+    barkUI: {fileID: 0}
+    barkUIOffset: {x: 0, y: 2, z: 0}
+  standardDialogueUISettings:
+    subtitlePanelNumber: 4
+    customSubtitlePanel: {fileID: 0}
+    customSubtitlePanelOffset: {x: 0, y: 0, z: 0}
+    menuPanelNumber: 0
+    customMenuPanel: {fileID: 0}
+    customMenuPanelOffset: {x: 0, y: 0, z: 0}
+    useMenuPanelFor: 0
+    portraitAnimatorController: {fileID: 0}
+    setSubtitleColor: 0
+    applyColorToPrependedName: 0
+    prependActorNameSeparator: ': '
+    prependActorNameFormat: '{0}{1}'
+    subtitleColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1294143466
 GameObject:
   m_ObjectHideFlags: 0
@@ -14208,7 +16731,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1170344611}
+  - {fileID: 1273658416}
   - {fileID: 1792418059}
+  - {fileID: 361260284}
   - {fileID: 675577542}
   - {fileID: 1533137714}
   - {fileID: 603448252}
@@ -14480,7 +17005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 48d8ec0ef63e03c489097c6a8b0d18c2, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -15981,6 +18506,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1586952966}
     - target: {fileID: 6762655840506231760, guid: 7ddf2efed9e392f47ac28754f2adc875, type: 3}
+      propertyPath: materialBg
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6762655840506231760, guid: 7ddf2efed9e392f47ac28754f2adc875, type: 3}
       propertyPath: particleFog
       value: 
       objectReference: {fileID: 3251932113165547436}
@@ -16005,9 +18534,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1910244809}
     - target: {fileID: 6762655840506231760, guid: 7ddf2efed9e392f47ac28754f2adc875, type: 3}
+      propertyPath: canvasGroupThinkingBg
+      value: 
+      objectReference: {fileID: 2052015469}
+    - target: {fileID: 6762655840506231760, guid: 7ddf2efed9e392f47ac28754f2adc875, type: 3}
       propertyPath: objContinueButtonMask
       value: 
       objectReference: {fileID: 827146654}
+    - target: {fileID: 6762655840506231760, guid: 7ddf2efed9e392f47ac28754f2adc875, type: 3}
+      propertyPath: canvasGroupBlackMaskBg
+      value: 
+      objectReference: {fileID: 1187563599}
     - target: {fileID: 6762655840506231760, guid: 7ddf2efed9e392f47ac28754f2adc875, type: 3}
       propertyPath: canvasGroupContinueButtonBg
       value: 
@@ -16393,6 +18930,94 @@ Transform:
   - {fileID: 1553146472}
   m_Father: {fileID: 149040035}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2052015467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2052015468}
+  - component: {fileID: 2052015471}
+  - component: {fileID: 2052015470}
+  - component: {fileID: 2052015469}
+  m_Layer: 5
+  m_Name: ThinkingBg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2052015468
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052015467}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 268520588}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &2052015469
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052015467}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &2052015470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052015467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: bc296c2e1780f7f4a8d6398d5bba17bb, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2052015471
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052015467}
+  m_CullTransparentMesh: 1
 --- !u!1 &2091219710
 GameObject:
   m_ObjectHideFlags: 0

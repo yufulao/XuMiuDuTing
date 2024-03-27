@@ -102,6 +102,18 @@ namespace Yu
                 return;
             }
         }
+
+        /// <summary>
+        /// 停止播放所有音效
+        /// </summary>
+        public void StopAllSfx()
+        {
+            foreach (var kvp in _sfxItems)
+            {
+                var sfxItem = kvp.Value;
+                sfxItem.Stop();
+            }
+        }
         
         /// <summary>
         /// 延迟淡出停止音效

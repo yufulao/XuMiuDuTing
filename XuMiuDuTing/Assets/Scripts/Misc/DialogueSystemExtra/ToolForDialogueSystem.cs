@@ -5,6 +5,7 @@ using DG.Tweening;
 using PixelCrushers.DialogueSystem;
 using Rabi;
 using SCPE;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -17,8 +18,11 @@ namespace Yu
     public class ToolForDialogueSystem : MonoBehaviour
     {
         [SerializeField] private Image imageBg;
+        private Material _materialBg;
         [SerializeField] private CanvasGroup canvasGroupBlackMask;
+        [SerializeField] private CanvasGroup canvasGroupBlackMaskBg;
         [SerializeField] private CanvasGroup canvasGroupBlackMaskWithoutCommonElement;
+        [SerializeField] private CanvasGroup canvasGroupThinkingBg;
         [SerializeField] private CanvasGroup canvasGroupContinueButtonBg;
         [SerializeField] private GameObject objContinueButtonMask;
         [SerializeField] private List<StandardUISubtitlePanel> allSubtitlePanelList = new List<StandardUISubtitlePanel>();
@@ -31,6 +35,11 @@ namespace Yu
         [SerializeField] private ParticleSystem particleFog;
         [SerializeField] private ParticleSystem particleFire;
 
+        private void Start()
+        {
+            CloneMaterialBg();
+        }
+
         /// <summary>
         /// 对话开始之前
         /// </summary>
@@ -39,6 +48,7 @@ namespace Yu
             ResetAllSubPortraitAnimator();
             ResetAllSubtitlePanelAnimator();
             objContinueButtonMask.SetActive(false);
+            CloseAllVFX();
         }
 
         /// <summary>
@@ -46,11 +56,25 @@ namespace Yu
         /// </summary>
         public void OnConversationStop()
         {
+            FadeOutBlackBg(0f);
+            FadeOutBlackWithoutCommonElement(0f);
+            FadeOutThinkingBg(0f);
+            CloseAllVFX();
+            SFXManager.Instance.StopAllSfx();
+        }
+
+        /// <summary>
+        /// 关闭所有特效
+        /// </summary>
+        public void CloseAllVFX()
+        {
             VFXRain(false);
             VFXFog(false);
             VFXFire(false);
-            VFXRipple(false);
-            VFXChromaticAberration(false);
+            VFXRipple(0f);
+            VFXChromaticAberration(0f);
+            VFXColorAdjustmentsSaturation(0f);
+            VFXScreenWater(false);
         }
 
         /// <summary>
@@ -279,6 +303,22 @@ namespace Yu
         }
 
         /// <summary>
+        /// bg淡入黑幕
+        /// </summary>
+        public void FadeInBlackBg(float fadeInTime)
+        {
+            StartCoroutine(FadeInBlackBgIEnumerator(fadeInTime));
+        }
+
+        /// <summary>
+        /// bg淡出黑幕
+        /// </summary>
+        public void FadeOutBlackBg(float fadeOutTime)
+        {
+            StartCoroutine(FadeOutBlackBgIEnumerator(fadeOutTime));
+        }
+
+        /// <summary>
         /// 除了CommonElement之外其他淡入黑幕
         /// </summary>
         public void FadeInBlackWithoutCommonElement(float fadeInTime)
@@ -292,6 +332,22 @@ namespace Yu
         public void FadeOutBlackWithoutCommonElement(float fadeOutTime)
         {
             StartCoroutine(FadeOutBlackWithoutCommonElementIEnumerator(fadeOutTime));
+        }
+
+        /// <summary>
+        /// 内心活动bg淡入
+        /// </summary>
+        public void FadeInThinkingBg(float fadeInTime)
+        {
+            StartCoroutine(FadeInThinkingBgIEnumerator(fadeInTime));
+        }
+
+        /// <summary>
+        /// 内心活动bg淡出
+        /// </summary>
+        public void FadeOutThinkingBg(float fadeOutTime)
+        {
+            StartCoroutine(FadeOutThinkingBgIEnumerator(fadeOutTime));
         }
 
         /// <summary>
@@ -353,51 +409,76 @@ namespace Yu
         /// <summary>
         /// 液化特效
         /// </summary>
-        /// <param name="active"></param>
-        public void VFXRipple(bool active)
+        /// <param name="rate"></param>
+        public void VFXRipple(float rate)
         {
             if (!vfxVolume.profile.TryGet<Ripples>(out var ripples))
             {
                 return;
             }
 
-            if (active)
-            {
-                //startValue,param,endValue,during
-                DOTween.To(() => 0f, x => ripples.strength.value = x, 1f, 1f);
-                return;
-            }
-
             var strength = ripples.strength.value;
-            if (strength > 0f)
-            {
-                DOTween.To(() => strength, x => ripples.strength.value = x, 0f, 1f);
-            }
+            //startValue,param,endValue,during
+            DOTween.To(() => strength, x => ripples.strength.value = x, rate * 1f, 1f);
         }
-        
+
         /// <summary>
         /// 色差特效
         /// </summary>
-        /// <param name="active"></param>
-        public void VFXChromaticAberration(bool active)
+        /// <param name="rate"></param>
+        public void VFXChromaticAberration(float rate)
         {
             if (!vfxVolume.profile.TryGet<ChromaticAberration>(out var chromaticAberration))
             {
                 return;
             }
 
-            if (active)
+            var intensity = chromaticAberration.intensity.value;
+            //startValue,param,endValue,during
+            DOTween.To(() => intensity, x => chromaticAberration.intensity.value = x, rate * 0.3f, 1f);
+        }
+        
+        /// <summary>
+        /// 饱和度特效
+        /// </summary>
+        /// <param name="rate"></param>
+        public void VFXColorAdjustmentsSaturation(float rate)
+        {
+            if (!vfxVolume.profile.TryGet<ColorAdjustments>(out var colorAdjustments))
             {
-                //startValue,param,endValue,during
-                DOTween.To(() => 0f, x => chromaticAberration.intensity.value = x, 0.3f, 1f);
                 return;
             }
 
-            var intensity = chromaticAberration.intensity.value;
-            if (intensity > 0f)
+            var saturation = colorAdjustments.saturation.value;
+            //startValue,param,endValue,during
+            DOTween.To(() => saturation, x => colorAdjustments.saturation.value = x, 0+rate * 100f, 1f);
+        }
+        
+        /// <summary>
+        /// 下雨屏幕挂水特效
+        /// </summary>
+        /// <param name="active"></param>
+        public void VFXScreenWater(bool active)
+        {
+            //获取material所有参数
+            // Shader shader = _materialBg.shader;
+            // int propertyCount = ShaderUtil.GetPropertyCount(shader);
+            //
+            // Debug.Log("Material parameters:");
+            // for (int i = 0; i < propertyCount; i++)
+            // {
+            //     string propertyName = ShaderUtil.GetPropertyName(shader, i);
+            //     ShaderUtil.ShaderPropertyType propertyType = ShaderUtil.GetPropertyType(shader, i);
+            //     
+            //     Debug.Log("Name: " + propertyName + ", Type: " + propertyType);
+            // }
+            if (active)
             {
-                DOTween.To(() => intensity, x => chromaticAberration.intensity.value = x, 0f, 1f);
+                _materialBg.DOFloat(-2, "_Distortion", 1f);
+                return;
             }
+
+            _materialBg.DOFloat(0, "_Distortion", 1f);
         }
 
         /// <summary>
@@ -410,6 +491,27 @@ namespace Yu
             yield return new WaitForSeconds(during);
             DialogueManager.instance.PlaySequence("Continue()");
             objContinueButtonMask.SetActive(false);
+        }
+
+        /// <summary>
+        /// FadeInBlackBg的协程
+        /// </summary>
+        private IEnumerator FadeInBlackBgIEnumerator(float fadeInTime)
+        {
+            canvasGroupBlackMaskBg.alpha = 0;
+            var tweener = canvasGroupBlackMaskBg.DOFade(1, fadeInTime);
+            canvasGroupBlackMaskBg.gameObject.SetActive(true);
+            yield return tweener.WaitForCompletion();
+        }
+
+        /// <summary>
+        /// FadeOutBlackBg的协程
+        /// </summary>
+        private IEnumerator FadeOutBlackBgIEnumerator(float fadeOutTime)
+        {
+            var tweener = canvasGroupBlackMaskBg.DOFade(0, fadeOutTime);
+            yield return tweener.WaitForCompletion();
+            canvasGroupBlackMaskBg.gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -431,6 +533,27 @@ namespace Yu
             var tweener = canvasGroupBlackMaskWithoutCommonElement.DOFade(0, fadeOutTime);
             yield return tweener.WaitForCompletion();
             canvasGroupBlackMaskWithoutCommonElement.gameObject.SetActive(false);
+        }
+
+        /// <summary>
+        /// FadeInThinkingBg的协程
+        /// </summary>
+        private IEnumerator FadeInThinkingBgIEnumerator(float fadeInTime)
+        {
+            canvasGroupThinkingBg.alpha = 0;
+            var tweener = canvasGroupThinkingBg.DOFade(1, fadeInTime);
+            canvasGroupThinkingBg.gameObject.SetActive(true);
+            yield return tweener.WaitForCompletion();
+        }
+
+        /// <summary>
+        /// FadeOutThinkingBg的协程
+        /// </summary>
+        private IEnumerator FadeOutThinkingBgIEnumerator(float fadeOutTime)
+        {
+            var tweener = canvasGroupThinkingBg.DOFade(0, fadeOutTime);
+            yield return tweener.WaitForCompletion();
+            canvasGroupThinkingBg.gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -475,6 +598,15 @@ namespace Yu
             yield return new WaitForSeconds(0.3f);
             DialogueManager.instance.StopAllConversations();
             GameManager.Instance.EnterNextStageProcedure();
+        }
+
+        /// <summary>
+        /// 克隆bg的material，避免直接修改源文件
+        /// </summary>
+        private void CloneMaterialBg()
+        {
+            _materialBg = Instantiate(imageBg.material);
+            imageBg.material = _materialBg;
         }
     }
 }
