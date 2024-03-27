@@ -26,6 +26,12 @@ namespace Yu
             InitFsm();
         }
 
+        private void OnDestroy()
+        {
+            //一定要解除监听，不然重新进入一次战斗，eventManger会调用到上一个battleManager注册的事件，但场景已经销毁，会有一堆东西报空
+            EventManager.Instance.RemoveListener(EventName.OnRoundEnd, OnRoundEnd);
+        }
+
         /// <summary>
         /// 进入战斗
         /// </summary>
@@ -144,7 +150,6 @@ namespace Yu
         /// </summary>
         private void EnemySetCommandAI()
         {
-            Debug.Log("a");
             var liveCharacters = new List<CharacterEntityCtrl>();
             var currentEnemyEntity = _model.GetCurrentEnemyEntity();
             foreach (var characterEntityCtrl in _model.allCharacterEntities)
@@ -487,7 +492,7 @@ namespace Yu
         {
             foreach (var entity in _model.allEntities)
             {
-                if (entity.IsDie())
+                if (entity.IsDie()||!entity.animatorEntity)
                 {
                     continue;
                 }
@@ -521,7 +526,7 @@ namespace Yu
 
                 if (!commandInfo.caster.IsDie())
                 {
-                    commandInfo.caster.SetDefendAddon("Default", 0);
+                    commandInfo.caster.SetDefendAddon("Default", -500);
                 }
             }
             

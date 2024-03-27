@@ -1251,10 +1251,10 @@ MonoBehaviour:
   objMask: {fileID: 150965969372523341}
   selectToggleGroup: {fileID: 5878551247377099894}
   bpSpriteList:
-  - {fileID: 21300000, guid: ee889fa74c0993f4981e2fcb0d43063f, type: 3}
-  - {fileID: 21300000, guid: c47b05acc67423b4ba5b6ff386db6152, type: 3}
-  - {fileID: 21300000, guid: 8956ba51ccf1c6b4097a962a67f54fba, type: 3}
   - {fileID: 21300000, guid: 342557e15fb81434ba4a2c92ba5fb9be, type: 3}
+  - {fileID: 21300000, guid: 8956ba51ccf1c6b4097a962a67f54fba, type: 3}
+  - {fileID: 21300000, guid: c47b05acc67423b4ba5b6ff386db6152, type: 3}
+  - {fileID: 21300000, guid: ee889fa74c0993f4981e2fcb0d43063f, type: 3}
   - {fileID: 21300000, guid: d0f97554fe6a5e548b2a606d3a9e8c5e, type: 3}
   - {fileID: 21300000, guid: 3d197cdb0e50a4f47ac5568431c25580, type: 3}
   - {fileID: 21300000, guid: ba25efdc938064446a1df5795019ba84, type: 3}
