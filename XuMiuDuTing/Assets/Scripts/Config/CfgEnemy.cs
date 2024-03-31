@@ -22,8 +22,8 @@ namespace Rabi
         public string uniqueSkillName; //必杀技名
         public int maxHp; //最大生命值
         public int damage; //攻击值
-        public float damageRate; //攻击乘率
         public int defend; //防御值
+        public float damageRate; //攻击乘率
         public float hurtRate; //受击乘率
         public int speed; //速度
     }
@@ -92,8 +92,8 @@ namespace Rabi
             data.uniqueSkillName = CsvUtility.ToString(rowHelper.ReadNextCol()); //必杀技名
             data.maxHp = CsvUtility.ToInt(rowHelper.ReadNextCol()); //最大生命值
             data.damage = CsvUtility.ToInt(rowHelper.ReadNextCol()); //攻击值
-            data.damageRate = CsvUtility.ToFloat(rowHelper.ReadNextCol()); //攻击乘率
             data.defend = CsvUtility.ToInt(rowHelper.ReadNextCol()); //防御值
+            data.damageRate = CsvUtility.ToFloat(rowHelper.ReadNextCol()); //攻击乘率
             data.hurtRate = CsvUtility.ToFloat(rowHelper.ReadNextCol()); //受击乘率
             data.speed = CsvUtility.ToInt(rowHelper.ReadNextCol()); //速度
             return data;

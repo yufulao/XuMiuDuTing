@@ -49,15 +49,15 @@ namespace Yu
 
             BGMManager.Instance.ReloadVolume();
             SFXManager.Instance.ReloadVolume();
-            ReturnToTitle(0f);
+            ReturnToTitle(true,0f);
         }
 
         /// <summary>
         /// 游戏开始
         /// </summary>
-        public void ReturnToTitle(float bgmFadeOutTime = 0.5f, UnityAction callback = null)
+        public void ReturnToTitle(bool playBgm,float bgmFadeOutTime = 0.5f, UnityAction callback = null)
         {
-            StartCoroutine(ReturnToTitleIEnumerator(bgmFadeOutTime, callback));
+            StartCoroutine(ReturnToTitleIEnumerator(playBgm,bgmFadeOutTime, callback));
         }
 
         /// <summary>
@@ -137,16 +137,21 @@ namespace Yu
         /// <summary>
         /// 返回Title
         /// </summary>
+        /// <param name="playBgm"></param>
         /// <param name="bgmFadeOutTime"></param>
         /// <param name="callback"></param>
         /// <returns></returns>
-        private IEnumerator ReturnToTitleIEnumerator(float bgmFadeOutTime, UnityAction callback)
+        private IEnumerator ReturnToTitleIEnumerator(bool playBgm,float bgmFadeOutTime, UnityAction callback)
         {
             DialogueManager.instance.StopAllConversations();
             UIManager.Instance.GetCtrlWithCreate<BattleMainCtrl>("BattleMainView")?.ClearAllEntityHud(); //关闭所有hud，因为HUD独立
             UIManager.Instance.CloseAllLayerWindows("NormalLayer");
             UIManager.Instance.OpenWindow("LoadingView");
-            yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", bgmFadeOutTime, 0f, 0.5f, 1f);
+            if (playBgm)
+            {
+                yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", bgmFadeOutTime, 0f, 0.5f, 1f);
+            }
+
             SetTimeScale(1f);
             CameraManager.Instance.ResetObjCamera();
             GC.Collect();

@@ -15,3 +15,4 @@ string#string#string#bool#bool#bool#int#bool#bool
 返生#处于此状态的单位在被击倒时会保留{0}点HP#触发后消失类buff#False#False#False#0#True#True
 眩晕#无法行动#触发后消失类buff#False#False#False#0#True#True
 燃烬#无法恢复HP#触发后消失类buff#False#False#False#0#True#True
+不可选中#不成为任何机制或技能或buff效果的目标。#机制判定类#False#False#False#0#False#False

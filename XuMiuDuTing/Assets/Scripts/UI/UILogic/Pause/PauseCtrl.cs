@@ -63,7 +63,7 @@ namespace Yu
         /// </summary>
         private void BtnOnClickReturnTitle()
         {
-            GameManager.Instance.ReturnToTitle();
+            GameManager.Instance.ReturnToTitle(true);
         }
         
         /// <summary>

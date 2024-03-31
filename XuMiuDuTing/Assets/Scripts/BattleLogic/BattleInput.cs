@@ -629,18 +629,24 @@ namespace Yu
                 SetToggleSelectActive(false, true, currentCharacterEntity);
             }
 
-            //将所有死亡的entity关闭toggleSelect
+            //将所有死亡和有不可选择buff的entity关闭toggleSelect
             foreach (var entityCtrl in _model.allEntities)
             {
-                if (!entityCtrl.IsDie())
+                if (entityCtrl.IsDie()||CheckBuff(entityCtrl,"不可选中").Count>0)
                 {
-                    continue;
+                    var entityHud = entityCtrl.GetEntityHud();
+                    entityHud.toggleSelect.isOn = false;
+                    entityHud.toggleSelect.group = null;
+                    entityHud.toggleSelect.gameObject.SetActive(false);
+                    if (activeToggleList.Contains(entityHud.toggleSelect))
+                    {
+                        activeToggleList.Remove(entityHud.toggleSelect);
+                    }
+                    if (!entityCtrl.IsDie())
+                    {
+                        entityCtrl.SetOutlineActive(false);
+                    }
                 }
-
-                var entityHud = entityCtrl.GetEntityHud();
-                entityHud.toggleSelect.isOn = false;
-                entityHud.toggleSelect.group = null;
-                entityHud.toggleSelect.gameObject.SetActive(false);
             }
 
             //将所有启用的toggleSelect设置toggleGroup

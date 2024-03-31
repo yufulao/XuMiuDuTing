@@ -35,18 +35,19 @@ namespace Yu
         /// <summary>
         /// 进入战斗
         /// </summary>
+        /// <param name="rowCfgStage"></param>
         /// <param name="teamArray"></param>
-        public void EnterBattle(string[] teamArray)
+        public void EnterBattle(RowCfgStage rowCfgStage, string[] teamArray)
         {
             _model = new BattleModel();
             _model.SetTeamArray(teamArray);
-            _fsm.ChangeFsmState(typeof(BattleInitState));
+            _fsm.ChangeFsmState(typeof(BattleInitState), rowCfgStage);
         }
-        
+
         /// <summary>
         /// 初始化阶段
         /// </summary>
-        public void OnEnterBattleInitState()
+        public IEnumerator OnEnterBattleInitState(RowCfgStage rowCfgStage)
         {
             _model.Init();
             InitUI();
@@ -54,14 +55,25 @@ namespace Yu
             _model.SortEntityList();
             ResetCommand();
             EventManager.Instance.AddListener(EventName.OnRoundEnd, OnRoundEnd);
-            StartCoroutine(BGMManager.Instance.PlayLoopBgmWithIntro("普通战斗a", "普通战斗b", 0f, 0.3f, 0f, 1f));
+            switch (rowCfgStage.battleBgm.Count)
+            {
+                case 1:
+                    StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay(rowCfgStage.battleBgm[0], 0f, 0.3f, 0f, 1f));
+                    break;
+                case 2:
+                    StartCoroutine(BGMManager.Instance.PlayLoopBgmWithIntro(
+                        rowCfgStage.battleBgm[0], rowCfgStage.battleBgm[1], 0f, 0.3f, 0f, 1f));
+                    break;
+            }
+
             RefreshAllEntityInfoItem();
             RefreshAllCommandMenu();
             StartCoroutine(AllEntityPlayEnterAnimation());
+            yield return new WaitForSeconds(1f);
             UIManager.Instance.CloseWindow("LoadingView");
             _fsm.ChangeFsmState(typeof(CharacterCommandInputState));
         }
-
+        
         /// <summary>
         /// 角色输入指令阶段
         /// </summary>
@@ -89,6 +101,51 @@ namespace Yu
         public void OnEnterExecutingState()
         {
             StartCoroutine(PrepareAllCommandList());
+        }
+
+        /// <summary>
+        /// 敌人依据仇恨值随机选取目标
+        /// </summary>
+        public List<BattleEntityCtrl> EnemySelectTarget(int targetCount,bool onlyCharacter=true)
+        {
+            //todo model缓存list
+            var canSelectEntityList = new List<BattleEntityCtrl>();
+            foreach (var entity in _model.allEntities)
+            {
+                if (entity.isEnemy&&onlyCharacter)//只能选取角色
+                {
+                    continue;
+                }
+                if (entity.IsDie())
+                {
+                    continue;
+                }
+                canSelectEntityList.Add(entity);
+            }
+
+            if (canSelectEntityList.Count <targetCount)
+            {
+                Debug.LogError("敌人找不到合适的目标");
+            }
+            
+            var canSelectEntityForHatredList = new List<BattleEntityCtrl>();
+            foreach (var entity in canSelectEntityList)
+            {
+                //todo 仇恨设置概率
+                // for (var j = 0; j < characterEntityCtrl.hatred; j++)
+                // {
+                canSelectEntityForHatredList.Add(entity);
+                //}
+            }
+            //Debug.Log(liveCharactersForHatredList.Count);
+
+            var targetList = new List<BattleEntityCtrl>();
+            for (var i = 0; i < targetCount; i++)
+            {
+                targetList.Add(canSelectEntityForHatredList[Random.Range(0, canSelectEntityForHatredList.Count)]);
+            }
+
+            return targetList;
         }
 
         /// <summary>
@@ -140,6 +197,7 @@ namespace Yu
                 EntityGetDamage(selectEntity, caster, damagePoint);
                 CheckDecreaseBp(caster, bpNeed);
                 RefreshAllEntityInfoItem();
+                yield return new WaitForSeconds(0.7f);
             }
 
             ExecuteCommandList();
@@ -150,52 +208,8 @@ namespace Yu
         /// </summary>
         private void EnemySetCommandAI()
         {
-            var liveCharacters = new List<CharacterEntityCtrl>();
             var currentEnemyEntity = _model.GetCurrentEnemyEntity();
-            foreach (var characterEntityCtrl in _model.allCharacterEntities)
-            {
-                if (characterEntityCtrl.IsDie())
-                {
-                    continue;
-                }
-
-                liveCharacters.Add(characterEntityCtrl);
-            }
-
-            if (liveCharacters.Count == 0)
-            {
-                Debug.LogError("敌人找不到没死的角色");
-            }
-
-            //按hatred设定选取概率
-            var liveCharactersForHatredList = new List<CharacterEntityCtrl>();
-            foreach (var characterEntityCtrl in liveCharacters)
-            {
-                //todo 仇恨设置概率
-                // for (var j = 0; j < characterEntityCtrl.hatred; j++)
-                // {
-                liveCharactersForHatredList.Add(characterEntityCtrl);
-                //}
-            }
-
-            //Debug.Log(liveCharactersForHatredList.Count);
-            var target = liveCharactersForHatredList[Random.Range(0, liveCharactersForHatredList.Count)];
-
-            //四回合输入一次技能1
-            if (_model.currentRound % 4 == 0)
-            {
-                currentEnemyEntity.commandList.Add(EnemyASkill1(currentEnemyEntity, target));
-                _commandInfoList.Add(new BattleCommandInfo(true, BattleCommandType.Skill, false, 0, new List<BattleEntityCtrl> {target}, currentEnemyEntity));
-            }
-            else
-            {
-                currentEnemyEntity.commandList.Add(EnemyAttack(currentEnemyEntity, new List<BattleEntityCtrl> {target}));
-                _commandInfoList.Add(new BattleCommandInfo(true, BattleCommandType.Attack, false, 0, new List<BattleEntityCtrl> {target}, currentEnemyEntity));
-            }
-
-            // Debug.Log("实体" + currentBattleId + "输入了指令" + currentCharacter.entityCommandList[currentCharacter.entityCommandList.Count - 1] + "，commandInfo的数量为" +
-            //           _commandInfoList.Count);
-
+            currentEnemyEntity.SetCommandAI( _model.currentRound);
             _model.currentEnemyEntityIndex++;
 
             if (_model.currentEnemyEntityIndex == _model.allEnemyEntities.Count) //此时currentBallteId是比allEntity的最大index多1
@@ -378,7 +392,7 @@ namespace Yu
             var entityHud = target.GetEntityHud();
             var textHurtPoint = entityHud.textHurtPoint;
             textHurtPoint.text = hurtPoint.ToString();
-            Utils.TextFly(textHurtPoint, entityHud.textHurtPointOriginalTransform.position,10);
+            Utils.TextFly(textHurtPoint, entityHud.textHurtPointOriginalTransform.position, 10);
 
             //暂时设定成挨打会加10点MP==================================================================================
             target.UpdateMp(10);
@@ -436,6 +450,7 @@ namespace Yu
             entity.SetDie(true);
             entity.SetHp(0);
             yield return Utils.PlayAnimation(entity.animatorEntity, "die");
+            ClearBuff(entity);
             yield return new WaitForSeconds(0.5f);
             entity.GetEntityHud().gameObject.SetActive(false);
             entity.gameObject.SetActive(false);
@@ -463,7 +478,7 @@ namespace Yu
         /// <param name="caster"></param>
         /// <param name="targetList"></param>
         /// <returns></returns>
-        private IEnumerator EnemyAttack(BattleEntityCtrl caster, IEnumerable<BattleEntityCtrl> targetList)
+        public IEnumerator EnemyAttack(BattleEntityCtrl caster, IEnumerable<BattleEntityCtrl> targetList)
         {
             if (caster.IsDie())
             {
@@ -492,15 +507,19 @@ namespace Yu
         {
             foreach (var entity in _model.allEntities)
             {
-                if (entity.IsDie()||!entity.animatorEntity)
+                if (entity.IsDie())
                 {
                     continue;
                 }
 
-                //恢复动画
-                entity.animatorEntity.Play("idle");
-                entity.animatorEntity.SetBool("default", false);
-                entity.animatorEntity.SetBool("ready", false);
+                if (entity.animatorEntity)
+                {
+                    //恢复动画
+                    entity.animatorEntity.Play("idle");
+                    entity.animatorEntity.SetBool("default", false);
+                    entity.animatorEntity.SetBool("ready", false);
+                }
+                
                 //buff的during--
                 DoBuffEffectAtRoundEnd(entity);
             }
@@ -513,7 +532,6 @@ namespace Yu
                 }
 
                 characterEntity.SetHadUniqueSkill(characterEntity.GetMp() >= 100);
-                DoBuffEffectAtRoundEnd(characterEntity);
             }
 
             //解除防御
@@ -529,7 +547,6 @@ namespace Yu
                     commandInfo.caster.SetDefendAddon("Default", -500);
                 }
             }
-            
         }
 
         /// <summary>
@@ -566,7 +583,7 @@ namespace Yu
 
             UIManager.Instance.OpenWindow("LoadingView");
             yield return new WaitForSeconds(0.5f);
-            GameManager.Instance.ReturnToTitle(0.5f,
+            GameManager.Instance.ReturnToTitle(false,0.5f,
                 () => { UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView"); });
         }
 

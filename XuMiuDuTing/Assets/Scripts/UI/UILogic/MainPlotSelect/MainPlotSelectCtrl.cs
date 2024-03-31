@@ -59,11 +59,11 @@ namespace Yu
         /// </summary>
         private void BtnOnClickEnter()
         {
-            _view.SetVFXFogActive(false);
             SaveManager.SetString("PlotNameInMainPlot", _model.GetCurrentPlotName());
             SaveManager.SetString("StageName", _model.GetCurrentStageName());
             _model.CheckPassStageOfNoBattle();
             ProcedureManager.Instance.SetStageProcedure(_model.GetCurrentStageName());
+            _view.SetVFXFogActive(false);
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace Yu
             {
                 rowCfgStage = ConfigManager.Instance.cfgStage[stageName];
             }
-
+            
             GameManager.Instance.StartCoroutine(
                 BGMManager.Instance.PlayBgmFadeDelay(rowCfgMainPlot.plotBGM, 0.2f, 0f, 0f, 1f));
             LoadStageFrame(rowCfgMainPlot);

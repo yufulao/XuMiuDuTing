@@ -11,15 +11,14 @@ namespace Yu
         /// <summary>
         /// 添加buff时执行的效果
         /// </summary>
-        /// <param name="buffName"></param>
-        /// <param name="caster"></param>
-        /// <param name="target"></param>
-        /// <param name="roundDuring"></param>
-        /// <param name="layer"></param>
-        /// <param name="buffValues"></param>
         /// <returns></returns>
-        private void AddBuff(string buffName, BattleEntityCtrl caster, BattleEntityCtrl target, int roundDuring, int layer, params object[] buffValues)
+        private void AddBuff(string buffName, BattleEntityCtrl caster, BattleEntityCtrl target, int roundDuring, int layer, object[] buffStringParams = null, params object[] buffValues)
         {
+            if (CheckBuff(target, "不可选中").Count > 0) //不可选择buff的entity，不能作为上buff的目标
+            {
+                return;
+            }
+
             var buffInfo = new BuffInfo()
             {
                 buffName = buffName,
@@ -27,6 +26,7 @@ namespace Yu
                 target = target,
                 layer = layer,
                 roundDuring = roundDuring,
+                buffStringParams = buffStringParams,
                 buffValues = buffValues,
             };
             //添加buff的叠层逻辑
@@ -132,13 +132,16 @@ namespace Yu
                     buffInfo.buffStringParams = new object[1] {"20%"};
                     break;
                 case "攻击力提升":
-                    target.UpdateDamage(int.Parse(buffInfo.buffValues[0].ToString()));
+                    var damageAddon = int.Parse(buffInfo.buffValues[0].ToString());
+                    target.UpdateDamage(damageAddon);
                     break;
                 case "攻击力下降":
-                    target.UpdateDamage(-int.Parse(buffInfo.buffValues[0].ToString()));
+                    var damageAddon1 = int.Parse(buffInfo.buffValues[0].ToString());
+                    target.UpdateDamage(-damageAddon1);
                     break;
                 case "受伤加重":
-                    target.UpdateHurtRate(float.Parse(buffInfo.buffValues[0].ToString()));
+                    var hurtRateAddon = float.Parse(buffInfo.buffValues[0].ToString());
+                    target.UpdateHurtRate(hurtRateAddon);
                     break;
                 case "虚缪":
                     buffInfo.buffStringParams = new object[1] {"70%"};
@@ -147,14 +150,13 @@ namespace Yu
                     buffInfo.buffStringParams = new object[1] {"2"};
                     break;
                 case "忍耐":
-                    target.UpdateHurtRate(-float.Parse(buffInfo.buffValues[0].ToString()));
+                    target.UpdateHurtRate(-0.1f);
                     break;
                 case "反击架势":
                     buffInfo.buffStringParams = new object[1] {"70%"};
                     break;
                 case "被掩护":
                     target.SetHurtToEntity(buffInfo.buffValues[0] as BattleEntityCtrl); //设置伤害转移的目标
-                    buffInfo.buffStringParams = new object[1] {buffInfo.buffValues[0]};
                     break;
                 case "增生":
                     buffInfo.buffStringParams = new object[1] {"30%"};
@@ -165,6 +167,8 @@ namespace Yu
                 case "眩晕":
                     break;
                 case "燃烬":
+                    break;
+                case "不可选中":
                     break;
                 default:
                     Debug.LogError("没有添加这个buff的效果" + buffInfo.buffName);
@@ -222,6 +226,8 @@ namespace Yu
                         break;
                     case "燃烬":
                         break;
+                    case "不可选中":
+                        break;
                     default:
                         Debug.LogError("没有添加这个buff的效果" + buffInfo.buffName);
                         break;
@@ -244,7 +250,7 @@ namespace Yu
             for (var j = 0; j < bpDecrease; j++)
             {
                 var damageAddon = (int) (characterEntity.GetRowCfgCharacter().damage * 0.2f);
-                AddBuff("攻击力提升", characterEntity, characterEntity, 1, 1, damageAddon);
+                AddBuff("攻击力提升", characterEntity, characterEntity, 1, 1, new object[1] {"20%"}, damageAddon);
             }
         }
 
@@ -280,9 +286,10 @@ namespace Yu
             var cleanBuffInfoList = new List<BuffInfo>();
             var itemsToRemove = new List<BuffItem>();
 
-            foreach (var buffItem in target.buffItemList.Concat(target.buffItemList))
+            foreach (var buffItem in target.buffItemList.Concat(target.debuffItemList))
             {
                 var buffInfo = buffItem.GetBuffInfo();
+                //Debug.Log(buffInfo.buffName+"----during--->"+buffInfo.roundDuring);
                 buffInfo.roundDuring--;
                 if (buffInfo.roundDuring > 0)
                 {
@@ -312,7 +319,7 @@ namespace Yu
             {
                 DoRemoveBuffEffect(buffInfo);
             }
-            
+
             _uiCtrl.CloseBuffDescribe();
         }
 

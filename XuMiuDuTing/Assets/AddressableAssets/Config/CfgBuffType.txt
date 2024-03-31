@@ -14,3 +14,4 @@ hot#hot#None
 减伤#减伤#None
 行动束缚#行动束缚#None
 每回合失去xx#每回合失去xx#None
+机制判定类#机制判定类#None

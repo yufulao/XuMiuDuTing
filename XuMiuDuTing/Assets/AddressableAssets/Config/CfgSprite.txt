@@ -1,12 +1,16 @@
 key#path#None#None#None
 key#图片路径#None#None#None
 string#string#None#None#None
+背景图片 (1)#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/背景图片 (1).png#None#None#None
 背景图片 (14)#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/背景图片 (14).png#None#None#None
+背景图片 (19)#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/背景图片 (19).png#None#None#None
 背景图片 (20)#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/背景图片 (20).png#None#None#None
 背景图片 (21)#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/背景图片 (21).png#None#None#None
 背景图片 (23)#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/背景图片 (23).png#None#None#None
+背景图片 (28)#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/背景图片 (28).png#None#None#None
 背景图片 (29)#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/背景图片 (29).png#None#None#None
 背景图片 (30)#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/背景图片 (30).png#None#None#None
+背景图片 (31)#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/背景图片 (31).png#None#None#None
 街头商店#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/街头商店.png#None#None#None
 虚谬空洞#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/虚谬空洞.png#None#None#None
 IMG_1042#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/IMG_1042.PNG#None#None#None

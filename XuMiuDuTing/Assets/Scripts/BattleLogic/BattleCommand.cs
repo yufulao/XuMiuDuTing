@@ -16,7 +16,14 @@ namespace Yu
         private readonly List<IEnumerator> _allCommandList = new List<IEnumerator>();
         private readonly List<IEnumerator> _battleStartAllCommandList = new List<IEnumerator>();
 
-
+        /// <summary>
+        /// 外部输入技
+        /// </summary>
+        public void AddCommandInfo(BattleCommandInfo commandInfo)
+        {
+            _commandInfoList.Add(commandInfo);
+        }
+        
         /// <summary>
         /// 初始化和每轮动画结算完毕后调用
         /// </summary>

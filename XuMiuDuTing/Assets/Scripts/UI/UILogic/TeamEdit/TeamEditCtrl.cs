@@ -32,7 +32,6 @@ namespace Yu
 
         public override void CloseRoot()
         {
-            StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", 0.3f, 0f, 0f));
             _view.CloseWindow();
         }
 
@@ -68,14 +67,14 @@ namespace Yu
         /// 进入战斗关卡
         /// </summary>
         /// <returns></returns>
-        public IEnumerator EnterBattleScene()
+        public IEnumerator EnterBattleScene(RowCfgStage rowCfgStage)
         {
             UIManager.Instance.OpenWindow("LoadingView");
             yield return new WaitForSeconds(0.5f);
             UIManager.Instance.CloseAllLayerWindows("NormalLayer");
-            yield return SceneManager.Instance.ChangeSceneAsync(ConfigManager.Instance.cfgScene["Battle"].scenePath);
+            yield return SceneManager.Instance.ChangeSceneAsync(ConfigManager.Instance.cfgScene[rowCfgStage.battleScene].scenePath);
             var battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-            battleManager.EnterBattle(_model.GetTeamArray());
+            battleManager.EnterBattle(rowCfgStage,_model.GetTeamArray());
         }
 
         /// <summary>
@@ -129,7 +128,8 @@ namespace Yu
         /// </summary>
         private void BtnOnClickBack()
         {
-            StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", 0.3f, 0f, 0f));
+            ProcedureManager.Instance.SetNullState();
+            UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView");
             CloseRoot();
         }
 

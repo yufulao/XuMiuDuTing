@@ -7,6 +7,7 @@ using Rabi;
 using SCPE;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -78,11 +79,27 @@ namespace Yu
         }
 
         /// <summary>
-        /// 打开暂停界面
+        /// 设置btn点击时
         /// </summary>
-        public void OpenPauseView()
+        public void OnBtnClickSetting()
         {
-            UIManager.Instance.OpenWindow("PauseView");
+            UIManager.Instance.OpenWindow("SettingView");
+        }
+        
+        /// <summary>
+        /// skip点击时
+        /// </summary>
+        public void OnBtnClickSkip()
+        {
+            UIManager.Instance.OpenWindow("DoubleConfirmView","确定要退出剧情吗",new UnityAction(EnterNextStageProcedure));
+        }
+        
+        /// <summary>
+        /// 是否自动播放
+        /// </summary>
+        public void AutoContinue(bool auto)
+        {
+            
         }
 
         /// <summary>
@@ -284,6 +301,17 @@ namespace Yu
             foreach (var subtitlePanel in allSubtitlePanelList)
             {
                 subtitlePanel.Close();
+            }
+        }
+        
+        /// <summary>
+        /// 强制关闭所有辅助
+        /// </summary>
+        public void CloseAllSubPortrait()
+        {
+            foreach (var subPortraitAnimator in allSubPortraitAnimatorList)
+            {
+                subPortraitAnimator.SetTrigger("Hide");
             }
         }
 
@@ -489,8 +517,8 @@ namespace Yu
         {
             objContinueButtonMask.SetActive(true);
             yield return new WaitForSeconds(during);
-            DialogueManager.instance.PlaySequence("Continue()");
             objContinueButtonMask.SetActive(false);
+            DialogueManager.instance.PlaySequence("Continue()");
         }
 
         /// <summary>

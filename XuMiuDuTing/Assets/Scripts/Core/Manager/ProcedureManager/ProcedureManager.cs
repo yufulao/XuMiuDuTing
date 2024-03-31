@@ -129,7 +129,7 @@ namespace Yu
         /// </summary>
         public void OnEnterBattleState()
         {
-            GameManager.Instance.StartCoroutine(UIManager.Instance.GetCtrl<TeamEditCtrl>("TeamEditView").EnterBattleScene());
+            GameManager.Instance.StartCoroutine(UIManager.Instance.GetCtrl<TeamEditCtrl>("TeamEditView").EnterBattleScene(_cacheRowCfgStage));
         }
 
         /// <summary>
@@ -160,10 +160,10 @@ namespace Yu
         /// <summary>
         /// 关卡流程执行完毕
         /// </summary>
-        private void EndStageProcedure()
+        public void EndStageProcedure()
         {
             SetNullState();
-            GameManager.Instance.ReturnToTitle(0.5f,
+            GameManager.Instance.ReturnToTitle(false,0.5f,
                 () => { UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView"); });
         }
 
