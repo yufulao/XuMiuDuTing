@@ -20,3 +20,4 @@ IMG_4641#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/IMG_4641.PN
 IMG_4642#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/IMG_4642.PNG#None#None#None
 CW56Q%[UM5`LB(FTC{6%T0Q#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/CW56Q%[UM5`LB(FTC{6%T0Q.png#None#None#None
 （1080p）CG01#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/CG/（1080p）CG01.PNG#None#None#None
+（1080p）CG02_background#Assets/AddressableAssets/Sprite/Dialogue/背景美术资源/CG/（1080p）CG02_background.png#None#None#None

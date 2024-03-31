@@ -169,6 +169,7 @@ namespace Yu
                 case "燃烬":
                     break;
                 case "不可选中":
+                    target.animatorEntity.SetBool("quchiSkill1",true);
                     break;
                 default:
                     Debug.LogError("没有添加这个buff的效果" + buffInfo.buffName);
@@ -182,7 +183,7 @@ namespace Yu
         /// 移除buff时执行的效果
         /// </summary>
         /// <param name="buffInfo"></param>
-        private static void DoRemoveBuffEffect(BuffInfo buffInfo)
+        private void DoRemoveBuffEffect(BuffInfo buffInfo)
         {
             var target = buffInfo.target;
             var caster = buffInfo.caster;
@@ -227,6 +228,7 @@ namespace Yu
                     case "燃烬":
                         break;
                     case "不可选中":
+                        caster.animatorEntity.SetBool("quchiSkill1",false);
                         break;
                     default:
                         Debug.LogError("没有添加这个buff的效果" + buffInfo.buffName);

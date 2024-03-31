@@ -162,9 +162,17 @@ namespace Yu
         /// </summary>
         public void EndStageProcedure()
         {
-            SetNullState();
-            GameManager.Instance.ReturnToTitle(false,0.5f,
-                () => { UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView"); });
+            GameManager.Instance.StartCoroutine(EndStageProcedureIEnumerator());
+        }
+
+        /// <summary>
+        /// 关卡流程执行完毕的协程
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator EndStageProcedureIEnumerator()
+        {
+            yield return GameManager.Instance.ReturnToTitle(false,0f);
+            UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView");
         }
 
         /// <summary>

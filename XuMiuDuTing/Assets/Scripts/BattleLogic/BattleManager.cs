@@ -1,12 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using DG.Tweening;
 using Rabi;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 
 namespace Yu
@@ -166,7 +162,8 @@ namespace Yu
         /// <returns></returns>
         private IEnumerator CharacterDefend(CharacterEntityCtrl caster)
         {
-            caster.SetDefendAddon("Default", 500); //在RoundListener中注册了事件，检测是否输入default并减去defend
+            //在RoundListener中注册了事件，检测是否输入default并加回HurtRate
+            caster.UpdateHurtRate(-0.3f);
             yield return null;
             ExecuteBattleStartCommandList();
         }
@@ -178,10 +175,10 @@ namespace Yu
         /// <param name="bpNeed"></param>
         /// <param name="selectEntityList"></param>
         /// <returns></returns>
-        private IEnumerator CharacterAttack(CharacterEntityCtrl caster, int bpNeed, IEnumerable<BattleEntityCtrl> selectEntityList)
+        private IEnumerator CharacterAttack(CharacterEntityCtrl caster, int bpNeed, List<BattleEntityCtrl> selectEntityList)
         {
+            Debug.Log(0);
             float damagePoint = caster.GetDamage();
-            //Debug.Log(selectEntity.Count);
             foreach (var selectEntity in selectEntityList)
             {
                 //Debug.Log(selectEntity[i]);
@@ -195,11 +192,10 @@ namespace Yu
                 yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(selectEntity, 0);
                 yield return new WaitForSeconds(0.2f);
                 EntityGetDamage(selectEntity, caster, damagePoint);
-                CheckDecreaseBp(caster, bpNeed);
+                caster.UpdateBp(-bpNeed);
                 RefreshAllEntityInfoItem();
                 yield return new WaitForSeconds(0.7f);
             }
-
             ExecuteCommandList();
         }
 
@@ -385,10 +381,12 @@ namespace Yu
             target.animatorEntity.Play("damaged");
             var hurtPoint = (int) (Mathf.Clamp((damagePoint - target.GetDefend() - target.GetDefendAddon()), 0f, 1000000f)
                                    * target.GetHurtRate() * (caster.GetDamageRate() + damageRateAddition));
-            //Debug.Log("damage=" + damagePoint + ",defand=" + entityGet.defend + ",hurtRate=" + entityGet.hurtRate + ",damageRate=" + caster.GetDamage()Rate + "\n" +
-            //    "伤害-防御=" + (int)(Mathf.Clamp((damagePoint - entityGet.defend), 0f, 1000000f)) + "\n" +
-            //    "伤害rate*受伤rate=" + entityGet.hurtRate * caster.GetDamage()Rate + "\n" +
-            //    "总伤害=" + (int)(Mathf.Clamp((damagePoint - entityGet.defend), 0f, 1000000f) * entityGet.hurtRate * caster.GetDamage()Rate));
+            // Debug.Log("damage=" + damagePoint + ",defend=" + target.GetDefend()+",defendAddon"+target.GetDefendAddon() + ",hurtRate=" + target.GetHurtRate() + 
+            //           ",damageRate=" + caster.GetDamageRate() + ",damageRateAddition"+damageRateAddition+"\n" +
+            //     "伤害-防御=" + (int)(Mathf.Clamp((damagePoint - target.GetDefend()- target.GetDefendAddon()), 0f, 1000000f)) + "\n" +
+            //     "伤害rate*受伤rate=" + target.GetHurtRate() * (caster.GetDamageRate()+damageRateAddition) + "\n" +
+            //     "总伤害=" + (int) (Mathf.Clamp((damagePoint - target.GetDefend() - target.GetDefendAddon()), 0f, 1000000f)
+            //                     * target.GetHurtRate() * (caster.GetDamageRate() + damageRateAddition)));
             var entityHud = target.GetEntityHud();
             var textHurtPoint = entityHud.textHurtPoint;
             textHurtPoint.text = hurtPoint.ToString();
@@ -461,7 +459,6 @@ namespace Yu
                 {
                     GameWin();
                 }
-
                 yield break;
             }
 
@@ -515,7 +512,10 @@ namespace Yu
                 if (entity.animatorEntity)
                 {
                     //恢复动画
-                    entity.animatorEntity.Play("idle");
+                    if (CheckBuff(entity,"不可选中").Count<=0)
+                    {
+                        entity.animatorEntity.Play("idle");
+                    }
                     entity.animatorEntity.SetBool("default", false);
                     entity.animatorEntity.SetBool("ready", false);
                 }
@@ -544,7 +544,7 @@ namespace Yu
 
                 if (!commandInfo.caster.IsDie())
                 {
-                    commandInfo.caster.SetDefendAddon("Default", -500);
+                    commandInfo.caster.UpdateHurtRate(0.3f);
                 }
             }
         }
@@ -583,8 +583,8 @@ namespace Yu
 
             UIManager.Instance.OpenWindow("LoadingView");
             yield return new WaitForSeconds(0.5f);
-            GameManager.Instance.ReturnToTitle(false,0.5f,
-                () => { UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView"); });
+            yield return GameManager.Instance.ReturnToTitle(false,0.5f);
+            UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView");
         }
 
         /// <summary>

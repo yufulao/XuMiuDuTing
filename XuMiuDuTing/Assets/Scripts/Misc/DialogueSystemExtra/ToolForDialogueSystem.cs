@@ -20,6 +20,7 @@ namespace Yu
     {
         [SerializeField] private Image imageBg;
         private Material _materialBg;
+        [SerializeField] private Animator imageBgAddonAnimator;
         [SerializeField] private CanvasGroup canvasGroupBlackMask;
         [SerializeField] private CanvasGroup canvasGroupBlackMaskBg;
         [SerializeField] private CanvasGroup canvasGroupBlackMaskWithoutCommonElement;
@@ -49,6 +50,7 @@ namespace Yu
             ResetAllSubPortraitAnimator();
             ResetAllSubtitlePanelAnimator();
             objContinueButtonMask.SetActive(false);
+            imageBgAddonAnimator.SetTrigger("Hide");
             CloseAllVFX();
         }
 

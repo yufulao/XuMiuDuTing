@@ -34,7 +34,6 @@ namespace Yu
 
         public override void CloseRoot()
         {
-            StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", 0.2f, 0f, 0f, 1f));
             _view.CloseWindow();
         }
 
