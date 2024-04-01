@@ -16,6 +16,9 @@ namespace Yu
         public Animator animatorEntity;
         public Animator animatorBuff;
         public Animator animatorSkill;
+        public Animator animatorBuffOwn;
+        public Animator animatorSkillOwn;
+        
 
         public virtual string GetName()
         {

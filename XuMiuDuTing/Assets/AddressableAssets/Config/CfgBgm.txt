@@ -15,3 +15,9 @@ Toy Blues#Assets/AddressableAssets/BGM/系统背景音乐/Toy Blues.mp3#None#Non
 A SPROUT#Assets/AddressableAssets/BGM/系统背景音乐/A SPROUT.mp3#None#None#None
 Epigraph#Assets/AddressableAssets/BGM/系统背景音乐/Epigraph.mp3#None#None#None
 EVER SO TENDERLY#Assets/AddressableAssets/BGM/系统背景音乐/EVER SO TENDERLY.mp3#None#None#None
+There Will Be A Day#Assets/AddressableAssets/BGM/系统背景音乐/There Will Be A Day.mp3#None#None#None
+Calm Days#Assets/AddressableAssets/BGM/系统背景音乐/Calm Days.mp3#None#None#None
+岩崎太整 - Algesia#Assets/AddressableAssets/BGM/系统背景音乐/岩崎太整 - Algesia.mp3#None#None#None
+MEANWHILE#Assets/AddressableAssets/BGM/系统背景音乐/MEANWHILE.mp3#None#None#None
+1_It means_(Instrumental)#Assets/AddressableAssets/BGM/系统背景音乐/1_It means_(Instrumental).wav#None#None#None
+岩崎太整 - If You Take Anything#Assets/AddressableAssets/BGM/系统背景音乐/岩崎太整 - If You Take Anything.mp3#None#None#None

@@ -24,6 +24,8 @@ namespace Rabi
         public string conversationBName; //对话B名
         public List<string> fixCharacterTeam; //固定角色队伍
         public List<string> enemyTeam; //敌人列表
+        public string battleScene; //战斗场景路径
+        public List<string> battleBgm; //战斗bgm(数量大于2按abb模式)
         public List<string> unlockStageList; //通关后解锁的关卡列表
     }
 
@@ -77,7 +79,7 @@ namespace Rabi
         private RowCfgStage ParseRow(string[] col)
         {
             //列越界
-            if (col.Length < 9)
+            if (col.Length < 11)
             {
                 Debug.LogError($"配置表字段行数越界:{GetType()}");
                 return null;
@@ -93,6 +95,8 @@ namespace Rabi
             data.conversationBName = CsvUtility.ToString(rowHelper.ReadNextCol()); //对话B名
             data.fixCharacterTeam = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //固定角色队伍
             data.enemyTeam = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //敌人列表
+            data.battleScene = CsvUtility.ToString(rowHelper.ReadNextCol()); //战斗场景路径
+            data.battleBgm = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //战斗bgm(数量大于2按abb模式)
             data.unlockStageList = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //通关后解锁的关卡列表
             return data;
         }

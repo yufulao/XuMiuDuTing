@@ -148,7 +148,11 @@ namespace Yu
         public void SetVolumeRuntime(string sfxType, float volumeBase)
         {
             _audioMix.SetFloat(sfxType + "Volume", volumeBase);
-            SaveManager.SetFloat(sfxType + "Volume", volumeBase);
+        }
+
+        public void MuteVolume(string sfxType)
+        {
+            _audioMix.SetFloat(sfxType + "Volume", -100f);
         }
 
         public void Update()

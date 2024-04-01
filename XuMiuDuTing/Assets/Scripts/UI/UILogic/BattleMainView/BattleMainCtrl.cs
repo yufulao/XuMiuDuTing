@@ -206,7 +206,7 @@ namespace Yu
             var buffInfo = buffItem.GetBuffInfo();
             //inspector窗口的string输入时会自动把\n转成\\n ，所以要转回来，不然不换行，艹
             var buffValueString = "";
-            if (buffInfo.buffStringParams.Length != 0)
+            if (buffInfo.buffStringParams != null && buffInfo.buffStringParams.Length != 0)
             {
                 buffValueString = buffInfo.buffStringParams[0].ToString();
                 if (buffInfo.buffStringParams[0] is BattleEntityCtrl)
@@ -243,7 +243,7 @@ namespace Yu
         {
             var describeItemSkill = view.describeItemSkill;
             //通过将skillDescribe的缩放xy改为-1，然后字体的缩放xy改为-1，实现向左下角拓展
-            describeItemSkill.Open(skillItem.RowCfgSkill.description, skillItem.gameObject.transform.position );
+            describeItemSkill.Open(skillItem.RowCfgSkill.description, skillItem.gameObject.transform.position);
             //强制更新contentSizeFilter，不然更新大小有延迟
             Utils.ForceUpdateContentSizeFilter(describeItemSkill.gameObject.transform);
         }

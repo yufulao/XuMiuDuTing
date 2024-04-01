@@ -49,15 +49,32 @@ namespace Yu
 
             BGMManager.Instance.ReloadVolume();
             SFXManager.Instance.ReloadVolume();
-            ReturnToTitle(0f);
+            StartCoroutine(ReturnToTitle(true,0f));
         }
 
         /// <summary>
         /// 游戏开始
         /// </summary>
-        public void ReturnToTitle(float bgmFadeOutTime = 0.5f, UnityAction callback = null)
+        public IEnumerator ReturnToTitle(bool playBgm,float bgmFadeOutTime = 0.5f)
         {
-            StartCoroutine(ReturnToTitleIEnumerator(bgmFadeOutTime, callback));
+            SetTimeScale(1f);
+            UIManager.Instance.OpenWindow("LoadingView");
+            if (playBgm)
+            {
+                yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", bgmFadeOutTime, 0f, 0.5f, 1f);
+            }
+            UIManager.Instance.GetCtrlWithCreate<BattleMainCtrl>("BattleMainView")?.ClearAllEntityHud(); //关闭所有hud，因为HUD独立
+            UIManager.Instance.CloseAllLayerWindows("NormalLayer");
+            yield return new WaitForSeconds(0.3f);//等待所有windowClose动画
+            DialogueManager.instance.StopAllConversations();
+            yield return new WaitForSeconds(0.5f);//等待conversation关闭页面
+            CameraManager.Instance.ResetObjCamera();
+            GC.Collect();
+            yield return SceneManager.Instance.ChangeSceneAsync(ConfigManager.Instance.cfgScene["Tittle"].scenePath);
+            UIManager.Instance.DestroyWindow("BattleMainView");
+            UIManager.Instance.OpenWindow("HomeView");
+            UIManager.Instance.CloseWindow("LoadingView");
+            ProcedureManager.Instance.SetNullState();
         }
 
         /// <summary>
@@ -135,30 +152,6 @@ namespace Yu
         }
 
         /// <summary>
-        /// 返回Title
-        /// </summary>
-        /// <param name="bgmFadeOutTime"></param>
-        /// <param name="callback"></param>
-        /// <returns></returns>
-        private IEnumerator ReturnToTitleIEnumerator(float bgmFadeOutTime, UnityAction callback)
-        {
-            DialogueManager.instance.StopAllConversations();
-            UIManager.Instance.GetCtrlWithCreate<BattleMainCtrl>("BattleMainView")?.ClearAllEntityHud(); //关闭所有hud，因为HUD独立
-            UIManager.Instance.CloseAllLayerWindows("NormalLayer");
-            UIManager.Instance.OpenWindow("LoadingView");
-            yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", bgmFadeOutTime, 0f, 0.5f, 1f);
-            SetTimeScale(1f);
-            CameraManager.Instance.ResetObjCamera();
-            GC.Collect();
-            yield return SceneManager.Instance.ChangeSceneAsync(ConfigManager.Instance.cfgScene["Tittle"].scenePath);
-            UIManager.Instance.DestroyWindow("BattleMainView");
-            UIManager.Instance.OpenWindow("HomeView");
-            UIManager.Instance.CloseWindow("LoadingView");
-            ProcedureManager.Instance.SetNullState();
-            callback?.Invoke();
-        }
-
-        /// <summary>
         /// 进入关卡
         /// </summary>
         public void EnterStage()
@@ -231,17 +224,18 @@ namespace Yu
         {
             var lastVersion = SaveManager.GetString("Version", "0.0.1");
             var nowVersion = Application.version;
-            SaveManager.SetString("Version", nowVersion);
             if (lastVersion.Equals(nowVersion))
             {
                 return;
             }
 
-            SaveManager.DeleteKey("StageName");
-            SaveManager.DeleteKey("PlotNameInMainPlot");
-            SaveManager.DeleteKey("StageData");
-            SaveManager.DeleteKey("TeamData");
-            SaveManager.DeleteKey("SkillData");
+            SaveManager.DeleteFile();
+            SaveManager.SetString("Version", nowVersion);
+            // SaveManager.DeleteKey("StageName");
+            // SaveManager.DeleteKey("PlotNameInMainPlot");
+            // SaveManager.DeleteKey("StageData");
+            // SaveManager.DeleteKey("TeamData");
+            // SaveManager.DeleteKey("SkillData");
         }
 
         private void Update()

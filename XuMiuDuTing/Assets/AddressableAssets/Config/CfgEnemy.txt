@@ -1,5 +1,6 @@
-key#entityObjPath#skillNameList#uniqueSkillName#maxHp#damage#damageRate#defend#hurtRate#speed
-key#实体路径#技能名列表#必杀技名#最大生命值#攻击值#攻击乘率#防御值#受击乘率#速度
-string#string#List<string>#string#int#int#float#int#float#int
-EnemyA#Assets/AddressableAssets/Obj/Spine/EnemyA.prefab#None#None#90#982#1#0#1#50
-龋齿#Assets/AddressableAssets/Obj/Spine/龋齿.prefab#None#None#90#982#1#0#1#50
+key#entityObjPath#skillNameList#uniqueSkillName#maxHp#damage#defend#damageRate#hurtRate#speed#isExceptBattleWinCheck
+key#实体路径#技能名列表#必杀技名#最大生命值#攻击值#防御值#攻击乘率#受击乘率#速度#战斗胜利检测是否排除
+string#string#List<string>#string#int#int#int#float#float#int#bool
+EnemyA#Assets/AddressableAssets/Obj/Spine/EnemyA.prefab#None#None#9000#982#0#1#1#50#False
+龋齿#Assets/AddressableAssets/Obj/Spine/龋齿.prefab#None#None#9999#563#0#1#1#50#False
+龋齿_Idle#Assets/AddressableAssets/Obj/Spine/龋齿_Idle.prefab#None#None#9999#563#0#1#1#50#True

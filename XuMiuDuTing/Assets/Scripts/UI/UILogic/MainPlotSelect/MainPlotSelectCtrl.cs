@@ -34,7 +34,6 @@ namespace Yu
 
         public override void CloseRoot()
         {
-            StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", 0.2f, 0f, 0f, 1f));
             _view.CloseWindow();
         }
 
@@ -52,6 +51,7 @@ namespace Yu
         private void BtnOnClickBack()
         {
             CloseRoot();
+            GameManager.Instance.StartCoroutine(BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", 0.2f, 0f, 0.2f, 1f));
         }
 
         /// <summary>
@@ -59,11 +59,11 @@ namespace Yu
         /// </summary>
         private void BtnOnClickEnter()
         {
-            _view.SetVFXFogActive(false);
             SaveManager.SetString("PlotNameInMainPlot", _model.GetCurrentPlotName());
             SaveManager.SetString("StageName", _model.GetCurrentStageName());
             _model.CheckPassStageOfNoBattle();
             ProcedureManager.Instance.SetStageProcedure(_model.GetCurrentStageName());
+            _view.SetVFXFogActive(false);
         }
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace Yu
             var stageItemDic = _model.GetStageItemDic();
             var stageFrameContainer = _view.stageFrameContainer;
             var plotName = rowCfgMainPlot.key;
-            
+
             for (var i = 0; i < stageFrameContainer.childCount; i++)
             {
                 stageFrameContainer.GetChild(i).gameObject.SetActive(false);

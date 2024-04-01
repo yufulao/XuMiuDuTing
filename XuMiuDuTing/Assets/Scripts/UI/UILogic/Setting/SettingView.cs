@@ -8,7 +8,7 @@ namespace Yu
 {
     public class SettingView : MonoBehaviour
     {
-        public Button btnCredit;
+        public Button btnDeveloper;
         public Button btnBack;
         public Slider sliderBGM;
         public Slider sliderSe;
@@ -17,6 +17,8 @@ namespace Yu
         public Toggle toggleAuto;
         public Dropdown dropdownResolution;
         public GameObject objMask;
+        public Animator animatorDeveloperPanel;
+        public Button btnDeveloperPanel; 
 
         public Animator animator;
         
@@ -58,6 +60,7 @@ namespace Yu
         {
             objMask.SetActive(false);
             gameObject.SetActive(true);
+            animatorDeveloperPanel.gameObject.SetActive(false);
             animator.Play("Show", 0, 0f);
         }
 

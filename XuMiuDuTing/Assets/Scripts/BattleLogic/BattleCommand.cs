@@ -16,7 +16,14 @@ namespace Yu
         private readonly List<IEnumerator> _allCommandList = new List<IEnumerator>();
         private readonly List<IEnumerator> _battleStartAllCommandList = new List<IEnumerator>();
 
-
+        /// <summary>
+        /// 外部输入技
+        /// </summary>
+        public void AddCommandInfo(BattleCommandInfo commandInfo)
+        {
+            _commandInfoList.Add(commandInfo);
+        }
+        
         /// <summary>
         /// 初始化和每轮动画结算完毕后调用
         /// </summary>
@@ -356,8 +363,17 @@ namespace Yu
             StartCoroutine(ExecuteCommandListIEnumerator());
         }
 
+        /// <summary>
+        /// 执行指令列表队列的队首的协程
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator ExecuteCommandListIEnumerator()
         {
+            if (!_model.isGaming)
+            {
+                yield break;
+            }
+            
             if (!_inCommandExecuting)
             {
                 _inCommandExecuting = true;
@@ -394,7 +410,7 @@ namespace Yu
 
             //执行指令
             Debug.Log(caster.GetName() + "执行指令" + _allCommandList[0]);
-            StartCoroutine(_allCommandList[0]);
+            var command=_allCommandList[0];
             _allCommandList.RemoveAt(0);
             caster = _sortCommandInfoList[0].caster;
             if ((_sortCommandInfoList.Count == 1) || (caster.GetName() != _sortCommandInfoList[1].caster.GetName()))
@@ -407,6 +423,7 @@ namespace Yu
 
             _sortCommandInfoList.RemoveAt(0);
             RefreshAllEntityInfoItem();
+            StartCoroutine(command);
         }
 
         /// <summary>

@@ -133,7 +133,6 @@ namespace Yu
             {
                 return;
             }
-
             ((TypeEvent) _eventDic[eventName]).Invoke();
         }
 

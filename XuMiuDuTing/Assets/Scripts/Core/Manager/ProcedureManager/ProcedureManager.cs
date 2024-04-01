@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using PixelCrushers.DialogueSystem;
 using Rabi;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Yu
 {
@@ -13,6 +14,10 @@ namespace Yu
         private ProcedureFsm _fsm;
         private readonly List<Type> _currentStageProcedure = new List<Type>();
         private RowCfgStage _cacheRowCfgStage;
+        private UnityAction _teamEditActionAddon;
+        private UnityAction _conversationAActionAddon;
+        private UnityAction _battleActionAddon;
+        private UnityAction _conversationBActionAddon;
 
         public void OnInit()
         {
@@ -62,6 +67,7 @@ namespace Yu
                 _currentStageProcedure.Add(typeof(ConversationBState));
             }
 
+            CheckEnterSpecialStage(stageName);//添加特定关卡事件
             EnterNextStageProcedure();
         }
 
@@ -75,10 +81,22 @@ namespace Yu
                 EndStageProcedure();
                 return;
             }
-
+            
             var currentProcedure = _currentStageProcedure[0];
             _fsm.ChangeFsmState(currentProcedure);
             _currentStageProcedure.RemoveAt(0);
+        }
+        
+        /// <summary>
+        /// 设置空状态
+        /// </summary>
+        public void SetNullState()
+        {
+            _fsm.ChangeToNullState();
+            _teamEditActionAddon = null;
+            _conversationAActionAddon = null;
+            _battleActionAddon = null;
+            _conversationBActionAddon = null;
         }
 
         /// <summary>
@@ -86,6 +104,8 @@ namespace Yu
         /// </summary>
         public void OnEnterTeamEditState()
         {
+            EventManager.Instance.Dispatch(EventName.TeamEditStateEnter);
+            _teamEditActionAddon?.Invoke();
             var chapterType = SaveManager.GetString("ChapterType", "MainPlot");
             var plotName = chapterType.Equals(DefChapterType.DMainPlot)
                 ? SaveManager.GetString("PlotNameInMainPlot", "plotZero")
@@ -117,6 +137,8 @@ namespace Yu
 
         private IEnumerator OnEnterConversationAStateIEnumerator()
         {
+            EventManager.Instance.Dispatch(EventName.ConversationAStateEnter);
+            _conversationAActionAddon?.Invoke();
             UIManager.Instance.OpenWindow("LoadingView");
             yield return new WaitForSeconds(0.3f);
             BGMManager.Instance.StopBgm();
@@ -129,7 +151,11 @@ namespace Yu
         /// </summary>
         public void OnEnterBattleState()
         {
-            GameManager.Instance.StartCoroutine(UIManager.Instance.GetCtrl<TeamEditCtrl>("TeamEditView").EnterBattleScene());
+            GameManager.Instance.StartCoroutine(UIManager.Instance.GetCtrl<TeamEditCtrl>("TeamEditView").EnterBattleScene(_cacheRowCfgStage, () =>
+            {
+                EventManager.Instance.Dispatch(EventName.BattleStateEnter);
+                _battleActionAddon?.Invoke();
+            }));
         }
 
         /// <summary>
@@ -140,16 +166,10 @@ namespace Yu
             GameManager.Instance.StartCoroutine(OnEnterConversationBStateIEnumerator());
         }
 
-        /// <summary>
-        /// 设置空状态
-        /// </summary>
-        public void SetNullState()
-        {
-            _fsm.ChangeToNullState();
-        }
-        
         private IEnumerator OnEnterConversationBStateIEnumerator()
         {
+            EventManager.Instance.Dispatch(EventName.ConversationBStateEnter);
+            _conversationBActionAddon?.Invoke();
             UIManager.Instance.OpenWindow("LoadingView");
             yield return new WaitForSeconds(0.3f);
             BGMManager.Instance.StopBgm();
@@ -160,11 +180,30 @@ namespace Yu
         /// <summary>
         /// 关卡流程执行完毕
         /// </summary>
-        private void EndStageProcedure()
+        public void EndStageProcedure()
         {
-            SetNullState();
-            GameManager.Instance.ReturnToTitle(0.5f,
-                () => { UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView"); });
+            GameManager.Instance.StartCoroutine(EndStageProcedureIEnumerator());
+        }
+
+        /// <summary>
+        /// 关卡流程执行完毕的协程
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator EndStageProcedureIEnumerator()
+        {
+            yield return GameManager.Instance.ReturnToTitle(false, 0f);
+            UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView");
+        }
+        
+        /// <summary>
+        /// 检测进入特定的关卡
+        /// </summary>
+        private void CheckEnterSpecialStage(string stageName)
+        {
+            if (stageName.Equals("0-0"))
+            {
+                _battleActionAddon = () => { UIManager.Instance.OpenWindow("BattleTutorialView"); };
+            }
         }
 
         /// <summary>

@@ -112,9 +112,8 @@ namespace Yu
             }
             else
             {
-                AddCharacterSkillCommand(skillInfo); //添加指令
+                AddCharacterSkillCommand(skillInfo,BattleCommandType.Skill); //添加指令
                 SetCommand();
-                StartCoroutine(CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DIdleCommand, 0.3f));
             }
 
             _uiCtrl.view.skillSelectPanel.Close();
@@ -126,6 +125,31 @@ namespace Yu
         /// </summary>
         public void BtnOnClickUniqueSkill()
         {
+            //禁用摁键
+            _uiCtrl.SetAllMenuInteractable(false);
+            
+            var currentCharacterEntity = _model.GetCurrentCharacterEntity();
+            var skillName = currentCharacterEntity.GetRowCfgCharacter().uniqueSkillName;
+            var rowCfgSkill = ConfigManager.Instance.cfgSkill[skillName];
+            var skillInfo = new SkillInfo()
+            {
+                skillName = skillName,
+                caster = currentCharacterEntity
+            };
+            _model.cacheCurrentSkillInfo = skillInfo;
+            
+            if (rowCfgSkill.needSelect)
+            {
+                OpenAimSelectPanel(BattleCommandType.UniqueSkill, rowCfgSkill.selectType, rowCfgSkill.objCameraStateType, rowCfgSkill.selectCount);
+            }
+            else
+            {
+                AddCharacterSkillCommand(skillInfo,BattleCommandType.UniqueSkill); //添加指令
+                SetCommand();
+            }
+
+            //启用摁键
+            _uiCtrl.SetAllMenuInteractable(true);
         }
 
         /// <summary>
@@ -173,7 +197,6 @@ namespace Yu
 
             var currentCharacter = _model.GetCurrentCharacterEntity();
             var skillInfo = _model.cacheCurrentSkillInfo;
-            var rowCfgSkill = skillInfo?.RowCfgSkill;
             switch (_model.selectMenuType)
             {
                 case BattleCommandType.Attack:
@@ -187,7 +210,7 @@ namespace Yu
                     }
 
                     skillInfo.targetList = selectedEntity;
-                    AddCharacterSkillCommand(skillInfo);
+                    AddCharacterSkillCommand(skillInfo,BattleCommandType.Skill);
                     _uiCtrl.CloseSkillDescribe();
                     break;
                 case BattleCommandType.UniqueSkill:
@@ -197,11 +220,9 @@ namespace Yu
                     }
 
                     currentCharacter.SetHadUniqueSkill(false);
-                    _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, currentCharacter.GetHadUniqueSkill());
+                    _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, false);
                     skillInfo.targetList = selectedEntity;
-                    AddCharacterSkillCommand(skillInfo);
-                    _commandInfoList.Add(new BattleCommandInfo(
-                        false, BattleCommandType.UniqueSkill, rowCfgSkill.isBattleStartCommand, rowCfgSkill.bpNeed, selectedEntity, currentCharacter));
+                    AddCharacterSkillCommand(skillInfo,BattleCommandType.UniqueSkill);
                     break;
                 default:
                     Debug.LogError("目标输入待添加新的CommandType");
@@ -629,18 +650,24 @@ namespace Yu
                 SetToggleSelectActive(false, true, currentCharacterEntity);
             }
 
-            //将所有死亡的entity关闭toggleSelect
+            //将所有死亡和有不可选择buff的entity关闭toggleSelect
             foreach (var entityCtrl in _model.allEntities)
             {
-                if (!entityCtrl.IsDie())
+                if (entityCtrl.IsDie()||CheckBuff(entityCtrl,"不可选中").Count>0)
                 {
-                    continue;
+                    var entityHud = entityCtrl.GetEntityHud();
+                    entityHud.toggleSelect.isOn = false;
+                    entityHud.toggleSelect.group = null;
+                    entityHud.toggleSelect.gameObject.SetActive(false);
+                    if (activeToggleList.Contains(entityHud.toggleSelect))
+                    {
+                        activeToggleList.Remove(entityHud.toggleSelect);
+                    }
+                    if (!entityCtrl.IsDie())
+                    {
+                        entityCtrl.SetOutlineActive(false);
+                    }
                 }
-
-                var entityHud = entityCtrl.GetEntityHud();
-                entityHud.toggleSelect.isOn = false;
-                entityHud.toggleSelect.group = null;
-                entityHud.toggleSelect.gameObject.SetActive(false);
             }
 
             //将所有启用的toggleSelect设置toggleGroup
@@ -698,7 +725,7 @@ namespace Yu
         }
 
         /// <summary>
-        /// 给selectAttackButton调用
+        /// 给selectToggleOnValueChange调用
         /// </summary>
         /// <param name="isOn"></param>
         /// <param name="entity"></param>

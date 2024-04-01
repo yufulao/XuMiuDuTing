@@ -12,6 +12,7 @@ namespace Yu
         private RowCfgStage _rowCfgStage;
         private StageData _stageData;
         public int currentRound;
+        public bool isGaming;//战斗胜利和失败后设置为false
         public readonly List<BattleEntityCtrl> allEntities = new List<BattleEntityCtrl>();
         public readonly List<BattleEntityCtrl> sortEntities = new List<BattleEntityCtrl>(); //根据速度排序后的entityIdList
         public readonly List<CharacterEntityCtrl> allCharacterEntities = new List<CharacterEntityCtrl>();
@@ -47,6 +48,7 @@ namespace Yu
             _stageDataEntry = _stageData.allStage[stageName];
             _rowCfgStage = ConfigManager.Instance.cfgStage[_stageDataEntry.stageName];
             currentRound = 1;
+            isGaming = true;
         }
 
         /// <summary>

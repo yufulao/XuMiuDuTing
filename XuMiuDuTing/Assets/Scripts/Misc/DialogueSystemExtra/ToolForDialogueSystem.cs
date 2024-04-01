@@ -7,6 +7,7 @@ using Rabi;
 using SCPE;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -19,6 +20,7 @@ namespace Yu
     {
         [SerializeField] private Image imageBg;
         private Material _materialBg;
+        [SerializeField] private Animator imageBgAddonAnimator;
         [SerializeField] private CanvasGroup canvasGroupBlackMask;
         [SerializeField] private CanvasGroup canvasGroupBlackMaskBg;
         [SerializeField] private CanvasGroup canvasGroupBlackMaskWithoutCommonElement;
@@ -45,9 +47,13 @@ namespace Yu
         /// </summary>
         public void OnConversationStart()
         {
+            canvasGroupBlackMaskBg.alpha = 0f;
+            canvasGroupBlackMaskWithoutCommonElement.alpha = 0f;
+            canvasGroupThinkingBg.alpha = 0f;
             ResetAllSubPortraitAnimator();
             ResetAllSubtitlePanelAnimator();
             objContinueButtonMask.SetActive(false);
+            imageBgAddonAnimator.SetTrigger("Hide");
             CloseAllVFX();
         }
 
@@ -56,9 +62,6 @@ namespace Yu
         /// </summary>
         public void OnConversationStop()
         {
-            FadeOutBlackBg(0f);
-            FadeOutBlackWithoutCommonElement(0f);
-            FadeOutThinkingBg(0f);
             CloseAllVFX();
             SFXManager.Instance.StopAllSfx();
         }
@@ -71,18 +74,32 @@ namespace Yu
             VFXRain(false);
             VFXFog(false);
             VFXFire(false);
-            VFXRipple(0f);
-            VFXChromaticAberration(0f);
-            VFXColorAdjustmentsSaturation(0f);
+            // VFXColorAdjustmentsSaturation(0f);
+            ForceResetVFXProcessing();
             VFXScreenWater(false);
         }
 
         /// <summary>
-        /// 打开暂停界面
+        /// 设置btn点击时
         /// </summary>
-        public void OpenPauseView()
+        public void OnBtnClickSetting()
         {
-            UIManager.Instance.OpenWindow("PauseView");
+            UIManager.Instance.OpenWindow("SettingView");
+        }
+
+        /// <summary>
+        /// skip点击时
+        /// </summary>
+        public void OnBtnClickSkip()
+        {
+            UIManager.Instance.OpenWindow("DoubleConfirmView", "确定要退出剧情吗", new UnityAction(EnterNextStageProcedure), null);
+        }
+
+        /// <summary>
+        /// 是否自动播放
+        /// </summary>
+        public void AutoContinue(bool auto)
+        {
         }
 
         /// <summary>
@@ -288,6 +305,17 @@ namespace Yu
         }
 
         /// <summary>
+        /// 强制关闭所有辅助
+        /// </summary>
+        public void CloseAllSubPortrait()
+        {
+            foreach (var subPortraitAnimator in allSubPortraitAnimatorList)
+            {
+                subPortraitAnimator.SetTrigger("Hide");
+            }
+        }
+
+        /// <summary>
         /// 打开SubtitlePanel
         /// </summary>
         /// <param name="index"></param>
@@ -437,7 +465,7 @@ namespace Yu
             //startValue,param,endValue,during
             DOTween.To(() => intensity, x => chromaticAberration.intensity.value = x, rate * 0.3f, 1f);
         }
-        
+
         /// <summary>
         /// 饱和度特效
         /// </summary>
@@ -451,9 +479,35 @@ namespace Yu
 
             var saturation = colorAdjustments.saturation.value;
             //startValue,param,endValue,during
-            DOTween.To(() => saturation, x => colorAdjustments.saturation.value = x, 0+rate * 100f, 1f);
+            DOTween.To(() => saturation, x => colorAdjustments.saturation.value = x, 0 + rate * 100f, 1f);
         }
         
+        /// <summary>
+        /// 后处理恢复有问题，强制清零
+        /// </summary>
+        private void ForceResetVFXProcessing()
+        {
+            if (!vfxVolume.profile.TryGet<Ripples>(out var ripples))
+            {
+                return;
+            }
+
+            ripples.strength.value=0f;
+            
+            if (!vfxVolume.profile.TryGet<ChromaticAberration>(out var chromaticAberration))
+            {
+                return;
+            }
+
+            chromaticAberration.intensity.value=0f;
+            
+            if (!vfxVolume.profile.TryGet<ColorAdjustments>(out var colorAdjustments))
+            {
+                return;
+            }
+            colorAdjustments.saturation.value=0f;
+        }
+
         /// <summary>
         /// 下雨屏幕挂水特效
         /// </summary>
@@ -489,8 +543,8 @@ namespace Yu
         {
             objContinueButtonMask.SetActive(true);
             yield return new WaitForSeconds(during);
-            DialogueManager.instance.PlaySequence("Continue()");
             objContinueButtonMask.SetActive(false);
+            DialogueManager.instance.PlaySequence("Continue()");
         }
 
         /// <summary>

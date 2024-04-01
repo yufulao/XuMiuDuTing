@@ -74,10 +74,10 @@ namespace Yu
         /// <param name="delayTime">延迟播放时间</param>
         /// <param name="fadeInTime">淡入下一个bgm的时长</param>
         /// <param name="baseVolume">初始音量</param>
-        /// <param name="callback">开始播放下一个bgm时的回调，不等待淡入</param>
         /// <returns></returns>
         public IEnumerator PlayBgmFadeDelay(string bgmName, float fadeOutTime, float delayTime, float fadeInTime, float baseVolume = 1f)
         {
+            //Debug.Log(bgmName);
             _audioSource.loop = true;
             _audioSource.DOFade(0, fadeOutTime); //音量降为0
             yield return new WaitForSeconds(fadeOutTime);
@@ -130,8 +130,15 @@ namespace Yu
         /// <param name="volume"></param>
         public void SetVolumeRuntime(float volume)
         {
-            SaveManager.SetFloat("BGMVolume",volume);
             _audioMixer.SetFloat("BGMVolume", volume);
+        }
+        
+        /// <summary>
+        /// 静音
+        /// </summary>
+        public void MuteVolume()
+        {
+            _audioMixer.SetFloat("BGMVolume", -100f);
         }
 
         public void Update()

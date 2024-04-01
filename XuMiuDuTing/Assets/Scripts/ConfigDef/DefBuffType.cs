@@ -24,5 +24,6 @@ namespace Rabi
         public static readonly string D减伤 = "减伤";  //减伤
         public static readonly string D行动束缚 = "行动束缚";  //行动束缚
         public static readonly string D每回合失去xx = "每回合失去xx";  //每回合失去xx
+        public static readonly string D机制判定类 = "机制判定类";  //机制判定类
     }
 }
