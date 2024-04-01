@@ -42,17 +42,14 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: BG_Behind
-    uniqueID: 455083157
+    uniqueID: 2183977047
     locked: 0
   - name: VFX
-    uniqueID: 316755161
-    locked: 0
-  - name: UI_FrontVFX
-    uniqueID: 3350097751
+    uniqueID: 483189863
     locked: 0
   - name: BG_Front
-    uniqueID: 1696620389
+    uniqueID: 4266499703
     locked: 0
   - name: Entity
-    uniqueID: 525469715
+    uniqueID: 53487779
     locked: 0

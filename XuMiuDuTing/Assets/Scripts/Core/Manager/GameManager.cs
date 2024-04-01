@@ -65,8 +65,9 @@ namespace Yu
             }
             UIManager.Instance.GetCtrlWithCreate<BattleMainCtrl>("BattleMainView")?.ClearAllEntityHud(); //关闭所有hud，因为HUD独立
             UIManager.Instance.CloseAllLayerWindows("NormalLayer");
-            yield return new WaitForSeconds(1f);//等待所有windowClose动画
+            yield return new WaitForSeconds(0.3f);//等待所有windowClose动画
             DialogueManager.instance.StopAllConversations();
+            yield return new WaitForSeconds(0.5f);//等待conversation关闭页面
             CameraManager.Instance.ResetObjCamera();
             GC.Collect();
             yield return SceneManager.Instance.ChangeSceneAsync(ConfigManager.Instance.cfgScene["Tittle"].scenePath);
@@ -223,13 +224,13 @@ namespace Yu
         {
             var lastVersion = SaveManager.GetString("Version", "0.0.1");
             var nowVersion = Application.version;
-            SaveManager.SetString("Version", nowVersion);
             if (lastVersion.Equals(nowVersion))
             {
                 return;
             }
 
             SaveManager.DeleteFile();
+            SaveManager.SetString("Version", nowVersion);
             // SaveManager.DeleteKey("StageName");
             // SaveManager.DeleteKey("PlotNameInMainPlot");
             // SaveManager.DeleteKey("StageData");

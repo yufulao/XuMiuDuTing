@@ -33,6 +33,7 @@ MonoBehaviour:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
     - IngameDebugConsole.Runtime
+    - Purchasing.Common
     - sc.posteffects.runtime
     - spine-unity
     - spine-unity-examples
