@@ -26,6 +26,7 @@ namespace Rabi
         public float damageRate; //攻击乘率
         public float hurtRate; //受击乘率
         public int speed; //速度
+        public bool isExceptBattleWinCheck; //战斗胜利检测是否排除
     }
 
     public class CfgEnemy
@@ -78,7 +79,7 @@ namespace Rabi
         private RowCfgEnemy ParseRow(string[] col)
         {
             //列越界
-            if (col.Length < 10)
+            if (col.Length < 11)
             {
                 Debug.LogError($"配置表字段行数越界:{GetType()}");
                 return null;
@@ -96,6 +97,7 @@ namespace Rabi
             data.damageRate = CsvUtility.ToFloat(rowHelper.ReadNextCol()); //攻击乘率
             data.hurtRate = CsvUtility.ToFloat(rowHelper.ReadNextCol()); //受击乘率
             data.speed = CsvUtility.ToInt(rowHelper.ReadNextCol()); //速度
+            data.isExceptBattleWinCheck = CsvUtility.ToBool(rowHelper.ReadNextCol()); //战斗胜利检测是否排除
             return data;
         }
     }

@@ -57,17 +57,16 @@ namespace Yu
         /// </summary>
         public IEnumerator ReturnToTitle(bool playBgm,float bgmFadeOutTime = 0.5f)
         {
-            DialogueManager.instance.StopAllConversations();
-            UIManager.Instance.GetCtrlWithCreate<BattleMainCtrl>("BattleMainView")?.ClearAllEntityHud(); //关闭所有hud，因为HUD独立
-            UIManager.Instance.CloseAllLayerWindows("NormalLayer");
-            yield return new WaitForSeconds(1f);//等待所有windowClose动画
+            SetTimeScale(1f);
             UIManager.Instance.OpenWindow("LoadingView");
             if (playBgm)
             {
                 yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", bgmFadeOutTime, 0f, 0.5f, 1f);
             }
-
-            SetTimeScale(1f);
+            UIManager.Instance.GetCtrlWithCreate<BattleMainCtrl>("BattleMainView")?.ClearAllEntityHud(); //关闭所有hud，因为HUD独立
+            UIManager.Instance.CloseAllLayerWindows("NormalLayer");
+            yield return new WaitForSeconds(1f);//等待所有windowClose动画
+            DialogueManager.instance.StopAllConversations();
             CameraManager.Instance.ResetObjCamera();
             GC.Collect();
             yield return SceneManager.Instance.ChangeSceneAsync(ConfigManager.Instance.cfgScene["Tittle"].scenePath);

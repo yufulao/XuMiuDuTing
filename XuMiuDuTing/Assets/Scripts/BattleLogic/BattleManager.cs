@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Rabi;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 namespace Yu
@@ -69,7 +70,7 @@ namespace Yu
             UIManager.Instance.CloseWindow("LoadingView");
             _fsm.ChangeFsmState(typeof(CharacterCommandInputState));
         }
-        
+
         /// <summary>
         /// 角色输入指令阶段
         /// </summary>
@@ -102,28 +103,32 @@ namespace Yu
         /// <summary>
         /// 敌人依据仇恨值随机选取目标
         /// </summary>
-        public List<BattleEntityCtrl> EnemySelectTarget(int targetCount,bool onlyCharacter=true)
+        public List<BattleEntityCtrl> EnemySelectTarget(int targetCount, bool onlyCharacter = true)
         {
             //todo model缓存list
             var canSelectEntityList = new List<BattleEntityCtrl>();
             foreach (var entity in _model.allEntities)
             {
-                if (entity.isEnemy&&onlyCharacter)//只能选取角色
+                if (entity.isEnemy && onlyCharacter) //只能选取角色
                 {
                     continue;
                 }
+
                 if (entity.IsDie())
                 {
                     continue;
                 }
+
                 canSelectEntityList.Add(entity);
             }
 
-            if (canSelectEntityList.Count <targetCount)
+            if (canSelectEntityList.Count < targetCount)
             {
-                Debug.LogError("敌人找不到合适的目标");
+                Debug.Log("敌人找不到合适的目标");
+                _uiCtrl.view.objMask.SetActive(true);//一般是战斗结束后还点击continueBtn才会报
+                return null;
             }
-            
+
             var canSelectEntityForHatredList = new List<BattleEntityCtrl>();
             foreach (var entity in canSelectEntityList)
             {
@@ -196,6 +201,7 @@ namespace Yu
                 RefreshAllEntityInfoItem();
                 yield return new WaitForSeconds(0.7f);
             }
+
             ExecuteCommandList();
         }
 
@@ -205,7 +211,7 @@ namespace Yu
         private void EnemySetCommandAI()
         {
             var currentEnemyEntity = _model.GetCurrentEnemyEntity();
-            currentEnemyEntity.SetCommandAI( _model.currentRound);
+            currentEnemyEntity.SetCommandAI(_model.currentRound);
             _model.currentEnemyEntityIndex++;
 
             if (_model.currentEnemyEntityIndex == _model.allEnemyEntities.Count) //此时currentBallteId是比allEntity的最大index多1
@@ -283,6 +289,7 @@ namespace Yu
                 _model.characterNumber++;
                 _model.allEntities.Add(characterEntity);
                 _model.allCharacterEntities.Add(characterEntity);
+                // characterEntity.UpdateMp(100);
             }
 
             var enemyTeam = _model.GetEnemyTeam();
@@ -455,10 +462,11 @@ namespace Yu
             if (entity.isEnemy)
             {
                 _model.enemyNumber--;
-                if (_model.enemyNumber == 0)
+                if (CheckGameWinSpecialConditionAfterEnemyDie() || _model.enemyNumber == 0)
                 {
                     GameWin();
                 }
+
                 yield break;
             }
 
@@ -467,6 +475,23 @@ namespace Yu
             {
                 GameLoss();
             }
+        }
+
+        /// <summary>
+        /// 有敌人死亡时检测战斗胜利的特殊情况
+        /// </summary>
+        private bool CheckGameWinSpecialConditionAfterEnemyDie()
+        {
+            //当全部存活的敌人都是isExceptBattleWinCheck时算作战斗胜利
+            foreach (var enemyEntity in _model.allEnemyEntities)
+            {
+                if (!enemyEntity.IsDie() && !enemyEntity.GetRowCfgEnemy().isExceptBattleWinCheck)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -512,14 +537,15 @@ namespace Yu
                 if (entity.animatorEntity)
                 {
                     //恢复动画
-                    if (CheckBuff(entity,"不可选中").Count<=0)
+                    if (CheckBuff(entity, "不可选中").Count <= 0)
                     {
                         entity.animatorEntity.Play("idle");
                     }
+
                     entity.animatorEntity.SetBool("default", false);
                     entity.animatorEntity.SetBool("ready", false);
                 }
-                
+
                 //buff的during--
                 DoBuffEffectAtRoundEnd(entity);
             }
@@ -572,8 +598,14 @@ namespace Yu
         /// <returns></returns>
         private IEnumerator GameFinishIEnumerator(bool isWin)
         {
+            if (!_model.isGaming)
+            {
+                yield break;
+            }
             Debug.Log("战斗" + (isWin ? "胜利" : "失败"));
-            yield return new WaitForSeconds(2f);
+            _model.isGaming = false;
+            
+            yield return new WaitForSeconds(1f);
             if (isWin)
             {
                 GameManager.Instance.PassStage();
@@ -581,10 +613,11 @@ namespace Yu
                 yield break;
             }
 
-            UIManager.Instance.OpenWindow("LoadingView");
-            yield return new WaitForSeconds(0.5f);
-            yield return GameManager.Instance.ReturnToTitle(false,0.5f);
-            UIManager.Instance.OpenWindow(SaveManager.GetString("ChapterType", "MainPlot").Equals("MainPlot") ? "MainPlotSelectView" : "SubPlotSelectView");
+            UIManager.Instance.OpenWindow("DoubleConfirmView", "是否跳过该场战斗？", new UnityAction(() =>
+            {
+                GameManager.Instance.PassStage();
+                ProcedureManager.Instance.EnterNextStageProcedure();
+            }), new UnityAction(ProcedureManager.Instance.EndStageProcedure));
         }
 
         /// <summary>

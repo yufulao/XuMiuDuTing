@@ -12,3 +12,4 @@ TeamEditView#NormalLayer#15#Assets/AddressableAssets/UI/TeamEditView.prefab#None
 CharacterSelectView#NormalLayer#20#Assets/AddressableAssets/UI/CharacterSelectView.prefab#None#None#None
 BattleMainView#NormalLayer#25#Assets/AddressableAssets/UI/BattleMainView.prefab#None#None#None
 PauseView#NormalLayer#99#Assets/AddressableAssets/UI/PauseView.prefab#None#None#None
+BattleTutorialView#NormalLayer#30#Assets/AddressableAssets/UI/BattleTutorialView.prefab#None#None#None

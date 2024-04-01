@@ -36,8 +36,7 @@ namespace Yu
         /// <summary>
         /// 向skillInfo中添加bpNeed和targetList，并通过skillName向currentCharacter添加command和battleStartCommand
         /// </summary>
-        /// <param name="skillInfo"></param>
-        private void AddCharacterSkillCommand(SkillInfo skillInfo)
+        private void AddCharacterSkillCommand(SkillInfo skillInfo,BattleCommandType commandType)
         {
             var rowCfgSkill = skillInfo.RowCfgSkill;
             if (rowCfgSkill.needSelect && skillInfo.targetList == null)
@@ -59,10 +58,10 @@ namespace Yu
                     command = VectoriaSkill2(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
                     break;
                 case "荒芜星原":
-                    command = VectoriaSkill3(caster, rowCfgSkill.bpNeed, _model.allEntities);
+                    command = VectoriaSkill3(caster, rowCfgSkill.bpNeed, new List<BattleEntityCtrl>(_model.allEnemyEntities));
                     break;
                 case "颓废的智慧":
-                    command = VectoriaSkill4(caster, rowCfgSkill.bpNeed, _model.allEntities);
+                    command = VectoriaSkill4(caster, rowCfgSkill.bpNeed, new List<BattleEntityCtrl>(_model.allEnemyEntities));
                     break;
                 case "虚谬":
                     command = VectoriaSkill5(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
@@ -71,7 +70,7 @@ namespace Yu
                     command = VectoriaSkill6(caster, rowCfgSkill.bpNeed);
                     break;
                 case "Ad Astra":
-                    command = VectoriaUniqueSkill(caster, rowCfgSkill.bpNeed, _model.allEntities);
+                    command = VectoriaUniqueSkill(caster, rowCfgSkill.bpNeed, new List<BattleEntityCtrl>(_model.allEnemyEntities));
                     break;
                 case "反击架势": //反击架势，先制指令
                     command = BattleStartCommandInCommandList(caster);
@@ -90,7 +89,7 @@ namespace Yu
                     command = VectorSkill5(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
                     break;
                 case "绽放":
-                    command = VectorSkill6(caster, rowCfgSkill.bpNeed, _model.allEntities);
+                    command = VectorSkill6(caster, rowCfgSkill.bpNeed, new List<BattleEntityCtrl>(_model.allCharacterEntities));
                     break;
                 case "迷惘燃烬":
                     command = VectorUniqueSkill(caster, rowCfgSkill.bpNeed, skillInfo.targetList);
@@ -100,7 +99,7 @@ namespace Yu
             if (command != null)
             {
                 caster.commandList.Add(command);
-                _commandInfoList.Add(new BattleCommandInfo(false, BattleCommandType.Skill, rowCfgSkill.isBattleStartCommand, rowCfgSkill.bpNeed, skillInfo.targetList, caster));
+                _commandInfoList.Add(new BattleCommandInfo(false, commandType, rowCfgSkill.isBattleStartCommand, rowCfgSkill.bpNeed, skillInfo.targetList, caster));
             }
 
             if (battleStartCommand != null)
@@ -180,7 +179,7 @@ namespace Yu
                         // }
                         // else
                         // {
-                        //     battleSystem.EntityGetDamage(target, caster, damagePointFix);
+                             EntityGetDamage(target, caster, damagePointFix);
                         // }
                     }
                 }
@@ -349,14 +348,12 @@ namespace Yu
                 {
                     yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f);
                     StartCoroutine(Utils.PlayAnimation(target.animatorSkill, "dog_skill3"));
-                    yield return new WaitForSeconds(0.2f);
                     EntityGetDamage(target, caster, damagePoint);
                 }
 
                 //todo 仇恨
                 //caster.hatred++;
-                ForceDecreaseEntityHp(caster, caster, (int) (caster.GetMaxHp() * 0.1f));
-
+                yield return new WaitForSeconds(0.5f);
                 caster.UpdateBp(-bpNeed);
             }
 

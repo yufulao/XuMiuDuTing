@@ -23,14 +23,14 @@ namespace Yu
         public override void OpenRoot(params object[] param)
         {
             _view.OpenWindow();
-            if (param.Length<2)
+            if (param.Length<3)
             {
                 Debug.LogError("二次确认没有传入参数");
                 return;
             }
 
             _view.RefreshTipText(param[0].ToString());
-            _model.SetFuncConfirm((UnityAction)param[1]);
+            _model.SetFuncConfirm((UnityAction)param[1], (UnityAction)param[2]);
         }
 
         public override void CloseRoot()
@@ -50,6 +50,7 @@ namespace Yu
         private void BtnOnClickBack()
         {
             CloseRoot();
+            _model.GetFuncCancel()?.Invoke();
         }
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace Yu
         private void BtnOnClickConfirm()
         {
             CloseRoot();
-            _model.GetFuncConfirm().Invoke();
+            _model.GetFuncConfirm()?.Invoke();
         }
     }
 }

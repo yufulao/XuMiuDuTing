@@ -363,8 +363,17 @@ namespace Yu
             StartCoroutine(ExecuteCommandListIEnumerator());
         }
 
+        /// <summary>
+        /// 执行指令列表队列的队首的协程
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator ExecuteCommandListIEnumerator()
         {
+            if (!_model.isGaming)
+            {
+                yield break;
+            }
+            
             if (!_inCommandExecuting)
             {
                 _inCommandExecuting = true;
@@ -415,11 +424,6 @@ namespace Yu
             _sortCommandInfoList.RemoveAt(0);
             RefreshAllEntityInfoItem();
             StartCoroutine(command);
-        }
-
-        private IEnumerator StartCommand()
-        {
-            yield return StartCoroutine(_allCommandList[0]);
         }
 
         /// <summary>

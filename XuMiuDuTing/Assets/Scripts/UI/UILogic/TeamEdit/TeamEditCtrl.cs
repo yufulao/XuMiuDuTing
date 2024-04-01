@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Rabi;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -67,7 +68,7 @@ namespace Yu
         /// 进入战斗关卡
         /// </summary>
         /// <returns></returns>
-        public IEnumerator EnterBattleScene(RowCfgStage rowCfgStage)
+        public IEnumerator EnterBattleScene(RowCfgStage rowCfgStage,UnityAction callback)
         {
             UIManager.Instance.OpenWindow("LoadingView");
             yield return new WaitForSeconds(0.5f);
@@ -75,6 +76,7 @@ namespace Yu
             yield return SceneManager.Instance.ChangeSceneAsync(ConfigManager.Instance.cfgScene[rowCfgStage.battleScene].scenePath);
             var battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
             battleManager.EnterBattle(rowCfgStage,_model.GetTeamArray());
+            callback?.Invoke();
         }
 
         /// <summary>

@@ -2,4 +2,3 @@ key#portraitTeamEditPath#portraitCharacterSelectPath#portraitBattleMenuPath#name
 key#编队界面头像路径#角色选择界面头像路径#战斗面板头像路径#战斗面板角色名路径#实体路径#技能名列表#必杀技名#最大生命值#攻击值#攻击乘率#防御值#受击乘率#速度
 string#string#string#string#string#string#List<string>#string#int#int#float#int#float#int
 维克多#Assets/AddressableAssets/Sprite/TeamEdit/维克多角色头像.png#Assets/AddressableAssets/Sprite/CharacterSelect/维克多角色头像.png#Assets/AddressableAssets/Sprite/Battle/维克多指令面板头像.png#Assets/AddressableAssets/Sprite/Battle/指令名牌 维克多.png#Assets/AddressableAssets/Obj/Spine/维克多Spine.prefab#反击架势,掩护,灼烧印记,不死花,绝境的火焰,绽放#迷惘燃烬#7200#1450#1.2#50#0.9#72
-维多利亚#Assets/AddressableAssets/Sprite/TeamEdit/维多利亚角色头像.png#Assets/AddressableAssets/Sprite/CharacterSelect/维多利亚角色头像.png#Assets/AddressableAssets/Sprite/Battle/维多利亚指令面板头像.png#Assets/AddressableAssets/Sprite/Battle/指令名牌 维多利亚.png#Assets/AddressableAssets/Obj/Spine/维克多Spine.prefab#星光,失却的激情,荒芜星原,颓废的智慧,虚谬,循此苦旅#Ad Astra#4200#2610#1#10#0.8#100
