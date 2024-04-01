@@ -54,6 +54,7 @@ namespace Yu
             ResetAllSubtitlePanelAnimator();
             objContinueButtonMask.SetActive(false);
             imageBgAddonAnimator.SetTrigger("Hide");
+            ResetAllActorName();
             CloseAllVFX();
         }
 
@@ -64,19 +65,6 @@ namespace Yu
         {
             CloseAllVFX();
             SFXManager.Instance.StopAllSfx();
-        }
-
-        /// <summary>
-        /// 关闭所有特效
-        /// </summary>
-        public void CloseAllVFX()
-        {
-            VFXRain(false);
-            VFXFog(false);
-            VFXFire(false);
-            // VFXColorAdjustmentsSaturation(0f);
-            ForceResetVFXProcessing();
-            VFXScreenWater(false);
         }
 
         /// <summary>
@@ -661,6 +649,42 @@ namespace Yu
         {
             _materialBg = Instantiate(imageBg.material);
             imageBg.material = _materialBg;
+        }
+        
+        /// <summary>
+        /// 关闭所有特效
+        /// </summary>
+        private void CloseAllVFX()
+        {
+            VFXRain(false);
+            VFXFog(false);
+            VFXFire(false);
+            // VFXColorAdjustmentsSaturation(0f);
+            ForceResetVFXProcessing();
+            VFXScreenWater(false);
+        }
+        
+        /// <summary>
+        /// 手动重置所有角色名
+        /// </summary>
+        private void ResetAllActorName()
+        {
+            DialogueSystemController.ChangeActorName("旁白", " ");
+            DialogueSystemController.ChangeActorName("维克多", "维克多");
+            DialogueSystemController.ChangeActorName("VK", "维多利亚");
+            DialogueSystemController.ChangeActorName("维克多？？？", "？？？");
+            DialogueSystemController.ChangeActorName("维克多_左", "维克多");
+            DialogueSystemController.ChangeActorName("VK_右", "维多利亚");
+            DialogueSystemController.ChangeActorName("大堂经理", "大堂经理");
+            DialogueSystemController.ChangeActorName("大堂经理_左", "大堂经理");
+            DialogueSystemController.ChangeActorName("薇薇安", "薇薇安");
+            DialogueSystemController.ChangeActorName("异界人食客", "异界人食客");
+            DialogueSystemController.ChangeActorName("龋齿_左", "？？？");
+            DialogueSystemController.ChangeActorName("龋齿_居中", " ");
+            DialogueSystemController.ChangeActorName("龋齿_右", " ");
+            DialogueSystemController.ChangeActorName("维基", "维基");
+            DialogueSystemController.ChangeActorName("李_中", "李");
+            DialogueSystemController.ChangeActorName("李_右", "李");
         }
     }
 }

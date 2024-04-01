@@ -63,17 +63,17 @@ namespace Yu
                            + "输入了指令" + currentCharacterEntity.commandList[^1] + "，commandInfo的数量为" + _commandInfoList.Count);
 
             var braveCount = currentCharacterEntity.GetBraveCount();
-            if (braveCount > 0)
-            {
+            // if (braveCount > 0)
+            // {
                 currentCharacterEntity.UpdateBpPreview(-1);
-            }
+            // }
+            //
+            // if (braveCount == 0)
+            // {
+            //     currentCharacterEntity.UpdateBpPreview(-2);
+            // }
 
-            if (braveCount == 0) //bp{review=-4就不能brave
-            {
-                currentCharacterEntity.UpdateBpPreview(-2);
-            }
-
-            if (currentCharacterEntity.GetBpPreview() <= -4)
+            if (currentCharacterEntity.GetBpPreview() <= -4) //bpReview=-4就不能brave
             {
                 _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.Brave, false);
             }
@@ -452,7 +452,8 @@ namespace Yu
         {
             var commandMenuList = _uiCtrl.view.commandMenuList;
             var currentCharacterEntity = _model.GetCurrentCharacterEntity();
-            var commandType = _commandInfoList[^1].commandType;
+            var commandInfo = _commandInfoList[^1];
+            var commandType = commandInfo.commandType;
             switch (commandType)
             {
                 case BattleCommandType.Attack:
@@ -466,13 +467,12 @@ namespace Yu
                             var tween = commandMenuList[i].GetComponent<RectTransform>().DOAnchorPosX(originalX - 20f, 0.3f);
                             newWaitTime += tween.Duration();
                         }
-
                         commandMenuList[_model.currentMenuLastIndex + 1].GetComponent<RectTransform>().DOAnchorPosX(0f, 0.3f);
                         yield return new WaitForSeconds(newWaitTime);
 
                         _model.currentMenuLastIndex++;
                     }
-
+                    currentCharacterEntity.UpdateBpPreview(commandInfo.bpNeed-1);
                     break;
 
                 case BattleCommandType.UniqueSkill:
@@ -485,7 +485,6 @@ namespace Yu
                             var tween = commandMenuList[i].GetComponent<RectTransform>().DOAnchorPosX(originalX - 20f, 0.3f);
                             newWaitTime += tween.Duration();
                         }
-
                         commandMenuList[_model.currentMenuLastIndex + 1].GetComponent<RectTransform>().DOAnchorPosX(0f, 0.3f);
                         yield return new WaitForSeconds(newWaitTime);
 
@@ -494,16 +493,18 @@ namespace Yu
 
                     currentCharacterEntity.SetHadUniqueSkill(true);
                     _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, currentCharacterEntity.GetHadUniqueSkill());
+                    currentCharacterEntity.UpdateBpPreview(commandInfo.bpNeed-1);
                     break;
 
                 case BattleCommandType.Brave:
-                    if (currentCharacterEntity.GetBraveCount() > 1)
-                    {
+                    // if (currentCharacterEntity.GetBraveCount() > 1)
+                    // {
                         currentCharacterEntity.UpdateBpPreview(1); //返还bp
-                    }
-                    else if (currentCharacterEntity.GetBraveCount() == 1)
+                    //}
+                    //else 
+                    if (currentCharacterEntity.GetBraveCount() == 1)
                     {
-                        currentCharacterEntity.UpdateBpPreview(2); //返还bp
+                        //currentCharacterEntity.UpdateBpPreview(2); //返还bp
                         _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.Brave, true);
                         _uiCtrl.SetMenuBtnEnable(commandMenuList[0], BattleCommandType.Default, true);
                     }
@@ -524,8 +525,7 @@ namespace Yu
                     //函数要放里面，不然有时差，先减了后执行前面的回调,并且要在动画时关闭backButton不然出错
                     commandMenuList[_model.currentMenuLastIndex].gameObject.SetActive(false);
                     _model.currentMenuLastIndex--;
-
-                    RefreshAllCommandMenu();
+                    
                     break;
 
                 case BattleCommandType.Default:
@@ -534,6 +534,7 @@ namespace Yu
                     Debug.LogError("没有实现这个指令的撤销" + commandType);
                     break;
             }
+            RefreshAllCommandMenu();
         }
 
         /// <summary>
@@ -572,6 +573,7 @@ namespace Yu
         private void RefreshAllCommandMenu()
         {
             var characterEntity = _model.GetCurrentCharacterEntity();
+            Debug.Log(characterEntity.GetBpPreview());
             _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, characterEntity.GetHadUniqueSkill());
             _uiCtrl.view.RefreshMenuInfo(characterEntity.GetName(), characterEntity.GetBp(), characterEntity.GetBpPreview(), characterEntity.GetMp());
         }

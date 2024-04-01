@@ -36,7 +36,7 @@ namespace Yu
         /// <summary>
         /// 向skillInfo中添加bpNeed和targetList，并通过skillName向currentCharacter添加command和battleStartCommand
         /// </summary>
-        private void AddCharacterSkillCommand(SkillInfo skillInfo,BattleCommandType commandType)
+        private void AddCharacterSkillCommand(SkillInfo skillInfo, BattleCommandType commandType)
         {
             var rowCfgSkill = skillInfo.RowCfgSkill;
             if (rowCfgSkill.needSelect && skillInfo.targetList == null)
@@ -100,6 +100,7 @@ namespace Yu
             {
                 caster.commandList.Add(command);
                 _commandInfoList.Add(new BattleCommandInfo(false, commandType, rowCfgSkill.isBattleStartCommand, rowCfgSkill.bpNeed, skillInfo.targetList, caster));
+                caster.UpdateBpPreview(-(rowCfgSkill.bpNeed - 1));
             }
 
             if (battleStartCommand != null)
@@ -149,6 +150,7 @@ namespace Yu
                 caster.UpdateBp(-bpNeed);
                 RefreshAllEntityInfoItem();
             }
+
             yield return new WaitForSeconds(0.5f);
 
             ExecuteCommandList();
@@ -179,7 +181,7 @@ namespace Yu
                         // }
                         // else
                         // {
-                             EntityGetDamage(target, caster, damagePointFix);
+                        EntityGetDamage(target, caster, damagePointFix);
                         // }
                     }
                 }
@@ -255,7 +257,7 @@ namespace Yu
             AddBuff("忍耐", caster, caster, 5, 1);
 
             caster.UpdateBp(-bpNeed);
-            
+
             yield return new WaitForSeconds(0.5f);
             ExecuteCommandList();
         }
@@ -293,7 +295,7 @@ namespace Yu
                     RefreshAllEntityInfoItem();
                 }
             }
-            
+
             yield return new WaitForSeconds(0.5f);
             ExecuteCommandList();
             yield return null;
@@ -507,7 +509,7 @@ namespace Yu
         public IEnumerator QuChiAttackAfterRemoveBuffCantSelect(BattleEntityCtrl caster, BattleEntityCtrl target)
         {
             yield return CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DCharacter, 0f);
-            
+
             var positionTemp = caster.gameObject.transform.position;
             caster.gameObject.transform.position = target.gameObject.transform.position;
             yield return Utils.PlayAnimation(caster.animatorEntity, "quchi_skill1");

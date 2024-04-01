@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Rabi;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -54,6 +55,7 @@ namespace Yu
     /// <param name="bpPreview"></param>
     public void RefreshBp(int bpCurrent,int bpPreview)
     {
+        bpPreview = Mathf.Clamp(bpPreview, 0 - 4, _bpSpriteList.Count - 5);
         if (_bpSpriteList==null||bpCurrent+4>=_bpSpriteList.Count||bpPreview+4>=_bpSpriteList.Count)
         {
             Debug.LogError("mp越界,bpCurrent="+bpCurrent+",bpPreview="+bpPreview);
@@ -71,23 +73,6 @@ namespace Yu
     {
         textMp.text = mp.ToString();
         sliderMp.value = mp;
-    }
-
-    /// <summary>
-    /// 手动绑定事件
-    /// </summary>
-    /// <param name="btnAttackFunc"></param>
-    /// <param name="btnBraveFunc"></param>
-    /// <param name="btnSkillFunc"></param>
-    /// <param name="btnUniqueSkillFunc"></param>
-    /// <param name="btnDefaultFunc"></param>
-    public void BindEvent(UnityAction btnAttackFunc,UnityAction btnBraveFunc,UnityAction btnSkillFunc,UnityAction btnUniqueSkillFunc,UnityAction btnDefaultFunc)
-    {
-        btnAttack.onClick.AddListener(btnAttackFunc);
-        btnBrave.onClick.AddListener(btnBraveFunc);
-        btnSkill.onClick.AddListener(btnSkillFunc);
-        btnUniqueSkill.onClick.AddListener(btnUniqueSkillFunc);
-        btnDefault.onClick.AddListener(btnDefaultFunc);
     }
 
     /// <summary>
