@@ -229,11 +229,12 @@ namespace Yu
                 return;
             }
 
-            SaveManager.DeleteKey("StageName");
-            SaveManager.DeleteKey("PlotNameInMainPlot");
-            SaveManager.DeleteKey("StageData");
-            SaveManager.DeleteKey("TeamData");
-            SaveManager.DeleteKey("SkillData");
+            SaveManager.DeleteFile();
+            // SaveManager.DeleteKey("StageName");
+            // SaveManager.DeleteKey("PlotNameInMainPlot");
+            // SaveManager.DeleteKey("StageData");
+            // SaveManager.DeleteKey("TeamData");
+            // SaveManager.DeleteKey("SkillData");
         }
 
         private void Update()

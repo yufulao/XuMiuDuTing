@@ -4,6 +4,7 @@ using System.Linq;
 using Rabi;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 namespace Yu
 {
@@ -33,7 +34,8 @@ namespace Yu
 
         public override void BindEvent()
         {
-            _view.btnCredit.onClick.AddListener(BtnOnClickCredit);
+            _view.btnDeveloper.onClick.AddListener(BtnOnClickDeveloper);
+            _view.btnDeveloperPanel.onClick.AddListener(BtnOnClickDeveloperPanel);
             _view.btnBack.onClick.AddListener(BtnOnClickBack);
             _view.sliderBGM.onValueChanged.AddListener(SliderOnValueChangeBGM);
             _view.sliderSe.onValueChanged.AddListener(SliderOnValueChangeSe);
@@ -46,9 +48,32 @@ namespace Yu
         /// <summary>
         /// 开发者名单
         /// </summary>
-        private static void BtnOnClickCredit()
+        private void BtnOnClickDeveloper()
         {
+            _view.btnDeveloperPanel.interactable = true;
+            _view.animatorDeveloperPanel.gameObject.SetActive(true);
+            _view.animatorDeveloperPanel.SetTrigger("Show");
         }
+        
+        /// <summary>
+        /// 开发者名单关闭
+        /// </summary>
+        private void BtnOnClickDeveloperPanel()
+        {
+            GameManager.Instance.StartCoroutine(BtnOnClickDeveloperPanelIEnumerator());
+        }
+
+        /// <summary>
+        /// 关闭开发者名单的协程
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator BtnOnClickDeveloperPanelIEnumerator()
+        {
+            _view.btnDeveloperPanel.interactable = false;
+            yield return Utils.PlayAnimation(_view.animatorDeveloperPanel, "Hide");
+            _view.animatorDeveloperPanel.gameObject.SetActive(false);
+        }
+        
 
         /// <summary>
         /// 返回

@@ -125,7 +125,7 @@ namespace Yu
             if (canSelectEntityList.Count < targetCount)
             {
                 Debug.Log("敌人找不到合适的目标");
-                _uiCtrl.view.objMask.SetActive(true);//一般是战斗结束后还点击continueBtn才会报
+                _uiCtrl.view.objMask.SetActive(true); //一般是战斗结束后还点击continueBtn才会报
                 return null;
             }
 
@@ -394,10 +394,6 @@ namespace Yu
             //     "伤害rate*受伤rate=" + target.GetHurtRate() * (caster.GetDamageRate()+damageRateAddition) + "\n" +
             //     "总伤害=" + (int) (Mathf.Clamp((damagePoint - target.GetDefend() - target.GetDefendAddon()), 0f, 1000000f)
             //                     * target.GetHurtRate() * (caster.GetDamageRate() + damageRateAddition)));
-            var entityHud = target.GetEntityHud();
-            var textHurtPoint = entityHud.textHurtPoint;
-            textHurtPoint.text = hurtPoint.ToString();
-            Utils.TextFly(textHurtPoint, entityHud.textHurtPointOriginalTransform.position, 10);
 
             //暂时设定成挨打会加10点MP==================================================================================
             target.UpdateMp(10);
@@ -412,6 +408,11 @@ namespace Yu
         /// <param name="hpDecreaseCount"></param>
         private void ForceDecreaseEntityHp(BattleEntityCtrl target, BattleEntityCtrl caster, int hpDecreaseCount)
         {
+            var entityHud = target.GetEntityHud();
+            var textHurtPoint = entityHud.textHurtPoint;
+            textHurtPoint.text = "-" + hpDecreaseCount.ToString();
+            Utils.TextFly(textHurtPoint, entityHud.textHurtPointOriginalTransform.position, 10);
+
             target.UpdateHp(-hpDecreaseCount);
 
             if (target.GetHp() <= 0)
@@ -441,6 +442,10 @@ namespace Yu
         {
             if (CheckBuff(entity, "燃烬").Count <= 0)
             {
+                var entityHud = entity.GetEntityHud();
+                var textHurtPoint = entityHud.textHurtPoint;
+                textHurtPoint.text = "+" + hpAddValue.ToString();
+                Utils.TextFly(textHurtPoint, entityHud.textHurtPointOriginalTransform.position, 5);
                 entity.UpdateHp(hpAddValue);
             }
         }
@@ -602,9 +607,10 @@ namespace Yu
             {
                 yield break;
             }
+
             Debug.Log("战斗" + (isWin ? "胜利" : "失败"));
             _model.isGaming = false;
-            
+
             yield return new WaitForSeconds(1f);
             if (isWin)
             {

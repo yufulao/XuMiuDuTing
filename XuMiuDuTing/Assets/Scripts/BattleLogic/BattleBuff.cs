@@ -169,7 +169,7 @@ namespace Yu
                 case "燃烬":
                     break;
                 case "不可选中":
-                    target.animatorEntity.SetBool("quchiSkill1",true);
+                    target.animatorEntity.SetBool("quchiSkill1", true);
                     break;
                 default:
                     Debug.LogError("没有添加这个buff的效果" + buffInfo.buffName);
@@ -228,7 +228,7 @@ namespace Yu
                     case "燃烬":
                         break;
                     case "不可选中":
-                        caster.animatorEntity.SetBool("quchiSkill1",false);
+                        caster.animatorEntity.SetBool("quchiSkill1", false);
                         break;
                     default:
                         Debug.LogError("没有添加这个buff的效果" + buffInfo.buffName);
@@ -292,6 +292,18 @@ namespace Yu
             {
                 var buffInfo = buffItem.GetBuffInfo();
                 //Debug.Log(buffInfo.buffName+"----during--->"+buffInfo.roundDuring);
+
+                for (var i = 0; i < buffInfo.layer; i++)
+                {
+                    switch (buffInfo.buffName)
+                    {
+                        case "增生":
+                            var hpHeal = buffInfo.target.GetMaxHp() * 0.3f;
+                            RecoverEntityHpWithBuff(buffInfo.target, (int) hpHeal);
+                            break;
+                    }
+                }
+
                 buffInfo.roundDuring--;
                 if (buffInfo.roundDuring > 0)
                 {

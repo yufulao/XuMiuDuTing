@@ -308,7 +308,7 @@ namespace Yu
 
             caster.UpdateBp(-bpNeed);
             caster.UpdateBp(1);
-            AddBuff("反击架势", caster, caster, 1, 1);
+            AddBuff("反击架势", caster, caster, 2, 1);
             ExecuteBattleStartCommandList();
         }
 
@@ -325,7 +325,7 @@ namespace Yu
                     SFXManager.Instance.PlaySfx("技能12");
                     yield return StartCoroutine(CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f));
                     yield return Utils.PlayAnimation(target.animatorBuff, "def_buff");
-                    AddBuff("被掩护", caster, target, 1, 1, new object[1] {caster}, caster);
+                    AddBuff("被掩护", caster, target, 2, 1, new object[1] {caster}, caster);
                 }
 
                 caster.UpdateBp(-bpNeed);
@@ -367,9 +367,9 @@ namespace Yu
             SFXManager.Instance.PlaySfx("技能12");
             yield return Utils.PlayAnimation(caster.animatorEntity, "skill2");
             StartCoroutine(Utils.PlayAnimation(caster.animatorSkill, "dog_skill4&6"));
-            AddBuff("增生", caster, caster, 3, 1);
+            AddBuff("增生", caster, caster, 4, 1);
             yield return Utils.PlayAnimation(caster.animatorBuff, "heal");
-            AddBuff("返生", caster, caster, 5, 1);
+            AddBuff("返生", caster, caster, 6, 1);
             yield return new WaitForSeconds(0.2f);
 
             caster.UpdateBp(-bpNeed);
@@ -424,7 +424,7 @@ namespace Yu
             foreach (var target in targetList)
             {
                 StartCoroutine(Utils.PlayAnimation(target.animatorSkill, "dog_skill4&6"));
-                AddBuff("增生", caster, target, 3, 1);
+                AddBuff("增生", caster, target, 4, 1);
             }
 
             yield return new WaitForSeconds(Utils.GetAnimatorLength(caster.animatorSkill, "dog_skill4&6"));
@@ -448,7 +448,7 @@ namespace Yu
                     yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f);
                     yield return new WaitForSeconds(0.2f);
                     EntityGetDamage(target, caster, damagePoint);
-                    AddBuff("燃烬", caster, target, 5, 1);
+                    AddBuff("燃烬", caster, target, 6, 1);
                 }
 
                 caster.UpdateBp(-bpNeed);
