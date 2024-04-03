@@ -178,7 +178,7 @@ namespace Yu
         /// <param name="param"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T GetCtrlWithCreate<T>(string windowName, params object[] param) where T : UICtrlBase
+        public T GetCtrlWithoutCreate<T>(string windowName, params object[] param) where T : UICtrlBase
         {
             if (_allViews.ContainsKey(windowName))
             {
@@ -186,6 +186,21 @@ namespace Yu
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// 检测页面是否在打开状态
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckViewActiveInHierarchy(string windowName)
+        {
+            if (!_allViews.ContainsKey(windowName))
+            {
+                return false;
+            }
+
+            var view = _allViews[windowName];
+            return view && view.gameObject.activeInHierarchy;
         }
 
         /// <summary>

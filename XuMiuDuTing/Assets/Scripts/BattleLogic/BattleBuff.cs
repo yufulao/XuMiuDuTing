@@ -221,7 +221,6 @@ namespace Yu
                     case "增生":
                         break;
                     case "返生":
-                        target.SetHp(1);
                         break;
                     case "眩晕":
                         break;
