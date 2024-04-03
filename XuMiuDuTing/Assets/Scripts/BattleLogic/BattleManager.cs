@@ -18,6 +18,11 @@ namespace Yu
         private BattleFsm _fsm;
         private BattleModel _model;
 
+        private void Update()
+        {
+            Debug.Log(_model.GetCurrentCharacterEntity().GetBraveCount());
+        }
+
         private void Start()
         {
             InitFsm();
