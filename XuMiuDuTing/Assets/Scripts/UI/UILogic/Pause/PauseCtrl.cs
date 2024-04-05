@@ -26,6 +26,7 @@ namespace Yu
         {
             GameManager.Instance.StartCoroutine(CloseRootIEnumerator());
             DialogueManager.instance.Unpause();
+            EventManager.Instance.Dispatch(EventName.OnPauseViewClose);
         }
 
         public override void BindEvent()

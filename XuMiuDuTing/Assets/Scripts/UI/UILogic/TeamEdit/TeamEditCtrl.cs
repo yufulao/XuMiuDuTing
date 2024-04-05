@@ -122,7 +122,8 @@ namespace Yu
         /// <param name="teammateIndex"></param>
         private void TeamItemOnClick(string characterName, int teammateIndex)
         {
-            UIManager.Instance.OpenWindow("CharacterSelectView", _model.GetTeamArray(), teammateIndex, characterName);
+            UIManager.Instance.OpenWindow("CharacterSelectView", _model.GetTeamArray(), teammateIndex, characterName
+            ,(UnityAction<int,string>) ChangeTeammate,(UnityAction<int>) RemoveTeammate);
         }
 
         /// <summary>

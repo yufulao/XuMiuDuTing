@@ -13,3 +13,4 @@ CharacterSelectView#NormalLayer#20#Assets/AddressableAssets/UI/CharacterSelectVi
 BattleMainView#NormalLayer#25#Assets/AddressableAssets/UI/BattleMainView.prefab#None#None#None
 PauseView#NormalLayer#99#Assets/AddressableAssets/UI/PauseView.prefab#None#None#None
 BattleTutorialView#NormalLayer#30#Assets/AddressableAssets/UI/BattleTutorialView.prefab#None#None#None
+CharacterCatalogView#NormalLayer#15#Assets/AddressableAssets/UI/CharacterCatalogView.prefab#None#None#None

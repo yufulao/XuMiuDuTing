@@ -20,6 +20,7 @@ namespace Yu
             _model = new SettingModel();
             _view = GetComponent<SettingView>();
             _model.OnInit();
+            EventManager.Instance.AddListener(EventName.OnPauseViewClose,CloseRoot);
         }
 
         public override void OpenRoot(params object[] param)
@@ -36,6 +37,10 @@ namespace Yu
 
         public override void CloseRoot()
         {
+            if (!gameObject.activeInHierarchy)
+            {
+                return;
+            }
             _view.CloseWindow();
             //unpause剧情，暂停界面打开的话不unpause，由pause界面关闭时unpause
             if (!UIManager.Instance.CheckViewActiveInHierarchy("PauseView"))

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Yu
 {
@@ -46,7 +47,18 @@ namespace Yu
         /// </summary>
         private static void BtnOnClickCharacter()
         {
-            
+            UIManager.Instance.OpenWindow("CharacterSelectView", null, 0, null
+                , (UnityAction<int, string>)OpenCharacterCatalogView, null);
+        }
+
+        /// <summary>
+        /// 打开CharacterCatalog窗口
+        /// </summary>
+        /// <param name="useless"></param>
+        /// <param name="characterName"></param>
+        private static void OpenCharacterCatalogView(int useless, string characterName)
+        {
+            UIManager.Instance.OpenWindow("CharacterCatalogView",characterName);
         }
         
         /// <summary>

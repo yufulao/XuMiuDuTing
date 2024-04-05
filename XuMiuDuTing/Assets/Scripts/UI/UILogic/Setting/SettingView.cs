@@ -31,9 +31,9 @@ namespace Yu
             sliderBGM.value = SaveManager.GetFloat("BGMVolume", 0f);
             sliderSe.value = SaveManager.GetFloat("SeVolume", 0f);
             sliderVoice.value = SaveManager.GetFloat("VoiceVolume", 0f);
-            sliderAutoSpeed.value=SaveManager.GetFloat("AutoSpeed", 50f);
-            toggleFullscreen.isOn = SettingModel.GetFullscreenInSave();
-            toggleAuto.isOn = SaveManager.GetInt("Auto", 0) == 1;
+             sliderAutoSpeed.value=SaveManager.GetFloat("AutoSpeed", 50f);
+             toggleFullscreen.isOn = SettingModel.GetFullscreenInSave();
+             toggleAuto.isOn = SaveManager.GetInt("Auto", 0) == 1;
             //分辨率下拉列表在ctrl的init里
         }
         

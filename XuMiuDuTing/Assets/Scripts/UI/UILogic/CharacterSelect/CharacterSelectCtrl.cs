@@ -13,7 +13,7 @@ namespace Yu
         private CharacterSelectModel _model;
         private CharacterSelectView _view;
 
-
+        
         public override void OnInit(params object[] param)
         {
             _model = new CharacterSelectModel();
@@ -21,6 +21,7 @@ namespace Yu
         }
 
         //param[0]是teamArray,param[1]是teammateIndex，param[2]是originalCharacterName
+        //param[3]是UnityAction<string> OnChange，param[4]是UnityAction<string> OnRemove
         public override void OpenRoot(params object[] param)
         {
             _model.OnOpen(param);
@@ -72,7 +73,7 @@ namespace Yu
         /// <param name="characterName"></param>
         private void CharacterItemOnBtnClickChange(string characterName)
         {
-            UIManager.Instance.GetCtrl<TeamEditCtrl>("TeamEditView").ChangeTeammate(_model.GetOriginalTeammateIndex(), characterName);
+            _model.onCharacterChange?.Invoke(_model.GetOriginalTeammateIndex(),characterName);
             CloseRoot();
         }
 
@@ -81,7 +82,7 @@ namespace Yu
         /// </summary>
         private void CharacterItemOnBtnClickRemove()
         {
-            UIManager.Instance.GetCtrl<TeamEditCtrl>("TeamEditView").RemoveTeammate(_model.GetOriginalTeammateIndex());
+            _model.onCharacterRemove?.Invoke(_model.GetOriginalTeammateIndex());
             CloseRoot();
         }
 

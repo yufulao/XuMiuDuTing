@@ -18,6 +18,8 @@ namespace Rabi
         public readonly CfgChapter cfgChapter = new CfgChapter();
         public readonly CfgChapterType cfgChapterType = new CfgChapterType();
         public readonly CfgCharacter cfgCharacter = new CfgCharacter();
+        public readonly CfgCharacterArchive cfgCharacterArchive = new CfgCharacterArchive();
+        public readonly CfgCharacterVoice cfgCharacterVoice = new CfgCharacterVoice();
         public readonly CfgEnemy cfgEnemy = new CfgEnemy();
         public readonly CfgGlobal cfgGlobal = new CfgGlobal();
         public readonly CfgMainPlot cfgMainPlot = new CfgMainPlot();
@@ -53,6 +55,8 @@ namespace Rabi
             cfgChapter.Load();
             cfgChapterType.Load();
             cfgCharacter.Load();
+            cfgCharacterArchive.Load();
+            cfgCharacterVoice.Load();
             cfgEnemy.Load();
             cfgGlobal.Load();
             cfgMainPlot.Load();

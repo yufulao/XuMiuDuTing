@@ -62,6 +62,7 @@ namespace Yu
         private void Start()
         {
             CloneMaterialBg();
+            EventManager.Instance.AddListener(EventName.OnPauseViewClose,OnBtnClickLogBack);
         }
 
         /// <summary>
@@ -209,7 +210,11 @@ namespace Yu
             }
 
             _isAuto = false;
-            animatorToggleAuto.Play("Idle");
+            if (animatorToggleAuto.gameObject.activeInHierarchy)
+            {
+                animatorToggleAuto.Play("Idle");
+            }
+
             objContinueButtonMaskForAuto.SetActive(false);
             if (_currentAutoSequencer) //阻断本句话的continue
             {
@@ -362,6 +367,10 @@ namespace Yu
         /// </summary>
         public void OnBtnClickLogBack()
         {
+            if (!animatorLogView.gameObject.activeInHierarchy)
+            {
+                return;
+            }
             StartCoroutine(OnBtnClickLogBackIEnumerator());
             DialogueManager.instance.Unpause();
         }

@@ -4,6 +4,9 @@ public enum EventName{
     Click,
     ChangeScene,
     
+    //ui
+    OnPauseViewClose,
+    
     //Procedure
     TeamEditStateEnter,
     ConversationAStateEnter,

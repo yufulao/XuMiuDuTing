@@ -394,9 +394,9 @@ namespace Yu
                 foreach (var target in targetList)
                 {
                     yield return CameraManager.Instance.MoveObjCameraByEntityIsEnemy(target, 0f);
-                    yield return new WaitForSeconds(0.2f);
-                    StartCoroutine(Utils.PlayAnimation(target.animatorSkill, "dog_skill5"));
+                    yield return Utils.PlayAnimation(target.animatorSkill, "dog_skill5");
                     EntityGetDamage(target, caster, damagePoint);
+                    yield return new WaitForSeconds(0.5f);
                 }
 
                 ForceDecreaseEntityHp(caster, caster, (int) (caster.GetMaxHp() * 0.1f));
