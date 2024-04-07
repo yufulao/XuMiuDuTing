@@ -12,7 +12,9 @@ namespace Yu
         private AudioMixer _audioMixer;
         private AudioMixerGroup _bgmMixerGroup;
         private CfgBGM _cfgBGM;
+        private RowCfgBGM _rowCfgBGM;
         private AudioSource _audioSource;
+        private float _cacheBaseVolume;
 
         public void OnInit()
         {
@@ -24,6 +26,7 @@ namespace Yu
             _audioSource = root.AddComponent<AudioSource>();
             _audioSource.outputAudioMixerGroup = _bgmMixerGroup;
             _audioSource.playOnAwake = false;
+            _cacheBaseVolume = 1f;
         }
 
         /// <summary>
@@ -42,7 +45,8 @@ namespace Yu
         public void PlayBgm(string bgmName, float baseVolume = 1f)
         {
             _audioSource.Stop();
-            var audioClip= AssetManager.Instance.LoadAsset<AudioClip>(_cfgBGM[bgmName].audioClipPath);
+            _rowCfgBGM = _cfgBGM[bgmName];
+            var audioClip = AssetManager.Instance.LoadAsset<AudioClip>(_rowCfgBGM.audioClipPath);
             PlayBgm(audioClip, baseVolume);
         }
 
@@ -56,6 +60,7 @@ namespace Yu
             _audioSource.clip = clip;
             _audioSource.Play();
             _audioSource.volume = baseVolume;
+            _cacheBaseVolume = baseVolume;
         }
 
         /// <summary>
@@ -84,19 +89,20 @@ namespace Yu
             StopBgm();
             yield return new WaitForSeconds(delayTime);
             PlayBgm(bgmName, 0f);
-            var tweener= _audioSource.DOFade(baseVolume, fadeInTime);
+            var tweener = _audioSource.DOFade(baseVolume, fadeInTime);
+            _cacheBaseVolume = baseVolume;
             yield return tweener.WaitForCompletion();
             // Debug.Log(_audioSource.volume);
         }
-        
+
         /// <summary>
         /// a播放一次然后b循环
         /// </summary>
         /// <returns></returns>
-        public IEnumerator PlayLoopBgmWithIntro(string bgmNameA,string bgmNameB, float fadeOutTime, float delayTime, float fadeInTime, float baseVolume = 1f)
+        public IEnumerator PlayLoopBgmWithIntro(string bgmNameA, string bgmNameB, float fadeOutTime, float delayTime, float fadeInTime, float baseVolume = 1f)
         {
-            var audioClipA= AssetManager.Instance.LoadAsset<AudioClip>(_cfgBGM[bgmNameA].audioClipPath);
-            var audioClipB= AssetManager.Instance.LoadAsset<AudioClip>(_cfgBGM[bgmNameB].audioClipPath);
+            var audioClipA = AssetManager.Instance.LoadAsset<AudioClip>(_cfgBGM[bgmNameA].audioClipPath);
+            var audioClipB = AssetManager.Instance.LoadAsset<AudioClip>(_cfgBGM[bgmNameB].audioClipPath);
             _audioSource.loop = true;
             _audioSource.DOFade(0, fadeOutTime); //音量降为0
             yield return new WaitForSeconds(fadeOutTime);
@@ -132,7 +138,25 @@ namespace Yu
         {
             _audioMixer.SetFloat("BGMVolume", volume);
         }
-        
+
+        /// <summary>
+        /// bgm播放过程中调整音量
+        /// </summary>
+        /// <param name="volumeRate"></param>
+        public void UpdateVolumeRuntime(float volumeRate)
+        {
+            var originalVolume = _audioSource.volume;
+            _audioSource.DOFade(originalVolume + originalVolume * volumeRate,0.5f);
+        }
+
+        /// <summary>
+        /// 重置bgm初始音量
+        /// </summary>
+        public void ResetBgmVolume()
+        {
+            _audioSource.DOFade(_cacheBaseVolume,0.5f);
+        }
+
         /// <summary>
         /// 静音
         /// </summary>

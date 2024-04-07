@@ -63,7 +63,7 @@ namespace Yu
             {
                 yield return BGMManager.Instance.PlayBgmFadeDelay("主界面-章节选择界面", bgmFadeOutTime, 0f, 0.5f, 1f);
             }
-            UIManager.Instance.GetCtrlWithCreate<BattleMainCtrl>("BattleMainView")?.ClearAllEntityHud(); //关闭所有hud，因为HUD独立
+            UIManager.Instance.GetCtrlWithoutCreate<BattleMainCtrl>("BattleMainView")?.ClearAllEntityHud(); //关闭所有hud，因为HUD独立
             UIManager.Instance.CloseAllLayerWindows("NormalLayer");
             yield return new WaitForSeconds(0.3f);//等待所有windowClose动画
             DialogueManager.instance.StopAllConversations();

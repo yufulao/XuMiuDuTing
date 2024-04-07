@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using PixelCrushers.DialogueSystem;
 using Rabi;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -19,19 +20,35 @@ namespace Yu
             _model = new SettingModel();
             _view = GetComponent<SettingView>();
             _model.OnInit();
+            EventManager.Instance.AddListener(EventName.OnPauseViewClose,CloseRoot);
         }
 
         public override void OpenRoot(params object[] param)
         {
             _view.OpenWindow();
+            //pause剧情，pause界面打开时已经pause过了，不重复pause
+            if (!UIManager.Instance.CheckViewActiveInHierarchy("PauseView"))
+            {
+                DialogueManager.instance.Pause();
+            }
+            
             UpdateAllSetting();
         }
 
         public override void CloseRoot()
         {
+            if (!gameObject.activeInHierarchy)
+            {
+                return;
+            }
             _view.CloseWindow();
+            //unpause剧情，暂停界面打开的话不unpause，由pause界面关闭时unpause
+            if (!UIManager.Instance.CheckViewActiveInHierarchy("PauseView"))
+            {
+                DialogueManager.instance.Unpause();
+            }
         }
-
+        
         public override void BindEvent()
         {
             _view.btnDeveloper.onClick.AddListener(BtnOnClickDeveloper);
@@ -40,6 +57,7 @@ namespace Yu
             _view.sliderBGM.onValueChanged.AddListener(SliderOnValueChangeBGM);
             _view.sliderSe.onValueChanged.AddListener(SliderOnValueChangeSe);
             _view.sliderVoice.onValueChanged.AddListener(SliderOnValueChangeVoice);
+            //_view.sliderAutoSpeed.onValueChanged.AddListener(SliderOnValueChangeAutoSpeed);//无需操作
             _view.toggleFullscreen.onValueChanged.AddListener(ToggleOnValueChangeFullscreen);
             _view.toggleAuto.onValueChanged.AddListener(ToggleOnValueChangeAuto);
             _view.dropdownResolution.onValueChanged.AddListener(DropdownOnValueChangeResolution);
@@ -54,7 +72,7 @@ namespace Yu
             _view.animatorDeveloperPanel.gameObject.SetActive(true);
             _view.animatorDeveloperPanel.SetTrigger("Show");
         }
-        
+
         /// <summary>
         /// 开发者名单关闭
         /// </summary>
@@ -73,7 +91,7 @@ namespace Yu
             yield return Utils.PlayAnimation(_view.animatorDeveloperPanel, "Hide");
             _view.animatorDeveloperPanel.gameObject.SetActive(false);
         }
-        
+
 
         /// <summary>
         /// 返回
@@ -92,6 +110,7 @@ namespace Yu
             SaveManager.SetFloat(DefSFXType.DSe + "Volume", _view.sliderSe.value <= _view.sliderSe.minValue ? -100f : _view.sliderSe.value);
             SaveManager.SetFloat(DefSFXType.DVoice + "Volume", _view.sliderVoice.value <= _view.sliderVoice.minValue ? -100f : _view.sliderVoice.value);
             SaveManager.SetFloat("BGMVolume", _view.sliderBGM.value <= _view.sliderBGM.minValue ? -100f : _view.sliderBGM.value);
+            SaveManager.SetFloat("AutoSpeed", _view.sliderAutoSpeed.value);
         }
 
         /// <summary>
@@ -156,6 +175,7 @@ namespace Yu
         /// <param name="value"></param>
         private static void ToggleOnValueChangeAuto(bool value)
         {
+            SaveManager.SetInt("Auto", value ? 1 : 0);
         }
 
         /// <summary>

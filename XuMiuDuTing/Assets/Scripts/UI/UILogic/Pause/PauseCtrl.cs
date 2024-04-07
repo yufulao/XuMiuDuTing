@@ -19,11 +19,14 @@ namespace Yu
         public override void OpenRoot(params object[] param)
         {
             GameManager.Instance.StartCoroutine(OpenRootIEnumerator());
+            DialogueManager.instance.Pause();
         }
 
         public override void CloseRoot()
         {
             GameManager.Instance.StartCoroutine(CloseRootIEnumerator());
+            DialogueManager.instance.Unpause();
+            EventManager.Instance.Dispatch(EventName.OnPauseViewClose);
         }
 
         public override void BindEvent()

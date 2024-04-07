@@ -1,4 +1,4 @@
-key#portraitTeamEditPath#portraitCharacterSelectPath#portraitBattleMenuPath#nameBattleMenuPath#entityObjPath#skillNameList#uniqueSkillName#maxHp#damage#damageRate#defend#hurtRate#speed
-key#编队界面头像路径#角色选择界面头像路径#战斗面板头像路径#战斗面板角色名路径#实体路径#技能名列表#必杀技名#最大生命值#攻击值#攻击乘率#防御值#受击乘率#速度
-string#string#string#string#string#string#List<string>#string#int#int#float#int#float#int
-维克多#Assets/AddressableAssets/Sprite/TeamEdit/维克多角色头像.png#Assets/AddressableAssets/Sprite/CharacterSelect/维克多角色头像.png#Assets/AddressableAssets/Sprite/Battle/维克多指令面板头像.png#Assets/AddressableAssets/Sprite/Battle/指令名牌 维克多.png#Assets/AddressableAssets/Obj/Spine/维克多Spine.prefab#反击架势,掩护,灼烧印记,不死花,绝境的火焰,绽放#迷惘燃烬#7200#1450#1.2#50#0.9#72
+key#portraitTeamEditPath#portraitCharacterSelectPath#portraitBattleMenuPath#idlePortraitPath#nameBattleMenuPath#entityObjPath#skillNameList#uniqueSkillName#maxHp#damage#damageRate#defend#hurtRate#speed#catalogVoiceList#catalogArchiveList
+key#编队界面头像路径#角色选择界面头像路径#战斗面板头像路径#默认立绘路径#战斗面板角色名路径#实体路径#技能名列表#必杀技名#最大生命值#攻击值#攻击乘率#防御值#受击乘率#速度#语音列表(角色图鉴)#档案列表(角色图鉴)
+string#string#string#string#string#string#string#List<string>#string#int#int#float#int#float#int#List<string>#List<string>
+维克多#Assets/AddressableAssets/Sprite/TeamEdit/维克多角色头像.png#Assets/AddressableAssets/Sprite/CharacterSelect/维克多角色头像.png#Assets/AddressableAssets/Sprite/Battle/维克多指令面板头像.png#Assets/AddressableAssets/Sprite/Dialogue/立绘美术资源/狗子立绘/狗子 (1).png#Assets/AddressableAssets/Sprite/Battle/指令名牌 维克多.png#Assets/AddressableAssets/Obj/Spine/维克多Spine.prefab#反击架势,掩护,灼烧印记,不死花,绝境的火焰,绽放#迷惘燃烬#7200#1450#1.2#50#0.9#72#0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30#0,1,2,3

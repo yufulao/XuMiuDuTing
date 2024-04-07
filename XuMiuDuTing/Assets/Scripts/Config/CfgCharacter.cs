@@ -20,6 +20,7 @@ namespace Rabi
         public string portraitTeamEditPath; //编队界面头像路径
         public string portraitCharacterSelectPath; //角色选择界面头像路径
         public string portraitBattleMenuPath; //战斗面板头像路径
+        public string idlePortraitPath; //默认立绘路径
         public string nameBattleMenuPath; //战斗面板角色名路径
         public string entityObjPath; //实体路径
         public List<string> skillNameList; //技能名列表
@@ -30,6 +31,8 @@ namespace Rabi
         public int defend; //防御值
         public float hurtRate; //受击乘率
         public int speed; //速度
+        public List<string> catalogVoiceList; //语音列表(角色图鉴)
+        public List<string> catalogArchiveList; //档案列表(角色图鉴)
     }
 
     public class CfgCharacter
@@ -82,7 +85,7 @@ namespace Rabi
         private RowCfgCharacter ParseRow(string[] col)
         {
             //列越界
-            if (col.Length < 14)
+            if (col.Length < 17)
             {
                 Debug.LogError($"配置表字段行数越界:{GetType()}");
                 return null;
@@ -94,6 +97,7 @@ namespace Rabi
             data.portraitTeamEditPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //编队界面头像路径
             data.portraitCharacterSelectPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //角色选择界面头像路径
             data.portraitBattleMenuPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //战斗面板头像路径
+            data.idlePortraitPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //默认立绘路径
             data.nameBattleMenuPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //战斗面板角色名路径
             data.entityObjPath = CsvUtility.ToString(rowHelper.ReadNextCol()); //实体路径
             data.skillNameList = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //技能名列表
@@ -104,6 +108,8 @@ namespace Rabi
             data.defend = CsvUtility.ToInt(rowHelper.ReadNextCol()); //防御值
             data.hurtRate = CsvUtility.ToFloat(rowHelper.ReadNextCol()); //受击乘率
             data.speed = CsvUtility.ToInt(rowHelper.ReadNextCol()); //速度
+            data.catalogVoiceList = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //语音列表(角色图鉴)
+            data.catalogArchiveList = CsvUtility.ToList<string>(rowHelper.ReadNextCol()); //档案列表(角色图鉴)
             return data;
         }
     }

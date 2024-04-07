@@ -63,17 +63,17 @@ namespace Yu
                            + "输入了指令" + currentCharacterEntity.commandList[^1] + "，commandInfo的数量为" + _commandInfoList.Count);
 
             var braveCount = currentCharacterEntity.GetBraveCount();
-            if (braveCount > 0)
-            {
-                currentCharacterEntity.UpdateBpPreview(-1);
-            }
+            // if (braveCount > 0)
+            // {
+            currentCharacterEntity.UpdateBpPreview(-1);
+            // }
+            //
+            // if (braveCount == 0)
+            // {
+            //     currentCharacterEntity.UpdateBpPreview(-2);
+            // }
 
-            if (braveCount == 0) //bp{review=-4就不能brave
-            {
-                currentCharacterEntity.UpdateBpPreview(-2);
-            }
-
-            if (currentCharacterEntity.GetBpPreview() <= -4)
+            if (currentCharacterEntity.GetBpPreview() <= -4) //bpReview=-4就不能brave
             {
                 _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.Brave, false);
             }
@@ -112,7 +112,7 @@ namespace Yu
             }
             else
             {
-                AddCharacterSkillCommand(skillInfo,BattleCommandType.Skill); //添加指令
+                AddCharacterSkillCommand(skillInfo, BattleCommandType.Skill); //添加指令
                 SetCommand();
             }
 
@@ -127,7 +127,7 @@ namespace Yu
         {
             //禁用摁键
             _uiCtrl.SetAllMenuInteractable(false);
-            
+
             var currentCharacterEntity = _model.GetCurrentCharacterEntity();
             var skillName = currentCharacterEntity.GetRowCfgCharacter().uniqueSkillName;
             var rowCfgSkill = ConfigManager.Instance.cfgSkill[skillName];
@@ -137,14 +137,14 @@ namespace Yu
                 caster = currentCharacterEntity
             };
             _model.cacheCurrentSkillInfo = skillInfo;
-            
+
             if (rowCfgSkill.needSelect)
             {
                 OpenAimSelectPanel(BattleCommandType.UniqueSkill, rowCfgSkill.selectType, rowCfgSkill.objCameraStateType, rowCfgSkill.selectCount);
             }
             else
             {
-                AddCharacterSkillCommand(skillInfo,BattleCommandType.UniqueSkill); //添加指令
+                AddCharacterSkillCommand(skillInfo, BattleCommandType.UniqueSkill); //添加指令
                 SetCommand();
             }
 
@@ -210,7 +210,7 @@ namespace Yu
                     }
 
                     skillInfo.targetList = selectedEntity;
-                    AddCharacterSkillCommand(skillInfo,BattleCommandType.Skill);
+                    AddCharacterSkillCommand(skillInfo, BattleCommandType.Skill);
                     _uiCtrl.CloseSkillDescribe();
                     break;
                 case BattleCommandType.UniqueSkill:
@@ -222,7 +222,7 @@ namespace Yu
                     currentCharacter.SetHadUniqueSkill(false);
                     _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, false);
                     skillInfo.targetList = selectedEntity;
-                    AddCharacterSkillCommand(skillInfo,BattleCommandType.UniqueSkill);
+                    AddCharacterSkillCommand(skillInfo, BattleCommandType.UniqueSkill);
                     break;
                 default:
                     Debug.LogError("目标输入待添加新的CommandType");
@@ -452,7 +452,8 @@ namespace Yu
         {
             var commandMenuList = _uiCtrl.view.commandMenuList;
             var currentCharacterEntity = _model.GetCurrentCharacterEntity();
-            var commandType = _commandInfoList[^1].commandType;
+            var commandInfo = _commandInfoList[^1];
+            var commandType = commandInfo.commandType;
             switch (commandType)
             {
                 case BattleCommandType.Attack:
@@ -473,6 +474,7 @@ namespace Yu
                         _model.currentMenuLastIndex++;
                     }
 
+                    currentCharacterEntity.UpdateBpPreview(commandInfo.bpNeed - 1);
                     break;
 
                 case BattleCommandType.UniqueSkill:
@@ -494,17 +496,20 @@ namespace Yu
 
                     currentCharacterEntity.SetHadUniqueSkill(true);
                     _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.UniqueSkill, currentCharacterEntity.GetHadUniqueSkill());
+                    currentCharacterEntity.UpdateBpPreview(commandInfo.bpNeed - 1);
                     break;
 
                 case BattleCommandType.Brave:
-                    if (currentCharacterEntity.GetBraveCount() > 1)
+                    // if (currentCharacterEntity.GetBraveCount() > 1)
+                    // {
+                    currentCharacterEntity.UpdateBpPreview(1); //返还bp
+                    //}
+                    //else 
+                    if (currentCharacterEntity.GetBraveCount() == 1)
                     {
-                        currentCharacterEntity.UpdateBpPreview(1); //返还bp
-                    }
-                    else if (currentCharacterEntity.GetBraveCount() == 1)
-                    {
-                        currentCharacterEntity.UpdateBpPreview(2); //返还bp
+                        //currentCharacterEntity.UpdateBpPreview(2); //返还bp
                         _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.Brave, true);
+                        _uiCtrl.SetMenuBtnEnable(commandMenuList[3], BattleCommandType.Brave, false);
                         _uiCtrl.SetMenuBtnEnable(commandMenuList[0], BattleCommandType.Default, true);
                     }
 
@@ -525,7 +530,6 @@ namespace Yu
                     commandMenuList[_model.currentMenuLastIndex].gameObject.SetActive(false);
                     _model.currentMenuLastIndex--;
 
-                    RefreshAllCommandMenu();
                     break;
 
                 case BattleCommandType.Default:
@@ -534,6 +538,8 @@ namespace Yu
                     Debug.LogError("没有实现这个指令的撤销" + commandType);
                     break;
             }
+
+            RefreshAllCommandMenu();
         }
 
         /// <summary>
@@ -565,7 +571,7 @@ namespace Yu
             _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.Brave, false);
             _uiCtrl.SetMenuBtnEnable(commandMenuList[0], BattleCommandType.Default, false);
         }
-        
+
         /// <summary>
         /// 以当前角色更新菜单面板
         /// </summary>
@@ -583,8 +589,8 @@ namespace Yu
         {
             _uiCtrl.view.UpdateAllEntityInfoItem(_model.allCharacterEntities, _model.allEnemyEntities);
         }
-        
-         /// <summary>
+
+        /// <summary>
         /// 初始化entity的复选框
         /// </summary>
         private void InitAimSelectToggleList()
@@ -653,7 +659,7 @@ namespace Yu
             //将所有死亡和有不可选择buff的entity关闭toggleSelect
             foreach (var entityCtrl in _model.allEntities)
             {
-                if (entityCtrl.IsDie()||CheckBuff(entityCtrl,"不可选中").Count>0)
+                if (entityCtrl.IsDie() || CheckBuff(entityCtrl, "不可选中").Count > 0)
                 {
                     var entityHud = entityCtrl.GetEntityHud();
                     entityHud.toggleSelect.isOn = false;
@@ -663,6 +669,7 @@ namespace Yu
                     {
                         activeToggleList.Remove(entityHud.toggleSelect);
                     }
+
                     if (!entityCtrl.IsDie())
                     {
                         entityCtrl.SetOutlineActive(false);
@@ -784,7 +791,7 @@ namespace Yu
             _model.selectedEntityList.Clear();
             _model.canSelectCount = -1;
         }
-        
+
         /// <summary>
         /// 关闭所有entity的描边
         /// </summary>
@@ -795,6 +802,5 @@ namespace Yu
                 entity.SetOutlineActive(false);
             }
         }
-        
     }
 }

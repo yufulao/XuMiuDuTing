@@ -436,9 +436,9 @@ namespace Yu
             Debug.Log("指令全部执行完毕");
             ResetCommand();
             _fsm.ChangeFsmState(typeof(CharacterCommandInputState));
-            _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.Brave, true);
             var commandMenuList = _uiCtrl.view.commandMenuList;
-            _uiCtrl.SetMenuBtnEnable(commandMenuList[^1], BattleCommandType.Brave, false); //最后一个menu绝对不能有Brave
+            _uiCtrl.SetAllMenuBtnEnable(BattleCommandType.Brave, true);
+            _uiCtrl.SetMenuBtnEnable(commandMenuList[3], BattleCommandType.Brave, false); //最后一个menu绝对不能有Brave
             _uiCtrl.SetMenuBtnEnable(commandMenuList[0], BattleCommandType.Default, true); //最后一个menu绝对不能有Brave
             StartCoroutine(CameraManager.Instance.MoveObjCamera(DefObjCameraStateType.DIdleCommand,0.3f));
             RefreshAllCommandMenu();

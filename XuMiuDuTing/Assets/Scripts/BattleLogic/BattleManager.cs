@@ -422,7 +422,7 @@ namespace Yu
                 {
                     var buffInfo = buffInfoList[0];
                     ForceRemoveBuffNoCallback(target, buffInfo);
-                    DoRemoveBuffEffect(buffInfo);
+                    target.SetHp(1);
                     RefreshAllEntityInfoItem();
                     return;
                 }
